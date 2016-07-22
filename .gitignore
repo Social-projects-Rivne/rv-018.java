@@ -1,0 +1,16 @@
+*.class
+.project
+.springBeans
+.classpath
+.settings/
+.metadata/
+target/
+hibernate.cfg.xml
+Servers
+app/.idea/
+app/Bawl.iml
+desktop.ini
+/target
+.idea/*
+dataSources.local.xml
+AndroidApp/*

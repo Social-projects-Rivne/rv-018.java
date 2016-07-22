@@ -1,0 +1,9 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ua.softserve.rv_018.greentourism</groupId>
+  <artifactId>GreenTourism</artifactId>
+  <version>0.1.0</version>
+  <packaging>war</packaging>
+  <name>Green tourism</name>
+  <description>Green tourism is an educational social project of the group rv-018.java (SoftServe Rivne)	</description>
+</project>
