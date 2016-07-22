@@ -98,7 +98,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${war-plugin.version}</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+					<!-- <warSourceDirectory>WebContent</warSourceDirectory> -->
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
