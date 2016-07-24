@@ -1,0 +1,12 @@
+# the script to create test table manually
+# not in use by the app
+# delete in the future
+CREATE TABLE IF NOT EXISTS greentourism.`user_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(45) NULL DEFAULT NULL,
+  `is_active` BIT(1) NULL DEFAULT b'1',
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 7
+  DEFAULT CHARACTER SET = utf8;
