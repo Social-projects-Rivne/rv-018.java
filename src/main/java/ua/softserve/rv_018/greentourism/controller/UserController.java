@@ -40,7 +40,7 @@ public class UserController {
      * Web service endpoint to fetch a single User entity by primary key
      * identifier.
      * <p>
-     * If found, the Role is returned as JSON with HTTP status 200.
+     * If found, the User is returned as JSON with HTTP status 302.
      * <p>
      * If not found, the service returns an empty response body with HTTP status
      * 404.
@@ -106,7 +106,7 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody User user) {
         logger.info("> createUser");
         
-        userService.validateUserBeforeCreating(user.getUsername());
+        userService.validateUserBeforeCreating(user.getLogin());
         User savedUser = userService.create(user);
 
         HttpHeaders httpHeaders = new HttpHeaders();
