@@ -1,11 +1,5 @@
 package ua.softserve.rv_018.greentourism.controller;
 
-//import edu.com.softserveinc.bawl.AbstractBawlFunctionalTest;
-//import edu.com.softserveinc.bawl.models.UserModel;
-//import edu.com.softserveinc.bawl.models.enums.UserRole;
-//import edu.com.softserveinc.bawl.services.HistoryService;
-//import edu.com.softserveinc.bawl.services.IssueService;
-//import edu.com.softserveinc.bawl.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
