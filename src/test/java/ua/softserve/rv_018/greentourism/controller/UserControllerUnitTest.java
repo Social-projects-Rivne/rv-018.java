@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.http.MediaType;
 
+import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerUnitTest {
     public static final String EMPTY_COLLECTION = "[]";
     public static final String EMPTY_VALUE = "";
+    public static final String VALUE ="{\"id\":1,\"login\":\"login\",\"email\":\"some@gmail.com\",\"firstName\":null,\"lastName\":null,\"password\":\"password\",\"active\":false}"; 
 
     private MockMvc mockMvc;
 
@@ -32,6 +34,9 @@ public class UserControllerUnitTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+        User user = new User(1l, "login", "some@gmail.com", "password");
+        
+        Mockito.when(userService.findOne(1l)).thenReturn(user);
         mockMvc = MockMvcBuilders.standaloneSetup(this.userController).build();
     }
 
@@ -48,7 +53,7 @@ public class UserControllerUnitTest {
         mockMvc.perform(get("/user/1"))
                 .andExpect(status().isFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(content().string(EMPTY_VALUE));
+                .andExpect(content().string(VALUE));
     }
     
     @Test
