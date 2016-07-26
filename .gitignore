@@ -5,6 +5,7 @@
 .settings/
 .metadata/
 target/
+src/main/webapp/resources/bower_components
 #hibernate.cfg.xml
 Servers
 app/.idea/
