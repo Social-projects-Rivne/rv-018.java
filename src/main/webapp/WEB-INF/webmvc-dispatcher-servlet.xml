@@ -16,7 +16,8 @@
 	<import resource="bean.xml"/>
  	
 	<context:component-scan base-package="ua.softserve.rv_018.greentourism.controller,
-		ua.softserve.rv_018.greentourism.service" />
+		ua.softserve.rv_018.greentourism.service,
+		ua.softserve.rv_018.greentourism.configuration" />
 
  	<mvc:annotation-driven />
  	
