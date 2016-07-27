@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
@@ -8,10 +9,16 @@
 	<script src="resources/js/controllers.js"></script>
 </head>
 <body>
-	<h1>message: ${message }</h1>
+	<c:if test="${param.login != null}">
+		<div class="alert alert-success">
+			<p>You have been logged in ass <strong>${user}</strong>.</p>
+			<a href="<c:url value="/logout" />">Logout</a>
+		</div>
+	</c:if>
+	
+	<h1>Hi! ${message}</h1>
 	<div ng-controller="TestCtrl">
 		<p>Check: {{test}} </p>
-		<p>1 + 8 = {{1 + 8}} </p>
 	</div>
 </body>
 </html>
