@@ -1,46 +1,69 @@
 package ua.softserve.rv_018.greentourism.controller;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.*;
-import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
+import ua.softserve.rv_018.greentourism.controller.MainController;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@WebAppConfiguration
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 public class MainControllerUnitTest {
+	
+	private MockMvc mockMvc;
+	
+	@Mock
+    private HttpServletRequest request;
 
-    @Autowired
-    private WebApplicationContext context;
-
-    private MockMvc mvc;
-
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders
-                .webAppContextSetup(context)                
-                .apply(springSecurity())
-                .build();
+    @Mock
+    private HttpServletResponse response;
+	
+	@InjectMocks
+    private MainController mainController;
+	
+	@Mock
+	private SecurityContextLogoutHandler securityContextLogoutHandler;
+	
+	
+	@Before
+	public void setup() {
+        MockitoAnnotations.initMocks(this);
+        
+        mockMvc = MockMvcBuilders.standaloneSetup(this.mainController).build();
     }
-    
-    @Test
-    public void testLogout() throws Exception{
-        mvc
-            .perform(logout("/logout"))
-            .andExpect(unauthenticated())
-            .andExpect(redirectedUrl("/login?logout"));
+	
+	@Test
+    public void testLogout_ShouldReturnRedirectView() throws Exception {
+        mockMvc.perform(get("/logout"))
+                .andExpect(status().isFound())
+                .andExpect(view().name("redirect:/login?logout"))
+        		.andExpect(redirectedUrl("/login?logout"));
     }
-    
+	
+	@Test
+    public void testLogout_LogoutHandlerGetsNullAndMethodsReturnsRedirectView() throws Exception {
+		HttpServletRequest request =  Mockito.mock(HttpServletRequest.class);     
+	    HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+		
+		Mockito.doNothing().when(securityContextLogoutHandler).logout(request, response, null);
+	    
+		mockMvc.perform(get("/logout"))
+                .andExpect(status().isFound())
+                .andExpect(view().name("redirect:/login?logout"))
+                .andExpect(redirectedUrl("/login?logout"));
+    }
 }
+
