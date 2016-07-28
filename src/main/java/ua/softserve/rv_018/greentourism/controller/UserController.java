@@ -143,10 +143,11 @@ public class UserController {
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
 
-        User updatedUser = userService.findOne(id);
-        if (updatedUser == null) {
+        if (userService.findOne(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        
+        User updatedUser = userService.update(user);
 
         logger.info("< updateUser id:{}", user.getId());
         
