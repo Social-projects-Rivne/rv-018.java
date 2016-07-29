@@ -6,13 +6,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
-public class ValidationOfEmailAddressTest {
+public class UserDataInputValidationTest {
 
-    private ValidationOfEmailAddress validationOfEmailAddress;
+    private UserDataInputValidation userDataInputValidation;
 
     @BeforeClass
     public void initData() {
-        validationOfEmailAddress = new ValidationOfEmailAddress();
+        userDataInputValidation = new UserDataInputValidation();
     }
 
     @DataProvider
@@ -22,7 +22,7 @@ public class ValidationOfEmailAddressTest {
                 "mkyong111@mkyong.com", "mkyong-100@mkyong.net",
                 "mkyong.100@mkyong.com.au", "mkyong@1.com",
                 "mkyong@gmail.com.com", "mkyong+100@gmail.com",
-                "mkyong-100@yahoo-test.com" } } };
+                "mkyong-100@yahoo-test.com", "mkyong.100@yahoo.com"} } };
     }
 
     @DataProvider
@@ -31,14 +31,14 @@ public class ValidationOfEmailAddressTest {
                 "mkyong123@gmail.a", "mkyong123@.com", "mkyong123@.com.com",
                 ".mkyong@mkyong.com", "mkyong()*@gmail.com", "mkyong@%*.com",
                 "mkyong..2002@gmail.com", "mkyong.@gmail.com",
-                "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a"} } };
+                "mkyong@mkyong@gmail.com", "mkyong@gmail.com.1a", "mkyong@mail.ru"} } };
     }
 
     @Test(dataProvider = "ValidEmailProvider")
     public void ValidEmailTest(String[] Email) {
 
         for (String temp : Email) {
-            boolean valid = validationOfEmailAddress.validate(temp);
+            boolean valid = userDataInputValidation.validate(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(valid, true);
         }
@@ -49,7 +49,7 @@ public class ValidationOfEmailAddressTest {
     public void InValidEmailTest(String[] Email) {
 
         for (String temp : Email) {
-            boolean valid = validationOfEmailAddress.validate(temp);
+            boolean valid = userDataInputValidation.validate(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(valid, false);
         }
