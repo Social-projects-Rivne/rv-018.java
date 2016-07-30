@@ -38,7 +38,7 @@ public class UserDataInputValidationTest {
     public void ValidEmailTest(String[] Email) {
 
         for (String temp : Email) {
-            boolean valid = userDataInputValidation.validate(temp);
+            boolean valid = userDataInputValidation.validateEmail(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(valid, true);
         }
@@ -49,7 +49,7 @@ public class UserDataInputValidationTest {
     public void InValidEmailTest(String[] Email) {
 
         for (String temp : Email) {
-            boolean valid = userDataInputValidation.validate(temp);
+            boolean valid = userDataInputValidation.validateEmail(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(valid, false);
         }
