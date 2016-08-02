@@ -50,9 +50,8 @@ public class MainControllerUnitTest {
     @Test
     public void testLogout_ShouldReturnRedirectView() throws Exception {
         mockMvc.perform(get("/logout"))
-                .andExpect(status().isFound())
-                .andExpect(view().name("redirect:/login?logout"))
-                .andExpect(redirectedUrl("/login?logout"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("main"));
     }
 
     @Test
@@ -70,9 +69,8 @@ public class MainControllerUnitTest {
         Mockito.doNothing().when(securityContextLogoutHandler).logout(request, response, null);
 
         mockMvc.perform(get("/logout"))
-                .andExpect(status().isFound())
-                .andExpect(view().name("redirect:/login?logout"))
-                .andExpect(redirectedUrl("/login?logout"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("main"));
     }
 }
 

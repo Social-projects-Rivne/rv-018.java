@@ -29,8 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerUnitTest {
     public static final String EMPTY_COLLECTION = "[]";
     public static final String EMPTY_VALUE = "";
-    public static final String VALUE ="{\"id\":1,\"login\":\"login\",\"email\":\"some@gmail.com\",\"firstName\":null,\"lastName\":null,\"password\":\"password\",\"active\":false}";
-    public static final User USER = new User(1l, "login", "some@gmail.com", "password");
+    public static final String VALUE ="{\"id\":1,\"username\":\"username\",\"email\":\"some@gmail.com\",\"firstName\":null,\"lastName\":null,\"password\":\"password\",\"active\":false}";
+    public static final User USER = new User(1l, "username", "some@gmail.com", "password");
     public static final String HEADER_LOCATION = "http://localhost/user/1";
 
     private MockMvc mockMvc;
