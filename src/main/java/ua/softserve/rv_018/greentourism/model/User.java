@@ -15,15 +15,15 @@ public class User {
     private Long id;
     @Column(name = "username")
     private String username;
-    @Column(name = "email", unique=true)
+    @Column(name = "email", unique=true, nullable = false)
     private String email;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default false")
     private boolean isActive;
 
     public User() {}

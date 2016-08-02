@@ -27,6 +27,13 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping(value="/profile/{id}", method=RequestMethod.GET)
+	public String openProfile(ModelMap model) {
+		model.addAttribute("user", getAuthenticatedUserName());
+		
+		return "userProfile";
+	}
+	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -34,8 +41,7 @@ public class MainController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		
-		/*return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good idea to show login screen again.*/
-		return "login";
+		return "main";
 	}
 	
 	@RequestMapping(value = "/login")

@@ -8,7 +8,7 @@
 
 
 	<http use-expressions="true">
- 		<intercept-url pattern="/main" access="hasRole('ADMIN')" />
+ 		<intercept-url pattern="/profile/{id}" access="hasRole('ADMIN')" />
  		<!-- <intercept-url pattern="/main" access="isAuthenticated()" /> -->
  		
  		<remember-me  />
@@ -17,7 +17,7 @@
 		
 		<form-login
 			login-page="/login"
-			default-target-url="/user"
+			default-target-url="/main"
 			authentication-failure-forward-url="/login?error=true"
 			username-parameter="user_login"
 			password-parameter="password_login" />

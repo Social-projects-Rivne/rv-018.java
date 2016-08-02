@@ -17,7 +17,7 @@ public class Role {
     private Long id;
     @Column(name = "user_detail_id")
     private UserDetails user;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(255) default 'ROLE_USER'")
     private String name;
 	
     public Role() {}
