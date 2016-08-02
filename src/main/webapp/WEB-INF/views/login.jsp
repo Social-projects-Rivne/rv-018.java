@@ -6,11 +6,10 @@
 </head>
 
 <body>
-	<c:url var="loginUrl" value="/login" />
-	<form action="${loginUrl}" method="post" >
+	<form action="/login" method="post" >
 		<c:if test="${param.error != null}">
 			<div>
-				<p>Invalid username and password.</p>
+				<p>Invalid email and/or password.</p>
 			</div>
 		</c:if>
 		<c:if test="${param.logout != null}">
@@ -20,16 +19,19 @@
 		</c:if>
 		<div>
 			<label for="username"></label> 
-			<input type="text" id="username" name="ssoId" placeholder="Enter Username" required>
+			<input type="text" id="username" name="user_login" placeholder="Enter Email" required>
 		</div>
 		<div>
 			<label for="password"></label>
-			<input type="password" id="password" name="password" placeholder="Enter Password" required>
+			<input type="password" id="password" name="password_login" placeholder="Enter Password" required>
 		</div>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<div>
+			<label><input type="checkbox" name="remember-me"> Remember Me</label>
+		</div>
 		<div>
 			<input type="submit" value="Log in">
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 </body>
 </html>

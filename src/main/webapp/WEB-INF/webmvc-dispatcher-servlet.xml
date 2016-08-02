@@ -13,8 +13,6 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
  
-	<import resource="bean.xml"/>
- 	
 	<context:component-scan base-package="ua.softserve.rv_018.greentourism.controller,
 		ua.softserve.rv_018.greentourism.service,
 		ua.softserve.rv_018.greentourism.configuration" />

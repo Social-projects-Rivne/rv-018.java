@@ -106,7 +106,7 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody User user) {
         logger.info("> createUser");
         
-        userService.validateUserBeforeCreating(user.getLogin());
+        userService.validateUserBeforeCreating(user.getUsername());
         User savedUser = userService.create(user);
 
         HttpHeaders httpHeaders = new HttpHeaders();
