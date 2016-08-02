@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
 	public User create(User user) {
 		logger.info("> User create");
 
-        validateUserBeforeCreating(user.getLogin());
+        validateUserBeforeCreating(user.getUsername());
         User savedUser = userRepository.save(user);
 
         logger.info("< User create");
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService{
             throw new NoResultException("Requested entity not found.");
         }
 
-        userToUpdate.setLogin(user.getLogin());
+        userToUpdate.setUsername(user.getUsername());
         User updatedUser = userRepository.save(userToUpdate);
 
         logger.info("< User update id:{}", updatedUser.getId());
@@ -109,8 +109,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void validateUserBeforeCreating(String login) {
-		this.userRepository.findByLogin(login).ifPresent(
+	public void validateUserBeforeCreating(String username) {
+		this.userRepository.findByUsername(username).ifPresent(
                 (user) -> {throw new UserAlreadyExistsException(user);});
 	}
 	
