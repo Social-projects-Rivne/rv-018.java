@@ -12,6 +12,7 @@
 	<div ng-controller="TestCtrl">
 		<p>Check: {{test}}</p>
 	</div>
+	<login></login>
 	<c:choose>
 		<c:when test="${user != null && user != 'anonymousUser' && user != 'not authenticated'}">
         	<p>
@@ -29,6 +30,10 @@
 	</c:choose>
 	
 	<script src="resources/bower_components/angular/angular.js"></script>
-	<script src="resources/js/controllers.js"></script>
+	<script src="resources/bower_components/angular-route/angular-route.js"></script>
+	<script src="resources/app/module.js"></script>
+	<script src="resources/app/controller.js"></script>
+	
+	<script src="resources/app/login/login.component.js"></script>
 </body>
 </html>
