@@ -11,6 +11,7 @@
  		<intercept-url pattern="/profile/{id}" access="hasRole('ADMIN')" />
  		<!-- <intercept-url pattern="/main" access="isAuthenticated()" /> -->
  		
+ 		<csrf disabled="true"/>
  		<remember-me  />
 		
 		<access-denied-handler error-page="/accessDenied" />
