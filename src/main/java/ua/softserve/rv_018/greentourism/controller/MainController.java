@@ -10,11 +10,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class MainController {
@@ -54,6 +56,16 @@ public class MainController {
 		model.setViewName("login");
 
 		return model;
+	}
+	
+	
+	@RequestMapping(value = "/register")
+	public String registerPage(Model model) {
+
+		ua.softserve.rv_018.greentourism.model.User user = new ua.softserve.rv_018.greentourism.model.User();
+		model.addAttribute("userForm", user);
+
+		return "register";
 	}
 	
 	@RequestMapping(value="/accessDenied", method=RequestMethod.GET)

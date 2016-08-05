@@ -13,6 +13,7 @@
 		<p>Check: {{test}}</p>
 	</div>
 	<login></login>
+	<register></register>
 	<c:choose>
 		<c:when test="${user != null && user != 'anonymousUser' && user != 'not authenticated'}">
         	<p>
@@ -22,6 +23,9 @@
         <br/>
 		</c:when>
 		<c:otherwise>
+		    <p>
+		        Press <a href="<c:url value="/register" />">register</a> to register
+		    </p>   
         	<p> 
 				Press <a href="<c:url value="/login" />">login</a> to login
 			</p>
@@ -34,6 +38,7 @@
 	<script src="resources/app/module.js"></script>
 	<script src="resources/app/controller.js"></script>
 	
+	<script src="resources/app/Register/Register.component.js"></script>
 	<script src="resources/app/login/login.component.js"></script>
 </body>
 </html>

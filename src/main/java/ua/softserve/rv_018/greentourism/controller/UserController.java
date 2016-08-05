@@ -101,9 +101,9 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value = "/user", method = RequestMethod.POST,
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@ModelAttribute("userForm") User user) {
         logger.info("> createUser");
         
         userService.validateUserBeforeCreating(user.getUsername());
