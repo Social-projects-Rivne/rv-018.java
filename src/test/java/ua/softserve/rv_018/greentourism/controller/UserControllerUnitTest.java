@@ -54,7 +54,7 @@ public class UserControllerUnitTest {
     @Test
     public void testGetUsers() throws Exception {
         mockMvc.perform(get("/user"))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(content().string(EMPTY_COLLECTION));
     }
@@ -64,7 +64,7 @@ public class UserControllerUnitTest {
     	Mockito.when(userService.findOne(1l)).thenReturn(USER);
         
         mockMvc.perform(get("/user/1"))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(content().string(VALUE));
     }
@@ -84,7 +84,7 @@ public class UserControllerUnitTest {
         String json = gson.toJson(USER);
         
     	mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(json))
-		        .andExpect(status().isCreated())
+		        .andExpect(status().isOk())
 		        .andExpect(header().string("Location", HEADER_LOCATION));
     }
     

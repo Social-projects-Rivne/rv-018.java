@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('greenApp', ['ngRoute']);
+angular.module('greenApp', [ 'ngRoute' , 'ngResource'] );
