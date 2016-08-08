@@ -1,0 +1,28 @@
+<form ng-submit="update()">
+		<label for="id">Id: </label> <input type="text" id="id"
+			ng-model="id" placeholder="user id" ng-change="findById()" />
+	</div>
+	<div>
+		{{errorMessage}}
+	</div>
+	<div>
+		<label for="username">Username: </label> <input type="text" id="username"
+			ng-model="username" placeholder="user name" />
+	</div>
+	<div>
+		<label for="email">Email: </label> <input type="text" id="email"
+			ng-model="email" placeholder="enter email" />
+	</div>
+	<div>
+		<label for="firstName">First name: </label> <input type="text" id="firstName"
+			ng-model="firstName" placeholder="enter first name" />
+	</div>
+	<div>
+		<label for="lastName">Last name: </label> <input type="text" id="lastName"
+			ng-model="lastName" placeholder="enter last name" />
+	</div>
+	<div>
+		<input type="submit" value="Save" />
+	</div>
+</form>
+</div>

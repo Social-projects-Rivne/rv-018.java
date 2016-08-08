@@ -62,7 +62,7 @@ public class UserController {
 
         logger.info("< getUser id:{}", id);
         
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     /**
@@ -82,7 +82,7 @@ public class UserController {
         
         logger.info("< getUsers");
         
-        return new ResponseEntity<>(users, HttpStatus.FOUND);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
@@ -101,9 +101,9 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value = "/createUser", method = RequestMethod.POST,
+    @RequestMapping(value = "/user", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> createUser(@ModelAttribute("userForm") User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         logger.info("> createUser");
         
         userService.validateUserBeforeCreating(user.getUsername());
@@ -116,7 +116,7 @@ public class UserController {
 
         logger.info("< createUser");
         
-        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
 
     /**
