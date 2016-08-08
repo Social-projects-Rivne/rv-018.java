@@ -62,7 +62,7 @@ public class UserController {
 
         logger.info("< getUser id:{}", id);
         
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     /**
@@ -82,7 +82,7 @@ public class UserController {
         
         logger.info("< getUsers");
         
-        return new ResponseEntity<>(users, HttpStatus.FOUND);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
@@ -116,7 +116,7 @@ public class UserController {
 
         logger.info("< createUser");
         
-        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
 
     /**
