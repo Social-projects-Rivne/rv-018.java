@@ -42,5 +42,6 @@
 	
 	<script src="resources/app/login/login.component.js"></script>
 	<script src="resources/app/components/profile/profile.component.js"></script>
+	<script src="resources/app/components/user/user.component.js"></script>
 </body>
 </html>
