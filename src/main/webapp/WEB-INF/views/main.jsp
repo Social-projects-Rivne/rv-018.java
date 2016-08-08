@@ -3,9 +3,8 @@
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
-<title>Welcome page</title>
-<script
-	src="resources/bower_components/materialize/dist/css/materialize.css"></script>
+	<title>Welcome page</title>
+	<link rel="stylesheet" href="/resources/bower_components/materialize/dist/css/materialize.css">
 </head>
 <body>
 	<h1>Hi! ${message}</h1>
@@ -13,7 +12,6 @@
 	<a href="#/profile">Edit profile</a>
 	
 	<ng-view></ng-view>
-	
 	
 	<br>
 	<br>
