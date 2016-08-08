@@ -18,7 +18,7 @@ public class UserDataInputValidation {
 			+ "{5,}"				//Must contain at least 5 characters
 			+ "$";					//End of the string
 	
-    private static final String FLNAME_PATTERN = 
+    private static final String NAME_PATTERN = 
 			"^"						//Start of the string
 			+ "([а-яіїєёА-ЯІЇЄЁ"	//Must contain only cyrillic and/or		 
 			+ "a-zA-z])"			//latin symbols
@@ -45,10 +45,10 @@ public class UserDataInputValidation {
     	return matcher.matches();
     }
 	
-    public static boolean validateFLName(String flName) {
-    	Pattern pattern = Pattern.compile(FLNAME_PATTERN);
+    public static boolean validateName(String name) {
+    	Pattern pattern = Pattern.compile(NAME_PATTERN);
 		
-    	Matcher matcher = pattern.matcher(flName);
+    	Matcher matcher = pattern.matcher(name);
     	return matcher.matches();
     }
 	

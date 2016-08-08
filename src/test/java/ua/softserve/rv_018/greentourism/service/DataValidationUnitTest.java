@@ -49,18 +49,18 @@ public class DataValidationUnitTest {
 			assertFalse(UserDataInputValidation.validatePassword(str));
 	}
 	
-	//Checks if validateFLName method returns true for every string in validNames array
+	//Checks if validateName method returns true for every string in validNames array
 	@Test
-	public void testValidFLNames() {
+	public void testValidNames() {
 		for (String str : VALID_NAMES)
-			assertTrue(UserDataInputValidation.validateFLName(str));
+			assertTrue(UserDataInputValidation.validateName(str));
 	}
 	
-	//Checks if validateFLName method returns false for every string in invalidNames array
+	//Checks if validateName method returns false for every string in invalidNames array
 	@Test
-	public void testInvalidFLNames() {
+	public void testInvalidNames() {
 		for (String str : INVALID_NAMES)
-			assertFalse(UserDataInputValidation.validateFLName(str));
+			assertFalse(UserDataInputValidation.validateName(str));
 	}
 	
 	//Checks if validateUsername method returns true for every string in validUsernames array
