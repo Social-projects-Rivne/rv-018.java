@@ -7,5 +7,7 @@ angular.module('greenApp').config(function($routeProvider) {
 		template : '<profile>'
 	}).when('/user/:userId', {
 		template : '<user></user>'
+	}).when('/map', {
+		template : '<map>'
 	}).otherwise('/');
 });
