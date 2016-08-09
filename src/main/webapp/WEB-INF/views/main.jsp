@@ -4,9 +4,9 @@
 <html lang="en" ng-app="greenApp">
 <head>
 <title>Welcome page</title>
-<link rel="stylesheet" href="/resources/bower_components/materialize/dist/css/materialize.css">
+<link rel="stylesheet" href="resources/bower_components/materialize/dist/css/materialize.css" />
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-<link rel="stylesheet" href="/resources/app/css/map.css">
+<link rel="stylesheet" href="resources/app/css/map.css" />
 </head>
 <body>
 	<h1>Hi! ${message}</h1>
@@ -16,6 +16,9 @@
 	
 	<ng-view></ng-view>
 
+	<div ng-controller="markerCtrl">
+		<button ng-click="showMarkers()">Show markers on the map</button>
+	</div>
 	<br>
 	<br>
 	<h4>Old jsp code:</h4>
@@ -53,5 +56,6 @@
 	<!-- Profile component -->
 	<script src="resources/app/components/profile/profile.component.js"></script>
 	
+	<script src="resources/app/marker.controller.js"></script>
 </body>
 </html>
