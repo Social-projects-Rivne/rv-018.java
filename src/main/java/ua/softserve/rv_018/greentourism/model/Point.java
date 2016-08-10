@@ -15,11 +15,13 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "langtitude")
+	@Column(name = "langtitude", nullable = false)
 	private float langtitude;
 	
-	@Column(name = "longtitude")
+	@Column(name = "longtitude", nullable = false)
 	private float longtitude;
+	
+	public Point() { }
 
 	public int getId() {
 		return id;
