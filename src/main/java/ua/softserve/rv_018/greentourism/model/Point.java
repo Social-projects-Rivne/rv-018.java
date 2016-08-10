@@ -15,13 +15,11 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "langtitude", nullable = false)
-	private String langtitude;
+	@Column(name = "langtitude")
+	private float langtitude;
 	
-	@Column(name = "longtitude", nullable = false)
-	private String longtitude;
-
-	public Point() { }
+	@Column(name = "longtitude")
+	private float longtitude;
 
 	public int getId() {
 		return id;
@@ -31,19 +29,19 @@ public class Point {
 		this.id = id;
 	}
 
-	public String getLangtitude() {
+	public float getLangtitude() {
 		return langtitude;
 	}
 
-	public void setLangtitude(String langtitude) {
+	public void setLangtitude(float langtitude) {
 		this.langtitude = langtitude;
 	}
 
-	public String getLongtitude() {
+	public float getLongtitude() {
 		return longtitude;
 	}
 
-	public void setLongtitude(String longtitude) {
+	public void setLongtitude(float longtitude) {
 		this.longtitude = longtitude;
 	}
 
