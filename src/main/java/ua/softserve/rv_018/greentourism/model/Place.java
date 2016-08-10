@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
@@ -27,7 +25,7 @@ public class Place {
 	private String description;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "point_id")
+	@JoinColumn(name = "point_id", nullable = false)
 	private Point point;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
