@@ -8,31 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "points")
+@Table(name = "point")
 public class Point {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@Column(name = "langtitude")
+	private int id;
+	
+	@Column(name = "langtitude", nullable = false)
 	private String langtitude;
-	@Column(name = "longtitude")
+	
+	@Column(name = "longtitude", nullable = false)
 	private String longtitude;
 
-	public Point() {
-	}
+	public Point() { }
 
-	public Point(Long id, String langtitude, String longtitude) {
-		this.id = id;
-		this.langtitude = langtitude;
-		this.longtitude = longtitude;
-	}
-
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -54,7 +49,8 @@ public class Point {
 
 	@Override
 	public String toString() {
-		return "Point [id=" + id + ", langtitude=" + langtitude
+		return "Point [id=" + id + 
+				", langtitude=" + langtitude
 				+ ", longtitude=" + longtitude + "]";
 	}
 
