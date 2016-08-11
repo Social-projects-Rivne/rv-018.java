@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
 </head>
 <body>
-	context : ${pageContext.request.contextPath}
 	<h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
 	<a href="#/profile">Edit profile</a><br>
