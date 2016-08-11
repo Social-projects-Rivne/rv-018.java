@@ -7,7 +7,7 @@ angular.
 	  controller: function($http, $routeParams) {
 		var self = this;
 		
-		$http.get('/GreenTourism/user/' + $routeParams.userId).then(function(response) {
+		$http.get('/user/' + $routeParams.userId).then(function(response) {
 		  self.user = response.data;	
 		});
 	  }
