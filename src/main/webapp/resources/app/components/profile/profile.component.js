@@ -2,7 +2,7 @@
 
 angular.module('greenApp').
 component('profile', {
-	templateUrl : 'resources/app/components/profile/profile.template.html',
+	templateUrl : _contextPath +  '/resources/app/components/profile/profile.template.html',
 	controller : function($scope, $http) {
 		$scope.findById = function () {
 	    	// update only if id chosen
@@ -18,7 +18,7 @@ component('profile', {
 				$scope.lastName = response.data.lastName;
 		    };
 			
-			$http.get('http://localhost:8080/user/'+$scope.id).then(successCallBack);
+			$http.get(_contextPath + '/user/'+$scope.id).then(successCallBack);
 		};
 		
 		$scope.update = function () {
@@ -36,7 +36,7 @@ component('profile', {
 	            lastName: $scope.lastName
 	        };
 	        
-			var res = $http.put('http://localhost:8080/user/'+$scope.id, dataObj);
+			var res = $http.put(_contextPath +  '/user/'+$scope.id, dataObj);
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});
