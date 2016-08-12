@@ -19,9 +19,8 @@ public class UserDataInputValidation {
 			+ "$";					//End of the string
 	
     private static final String NAME_PATTERN = 
-			"^"						//Start of the string
-			+ "([а-яіїєёА-ЯІЇЄЁ"	//Must contain only cyrillic and/or		 
-			+ "a-zA-z])"			//latin symbols
+			"^"						//Start of the string	 
+			+ "[a-zA-z]"			//Must contain only latin symbols
 			+ "{2,}"				//Must contain at least 2 characters
 			+ "$";					//End of the string
 	

@@ -14,14 +14,14 @@ public class DataValidationUnitTest {
 			"Abcd 1",	//Contains whitespace
 			"Abc1",		//Contains not enough symbols
 			"#Abcd1",	//Contains inappropriate symbol
-			"&*#@`%" }; //Absolutely wrong password 
+			"&*#@%" }; //Absolutely wrong password 
 	
 	private static final String[] VALID_NAMES = 
-		{"Вася", "Віка", "Vasya", "vanya", "ЄєІіЇїЬь" };
+		{"Whatever", "smth", "Vasya", "vanya", "me" };
 	
 	private static final String[] INVALID_NAMES = 
-		{	"Вася1", 	//Contains a digit
-			"Віка$", 	//Contains inappropriate symbol
+		{	"Vasya1", 	//Contains a digit
+			"smth$", 	//Contains inappropriate symbol
 			"V", 		//Contains not enough symbols
 			"#12%$" };  //Absolutely wrong first or last name
 	
@@ -33,7 +33,7 @@ public class DataValidationUnitTest {
 			"vasya$", 	//Contains inappropriate symbol
 			"@abc123",  //One more inappropriate symbol
 			"V123", 	//Contains not enough symbols
-			"#ії%$" };  //Absolutely wrong username
+			"#3a%$" };  //Absolutely wrong username
 	
 	//Checks if validatePassword method returns true for every string in validPasswords array
 	@Test
