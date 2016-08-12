@@ -52,6 +52,7 @@
 	<script src="resources/app/login/login.component.js"></script>
 	<!-- Profile component -->
 	<script src="resources/app/components/profile/profile.component.js"></script>
-	
+	<!--  User component -->
+	<script src="resources/app/components/user/user.component.js"></script>
 </body>
 </html>
