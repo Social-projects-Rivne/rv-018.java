@@ -2,59 +2,21 @@
 
 angular.module('greenApp')
 	.controller('markerCtrl', function($rootScope, $scope, $http, $log){
-		$scope.showMarkers = function() {
-			
+		$rootScope.$on('initMarkerController', function() {
 			var markersArray = [];
-//			var mapViewport = $rootScope.myMap.getBounds();
-//			var mapViewportGSON = JSON.stringify($rootScope.myMap.getBounds()).replace(/_/g, '');
-			
-			
-//			$http({
-//				method: 'GET',
-//				url: 'http://localhost:8080/GreenTourism/api/point/'
-//			})
-//			.then(function(response){
-//				$scope.points = response.data;
-//				
-//				angular.forEach($scope.points, function(point, key){
-//					markersArray.push(L.marker([point.lat, point.lon]).addTo($rootScope.myMap));
-//				})
-//			}, function(error){
-//				$scope.error = error;
-//				$log.info(error);
-//			});
 
-//			$http({
-//				method: 'POST',
-//				url: 'http://localhost:8080/GreenTourism/api/currentMapViewportPoints/',
-//				data: mapViewport
-//			})
-//			.then(function(response){
-//				$scope.points = response.data;
-//				
-//				angular.forEach($scope.points, function(point, key){
-//					markersArray.push(L.marker([point.lat, point.lon]).addTo($rootScope.myMap));
-//				})
-//			}, function(error){
-//				$scope.error = error;
-//				$log.info(error);
-//			});
-
-			$rootScope.myMap.on('move', function(){
-				angular.forEach(markersArray, function(marker, key){
-					$rootScope.myMap.removeLayer(marker);
-				})
-
-				markersArray = [];
+			$rootScope.myMap.on('moveend', function(){
 				var mapViewportGSON = JSON.stringify($rootScope.myMap.getBounds()).replace(/_/g, '');
 
+				$scope.progressBarVision = true;
 				$http({
 					method: 'POST',
 					url: 'http://localhost:8080/GreenTourism/api/currentMapViewportPoints/',
 					data: mapViewportGSON
 				})
 				.then(function(response){
-					$scope.points = response.data;
+					$scope.progressBarVision = false;
+					var points = response.data;
 
 					if (markersArray.length > 0)
 						angular.forEach(markersArray, function(marker, key){
@@ -62,11 +24,12 @@ angular.module('greenApp')
 						})
 					markersArray = [];
 					
-					angular.forEach($scope.points, function(point, key){
+					angular.forEach(points, function(point, key){
 						markersArray.push(L.marker([point.lat, point.lon]).addTo($rootScope.myMap));
 					})
 				}, function(error){
-					$scope.error = error;
+					$scope.progressBarVision = false;
+					$rootScope.error = error;
 					$log.info(error);
 				});
 
@@ -74,5 +37,5 @@ angular.module('greenApp')
 					$rootScope.myMap.addLayer(marker);
 				})
 			});
-		}
+		})
 });

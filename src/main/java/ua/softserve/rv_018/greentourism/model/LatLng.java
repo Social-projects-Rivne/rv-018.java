@@ -7,24 +7,24 @@ public class LatLng {
 	
 	public LatLng() {};
 	
-	public LatLng (float latitude, float longitude){
-		this.lat = latitude;
-		this.lng = longitude;
+	public LatLng (float lat, float lng){
+		this.lat = lat;
+		this.lng = lng;
 	};
 	
-	public float getLatitude(){
+	public float getLat(){
 		return lat;
 	};
 
-	public void setLatitude(float latitude){
-		this.lat = latitude;
+	public void setLat(float lat){
+		this.lat = lat;
 	};
 
-	public float getLongitude(){
+	public float getLng(){
 		return lng;
 	};
 
-	public void setLongitude(float longitude){
-		this.lng = longitude;
+	public void setLng(float lng){
+		this.lng = lng;
 	};
 }

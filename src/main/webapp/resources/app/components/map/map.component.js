@@ -40,5 +40,7 @@ angular.module('greenApp')
 		}
 
 		mymap.on('click', onMapClick);
+		
+		$rootScope.$emit('initMarkerController', {});
     }
   });

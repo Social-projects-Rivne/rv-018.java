@@ -36,9 +36,9 @@ public class LatLngBounds {
 		LatLng sw1 = pointCoord;
 		LatLng ne1 = pointCoord;
 		
-		return (sw1.getLatitude() >= sw.getLatitude() &&
-		ne1.getLatitude() <= ne.getLatitude() &&
-		sw1.getLongitude() >= sw.getLongitude() &&
-		ne1.getLongitude() <= ne.getLongitude());
+		return (sw1.getLat() >= sw.getLat() &&
+		ne1.getLat() <= ne.getLat() &&
+		sw1.getLng() >= sw.getLng() &&
+		ne1.getLng() <= ne.getLng());
 	}
 }
