@@ -18,7 +18,7 @@ component('profile', {
 				$scope.lastName = response.data.lastName;
 		    };
 			
-			$http.get(_contextPath + '/user/'+$scope.id).then(successCallBack);
+			$http.get(_contextPath + '/user/' + $scope.id).then(successCallBack);
 		};
 		
 		$scope.update = function () {
@@ -36,7 +36,7 @@ component('profile', {
 	            lastName: $scope.lastName
 	        };
 	        
-			var res = $http.put(_contextPath +  '/user/'+$scope.id, dataObj);
+			var res = $http.put(_contextPath + '/user/'+$scope.id, dataObj);
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});

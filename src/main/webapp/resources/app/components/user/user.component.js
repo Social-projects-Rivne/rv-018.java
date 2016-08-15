@@ -3,7 +3,7 @@
 angular.
   module('greenApp').
   component('user', {
-	  templateUrl: _contextPath +  '/resources/app/components/user/user.template.html',
+	  templateUrl: _contextPath + '/resources/app/components/user/user.template.html',
 	  controller: function($http, $routeParams) {
 		var self = this;
 		
