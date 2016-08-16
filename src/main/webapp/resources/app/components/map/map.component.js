@@ -2,7 +2,7 @@
 
 angular.module('greenApp')
   .component('map', {
-    templateUrl: 'resources/app/components/map/map.template.html',
+    templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($scope) {
     	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
     	
@@ -10,7 +10,7 @@ angular.module('greenApp')
 			maxZoom: 18,
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				'Imagery ï¿½ <a href="http://mapbox.com">Mapbox</a>',
 			id: 'mapbox.streets'
 		}).addTo(mymap);
     	
