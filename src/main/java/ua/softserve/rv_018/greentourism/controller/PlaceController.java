@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ua.softserve.rv_018.greentourism.model.LatLng;
 import ua.softserve.rv_018.greentourism.model.LatLngBounds;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
-import ua.softserve.rv_018.greentourism.service.PointService;
+import ua.softserve.rv_018.greentourism.service.PlaceService;
 
 @RestController
-public class PointController {
+public class PlaceController {
 
 	/**
      * The logger service for logging purpose.
@@ -27,45 +28,46 @@ public class PointController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private PointService pointService;
+    private PlaceService placeService;
 
 	private ArrayList<Point> currentViewportPoints;
 
 	/**
-     * Web service endpoint to fetch all Points entities. The service returns
-     * the collection of Points entities as JSON.
+     * Web service endpoint to fetch all Places entities. The service returns
+     * the collection of Places entities as JSON.
      * @return 
      *
-     * @return A ResponseEntity containing a Collection of Points objects.
+     * @return A ResponseEntity containing a Collection of Places objects.
      */
-    @RequestMapping(value = "/api/point", method = RequestMethod.GET,
+    @RequestMapping(value = "/api/place", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getPoints() {
+    public ResponseEntity<?> getPlaces() {
     	
-    	logger.info("> getPoints");
+    	logger.info("> getPlaces");
     	
-        Collection<Point> points = pointService.findAll();
+        Collection<Place> places = placeService.findAll();
         
-        logger.info("< getPoints");
+        logger.info("< getPlaces");
         
-        return new ResponseEntity<>(points, HttpStatus.OK);
+        return new ResponseEntity<>(places, HttpStatus.OK);
     }
     
     @RequestMapping(value = "/api/currentMapViewportPoints", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> currentMapViewportPoints(@RequestBody LatLngBounds viewportBounds) {
-        logger.info("> get current map viewport points");
+        logger.info("> get current map viewport places");
                 
         currentViewportPoints = new ArrayList<Point>();
         
-        Collection<Point> points = pointService.findAll();
-        for (Point point : points){
+        Collection<Place> places = placeService.findAll();
+        for (Place place : places){
+        	Point point = place.getPoint();
         	if (viewportBounds.contains(new LatLng(point.getLangtitude(), point.getLongtitude()))){
-        		currentViewportPoints.add(point);
+        		currentViewportPoints.add(place.getPoint());
         	}
         }
 
-        logger.info("< get current map viewport points");
+        logger.info("< get current map viewport places");
         
         return new ResponseEntity<>(currentViewportPoints, HttpStatus.OK);
     }

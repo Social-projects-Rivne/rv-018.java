@@ -1,5 +1,10 @@
 package ua.softserve.rv_018.greentourism.model;
 
+/**
+ * A LatLng is a point in geographical coordinates: latitude and longitude.
+ * @author Maks
+ *
+ */
 public class LatLng {
 
 	private float lat;

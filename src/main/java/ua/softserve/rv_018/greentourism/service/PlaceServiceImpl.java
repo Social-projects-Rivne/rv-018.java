@@ -9,33 +9,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import ua.softserve.rv_018.greentourism.model.Point;
-import ua.softserve.rv_018.greentourism.repository.PointRepository;
+import ua.softserve.rv_018.greentourism.model.Place;
+import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 
 @Service
 @Transactional(
         propagation = Propagation.SUPPORTS,
         readOnly = true)
-public class PointServiceImpl implements PointService {
+public class PlaceServiceImpl implements PlaceService {
 	/**
      * The logger service for logging purpose.
      */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/**
-     * The Spring Data repository for Points entities.
+     * The Spring Data repository for Places entities.
      */
     @Autowired
-    private PointRepository pointRepository;
+    private PlaceRepository placeRepository;
 
 	@Override
-	public Collection<Point> findAll() {
-		logger.info("> Point findAll");
+	public Collection<Place> findAll() {
+		logger.info("> Place findAll");
 
-        Collection<Point> points = pointRepository.findAll();
+        Collection<Place> places = placeRepository.findAll();
 
-        logger.info("< Point findAll");
+        logger.info("< Place findAll");
         
-        return points;
+        return places;
 	}
 }

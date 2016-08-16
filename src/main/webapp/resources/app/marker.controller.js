@@ -11,7 +11,7 @@ angular.module('greenApp')
 				$scope.progressBarVision = true;
 				$http({
 					method: 'POST',
-					url: 'http://localhost:8080/GreenTourism/api/currentMapViewportPoints/',
+					url: _contextPath + '/api/currentMapViewportPoints/',
 					data: mapViewportGSON
 				})
 				.then(function(response){

@@ -3,24 +3,14 @@
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
-<!-- <<<<<<< HEAD
 	<title>Welcome page</title>
-	<link rel="stylesheet" href="resources/bower_components/materialize/dist/css/materialize.css" />
+	<script type="text/javascript">
+		var _contextPath = "${pageContext.request.contextPath}";
+	</script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-	<link rel="stylesheet" href="resources/app/css/map.css" />
-	<link rel="stylesheet" href="resources/app/css/loader.css" />
-=======
- -->
- <title>Welcome page</title>
-<script type="text/javascript">
-	var _contextPath = "${pageContext.request.contextPath}";
-</script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
-<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/loader.css">
-<!-- >>>>>>> 66bb7fbb0b5a95fb306a3cbf66520e134e886147
- -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/loader.css">
  </head>
 <body>
 	<h1>Hi! ${message}</h1>
@@ -70,18 +60,10 @@
 	<!-- Login component -->
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
 	<!-- Profile component -->
-<!-- <<<<<<< HEAD
-	<script src="resources/app/components/profile/profile.component.js"></script>
-	
-	<script src="resources/app/marker.controller.js"></script>
-=======
- -->
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<!--  User component -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
-<!-- >>>>>>> 66bb7fbb0b5a95fb306a3cbf66520e134e886147
- -->
  </body>
 </html>

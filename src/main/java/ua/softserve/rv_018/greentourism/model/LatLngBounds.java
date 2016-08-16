@@ -1,9 +1,15 @@
 package ua.softserve.rv_018.greentourism.model;
 
+/**
+ * A LatLngBounds instance represents a rectangle in geographical coordinates,
+ *  including one that crosses the 180 degrees longitudinal meridian.
+ * @author Максим
+ *
+ */
 public class LatLngBounds {
 
-	public LatLng southWest;
-	public LatLng northEast;
+	private LatLng southWest;
+	private LatLng northEast;
 	
 	public LatLngBounds() {};
 	
