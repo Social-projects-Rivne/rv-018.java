@@ -2,8 +2,13 @@
 
 angular.module('greenApp')
   .component('map', {
-    templateUrl: 'resources/app/components/map/map.template.html',
+//<<<<<<< HEAD
+//    templateUrl: 'resources/app/components/map/map.template.html',
+//    controller: function($rootScope, $scope) {
+//=======
+    templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope) {
+//>>>>>>> 66bb7fbb0b5a95fb306a3cbf66520e134e886147
     	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
     	$rootScope.myMap = mymap;
     	

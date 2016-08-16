@@ -3,12 +3,25 @@
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
+<!-- <<<<<<< HEAD
 	<title>Welcome page</title>
 	<link rel="stylesheet" href="resources/bower_components/materialize/dist/css/materialize.css" />
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 	<link rel="stylesheet" href="resources/app/css/map.css" />
 	<link rel="stylesheet" href="resources/app/css/loader.css" />
-</head>
+=======
+ -->
+ <title>Welcome page</title>
+<script type="text/javascript">
+	var _contextPath = "${pageContext.request.contextPath}";
+</script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
+<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/loader.css">
+<!-- >>>>>>> 66bb7fbb0b5a95fb306a3cbf66520e134e886147
+ -->
+ </head>
 <body>
 	<h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
@@ -45,20 +58,30 @@
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
-	<script src="resources/bower_components/angular/angular.js"></script>
-	<script src="resources/bower_components/angular-route/angular-route.js"></script>
-	<script src="resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-route/angular-route.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
 	<!-- Core scripts -->
-	<script src="resources/app/module.js"></script>
-	<script src="resources/app/routes.js"></script>
-	<script src="resources/app/controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
 	<!-- Map component -->
-	<script src="resources/app/components/map/map.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<!-- Login component -->
-	<script src="resources/app/login/login.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
 	<!-- Profile component -->
+<!-- <<<<<<< HEAD
 	<script src="resources/app/components/profile/profile.component.js"></script>
 	
 	<script src="resources/app/marker.controller.js"></script>
-</body>
+=======
+ -->
+ 	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
+	<!--  User component -->
+	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
+<!-- >>>>>>> 66bb7fbb0b5a95fb306a3cbf66520e134e886147
+ -->
+ </body>
 </html>

@@ -60,7 +60,7 @@ public class PointController {
         
         Collection<Point> points = pointService.findAll();
         for (Point point : points){
-        	if (viewportBounds.contains(new LatLng(point.getLat(), point.getLon()))){
+        	if (viewportBounds.contains(new LatLng(point.getLangtitude(), point.getLongtitude()))){
         		currentViewportPoints.add(point);
         	}
         }
