@@ -22,6 +22,9 @@ dataSources.local.xml
 .openshift
 .tern-project
 AndroidApp/*
+# Openshift Files #
+.openshift
+.tern-project
 # Package Files #
 *.jar
 *.war
