@@ -18,6 +18,7 @@ desktop.ini
 .idea/*
 dataSources.local.xml
 .gitignore~
+pom.xml~
 AndroidApp/*
 # Openshift Files #
 .openshift/
