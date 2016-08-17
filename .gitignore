@@ -23,6 +23,9 @@ AndroidApp/*
 # Openshift Files #
 .openshift/
 .tern-project
+*.gitkeep
+src/main/webapp/index.html
+src/main/webapp/snoop.jsp
 # Package Files #
 *.jar
 *.war
