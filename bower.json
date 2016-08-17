@@ -1,0 +1,23 @@
+{
+  "name": "GreenTourism",
+  "homepage": "https://github.com/Social-projects-Rivne/rv-018.java",
+  "authors": [
+    "rv_018.java <softserve.ua>"
+  ],
+  "description": "Green tourism is an educational social project of the group rv-018.java (SoftServe Rivne)",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.7",
+    "angular-route": "1.5.7",
+    "angular-resource": "1.5.7",
+    "materialize": "^0.97.7"
+  }
+}
