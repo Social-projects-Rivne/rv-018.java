@@ -19,7 +19,7 @@ dataSources.local.xml
 pom.xml~
 AndroidApp/*
 # Openshift Files #
-#.openshift/
+.openshift/
 .tern-project
 *.gitkeep
 src/main/webapp/index.html
