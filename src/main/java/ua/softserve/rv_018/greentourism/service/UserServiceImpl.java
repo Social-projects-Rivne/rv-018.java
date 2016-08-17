@@ -113,8 +113,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void validateUserBeforeCreating(String username) {
-		this.userRepository.findByUsername(username).ifPresent(
-                (user) -> {throw new UserAlreadyExistsException(user);});
+		// OpenShift doesn't work with java 1.8
+//		this.userRepository.findByUsername(username).ifPresent(
+//                (user) -> {throw new UserAlreadyExistsException(user);});
 	}
 	
 	/**
