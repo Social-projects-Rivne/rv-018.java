@@ -4,17 +4,37 @@
 <html lang="en" ng-app="greenApp">
 <head>
 <title>Welcome page</title>
-<link rel="stylesheet" href="/resources/bower_components/materialize/dist/css/materialize.css">
-<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"
+	href="/resources/bower_components/materialize/dist/css/materialize.css">
+<link rel="stylesheet"
+	href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 <link rel="stylesheet" href="/resources/app/css/map.css">
 </head>
 <body>
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+        
+	
+	<map></map>
+	<addbutton></addbutton>
+	<div ng-view></div>
+	
 	<h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
-	<a href="#/profile">Edit profile</a><br>
+	<a href="#/profile">Edit profile</a>
+	<br>
 	<a href="#/map">Map component</a>
+
 	
-	<ng-view></ng-view>
 
 	<br>
 	<br>
@@ -35,17 +55,23 @@
 			<br />
 		</c:otherwise>
 	</c:choose>
-	
+
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
 	<script src="resources/bower_components/angular/angular.js"></script>
 	<script src="resources/bower_components/angular-route/angular-route.js"></script>
-	<script src="resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script
+		src="resources/bower_components/angular-resource/angular-resource.js"></script>
 	<!-- Core scripts -->
 	<script src="resources/app/module.js"></script>
 	<script src="resources/app/routes.js"></script>
 	<script src="resources/app/controller.js"></script>
+	<script src="resources/app/js/init.js"></script>
+	<!-- Add button component -->
+	<script src="resources/app/components/addbutton/addbutton.component.js"></script>
+	<!-- Add point component -->
+	<script src="resources/app/components/addpoint/addpoint.component.js"></script>
 	<!-- Map component -->
 	<script src="resources/app/components/map/map.component.js"></script>
 	<!-- Login component -->
