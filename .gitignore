@@ -18,12 +18,9 @@ desktop.ini
 .idea/*
 dataSources.local.xml
 .gitignore~
-# OpenShift #
-.openshift
-.tern-project
 AndroidApp/*
 # Openshift Files #
-.openshift
+.openshift/
 .tern-project
 # Package Files #
 *.jar
