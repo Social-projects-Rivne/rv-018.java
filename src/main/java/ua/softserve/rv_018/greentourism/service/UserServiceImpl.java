@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
 	public User create(User user) {
 		logger.info("> User create");
 
-        validateUserBeforeCreating(user.getLogin());
+        validateUserBeforeCreating(user.getUsername());
         User savedUser = userRepository.save(user);
 
         logger.info("< User create");
@@ -88,7 +88,10 @@ public class UserServiceImpl implements UserService{
             throw new NoResultException("Requested entity not found.");
         }
 
-        userToUpdate.setLogin(user.getLogin());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
         User updatedUser = userRepository.save(userToUpdate);
 
         logger.info("< User update id:{}", updatedUser.getId());
@@ -109,9 +112,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void validateUserBeforeCreating(String login) {
-		this.userRepository.findByLogin(login).ifPresent(
-                (user) -> {throw new UserAlreadyExistsException(user);});
+	public void validateUserBeforeCreating(String username) {
+		// OpenShift doesn't work with java 1.8
+//		this.userRepository.findByUsername(username).ifPresent(
+//                (user) -> {throw new UserAlreadyExistsException(user);});
 	}
 	
 	/**
