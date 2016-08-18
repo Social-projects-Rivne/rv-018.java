@@ -17,6 +17,7 @@ desktop.ini
 dataSources.local.xml
 .gitignore~
 pom.xml~
+README.md~
 AndroidApp/*
 # Openshift Files #
 .tern-project
