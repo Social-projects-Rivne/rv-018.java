@@ -6,14 +6,14 @@ package ua.softserve.rv_018.greentourism.model;
  * @author Maks
  *
  */
-public class MapBounds {
+public class MapBound {
 
 	private Point southWest;
 	private Point northEast;
 	
-	public MapBounds() {};
+	public MapBound() {};
 	
-	public MapBounds(Point southWest, Point northEast){
+	public MapBound(Point southWest, Point northEast){
 		this.southWest = southWest;
 		this.northEast = northEast;
 	};

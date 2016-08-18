@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ua.softserve.rv_018.greentourism.model.MapBounds;
+import ua.softserve.rv_018.greentourism.model.MapBound;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
@@ -54,7 +54,7 @@ public class PlaceController {
     
     @RequestMapping(value = "/currentMapViewportPoints", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBounds mapBounds) {
+    public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBound mapBound) {
         logger.info("> get current map viewport points");
                 
         currentViewportPoints = new ArrayList<Point>();
@@ -62,7 +62,7 @@ public class PlaceController {
         Collection<Place> places = placeService.findAll();
         for (Place place : places){
         	Point point = place.getPoint();
-        	if (mapBounds.contains(point)){
+        	if (mapBound.contains(point)){
         		currentViewportPoints.add(point);
         	}
         }
