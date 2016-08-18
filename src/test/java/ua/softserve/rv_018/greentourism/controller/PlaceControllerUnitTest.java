@@ -68,7 +68,7 @@ public class PlaceControllerUnitTest {
         place2.setPoint(point2);
         
         places = Arrays.asList(place1, place2);
-    }
+        }
 	
 	@Test
 	public void getPlaces_ShouldReturnEmptyString() throws Exception {
