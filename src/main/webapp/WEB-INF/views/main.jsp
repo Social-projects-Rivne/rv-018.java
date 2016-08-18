@@ -15,8 +15,34 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/place.css">
  </head>
 <body>
+
+ 	<nav>
+		<div id="header" class="nav-wrapper green darken-2">
+  
+		<a href="#" data-activates="side-menu" class="sideNavMenuButton" ng-controller="sideNavMenuController"><i class="material-icons">menu</i></a>
+  
+	    <ul class="side-nav" id="side-menu">
+	      <li><a href="about.html">About</a></li>
+	      <li><a href="privacy.html">Privacy</a></li>
+	      <li><a href="terms.html">Terms</a></li>
+	    </ul>
+  
+		</div>
+	</nav>
 	
-<h1>Hi! ${message}</h1>
+	<div id="tabsRow" class="green darken-2">
+		<div style="margin-left: 35%; margin-right: 35%">
+			<div class="row">
+				<ul class="tabs">
+	        		<li class="tab col m3 green darken-2"><a class="active white-text" href="#test1">Places</a></li>
+	        		<li class="tab col m3 green darken-2"><a class="white-text" href="#test2">Tracks</a></li>
+	        		<li class="tab col m3 green darken-2"><a class="white-text" href="#test3">Events</a></li>
+	      		</ul>
+	      	</div>
+		</div>
+	</div> 
+	
+<%-- <h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
 	<a href="#/profile">Edit profile</a><br>
 	
@@ -46,7 +72,7 @@
 			</p>
 			<br />
 		</c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 
  	<script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/js/materialize.js"></script>
