@@ -4,28 +4,19 @@
 <html lang="en" ng-app="greenApp">
 <head>
 <title>Welcome page</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet"
-	href="/resources/bower_components/materialize/dist/css/materialize.css">
-<link rel="stylesheet"
-	href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-<link rel="stylesheet" href="/resources/app/css/map.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+<link rel="stylesheet" href="/resources/bower_components/materialize/dist/css/materialize.css">
+<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+<link rel="stylesheet" href="/resources/app/css/main.css">
 </head>
 <body>
- <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
         
 	
+	<addpoint></addpoint>
 	<map></map>
-	<addbutton></addbutton>
+	
+	
+	
 	<div ng-view></div>
 	
 	<h1>Hi! ${message}</h1>

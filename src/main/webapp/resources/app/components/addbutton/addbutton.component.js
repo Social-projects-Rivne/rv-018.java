@@ -1,4 +1,4 @@
-'use strict';
+/*
 
 angular.
   module('greenApp').
@@ -10,4 +10,4 @@ angular.
 		  };
 		}
   });
-  
+  */
