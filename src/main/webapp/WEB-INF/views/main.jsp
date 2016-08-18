@@ -13,8 +13,6 @@
         
 	
 	<addpoint></addpoint>
-	<map></map>
-	
 	
 	
 	<div ng-view></div>
@@ -59,8 +57,7 @@
 	<script src="resources/app/routes.js"></script>
 	<script src="resources/app/controller.js"></script>
 	<script src="resources/app/js/init.js"></script>
-	<!-- Add button component -->
-	<script src="resources/app/components/addbutton/addbutton.component.js"></script>
+	
 	<!-- Add point component -->
 	<script src="resources/app/components/addpoint/addpoint.component.js"></script>
 	<!-- Map component -->
