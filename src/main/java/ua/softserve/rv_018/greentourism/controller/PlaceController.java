@@ -54,7 +54,7 @@ public class PlaceController {
     
     @RequestMapping(value = "/currentMapViewportPoints", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBounds viewportBounds) {
+    public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBounds mapBounds) {
         logger.info("> get current map viewport places");
                 
         currentViewportPoints = new ArrayList<Point>();
@@ -62,7 +62,7 @@ public class PlaceController {
         Collection<Place> places = placeService.findAll();
         for (Place place : places){
         	Point point = place.getPoint();
-        	if (viewportBounds.contains(point)){
+        	if (mapBounds.contains(point)){
         		currentViewportPoints.add(point);
         	}
         }
@@ -71,5 +71,4 @@ public class PlaceController {
         
         return new ResponseEntity<>(currentViewportPoints, HttpStatus.OK);
     }
-
 }
