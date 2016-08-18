@@ -44,7 +44,7 @@ public class PlaceControllerUnitTest {
 	private PlaceService placeService;
 	
 	@Before
-    public void setup() {
+        public void setup() {
         MockitoAnnotations.initMocks(this);
         
         mockMvc = MockMvcBuilders.standaloneSetup(this.placeController).build();
