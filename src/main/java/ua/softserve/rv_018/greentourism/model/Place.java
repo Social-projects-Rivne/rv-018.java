@@ -24,6 +24,12 @@ public class Place {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name = "otherInfo")
+	private String otherInfo;
+	
+	@Column(name = "feedbacks")
+	private String feedbacks;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "point_id", nullable = false)
 	private Point point;
@@ -61,6 +67,22 @@ public class Place {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getOtherInfo() {
+		return otherInfo;
+	}
+
+	public void setOtherInfo(String otherInfo) {
+		this.otherInfo = otherInfo;
+	}
+	
+	public String getFeedbacks() {
+		return feedbacks;
+	}
+
+	public void setFeedbacks(String feedbacks) {
+		this.feedbacks = feedbacks;
+	}
 
 	public Point getPoint() {
 		return point;
@@ -93,6 +115,8 @@ public class Place {
 				+ ", description = " + description
 				+ ", langtitude = " + point.getLangtitude()
 				+ ", longtitude = " + point.getLongtitude() 
+				+ ", otherInfo = " + this.getOtherInfo()
+				+ ", feedbacks = " + this.getFeedbacks() 
 				+ ", owner id = " + user.getId()
 				+ ", category = " + category.getName() + "]";
 	}
