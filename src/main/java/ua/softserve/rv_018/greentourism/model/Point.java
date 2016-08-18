@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "point")
 public class Point {
@@ -15,9 +17,11 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@JsonProperty("lat")
 	@Column(name = "langtitude", nullable = false)
 	private float langtitude;
 	
+	@JsonProperty("lng")
 	@Column(name = "longtitude", nullable = false)
 	private float longtitude;
 	
