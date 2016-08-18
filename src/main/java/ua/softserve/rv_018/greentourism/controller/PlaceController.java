@@ -55,7 +55,7 @@ public class PlaceController {
     @RequestMapping(value = "/currentMapViewportPoints", method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBounds mapBounds) {
-        logger.info("> get current map viewport places");
+        logger.info("> get current map viewport points");
                 
         currentViewportPoints = new ArrayList<Point>();
         
@@ -67,7 +67,7 @@ public class PlaceController {
         	}
         }
         
-        logger.info("< get current map viewport places");
+        logger.info("< get current map viewport points");
         
         return new ResponseEntity<>(currentViewportPoints, HttpStatus.OK);
     }
