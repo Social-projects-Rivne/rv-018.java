@@ -2,6 +2,7 @@ package ua.softserve.rv_018.greentourism.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +30,6 @@ public class PlaceController {
 
     @Autowired
     private PlaceService placeService;
-
-	private ArrayList<Point> currentViewportPoints;
 	
 	/**
      * Web service endpoint to fetch all Places entities. The service returns
@@ -57,7 +56,7 @@ public class PlaceController {
     public ResponseEntity<?> currentMapViewportPoints(@RequestBody MapBound mapBound) {
         logger.info("> get current map viewport points");
                 
-        currentViewportPoints = new ArrayList<Point>();
+    	List<Point> currentViewportPoints = new ArrayList<Point>();
         
         Collection<Place> places = placeService.findAll();
         for (Place place : places){
