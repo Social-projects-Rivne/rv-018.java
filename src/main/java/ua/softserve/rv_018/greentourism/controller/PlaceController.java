@@ -18,6 +18,6 @@ public class PlaceController {
 
 	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes="text/plain", produces = "application/json")
 	public @ResponseBody Place getPlaceByName(@RequestBody String name) {
-		return service.findPlaceByName(name);
+		return service.findByName(name);
 	}
 }
