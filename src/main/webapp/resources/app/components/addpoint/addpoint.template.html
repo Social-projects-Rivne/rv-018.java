@@ -1,7 +1,7 @@
 <div>
 	
 	<div class="map-wrapper">
-	<div id="mapid"></div>
+		<div id="mapid"></div>
 	</div>
 	
 	
@@ -18,35 +18,34 @@
       <span class="material-icons closeIcon">close</span>
     </a>
     <form name="placeMaker" novalidate>
-      <div>
+      <div class="form-group">
         <span class="title">1. Choose place on map:</span><br>
         <span class="title">Latitude:</span>
-        <input class="latlng" id="latitude" ></span><br>
+        <input class="latlng" id="latitude" disabled="disabled"></span>
         <span class="title">Longitude:</span>
-        <input class="latlng" id="longitude"></span><br>
+        <input class="latlng" id="longitude" disabled="disabled"></span>
       </div>
       <div class="form-group">
         <label for="placeName">
           <span class="title">2. Enter place name:</span>
         </label>
-        <input type="text" name="newPlaceName" class="form-control"
+        <input type="text" name="name" class="form-control"
                id="newPlaceName" ng-model="$ctrl.newPlace.name"
                ng-required="true">
-
       </div>
       <div class="form-group">
         <label for="newPlaceType">
           <span class="title">3. Select place type:</span>
         </label>
-        <select name="newPlaceType" class="form-control"
-                ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
+        <select name="category" class="form-control"
+                ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type" 
                 ng-model="$ctrl.newPlaceType" ng-required="true">
           <option value="">-- Choose place type --</option>
         </select>
 
       </div>
       <div class="form-group">
-        <label for="newPlaceDescription">
+        <label for="description">
           <span class="title">4. Enter place description (optional):</span>
         </label>
         <textarea name="newPlaceDescription" id="newPlaceDescription"
@@ -64,13 +63,9 @@
       </div>
 
       <div class="form-group">
-        <div class="btn-group col-xs-12 no-padding">
-          <input type="button" class="btn btn-success col-lg-6"
-                 ng-click="$ctrl.resetAddPlaceForm(placeMaker)"
-                 value="Reset">
-          <input type="button" class="btn btn-success col-lg-6"
-                 ng-click="$ctrl.createNewPlace(placeMaker)"
-                 value="Create">
+        <div class="row">
+          <input type="button" class="col s12 m6 waves-effect waves-light btn" ng-click="$ctrl.resetAddPlaceForm(placeMaker)" value="Reset">
+          <input type="button" class="col s12 m6 waves-effect waves-light btn" ng-click="$ctrl.createNewPlace(placeMaker)" value="Save">
         </div>
       </div>
 
