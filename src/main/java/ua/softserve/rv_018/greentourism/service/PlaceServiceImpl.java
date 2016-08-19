@@ -1,7 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,8 +18,8 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceRepository placeRepository;
 
 	@Override
-	public Place findByName(String name) {
-		return placeRepository.findByName(name);
+	public List<Place> findByName(String name) {
+		return placeRepository.findByNameIgnoreCaseContaining(name);
 	}
 
 }
