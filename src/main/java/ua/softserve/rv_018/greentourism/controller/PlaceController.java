@@ -16,10 +16,10 @@ import ua.softserve.rv_018.greentourism.service.PlaceServiceImpl;
 public class PlaceController {
 
 	@Autowired
-	private PlaceServiceImpl service;
+	private PlaceServiceImpl placeService;
 
 	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
 	public @ResponseBody List<Place> findByName(@RequestBody String name) {
-		return service.findByName(name);
+		return placeService.findByName(name);
 	}
 }
