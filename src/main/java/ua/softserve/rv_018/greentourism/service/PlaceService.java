@@ -1,7 +1,9 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.util.List;
+
 import ua.softserve.rv_018.greentourism.model.Place;
 
 public interface PlaceService {
-	Place findByName(String name);
+	List<Place> findByName(String name);
 }
