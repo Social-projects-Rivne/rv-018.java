@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +18,8 @@ public class PlaceController {
 	@Autowired
 	private PlaceServiceImpl service;
 
-	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes="text/plain", produces = "application/json")
-	public @ResponseBody Place getPlaceByName(@RequestBody String name) {
+	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
+	public @ResponseBody List<Place> findByName(@RequestBody String name) {
 		return service.findByName(name);
 	}
 }
