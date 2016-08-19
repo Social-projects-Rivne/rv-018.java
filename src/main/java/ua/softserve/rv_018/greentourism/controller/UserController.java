@@ -62,7 +62,7 @@ public class UserController {
 
         logger.info("< getUser id:{}", id);
         
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     /**
@@ -82,7 +82,7 @@ public class UserController {
         
         logger.info("< getUsers");
         
-        return new ResponseEntity<>(users, HttpStatus.FOUND);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
@@ -106,7 +106,7 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody User user) {
         logger.info("> createUser");
         
-        userService.validateUserBeforeCreating(user.getLogin());
+        userService.validateUserBeforeCreating(user.getUsername());
         User savedUser = userService.create(user);
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -116,7 +116,7 @@ public class UserController {
 
         logger.info("< createUser");
         
-        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
 
     /**
@@ -143,10 +143,11 @@ public class UserController {
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
 
-        User updatedUser = userService.findOne(id);
-        if (updatedUser == null) {
+        if (userService.findOne(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        
+        User updatedUser = userService.update(user);
 
         logger.info("< updateUser id:{}", user.getId());
         
