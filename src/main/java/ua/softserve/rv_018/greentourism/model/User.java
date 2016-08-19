@@ -37,7 +37,7 @@ public class User {
 
     public User(User user) {
         super();
-        this.id = user.getId(
+        this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.password = user.getPassword();
