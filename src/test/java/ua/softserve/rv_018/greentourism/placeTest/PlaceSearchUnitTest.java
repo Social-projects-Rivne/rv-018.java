@@ -28,21 +28,21 @@ public class PlaceSearchUnitTest {
 	@Test
 	public void testSearchPlaceByNameThatExists() {
 		when(place.getName()).thenReturn(PLACE_NAME);
-		when(service.findPlaceByName(PLACE_NAME)).thenReturn(place);
-		assertEquals(place.getName(), service.findPlaceByName(PLACE_NAME)
+		when(service.findByName(PLACE_NAME)).thenReturn(place);
+		assertEquals(place.getName(), service.findByName(PLACE_NAME)
 				.getName());
-		assertEquals(place, service.findPlaceByName(PLACE_NAME));
+		assertEquals(place, service.findByName(PLACE_NAME));
 	}
 
 	@Test
 	public void testSearchPlaceByNameThatDoesNotExist() {
-		when(service.findPlaceByName(PLACE_NAME)).thenReturn(null);
-		assertNotEquals(place, service.findPlaceByName(PLACE_NAME));
+		when(service.findByName(PLACE_NAME)).thenReturn(null);
+		assertNotEquals(place, service.findByName(PLACE_NAME));
 	}
 
 	@Test
 	public void testSearchPlaceByEmptyName() {
-		when(service.findPlaceByName(EMPTY_NAME)).thenReturn(null);
-		assertNotEquals(place, service.findPlaceByName(PLACE_NAME));
+		when(service.findByName(EMPTY_NAME)).thenReturn(null);
+		assertNotEquals(place, service.findByName(PLACE_NAME));
 	}
 }
