@@ -1,8 +1,11 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +22,8 @@ public class PlaceController {
 	private PlaceServiceImpl placeService;
 
 	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
-	public @ResponseBody List<Place> findByNameIgnoreCaseContaining(@RequestBody String name) {
-		return placeService.findByNameIgnoreCaseContaining(name);
+	public @ResponseBody ResponseEntity<?> findByNameIgnoreCaseContaining(@RequestBody String name) {
+		Collection<Place> places = placeService.findByNameIgnoreCaseContaining(name);
+		return new ResponseEntity<>(places, HttpStatus.OK);
 	}
 }
