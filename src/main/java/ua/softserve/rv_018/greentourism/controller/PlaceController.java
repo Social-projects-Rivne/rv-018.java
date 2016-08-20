@@ -19,7 +19,7 @@ public class PlaceController {
 	private PlaceServiceImpl placeService;
 
 	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
-	public @ResponseBody List<Place> findByName(@RequestBody String name) {
-		return placeService.findByName(name);
+	public @ResponseBody List<Place> findByNameIgnoreCaseContaining(@RequestBody String name) {
+		return placeService.findByNameIgnoreCaseContaining(name);
 	}
 }

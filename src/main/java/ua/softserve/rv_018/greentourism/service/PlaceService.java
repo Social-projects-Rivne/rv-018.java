@@ -5,5 +5,5 @@ import java.util.List;
 import ua.softserve.rv_018.greentourism.model.Place;
 
 public interface PlaceService {
-	List<Place> findByName(String name);
+	List<Place> findByNameIgnoreCaseContaining(String name);
 }

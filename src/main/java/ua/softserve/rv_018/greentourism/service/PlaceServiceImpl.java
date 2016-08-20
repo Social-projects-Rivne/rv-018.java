@@ -18,7 +18,7 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceRepository placeRepository;
 
 	@Override
-	public List<Place> findByName(String name) {
+	public List<Place> findByNameIgnoreCaseContaining(String name) {
 		return placeRepository.findByNameIgnoreCaseContaining(name);
 	}
 
