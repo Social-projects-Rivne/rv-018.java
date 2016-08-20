@@ -1,0 +1,19 @@
+.tabs .indicator {
+    background-color: white !important;
+}
+
+.tabs .tab {
+	text-transform: none !important;
+}
+
+i.material-icons {
+    display: inline-block  !important;
+}
+
+a.sideNavMenuButton {
+	margin-left: 1%;
+}
+
+#sidenav-overlay {
+	background-color: rgba(0, 0, 0, 0) !important;
+}

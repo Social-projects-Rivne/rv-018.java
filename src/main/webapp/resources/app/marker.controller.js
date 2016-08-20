@@ -25,7 +25,7 @@ angular.module('greenApp')
 					markersArray = [];
 					
 					angular.forEach(points, function(point, key){
-						markersArray.push(L.marker([point.langtitude, point.longtitude]).addTo($rootScope.myMap));
+						markersArray.push(L.marker([point.lat, point.lng]).addTo($rootScope.myMap));
 					})
 				}, function(error){
 					$scope.progressBarVision = false;
