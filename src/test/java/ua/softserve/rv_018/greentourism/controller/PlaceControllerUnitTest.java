@@ -13,7 +13,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -27,11 +26,12 @@ public class PlaceControllerUnitTest {
 	private static final String EMPTY_COLLECTION = "";
 	private static final String COLLECTION = 
 			"[{\"id\":1,\"name\":null,\"description\":null,\"point\":"
-			+ "{\"id\":1,\"langtitude\":1.0,\"longtitude\":1.0},"
+			+ "{\"id\":1,\"lat\":1.0,\"lng\":1.0},"
 			+ "\"user\":null,\"category\":null},"
 			+ "{\"id\":2,\"name\":null,\"description\":null,\"point\":"
-			+ "{\"id\":2,\"langtitude\":2.0,\"longtitude\":2.0},"
+			+ "{\"id\":2,\"lat\":2.0,\"lng\":2.0},"
 			+ "\"user\":null,\"category\":null}]";
+	private static final String PLACE_URL = "/api/place";
 	
 	private List<Place> places;
 	
@@ -44,7 +44,7 @@ public class PlaceControllerUnitTest {
 	private PlaceService placeService;
 	
 	@Before
-    public void setup() {
+	public void setup() {
         MockitoAnnotations.initMocks(this);
         
         mockMvc = MockMvcBuilders.standaloneSetup(this.placeController).build();
@@ -68,23 +68,24 @@ public class PlaceControllerUnitTest {
         place2.setPoint(point2);
         
         places = Arrays.asList(place1, place2);
-    }
+        
+	}
 	
 	@Test
-	public void getPlaces_ShouldReturnEmptyString() throws Exception {
+	public void testGetPlaces_ShouldReturnEmptyString() throws Exception {
 		Mockito.when(placeService.findAll()).thenReturn(null);
 		
-		mockMvc.perform(get("/api/place"))
+		mockMvc.perform(get(PLACE_URL))
 		        .andExpect(status().isOk())
 		        .andExpect(content().string(EMPTY_COLLECTION));
 		
 	}
 	
 	@Test
-	public void getPlaces_ShouldReturnStringWithTwoPlacesAsJSON() throws Exception {
+	public void testGetPlaces_ShouldReturnStringWithTwoPlacesAsJSON() throws Exception {
 		Mockito.when(placeService.findAll()).thenReturn(places);
 		
-		mockMvc.perform(get("/api/place"))
+		mockMvc.perform(get(PLACE_URL))
 		        .andExpect(status().isOk())
 		        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 		        .andExpect(content().string(COLLECTION));
