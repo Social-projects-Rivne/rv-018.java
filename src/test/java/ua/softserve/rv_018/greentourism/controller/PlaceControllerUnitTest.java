@@ -45,29 +45,29 @@ public class PlaceControllerUnitTest {
 	
 	@Before
 	public void setup() {
-        MockitoAnnotations.initMocks(this);
-        
-        mockMvc = MockMvcBuilders.standaloneSetup(this.placeController).build();
-        
-        Point point1 = new Point();
-        point1.setId(1);
-        point1.setLangtitude(1);
-        point1.setLongtitude(1);
-        
-        Point point2 = new Point();
-        point2.setId(2);
-        point2.setLangtitude(2);
-        point2.setLongtitude(2);
-        
-        Place place1 = new Place();
-        place1.setId(1);
-        place1.setPoint(point1);
-        
-        Place place2 = new Place();
-        place2.setId(2);
-        place2.setPoint(point2);
-        
-        places = Arrays.asList(place1, place2);
+		MockitoAnnotations.initMocks(this);
+		
+		mockMvc = MockMvcBuilders.standaloneSetup(this.placeController).build();
+		
+		Point point1 = new Point();
+		point1.setId(1);
+		point1.setLangtitude(1);
+		point1.setLongtitude(1);
+		
+		Point point2 = new Point();
+		point2.setId(2);
+		point2.setLangtitude(2);
+		point2.setLongtitude(2);
+		
+		Place place1 = new Place();
+		place1.setId(1);
+		place1.setPoint(point1);
+		
+		Place place2 = new Place();
+		place2.setId(2);
+		place2.setPoint(point2);
+		
+		places = Arrays.asList(place1, place2);
         
 	}
 	
