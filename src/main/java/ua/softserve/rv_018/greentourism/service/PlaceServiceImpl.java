@@ -13,8 +13,8 @@ public class PlaceServiceImpl implements PlaceService{
 	private PlaceRepository placeRepository;
 	
 	@Override
-	public Place addPlace(Place place) {
-		Place addedPlace = placeRepository.saveAndFlush(place);
+	public Place create(Place place) {
+		Place addedPlace = placeRepository.save(place);
 		return addedPlace;
 	}
 
