@@ -4,18 +4,20 @@
 <html lang="en" ng-app="greenApp">
 <head>
 <title>Welcome page</title>
+<script type="text/javascript">
+	var _contextPath = "${pageContext.request.contextPath}";
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
-<link rel="stylesheet" href="/resources/bower_components/materialize/dist/css/materialize.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-<link rel="stylesheet" href="/resources/app/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/main.css">
 </head>
 <body>
         
 	
 	<addpoint></addpoint>
 	
-	
-	<div ng-view></div>
+	<ng-view></ng-view>
 	
 	<h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
@@ -23,7 +25,6 @@
 	<br>
 	<a href="#/map">Map component</a>
 
-	
 
 	<br>
 	<br>
@@ -48,25 +49,25 @@
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
-	<script src="resources/bower_components/angular/angular.js"></script>
-	<script src="resources/bower_components/angular-route/angular-route.js"></script>
-	<script
-		src="resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-route/angular-route.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="${pageContext.request.contextPath}resources/bower_components/angular-animate/angular-animate.js"></script>
 	<!-- Core scripts -->
-	<script src="resources/app/module.js"></script>
-	<script src="resources/app/routes.js"></script>
-	<script src="resources/app/controller.js"></script>
-	<script src="resources/app/js/init.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/js/init.js"></script>
 	
 	<!-- Add point component -->
-	<script src="resources/app/components/addpoint/addpoint.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/addpoint/addpoint.component.js"></script>
 	<!-- Map component -->
-	<script src="resources/app/components/map/map.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<!-- Login component -->
-	<script src="resources/app/login/login.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
 	<!-- Profile component -->
-	<script src="resources/app/components/profile/profile.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<!--  User component -->
-	<script src="resources/app/components/user/user.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 </body>
 </html>

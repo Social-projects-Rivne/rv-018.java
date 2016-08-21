@@ -5,7 +5,7 @@
 	</div>
 
 
-	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = false>
+	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
 		<a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out"
 			class="button-collapse btn-floating btn-large red modal-trigger">
 			<i class="large material-icons">mode_edit</i>
@@ -13,8 +13,8 @@
 	</div>
 
 
-	<div ng-show="addPlaceMenuIsOpen" >
-		<div id="add-place" class="add-item-menu">
+	<<!-- div ng-show="addPlaceMenuIsOpen" > -->
+		<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
 			<h2>New Place</h2>
 			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
 				class="material-icons closeIcon">close</span>
@@ -71,6 +71,6 @@
 
 			</form>
 		</div>
-	</div>
+	<!-- </div> -->
 
 </div>

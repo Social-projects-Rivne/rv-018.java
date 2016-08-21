@@ -1,14 +1,14 @@
 'use strict';
 
 angular
-		.module('greenApp')
+		.module('greenApp', ['ngAnimate'])
 		.component(
 				'addpoint',
 				{
 					templateUrl : 'resources/app/components/addpoint/addpoint.template.html',
 					controller : function($scope, $http) {
 
-						var map = L.map('mapid').setView([ 51.505, -0.09 ], 13);
+						var map = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
 
 						L
 								.tileLayer(
