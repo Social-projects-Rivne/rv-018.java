@@ -21,33 +21,22 @@ angular
 											id : 'mapbox.streets'
 										}).addTo(map);
 
-						var new_event_marker;
-						map
-								.on(
-										'click',
-										function(e) {
-											if (typeof (new_event_marker) === 'undefined') {
-												new_event_marker = new L.marker(
-														e.latlng, {
-															draggable : true
-														});
-												new_event_marker.addTo(map);
-
-											} else {
-												$scope.latitude = new_event_marker
-														.getLatLng().lat;
-												$scope.longitude = new_event_marker
-														.getLatLng().lng;
-												document
-														.getElementById('latitude').value = $scope.latitude;
-												document
-														.getElementById('longitude').value = $scope.longitude;
-												new_event_marker
-														.setLatLng(e.latlng);
-											}
-
-										});
-
+						
+						
+						var marker;
+						map.on('click',function(e) {
+							marker = new L.Marker(e.latlng, {draggable:true});
+							map.addLayer(marker);
+							$scope.latitude = marker.getLatLng().lat;
+							$scope.longitude = marker.getLatLng().lng;
+							document.getElementById('latitude').value = $scope.latitude;
+							document.getElementById('longitude').value = $scope.longitude;
+							marker.setLatLng(e.latlng);
+							
+							}
+						);
+						
+						
 						$scope.addPlaceMenu = function() {
 							$scope.addPlaceMenuIsOpen = true;
 						};
@@ -55,8 +44,16 @@ angular
 						$scope.toggleAddPlaceMenu = function() {
 							$scope.addPlaceMenuIsOpen = false;
 						};
+						
+						$scope.hideButtonAddPlace = function(){
+							$scope.addButtonAddPlace = false;
+						}
+						
+						$scope.togleButtonAddPlace = function() {
+							$scope.addButtonAddPlace = true;
+						};
 
-						$scope.createNewPlace = function() {
+						$scope.createNewPlace = function(form) {
 							var dataObj = {
 								name : $scope.newPlaceName,
 								category : $scope.newPlaceType,
@@ -65,7 +62,8 @@ angular
 									langtitude : $scope.latitude,
 									longtitude : $scope.longitude
 								}
-							};
+							}
+							;
 
 							console.log(dataObj);
 
@@ -75,6 +73,17 @@ angular
 								console.log("New Place Added Successfully");
 							});
 
+						};
+						
+						$scope.resetAddPlaceForm = function(form) {
+							
+							map.removeLayer(marker);
+							$scope.latitude = null;
+							$scope.longitude = null;
+							$scope.newPlaceName = null;
+							$scope.newPlaceDescription = null;
+							$scope.newPlacePhotos = null;
+							
 						};
 
 					}
