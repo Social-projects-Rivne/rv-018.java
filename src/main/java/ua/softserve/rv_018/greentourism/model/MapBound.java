@@ -13,11 +13,6 @@ public class MapBound {
 	
 	public MapBound() {};
 	
-	public MapBound(Point southWest, Point northEast){
-		this.southWest = southWest;
-		this.northEast = northEast;
-	};
-	
 	public Point getSouthWest(){
 		return southWest;
 	};
@@ -36,15 +31,12 @@ public class MapBound {
 
 	public boolean contains(Point pointCoord){
 		
-		Point sw = this.southWest;
-		Point ne = this.northEast;
+		float pointLatCoord = pointCoord.getLangtitude();
+		float pointLngCoord = pointCoord.getLongtitude();
 		
-		Point sw1 = pointCoord;
-		Point ne1 = pointCoord;
-		
-		return (sw1.getLangtitude() >= sw.getLangtitude() &&
-		ne1.getLangtitude() <= ne.getLangtitude() &&
-		sw1.getLongtitude() >= sw.getLongtitude() &&
-		ne1.getLongtitude() <= ne.getLongtitude());
+		return (pointLatCoord >= this.southWest.getLangtitude() && 
+				pointLatCoord <= this.northEast.getLangtitude() && 
+				pointLngCoord >= this.southWest.getLongtitude() && 
+				pointLngCoord <= this.northEast.getLongtitude());
 	}
 }
