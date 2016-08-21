@@ -9,5 +9,9 @@ angular.module('greenApp').config(function($routeProvider) {
 		template : '<user></user>'
 	}).when('/map', {
 		template : '<map>'
-	}).otherwise('/');
+	}).when('/home', {
+		templateUrl : _contextPath + '/resources/app/components/home/home.template.html'
+	}).otherwise('/', {
+		redirectTo:  _contextPath + '/resources/app/components/home/home.template.html'
+	});
 });

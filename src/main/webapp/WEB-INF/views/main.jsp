@@ -22,10 +22,10 @@
 		<a href="#" data-activates="side-menu" class="sideNavMenuButton"><i class="material-icons">menu</i></a>
   
 	    <ul class="side-nav" id="side-menu" ng-style="{top: topMarginValue}">
-	      <li><a href="about.html"><i class="material-icons">home</i>Home</a></li>
-	      <li><a href="#/map"><i class="material-icons">map</i>Map</a></li>
-	      <li><a href="terms.html"><i class="material-icons">event</i>Events calendar</a></li>
-	      <li><a href="terms.html"><i class="material-icons">account_circle</i>Profile</a></li>
+	      <li><a href="#/home"><i class="small material-icons">home</i>Home</a></li>
+	      <li><a href="#/map"><i class="small material-icons">map</i>Map</a></li>
+	      <li><a href="terms.html"><i class="small material-icons">event</i>Events calendar</a></li>
+	      <li><a href="terms.html"><i class="small material-icons">account_circle</i>Profile</a></li>
 	    </ul>
   
 		</div>

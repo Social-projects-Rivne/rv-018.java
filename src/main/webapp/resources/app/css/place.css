@@ -8,6 +8,8 @@
 
 i.material-icons {
     display: inline-block  !important;
+    margin: 0 10px 0 0 !important;
+    font-size: 22px !important;
 }
 
 a.sideNavMenuButton {
@@ -21,6 +23,12 @@ a.sideNavMenuButton {
 .side-nav a {
 	line-height: 64px !important;
 	height: 64px !important;
+	padding: 0 36px;
+}
+
+.side-nav {
+	background-color: #E9E2D7;
+	width: 260px !important;
 }
 
 .side-nav li > a > i,
@@ -31,5 +39,10 @@ a.sideNavMenuButton {
   margin: 0 32px 0 0;
   width: 24px;
   color: rgba(0, 0, 0, 0.54);
+}
+
+.tabs .tab a {
+	font-size: 22px !important;
+	font-weight: 300 !important;
 }
 

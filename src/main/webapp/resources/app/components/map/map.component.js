@@ -4,7 +4,7 @@ angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope) {
-    	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    	var mymap = L.map('mapid', { zoomControl:false }).setView([51.505, -0.09], 13);
     	$rootScope.myMap = mymap;
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
@@ -41,17 +41,21 @@ angular.module('greenApp')
 
 		mymap.on('click', onMapClick);
 		
-//		$rootScope.$emit('initMarkerController', {});
+		$rootScope.$emit('initMarkerController', {});
     }
   })
-  .controller('markerCtrl', function($rootScope, $scope, $http, $log){
+  .controller('markerCtrl', function($rootScope, $scope, $http, $log, topMarginSharedValue){
 //		$rootScope.$on('initMarkerController', function() {
+	  		$scope.topMarginValueForProgressBar = $scope.topMarginValueForMap = topMarginSharedValue.getTopMarginValue();
+//	  		$scope.topMarginValueForMap = topMarginSharedValue.getTopMarginValue() + 2;
+	  
 			var markersArray = [];
 
 			$rootScope.myMap.on('moveend', function(){
 				var mapViewportGSON = JSON.stringify($rootScope.myMap.getBounds()).replace(/_/g, '');
 
 				$scope.progressBarVision = true;
+				$scope.topMarginValueForMap += 2;
 				$http({
 					method: 'POST',
 					url: _contextPath + '/api/currentMapViewportPoints/',
@@ -59,6 +63,7 @@ angular.module('greenApp')
 				})
 				.then(function(response){
 					$scope.progressBarVision = false;
+					$scope.topMarginValueForMap -= 2;
 					var points = response.data;
 
 					if (markersArray.length > 0)
@@ -72,6 +77,7 @@ angular.module('greenApp')
 					})
 				}, function(error){
 					$scope.progressBarVision = false;
+					$scope.topMarginValueForMap -= 2;
 					$rootScope.error = error;
 					$log.info(error);
 				});
