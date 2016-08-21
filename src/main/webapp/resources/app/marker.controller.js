@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 angular.module('greenApp')
 	.controller('markerCtrl', function($rootScope, $scope, $http, $log){
@@ -38,4 +38,4 @@ angular.module('greenApp')
 				})
 			});
 		})
-});
+});*/

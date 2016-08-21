@@ -16,15 +16,16 @@
  </head>
 <body>
 
- 	<nav>
+ 	<nav ng-controller="sideNavMenuController">
 		<div id="header" class="nav-wrapper green darken-2">
   
-		<a href="#" data-activates="side-menu" class="sideNavMenuButton" ng-controller="sideNavMenuController"><i class="material-icons">menu</i></a>
+		<a href="#" data-activates="side-menu" class="sideNavMenuButton"><i class="material-icons">menu</i></a>
   
-	    <ul class="side-nav" id="side-menu">
-	      <li><a href="about.html">About</a></li>
-	      <li><a href="privacy.html">Privacy</a></li>
-	      <li><a href="terms.html">Terms</a></li>
+	    <ul class="side-nav" id="side-menu" ng-style="{top: topMarginValue}">
+	      <li><a href="about.html"><i class="material-icons">home</i>Home</a></li>
+	      <li><a href="#/map"><i class="material-icons">map</i>Map</a></li>
+	      <li><a href="terms.html"><i class="material-icons">event</i>Events calendar</a></li>
+	      <li><a href="terms.html"><i class="material-icons">account_circle</i>Profile</a></li>
 	    </ul>
   
 		</div>
@@ -41,6 +42,8 @@
 	      	</div>
 		</div>
 	</div> 
+	
+	<ng-view></ng-view>
 	
 <%-- <h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
@@ -96,6 +99,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.controller.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
  </body>

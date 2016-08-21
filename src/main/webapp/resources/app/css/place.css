@@ -17,3 +17,19 @@ a.sideNavMenuButton {
 #sidenav-overlay {
 	background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.side-nav a {
+	line-height: 64px !important;
+	height: 64px !important;
+}
+
+.side-nav li > a > i,
+.side-nav li > a > [class^="mdi-"], .side-nav li > a > [class*="mdi-"],
+.side-nav li > a > i.material-icons {
+  float: left;
+  line-height: 64px;
+  margin: 0 32px 0 0;
+  width: 24px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
