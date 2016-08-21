@@ -5,8 +5,16 @@
 	animation: 0.4s ease-out 0s normal none 1 running expandFab;
 }
 
-.animation {
-    animation: 0.4s ease-out 0s normal none 1 running expandFab;
+
+/*-------------- ng-animate --------------*/
+
+.add-item-menu.ng-hide-add,
+.add-item-menu.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.add-item-menu.ng-hide {
+  opacity: 0;
 }
 
 .fixed-action-btn.ng-hide-add,
@@ -14,7 +22,9 @@
   transition: all linear 0.5s;
 }
 
-
+.fixed-action-btn.ng-hide {
+  opacity: 0;
+}
 
 /*-------------- Place for map --------------*/
 .map-wrapper {
@@ -45,25 +55,6 @@
     width: 25%;
     z-index: 402;
 }
-
-.add-item-menu.ng-hide-add,
-.add-item-menu.ng-hide-remove {
-  transition: all linear 0.5s;
-}
-
-.add-item-menu.ng-hide {
-  opacity: 0;
-}
-
-.fixed-action-btn.ng-hide-add,
-.fixed-action-btn.ng-hide-remove {
-  transition: all linear 0.5s;
-}
-
-.fixed-action-btn.ng-hide {
-  opacity: 0;
-}
-
 
 .add-item-menu h2 {
     text-align: center;
