@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		var _contextPath = "${pageContext.request.contextPath}";
 	</script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/materialize.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
@@ -48,14 +48,14 @@
 		</c:otherwise>
 	</c:choose>
 
- 	<script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
- 	<script src="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/js/materialize.js"></script>
+ 	<script src="${pageContext.request.contextPath}/resources/plugins/jquery.min.js"></script>
+ 	<script src="${pageContext.request.contextPath}/resources/plugins/materialize.min.js"></script>
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-route/angular-route.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/angular-route.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/angular-resource.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
