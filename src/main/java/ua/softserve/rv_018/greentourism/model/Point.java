@@ -15,11 +15,11 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "langtitude", nullable = false)
-	private float langtitude;
+	@Column(name = "latitude", nullable = false)
+	private float latitude;
 	
-	@Column(name = "longtitude", nullable = false)
-	private float longtitude;
+	@Column(name = "longitude", nullable = false)
+	private float longitude;
 	
 	public Point() { }
 
@@ -31,27 +31,27 @@ public class Point {
 		this.id = id;
 	}
 
-	public float getLangtitude() {
-		return langtitude;
+	public float getLatitude() {
+		return latitude;
 	}
 
-	public void setLangtitude(float langtitude) {
-		this.langtitude = langtitude;
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
 	}
 
-	public float getLongtitude() {
-		return longtitude;
+	public float getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtitude(float longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
 	}
 
 	@Override
 	public String toString() {
 		return "Point [id=" + id + 
-				", langtitude=" + langtitude
-				+ ", longtitude=" + longtitude + "]";
+				", latitude=" + latitude
+				+ ", longitude=" + longitude + "]";
 	}
 
 }

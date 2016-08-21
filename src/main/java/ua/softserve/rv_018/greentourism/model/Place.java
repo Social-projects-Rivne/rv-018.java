@@ -91,8 +91,8 @@ public class Place {
 		return "Place [id = " + id 
 				+ ", name = " + name 
 				+ ", description = " + description
-				+ ", langtitude = " + point.getLangtitude()
-				+ ", longtitude = " + point.getLongtitude() 
+				+ ", latitude = " + point.getLatitude()
+				+ ", longitude = " + point.getLongitude() 
 				+ ", owner id = " + user.getId()
 				+ ", category = " + category.getName() + "]";
 	}
