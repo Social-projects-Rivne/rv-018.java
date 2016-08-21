@@ -6,7 +6,8 @@
 .metadata/
 target/
 src/main/webapp/resources/bower_components
-src/main/resources/database.properties
+*~
+#src/main/resources/database.properties
 #hibernate.cfg.xml
 Servers
 app/.idea/
@@ -15,9 +16,6 @@ desktop.ini
 /target
 .idea/*
 dataSources.local.xml
-.gitignore~
-pom.xml~
-README.md~
 AndroidApp/*
 # Openshift Files #
 .tern-project
