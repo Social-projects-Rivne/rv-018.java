@@ -3,20 +3,29 @@
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
-<title>Welcome page</title>
-<script type="text/javascript">
-	var _contextPath = "${pageContext.request.contextPath}";
-</script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
-<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
-</head>
+	<title>Welcome page</title>
+	<script type="text/javascript">
+		var _contextPath = "${pageContext.request.contextPath}";
+	</script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/loader.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/place.css">
+ </head>
 <body>
-	<h1>Hi! ${message}</h1>
+	
+<h1>Hi! ${message}</h1>
 	<h4>New angular code:</h4>
 	<a href="#/profile">Edit profile</a><br>
+	
 	<a href="#/map">Map component</a>
 	
+	<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+      <div class="indeterminate"></div>
+	</div>
+
 	<ng-view></ng-view>
 
 	<br>
@@ -38,7 +47,9 @@
 			<br />
 		</c:otherwise>
 	</c:choose>
-	
+
+ 	<script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
+ 	<script src="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/js/materialize.js"></script>
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
@@ -54,8 +65,12 @@
 	<!-- Login component -->
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
 	<!-- Profile component -->
-	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
+ 	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<!--  User component -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
-</body>
+	
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
+ </body>
 </html>
