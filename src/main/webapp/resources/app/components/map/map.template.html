@@ -1,9 +1,10 @@
 <div class="content">
-	
+
 	<div class="map-wrapper">
 		<div id="mapid"></div>
 	</div>
-	
+
+
 	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
 		<a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out"
 			class="button-collapse btn-floating btn-large red modal-trigger">
@@ -12,8 +13,7 @@
 	</div>
 
 
-	<<!-- div ng-show="addPlaceMenuIsOpen" > -->
-		<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
+	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
 			<h2>New Place</h2>
 			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
 				class="material-icons closeIcon">close</span>
@@ -60,16 +60,11 @@
 
 				<div class="form-group">
 					<div class="row">
-						<input type="button"
-							class="col s12 m6 waves-effect waves-light btn"
-							ng-click="resetAddPlaceForm()" value="Reset"> <input
-							type="button" class="col s12 m6 waves-effect waves-light btn"
-							ng-click="createNewPlace()" value="Save">
+						<input type="button" class="col s12 m6 waves-effect waves-effect waves-light btn-flat disabled" ng-click="resetAddPlaceForm()" value="Reset"> 
+						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat disabled" ng-click="createNewPlace()" value="Save">
 					</div>
 				</div>
 
 			</form>
-		</div>
-	<!-- </div> -->
-
+	</div>
 </div>

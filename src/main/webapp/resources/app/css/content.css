@@ -58,7 +58,7 @@ nav .brand-logo {
 .collection {
 	position: absolute;
 	margin-top: 10px;
-	height: 100vh;
+	/* height: 100vh; */
 	background: #ededed;
 	border: none;
 }
@@ -82,15 +82,17 @@ nav .brand-logo {
 }
 
 .content {
-	height: 100vh;
+	height: 95vh;
 	width: 100%;
 	margin-left: 0;
 	margin-top: 0;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
+	
 }
 
 .transf-content {
+	width: 88.8%;
 	transform: translate3d(12.5%, 0, 0);
 	transition: transform 0.4s ease;
 }

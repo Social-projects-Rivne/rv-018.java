@@ -1,3 +1,4 @@
+
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
@@ -10,7 +11,7 @@
 
 .add-item-menu.ng-hide-add,
 .add-item-menu.ng-hide-remove {
-  transition: all linear 0.5s;
+  transition: all linear 0.4s;
 }
 
 .add-item-menu.ng-hide {
@@ -19,7 +20,7 @@
 
 .fixed-action-btn.ng-hide-add,
 .fixed-action-btn.ng-hide-remove {
-  transition: all linear 0.5s;
+  transition: all linear 0.4s;
 }
 
 .fixed-action-btn.ng-hide {
@@ -29,7 +30,7 @@
 /*-------------- Place for map --------------*/
 .map-wrapper {
   position: absolute;
-  /* padding-top: 0px; // px that has our nav */
+  padding-top: 0px; // px that has our nav
   top: 0;
   left: 0;
   height: 100%;
@@ -51,9 +52,9 @@
     padding: 0 15px 15px;
     position: absolute;
     right: 0;
-    top: -1px;
+    top: 0px;
     width: 25%;
-    z-index: 402;
+    z-index: 2;
 }
 
 .add-item-menu h2 {
