@@ -7,7 +7,7 @@
 target/
 src/main/webapp/resources/bower_components
 *~
-#src/main/resources/database.properties
+src/main/resources/database.properties
 #hibernate.cfg.xml
 Servers
 app/.idea/
@@ -29,3 +29,4 @@ src/main/webapp/snoop.jsp
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /bin/
+
