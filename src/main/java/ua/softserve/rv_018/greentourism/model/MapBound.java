@@ -31,12 +31,12 @@ public class MapBound {
 
 	public boolean contains(Point pointCoord){
 		
-		float pointLatCoord = pointCoord.getLangtitude();
-		float pointLngCoord = pointCoord.getLongtitude();
+		float pointLatCoord = pointCoord.getLatitude();
+		float pointLngCoord = pointCoord.getLongitude();
 		
-		return (pointLatCoord >= this.southWest.getLangtitude() && 
-				pointLatCoord <= this.northEast.getLangtitude() && 
-				pointLngCoord >= this.southWest.getLongtitude() && 
-				pointLngCoord <= this.northEast.getLongtitude());
+		return (pointLatCoord >= this.southWest.getLatitude() && 
+				pointLatCoord <= this.northEast.getLatitude() && 
+				pointLngCoord >= this.southWest.getLongitude() && 
+				pointLngCoord <= this.northEast.getLongitude());
 	}
 }
