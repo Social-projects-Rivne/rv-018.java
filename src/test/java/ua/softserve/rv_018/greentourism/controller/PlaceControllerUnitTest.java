@@ -51,13 +51,13 @@ public class PlaceControllerUnitTest {
 		
 		Point point1 = new Point();
 		point1.setId(1);
-		point1.setLangtitude(1);
-		point1.setLongtitude(1);
+		point1.setLatitude(1);
+		point1.setLongitude(1);
 		
 		Point point2 = new Point();
 		point2.setId(2);
-		point2.setLangtitude(2);
-		point2.setLongtitude(2);
+		point2.setLatitude(2);
+		point2.setLongitude(2);
 		
 		Place place1 = new Place();
 		place1.setId(1);
