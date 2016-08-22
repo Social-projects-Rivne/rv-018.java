@@ -13,38 +13,30 @@ import javax.persistence.JoinColumn;
 @Entity
 @Table(name = "place")
 public class Place {
-	
+
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "point_id", nullable = false)
 	private Point point;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "owner_id")
 	private User user;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
-	public Place() { }
-	
-	public Place(int id, String name, String description) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
 
-
+	public Place() {}
 
 	public int getId() {
 		return id;
@@ -93,14 +85,14 @@ public class Place {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Place [id = " + id 
 				+ ", name = " + name 
 				+ ", description = " + description
-				+ ", langtitude = " + point.getLangtitude()
-				+ ", longtitude = " + point.getLongtitude() 
+				+ ", latitude = " + point.getLatitude()
+				+ ", longitude = " + point.getLongitude() 
 				+ ", owner id = " + user.getId()
 				+ ", category = " + category.getName() + "]";
 	}
