@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 <!-- Custom styles -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/nav-bar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/content.css">
 <!-- Supporting mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -26,7 +25,7 @@
 	       <div class="nav-wrapper">
                 <div class="row">
                     <div class="col s2 m1 l1">
-                        <i id="toggle-button" class="circle waves-effect waves-light material-icons" style="width:40px; height:40px; margin-left: 20px">menu</i>
+                        <i id="toggle-button" class="circle waves-effect waves-light material-icons">menu</i>
                     </div>
                     <div class="col m3 l2 hide-on-small-only">
                         GreenTourism
@@ -67,25 +66,6 @@
                         </div>
             </div>   
     </main>
-    
-	<!-- <h4>Old jsp code:</h4>
-	<c:choose>
-		<c:when
-			test="${user != null && user != 'anonymousUser' && user != 'not authenticated'}">
-			<p>
-				You have been logged in as <strong>${user}</strong>. <a
-					href="<c:url value="/logout" />">Logout</a>
-			</p>
-			<br />
-		</c:when>
-		<c:otherwise>
-			<p>
-				Press <a href="<c:url value="/login" />">login</a> to login
-			</p>
-			<br />
-		</c:otherwise>
-	</c:choose> -->
-	
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!--  -->
