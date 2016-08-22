@@ -1,13 +1,26 @@
 package ua.softserve.rv_018.greentourism.service;
 
-import java.util.Collection;
+import java.util.List;
+
 import ua.softserve.rv_018.greentourism.model.Place;
+import ua.softserve.rv_018.greentourism.model.Point;
 
 public interface PlaceService {
 	/**
-     * Find all Places entities.
-     * @return A Collection of Places objects.
+     * Find all Place entities.
+     * @return A List of Place objects.
      */
-    Collection<Place> findAll();
-    Collection<Place> findByNameIgnoreCaseContaining(String name);
+	List<Place> findAll();
+	
+	/**
+     * Find all Place entities by name using filter.
+     * @return A List of Place objects.
+     */
+	List<Place> findByName(String name, boolean checkWholeWord, boolean checkIgnoreCase);
+
+	/**
+     * Find all Point entities between two coordinates.
+     * @return A List of Point objects.
+     */
+	List<Point> getPlacePointsBetweenTwoCoordinates(Point southWest, Point northEast);
 }

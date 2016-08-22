@@ -13,14 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.softserve.rv_018.greentourism.model.MapBound;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
+import ua.softserve.rv_018.greentourism.service.PointService;
 
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/place")
 @Controller
 public class PlaceController {
 
@@ -31,52 +32,78 @@ public class PlaceController {
 
 	@Autowired
 	private PlaceService placeService;
+	
+	@Autowired
+	private PointService pointService;
 
 	/**
-	 * Web service endpoint to fetch all Places entities. The service returns
-	 * the collection of Places entities as JSON.
+	 * Web service endpoint to fetch all Place entities. The service returns
+	 * the list of Place entities as JSON.
 	 * 
-	 * @return
-	 *
-	 * @return A ResponseEntity containing a Collection of Places objects.
+	 * @return A ResponseEntity containing a List of Place objects.
 	 */
-	@RequestMapping(value = "/place", method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
 	public ResponseEntity<?> getPlaces() {
 
 		logger.info("> getPlaces");
 
-		Collection<Place> places = placeService.findAll();
+		List<Place> places = placeService.findAll();
 
 		logger.info("< getPlaces");
 
 		return new ResponseEntity<>(places, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/currentMapViewportPoints", method = RequestMethod.POST, headers = "Accept=application/json", produces = { "application/json" })
-	public ResponseEntity<?> currentMapViewportPoints(
-			@RequestBody MapBound mapBound) {
-		logger.info("> get current map viewport points");
-
-		List<Point> currentViewportPoints = new ArrayList<Point>();
-
-		Collection<Place> places = placeService.findAll();
-		for (Place place : places) {
-			Point point = place.getPoint();
-			if (mapBound.contains(point)) {
-				currentViewportPoints.add(point);
-			}
+	/**
+	 * Web service endpoint to fetch all Place points between two coordinates.
+	 * The service returns the list of Point entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Point objects.
+	 */
+	@RequestMapping(value = "/point", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getPlacePointsBetweenTwoCoordinates(
+			@RequestParam (value="south-west", required=true) String southWestParam,
+    		@RequestParam (value="north-east", required=true) String northEastParam) {
+		logger.info("> getPlacePointsBetweenTwoCoordinates");
+		
+		List<Point> points = new ArrayList<>();
+		
+		Point southWest = pointService.createPoint(southWestParam);
+		Point northEast = pointService.createPoint(northEastParam);
+		
+		if (southWest.isEmpty() || northEast.isEmpty()) {
+			logger.debug("< Bad Request for getting place points between (" + southWestParam + " - " + northEastParam);
+			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
 		}
+		
+		points = placeService.getPlacePointsBetweenTwoCoordinates(southWest, northEast);
 
-		logger.info("< get current map viewport points");
+		logger.info("< getPlacePointsBetweenTwoCoordinates");
 
-		return new ResponseEntity<>(currentViewportPoints, HttpStatus.OK);
+		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/place", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
-	public @ResponseBody ResponseEntity<?> findByNameIgnoreCaseContaining(
-			@RequestBody String name) {
-		Collection<Place> places = placeService
-				.findByNameIgnoreCaseContaining(name);
-		return new ResponseEntity<>(places, HttpStatus.OK);
-	}
+	/**
+     * Web service endpoint to fetch all Places entities by name.
+     * The service returns the list of Place entities as JSON.
+     *
+     * @return A ResponseEntity containing a List of Place objects.
+     */
+    @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getPlacesByName(
+    		@RequestParam String name,
+    		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
+    		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
+    	logger.info("> getPlaces");
+
+    	List<Place> places = new ArrayList<>();
+    	
+    	places = placeService.findByName(name, ignoreCase, !wholeWord);
+    	
+        logger.info("< getPlaces");
+        
+        return new ResponseEntity<>(places, HttpStatus.OK);
+    }
 }
