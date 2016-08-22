@@ -88,9 +88,12 @@ public class Place {
 
 	@Override
 	public String toString() {
-		return "Place [id = " + id + ", name = " + name + ", description = "
-				+ description + ", langtitude = " + point.getLangtitude()
-				+ ", longtitude = " + point.getLongtitude() + ", owner id = "
-				+ user.getId() + ", category = " + category.getName() + "]";
+		return "Place [id = " + id 
+				+ ", name = " + name 
+				+ ", description = " + description
+				+ ", latitude = " + point.getLatitude()
+				+ ", longitude = " + point.getLongitude() 
+				+ ", owner id = " + user.getId()
+				+ ", category = " + category.getName() + "]";
 	}
 }

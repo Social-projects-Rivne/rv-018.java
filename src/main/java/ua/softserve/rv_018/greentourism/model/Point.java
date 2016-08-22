@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "point")
 public class Point {
@@ -15,12 +17,15 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "langtitude", nullable = false)
-	private float langtitude;
+	@JsonProperty("lat")
 	
-	@Column(name = "longtitude", nullable = false)
-	private float longtitude;
-	
+	@Column(name = "latitude", nullable = false)
+	private float latitude;
+
+	@JsonProperty("lng")
+	@Column(name = "longitude", nullable = false)
+	private float longitude;
+
 	public Point() { }
 
 	public int getId() {
@@ -31,27 +36,26 @@ public class Point {
 		this.id = id;
 	}
 
-	public float getLangtitude() {
-		return langtitude;
+	public float getLatitude() {
+		return latitude;
 	}
 
-	public void setLangtitude(float langtitude) {
-		this.langtitude = langtitude;
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
 	}
 
-	public float getLongtitude() {
-		return longtitude;
+	public float getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtitude(float longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
 	}
 
 	@Override
 	public String toString() {
 		return "Point [id=" + id + 
-				", langtitude=" + langtitude
-				+ ", longtitude=" + longtitude + "]";
+				", latitude=" + latitude
+				+ ", longitude=" + longitude + "]";
 	}
-
 }
