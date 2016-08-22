@@ -11,6 +11,7 @@ import ua.softserve.rv_018.greentourism.model.Place;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 	List<Place> findByNameIgnoreCaseContaining(String name);
+	
 	@Query(value="select place.* "
 			+ "from place inner join point on place.point_id = point.id "
 			+ "where point.latitude >= :south_west_latitude "
@@ -18,11 +19,9 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 			+ "and point.latitude <= :north_east_latitude "
 			+ "and point.longitude <= :north_east_longitude"
 			, nativeQuery=true)
-	
 	List<Place> findBetweenTwoPoints(
-			@Param("south_west_latitude") Float f,
-			@Param("south_west_longitude") Float g,
-			@Param("north_east_latitude") Float h,
-			@Param("north_east_longitude") Float i);
-//		String query1 = "select * from place inner join point on place.point_id = point.id where point.latitude >= :south_west_latitude and point.longitude >= :south_west_longitude and point.latitude <= :north_east_latitude and point.longitude <= :north_east_longitude";
+			@Param("south_west_latitude") Float southWestLatitude,
+			@Param("south_west_longitude") Float southWestLongitude,
+			@Param("north_east_latitude") Float northEastLatitude,
+			@Param("north_east_longitude") Float northEastLongitude);
 }

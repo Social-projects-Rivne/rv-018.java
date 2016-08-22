@@ -15,28 +15,23 @@ public class PointServiceImpl implements PointService {
 
 	@Override
 	public Point createPoint(String coordinate) {
-		logger.info("> createPoint");
-		
-		System.out.println("121: " + coordinate);
+		logger.info("> Point createPoint");
 		
 		Point point = new Point();
 		
 		String [] coordinates = coordinate.split(":");
 		if (coordinates.length != 2) {
 			logger.debug("Given coordinate in wrong format or empty");
-			System.out.println("122");
 			
 			point.setEmpty(true);
 			
 			return point;
 		}
 		
-		System.out.println("123");
-		
 		point.setLatitude(Float.valueOf(coordinates[0]));
 		point.setLongitude(Float.valueOf(coordinates[1]));
 		
-		logger.info("< createPoint");
+		logger.info("< Point createPoint");
 		
 		return point;
 	}
