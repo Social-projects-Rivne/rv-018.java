@@ -1,9 +1,0 @@
-nav {
-     background-color: RGB(15, 156, 90); 
-}
-
-nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
-    height: 44px;
-    line-height: 44px;
-}
-
