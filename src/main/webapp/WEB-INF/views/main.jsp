@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.min.css">
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 <!-- Custom styles -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/map.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/main.css">
 <!-- Supporting mobile devices -->
@@ -64,6 +63,8 @@
                         </div>
                         <div class="content">
                             <ng-view></ng-view>
+                            <!-- <addpoint></addpoint> -->
+                            
                         </div>
             </div>   
     </main>

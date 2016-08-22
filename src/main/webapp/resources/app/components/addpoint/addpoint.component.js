@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 angular
 		.module('greenApp', ['ngAnimate'])
@@ -59,15 +59,15 @@ angular
 								category : $scope.newPlaceType,
 								description : $scope.newPlaceDescription,
 								point : {
-									langtitude : $scope.latitude,
-									longtitude : $scope.longitude
+									latitude : $scope.latitude,
+									longitude : $scope.longitude
 								}
 							}
 							;
 
 							console.log(dataObj);
 
-							$http.post("http://localhost:8080/place/", dataObj)
+							$http.post("http://localhost:8080/addplace/", dataObj)
 
 							.success(function(data, status, headers, config) {
 								console.log("New Place Added Successfully");
@@ -85,6 +85,9 @@ angular
 							$scope.newPlacePhotos = null;
 							
 						};
+						
+						$rootScope.$emit('initMarkerController', {});
 
 					}
 				});
+*/

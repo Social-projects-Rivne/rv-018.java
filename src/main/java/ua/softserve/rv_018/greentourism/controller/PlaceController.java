@@ -86,7 +86,7 @@ public class PlaceController {
 			"application/json" })
 	public ResponseEntity<?> createPlace(@RequestBody Place place) {
 		logger.info("> createPlace");
-
+		
 		Place savedPlace = placeService.create(place);
 
 		HttpHeaders httpHeaders = new HttpHeaders();
