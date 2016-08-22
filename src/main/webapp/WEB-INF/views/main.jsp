@@ -61,6 +61,9 @@
                             <a href="#/event" class="collection-item"><i class="material-icons">redeem</i> Events calendar</a>
                             <a href="#/profile" class="collection-item"><i class="material-icons">perm_identity</i>Profile</a>
                         </div>
+                        <div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+					    	<div class="indeterminate"></div>
+						</div>
                         <div class="content">
                             <ng-view></ng-view>
                         </div>
