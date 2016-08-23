@@ -9,6 +9,8 @@ public interface PlaceService {
      * @return A Collection of Places objects.
      */
     Collection<Place> findAll();
+    
     Collection<Place> findByNameIgnoreCaseContaining(String name);
+    
     Place create(Place place); 
 }

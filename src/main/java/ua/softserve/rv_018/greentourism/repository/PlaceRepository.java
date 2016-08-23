@@ -10,4 +10,3 @@ import ua.softserve.rv_018.greentourism.model.Place;
 public interface PlaceRepository extends JpaRepository<Place, Long> {
 	List<Place> findByNameIgnoreCaseContaining(String name);
 }
-

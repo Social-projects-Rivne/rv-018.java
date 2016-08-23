@@ -45,7 +45,12 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	@Override
 	public Place create(Place place) {
+		logger.info("> Place create");
+		
 		Place addedPlace = placeRepository.save(place);
+		
+		logger.info("> Place create");
+		
 		return addedPlace;
 	}
 }
