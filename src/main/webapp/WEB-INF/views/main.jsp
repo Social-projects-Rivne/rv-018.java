@@ -75,7 +75,7 @@
 					</div>
 				</div> 
 
-				<div class="content" ng-style="contentCss">
+				<div class="content">
 					<ng-view></ng-view>
 				</div>
 			</div>   
