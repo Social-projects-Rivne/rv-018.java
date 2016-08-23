@@ -24,6 +24,7 @@ angular.module('greenApp')
 							$rootScope.myMap.removeLayer(marker);
 						})
 					markersArray = [];
+					
 					angular.forEach(points, function(point, key){
 						markersArray.push(L.marker([point.latitude, point.longitude]).addTo($rootScope.myMap));
 					})
