@@ -62,7 +62,7 @@ public class PlaceController {
 	public ResponseEntity<?> getPlacePointsBetweenTwoCoordinates(
 			@RequestParam (value="south-west", required=true) String southWestParam,
     		@RequestParam (value="north-east", required=true) String northEastParam) {
-		logger.info("> getPlacePointsBetweenTwoCoordinates");
+		logger.info("> Get place point between (" + southWestParam + " - " + northEastParam);
 		
 		List<Point> points = new ArrayList<>();
 		
@@ -76,7 +76,7 @@ public class PlaceController {
 		
 		points = placeService.getPlacePointsBetweenTwoCoordinates(southWest, northEast);
 
-		logger.info("< getPlacePointsBetweenTwoCoordinates");
+		logger.info("< Get place point between (" + southWestParam + " - " + northEastParam);
 
 		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
