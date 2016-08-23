@@ -8,6 +8,7 @@
 	<script type="text/javascript">
 		var _contextPath = "${pageContext.request.contextPath}";
 	</script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/materialize.min.css" />
 	<!--Import Google Icon Font-->
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -85,24 +86,20 @@
  	<script src="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/js/materialize.js"></script>
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-	<!--  -->
-	<script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/js/materialize.min.js"></script>
 	<!-- Bower components -->
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-route/angular-route.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/materialize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-route.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-resource.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
-	<!-- Map component -->
+	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
-	<!-- Login component -->
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
-	<!-- Profile component -->
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
-	<!--  User component -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
