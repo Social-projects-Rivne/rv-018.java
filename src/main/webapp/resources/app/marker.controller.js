@@ -6,13 +6,14 @@ angular.module('greenApp')
 			var markersArray = [];
 
 			$rootScope.myMap.on('moveend', function(){
-				var mapViewportGSON = JSON.stringify($rootScope.myMap.getBounds()).replace(/_/g, '');
+				var latLngBounds = $rootScope.myMap.getBounds();
 
 				$scope.progressBarVision = true;
 				$http({
-					method: 'POST',
-					url: _contextPath + '/api/currentMapViewportPoints/',
-					data: mapViewportGSON
+					method: 'GET',
+					url: _contextPath + '/api/place/point' 
+										+ '?south-west=' + latLngBounds.getSouthWest().lat + ':' + latLngBounds.getSouthWest().lng 
+										+ '&north-east=' + latLngBounds.getNorthEast().lat + ':' + latLngBounds.getNorthEast().lng
 				})
 				.then(function(response){
 					$scope.progressBarVision = false;

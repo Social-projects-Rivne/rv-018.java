@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -25,8 +26,10 @@ public class Point {
 	@JsonProperty("lng")
 	@Column(name = "longitude", nullable = false)
 	private float longitude;
+	@JsonIgnore
+	private boolean empty = false;
 
-	public Point() { }
+	public Point() {}
 
 	public int getId() {
 		return id;
@@ -50,6 +53,14 @@ public class Point {
 
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
+	}
+
+	public boolean isEmpty() {
+		return empty;
+	}
+
+	public void setEmpty(boolean isEmpty) {
+		this.empty = isEmpty;
 	}
 
 	@Override
