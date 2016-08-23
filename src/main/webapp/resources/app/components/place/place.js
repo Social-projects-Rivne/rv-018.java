@@ -5,15 +5,27 @@ $('.sideNavMenuButton').sideNav({
   );
 
 angular.module('greenApp')
-.service('topMarginSharedValue', function () {
-    var topMarginValue;
+.service('mapTopValue', function () {
+    var mapTopValue;
 
     return {
-        getTopMarginValue: function () {
-            return topMarginValue;
+        getMapTopValue: function () {
+            return mapTopValue;
         },
-        setTopMarginValue: function(value) {
-        	topMarginValue = value;
+        setMapTopValue: function(value) {
+        	mapTopValue = value;
         }
     };
 });
+/*.service('mapTopValue', function () {
+    var mapTopValue;
+
+    return {
+        getMapTopValue: function () {
+            return mapTopValue;
+        },
+        setMapTopValue: function(value) {
+        	mapTopValue = value;
+        }
+    };
+})*/

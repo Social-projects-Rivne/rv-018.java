@@ -44,18 +44,22 @@ angular.module('greenApp')
 		$rootScope.$emit('initMarkerController', {});
     }
   })
-  .controller('markerCtrl', function($rootScope, $scope, $http, $log, topMarginSharedValue){
+  .controller('markerCtrl', function($rootScope, $scope, $http, $log, mapTopValue){
 //		$rootScope.$on('initMarkerController', function() {
-	  		$scope.topMarginValueForProgressBar = $scope.topMarginValueForMap = topMarginSharedValue.getTopMarginValue();
+//	  		$scope.topMarginValueForProgressBar = $scope.topMarginValueForMap = topMarginSharedValue.getTopMarginValue();
 //	  		$scope.topMarginValueForMap = topMarginSharedValue.getTopMarginValue() + 2;
-	  
+	  		//var mapTopValue = document.getElementById('mapid').style.top;
+	  		$scope.topValue = -20;
+//	  		mapTopValue.setMapTopValue(topValue);
+	  		
 			var markersArray = [];
 
 			$rootScope.myMap.on('moveend', function(){
 				var mapViewportGSON = JSON.stringify($rootScope.myMap.getBounds()).replace(/_/g, '');
 
 				$scope.progressBarVision = true;
-				$scope.topMarginValueForMap += 2;
+				$scope.topValue = $scope.topValue + 2;
+//		  		mapTopValue.setMapTopValue(topValue);
 				$http({
 					method: 'POST',
 					url: _contextPath + '/api/currentMapViewportPoints/',
@@ -63,7 +67,8 @@ angular.module('greenApp')
 				})
 				.then(function(response){
 					$scope.progressBarVision = false;
-					$scope.topMarginValueForMap -= 2;
+					$scope.topValue = $scope.topValue - 2;
+//			  		mapTopValue.setMapTopValue(topValue);
 					var points = response.data;
 
 					if (markersArray.length > 0)
@@ -77,7 +82,8 @@ angular.module('greenApp')
 					})
 				}, function(error){
 					$scope.progressBarVision = false;
-					$scope.topMarginValueForMap -= 2;
+					$scope.mapTopValue = $scope.mapTopValue - 2;
+//			  		mapTopValue.setMapTopValue(mapTopValue);
 					$rootScope.error = error;
 					$log.info(error);
 				});

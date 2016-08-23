@@ -38,4 +38,8 @@ public class PlaceServiceImpl implements PlaceService {
         
         return places;
 	}
+	@Override
+	public Collection<Place> findByNameIgnoreCaseContaining(String name) {
+		return placeRepository.findByNameIgnoreCaseContaining(name);
+	}
 }
