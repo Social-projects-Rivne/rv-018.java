@@ -42,11 +42,11 @@ public class PlaceController {
 	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
 	public ResponseEntity<?> getPlaces() {
 
-		logger.info("> getPlaces");
+		logger.info("> Get all places from the database");
 
 		List<Place> places = placeService.findAll();
 
-		logger.info("< getPlaces");
+		logger.info("< Get all places from the database");
 
 		return new ResponseEntity<>(places, HttpStatus.OK);
 	}
@@ -93,13 +93,11 @@ public class PlaceController {
     		@RequestParam String name,
     		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
     		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
-    	logger.info("> getPlaces");
+    	logger.info("> Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
 
-    	List<Place> places = new ArrayList<>();
+    	List<Place> places = placeService.findByName(name, ignoreCase, !wholeWord);
     	
-    	places = placeService.findByName(name, ignoreCase, !wholeWord);
-    	
-        logger.info("< getPlaces");
+    	logger.info("< Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
         
         return new ResponseEntity<>(places, HttpStatus.OK);
     }
