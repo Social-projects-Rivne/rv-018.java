@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/materialize.min.css">
 	<!--Import Google Icon Font-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-
+	<!-- Leaflet styles -->
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
