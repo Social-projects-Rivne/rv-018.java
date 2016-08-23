@@ -81,7 +81,7 @@
 	    </main>
 	</div>
     
- 	<script src="${pageContext.request.contextPath}/resources/assets/jquery.js"></script>
+ 	<script src="${pageContext.request.contextPath}/resources/assets/jquery.min.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/assets/materialize.min.js"></script>
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
