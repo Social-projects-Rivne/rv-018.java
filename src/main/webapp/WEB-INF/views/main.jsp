@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/materialize/dist/css/materialize.min.css">
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 <!-- Custom styles -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/content.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
 <!-- Supporting mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
  </head>
