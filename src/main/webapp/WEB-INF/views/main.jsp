@@ -26,7 +26,7 @@
 			       <div class="nav-wrapper">
 		                <div class="row">
 		                    <div class="col s2 m1 l1">
-		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons" ng-click="menuButtonClick()">menu</i>
+		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons">menu</i>
 		                    </div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
