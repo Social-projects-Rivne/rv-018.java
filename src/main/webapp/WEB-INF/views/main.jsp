@@ -8,16 +8,16 @@
 	<script type="text/javascript">
 		var _contextPath = "${pageContext.request.contextPath}";
 	</script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/materialize.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/materialize.min.css">
 	<!--Import Google Icon Font-->
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
 
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
- </head>
+</head>
 <body>
 	<div ng-controller="mainController">
 		<header id="header">
