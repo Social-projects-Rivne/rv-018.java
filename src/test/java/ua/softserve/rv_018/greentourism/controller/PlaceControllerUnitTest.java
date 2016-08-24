@@ -26,10 +26,10 @@ public class PlaceControllerUnitTest {
 	private static final String EMPTY_COLLECTION = "";
 	private static final String COLLECTION = 
 			"[{\"id\":1,\"name\":null,\"description\":null,\"point\":"
-			+ "{\"id\":1,\"lat\":1.0,\"lng\":1.0},"
+			+ "{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},"
 			+ "\"user\":null,\"category\":null},"
 			+ "{\"id\":2,\"name\":null,\"description\":null,\"point\":"
-			+ "{\"id\":2,\"lat\":2.0,\"lng\":2.0},"
+			+ "{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},"
 			+ "\"user\":null,\"category\":null}]";
 	private static final String PLACE_URL = "/api/place";
 	
