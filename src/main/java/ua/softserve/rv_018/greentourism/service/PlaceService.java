@@ -23,4 +23,11 @@ public interface PlaceService {
      * @return A List of Point objects.
      */
 	List<Point> getPlacePointsBetweenTwoCoordinates(Point southWest, Point northEast);
+	
+	/**
+     * Updates a previously persisted Place entity in the data store.
+     * @param place A Place object to be updated.
+     * @return The updated Place entity.
+     */
+	Place update(Place place);
 }
