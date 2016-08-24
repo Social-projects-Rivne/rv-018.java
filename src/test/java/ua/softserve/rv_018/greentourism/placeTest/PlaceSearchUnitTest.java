@@ -35,15 +35,15 @@ public class PlaceSearchUnitTest {
 
 	@Test
 	public void testSearchPlaceByNameThatExists() {
-		when(service.findByNameIgnoreCaseContaining(PLACE_NAME)).thenReturn(places);
+		when(service.findByName(PLACE_NAME, true, true)).thenReturn(places);
 		assertEquals(true,
-				(service.findByNameIgnoreCaseContaining(PLACE_NAME).containsAll(places)&& places.containsAll(service.findByNameIgnoreCaseContaining(PLACE_NAME))));
+				(service.findByName(PLACE_NAME, true, true).containsAll(places)&& places.containsAll(service.findByName(PLACE_NAME, true, true))));
 	}
 
 	@Test
 	public void testSearchPlaceByNameThatDoesNotExistAndByEmptyName() {
-		when(service.findByNameIgnoreCaseContaining(PLACE_NAME)).thenReturn(new ArrayList<Place>());
-		assertNotEquals(places, service.findByNameIgnoreCaseContaining(PLACE_NAME));
+		when(service.findByName(PLACE_NAME, true, true)).thenReturn(new ArrayList<Place>());
+		assertNotEquals(places, service.findByName(PLACE_NAME, true, true));
 	}
 
 }

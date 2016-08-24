@@ -48,18 +48,13 @@ angular.module('greenApp')
 				category : $scope.newPlaceType,
 				description : $scope.newPlaceDescription,
 				point : {
-					lat : $scope.latitude,
-					lng : $scope.longitude
+					latitude : $scope.latitude,
+					longitude : $scope.longitude
 				}
 			};
 
-			console.log("addPlace", dataObj);
-
-			$http.post(_contextPath + "/api/addplace/", dataObj)
-
-			.success(function(data, status, headers, config) {
-				console.log("New Place Added Successfully");
-			});
+			$http.post(_contextPath + "/api/place/", dataObj)
+			.success(function(data, status, headers, config) {});
 		};
 		
 		$scope.resetAddPlaceForm = function(form) {

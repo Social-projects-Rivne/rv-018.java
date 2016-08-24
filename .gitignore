@@ -6,6 +6,7 @@
 .metadata/
 target/
 src/main/webapp/resources/bower_components
+*~
 src/main/resources/database.properties
 #hibernate.cfg.xml
 Servers
@@ -15,9 +16,6 @@ desktop.ini
 /target
 .idea/*
 dataSources.local.xml
-.gitignore~
-pom.xml~
-README.md~
 AndroidApp/*
 # Openshift Files #
 .tern-project
@@ -31,5 +29,3 @@ src/main/webapp/snoop.jsp
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /bin/
-diagrams/
-src/main/java/META-INF/
