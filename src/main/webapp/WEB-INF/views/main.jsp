@@ -80,7 +80,7 @@
 	<script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-route/angular-route.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
-	<script src="${pageContext.request.contextPath}resources/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/bower_components/angular-animate/angular-animate.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
@@ -98,7 +98,5 @@
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
-	<!-- Add point component -->
-	<script src="${pageContext.request.contextPath}/resources/app/components/addpoint/addpoint.component.js"></script>
 </body>
 </html>
