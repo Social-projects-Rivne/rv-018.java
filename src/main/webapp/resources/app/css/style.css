@@ -161,6 +161,7 @@ a.sideNavMenuButton {
   width: 100%;
   z-index: 1;
 }
+
 .map-wrapper #mapid {
   height: 100%;
   width: 100%;
@@ -263,4 +264,3 @@ textarea.form-control {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 }
- 
