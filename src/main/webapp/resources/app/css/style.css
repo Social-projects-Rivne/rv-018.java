@@ -88,7 +88,6 @@ nav .brand-logo {
 	margin-top: 0;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
-	
 }
 
 .transf-content {
@@ -128,18 +127,13 @@ a.sideNavMenuButton {
 #sidenav-overlay {
 	background-color: rgba(0, 0, 0, 0) !important;
 }
-
-
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
 	right: 24px;
 	animation: 0.4s ease-out 0s normal none 1 running expandFab;
 }
-
-
 /*-------------- ng-animate --------------*/
-
 .add-item-menu.ng-hide-add,
 .add-item-menu.ng-hide-remove {
   transition: all linear 0.4s;
@@ -157,7 +151,6 @@ a.sideNavMenuButton {
 .fixed-action-btn.ng-hide {
   opacity: 0;
 }
-
 /*-------------- Place for map --------------*/
 .map-wrapper {
   position: absolute;
@@ -172,9 +165,7 @@ a.sideNavMenuButton {
   height: 100%;
   width: 100%;
 }
-
 /*-------------- Add place --------------*/
-
 .add-item-menu {
     background-color: #f8f8f8;
     bottom: 0;
@@ -200,7 +191,6 @@ a.sideNavMenuButton {
 .center-align {
   text-align: center;
   padding: 0;
-  
 }
 
 .label {
@@ -273,6 +263,4 @@ textarea.form-control {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 }
-
-    
  

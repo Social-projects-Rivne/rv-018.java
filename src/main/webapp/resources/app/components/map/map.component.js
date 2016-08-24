@@ -4,7 +4,7 @@ angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope, $http) {
-    	var mymap  = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
+    	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	$rootScope.myMap = mymap;
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
@@ -65,7 +65,6 @@ angular.module('greenApp')
 			$scope.newPlaceDescription = null;
 			$scope.newPlacePhotos = null;
 		};
-		
 		
 		$rootScope.$emit('initMarkerController', {});
     }
