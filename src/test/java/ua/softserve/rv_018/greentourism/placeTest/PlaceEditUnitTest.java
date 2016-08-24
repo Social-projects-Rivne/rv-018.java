@@ -25,8 +25,6 @@ public class PlaceEditUnitTest {
 	@Mock
 	private Place newPlace;
 	@Mock
-	private Place oldPlace;
-	@Mock
 	private PlaceRepository placeRepository;
 	private PlaceServiceImpl placeService;
 
