@@ -12,3 +12,4 @@ angular.module('greenApp')
 		
 		$scope.topMarginValue = headerClientWidth + tabsRowClientWidth;
 	});
+
