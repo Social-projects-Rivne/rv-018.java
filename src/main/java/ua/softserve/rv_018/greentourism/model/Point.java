@@ -18,12 +18,9 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@JsonProperty("lat")
-	
 	@Column(name = "latitude", nullable = false)
 	private float latitude;
 
-	@JsonProperty("lng")
 	@Column(name = "longitude", nullable = false)
 	private float longitude;
 	@JsonIgnore
