@@ -1,3 +1,13 @@
+@CHARSET "UTF-8";
+
+.tabsBackgroundColor {
+	background-color: #0F9C5A !important;
+}
+
+.tabs .indicator {
+    background-color: white !important;
+}
+
 body {
 	background-color: #ededed;
 }
@@ -6,7 +16,7 @@ nav {
 	background-color: RGB(15, 156, 90);
 }
 
-nav,nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
+nav, nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
 	height: 44px;
 	line-height: 44px;
 }
@@ -57,10 +67,14 @@ nav .brand-logo {
 
 .collection {
 	position: absolute;
-	margin-top: 10px;
-	/* height: 100vh; */
+/* 	margin-top: 10px; */
+	margin-top: 0px;
+/* 	height: 100vh;
+ */	height: 86vh;
 	background: #ededed;
 	border: none;
+	bottom: 0px;
+	margin-bottom: 0px;
 }
 
 .collection a.collection-item {
@@ -82,16 +96,20 @@ nav .brand-logo {
 }
 
 .content {
-	height: 95vh;
-	width: 100%;
-	margin-left: 0;
-	margin-top: 0;
+/* 	height: 100vh; */
+	height: 83.5vh;
+/* 	width: 66.6666666667%; */
+/*  	width: 100%; */ 
+ 	width: 83.4%; 
+/* 	margin-left: 16.6666666667%; */
+	margin-left: 6.13%;
+/* 	margin-top: 20px; */
+	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
 }
 
 .transf-content {
-	width: 88.8%;
 	transform: translate3d(12.5%, 0, 0);
 	transition: transform 0.4s ease;
 }
@@ -103,29 +121,26 @@ nav .brand-logo {
 }
 
 .progress {
-	height: 2px;
-	border-radius: 1px;
-	margin: 0px;
+	height: 2px !important;
+	border-radius: 1px !important;
+	margin: 0px !important;
+	position: absolute !important;
+	top: -20px !important;
+	z-index: 401;
 }
 
-.tabs .indicator {
-    background-color: white !important;
+#mapid {
+	position: absolute;
+    top: -20px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    left: 0px;
 }
 
-.tabs .tab {
-	text-transform: none !important;
-}
-
-i.material-icons {
-    display: inline-block  !important;
-}
-
-a.sideNavMenuButton {
-	margin-left: 1%;
-}
-
-#sidenav-overlay {
-	background-color: rgba(0, 0, 0, 0) !important;
+.tabsIndent {
+	margin-left: 35%;
+	margin-right: 35%;
 }
 /*-------------- Red button --------------*/
 .fixed-action-btn {
@@ -151,21 +166,6 @@ a.sideNavMenuButton {
 .fixed-action-btn.ng-hide {
   opacity: 0;
 }
-/*-------------- Place for map --------------*/
-.map-wrapper {
-  position: absolute;
-  padding-top: 0px; // px that has our nav
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
-
-.map-wrapper #mapid {
-  height: 100%;
-  width: 100%;
-}
 /*-------------- Add place --------------*/
 .add-item-menu {
     background-color: #f8f8f8;
@@ -177,7 +177,7 @@ a.sideNavMenuButton {
     right: 0;
     top: 0px;
     width: 25%;
-    z-index: 2;
+    z-index: 400;
 }
 
 .add-item-menu h2 {
@@ -264,3 +264,5 @@ textarea.form-control {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 }
+
+
