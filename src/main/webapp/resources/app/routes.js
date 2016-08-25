@@ -9,5 +9,5 @@ angular.module('greenApp').config(function($routeProvider) {
 		template : '<user></user>'
 	}).when('/map', {
 		template : '<map>'
-	}).otherwise('/');
+	});
 });
