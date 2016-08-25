@@ -28,14 +28,19 @@
 					<label for="placeName"> <span class="title">2. Enter
 							place name:</span>
 					</label> <input type="text" name="name" class="form-control"
-						id="newPlaceName" ng-model="newPlaceName" ng-required="true">
+						id="newPlaceName" ng-model="newPlaceName" ng-minlength="5" ng-maxlength="70" required>
 				</div>
-				<div class="form-group">
+				<div ng-messages="placeMaker.name.$error">
+					<p ng-message="minlength">Place name is too short.</p>
+					<p ng-message="maxlength">Place name is too long.</p>
+					<p ng-message="required">Place name is required.</p>
+				</div>
+			<div class="form-group">
 					<label for="newPlaceType"> <span class="title">3.
 							Select place type:</span>
 					</label> <select name="category" class="form-control"
 						ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
-						ng-model="newPlaceType" ng-required="true">
+						ng-model="newPlaceType">
 						<option value="">-- Choose place type --</option>
 					</select>
 				</div>
