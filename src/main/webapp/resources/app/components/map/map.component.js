@@ -52,9 +52,28 @@ angular.module('greenApp')
 					longitude : $scope.longitude
 				}
 			};
+			
+			var successCallback = function(response){
+				$scope.submissionSuccess = true;
+				setTimeout(function() {
+					$scope.$apply(function() {
+						$scope.submissionSuccess = false;
+					});
+				}, 5000);
+		    };
+		    
+		    var errorCallback = function(response){
+				$scope.submissionError = true;
+				$scope.submissionSuccess = false;
+				setTimeout(function() {
+					$scope.$apply(function() {
+						$scope.submissionError = false;
+					});
+				}, 5000);
+				
+		    };
 
-			$http.post(_contextPath + "/api/place/", dataObj)
-			.success(function(data, status, headers, config) {});
+			$http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
 		};
 		
 		$scope.resetAddPlaceForm = function(form) {
