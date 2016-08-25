@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/placeSideBar.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
@@ -33,12 +34,12 @@
 		                    <div class="col l1 hide-on-med-and-down line">
 		                       Home
 		                    </div>
-		                    <div class="col s8 m5 l4">
+		                    <div class="col s7 m4 l3">
 		                        <nav class="custom">
 		                            <div class="nav-wrapper">
 		                              <form>
 		                                <div class="input-field">
-		                                  <input class="custom search_custom" id="search" type="search" placeholder="Search" required>
+		                                  <input ng-model="searchLine" class="custom search_custom" id="search" type="search" placeholder="Search" required>
 		                                  <label for="search" class="search_custom"><i class="material-icons search_custom">search</i></label>
 		                                  <i class="material-icons search_custom">close</i>
 		                                </div>
@@ -46,6 +47,10 @@
 		                            </div>
 		                        </nav>
 		                    </div>
+		                    
+							<div class="col s1 m1 l1">
+                    			<a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn">Search</a>
+                    		</div>
 		                    <div class="col s2 m3 l4">
 		                        <i class="small material-icons right">perm_identity</i>
 		                    </div>
@@ -84,6 +89,7 @@
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
+	<script src="${pageContext.request.contextPath}/resources/app/js/refocusMap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/materialize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular.min.js"></script>
@@ -98,6 +104,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>
