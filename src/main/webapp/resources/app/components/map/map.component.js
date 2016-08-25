@@ -59,11 +59,6 @@ angular.module('greenApp')
 		
 		$scope.resetAddPlaceForm = function(form) {
 			mymap.removeLayer(marker);
-			$scope.latitude = null;
-			$scope.longitude = null;
-			$scope.newPlaceName = null;
-			$scope.newPlaceDescription = null;
-			$scope.newPlacePhotos = null;
 		};
 		
 		$rootScope.$emit('initMarkerController', {});
