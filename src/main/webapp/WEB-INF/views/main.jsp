@@ -80,6 +80,7 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-route.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-resource.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-animate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
