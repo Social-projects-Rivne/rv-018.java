@@ -70,7 +70,6 @@ angular.module('greenApp')
 						$scope.submissionError = false;
 					});
 				}, 5000);
-				
 		    };
 
 			$http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
@@ -82,4 +81,4 @@ angular.module('greenApp')
 		
 		$rootScope.$emit('initMarkerController', {});
     }
-  });
+});

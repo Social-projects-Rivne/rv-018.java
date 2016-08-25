@@ -107,15 +107,15 @@ public class PlaceControllerUnitTest {
 		
 	}
 	
-	 @Test
-    public void testCreatePlace() throws Exception {
-    	Mockito.when(placeService.create(Mockito.any(Place.class))).thenReturn(PLACE);
-    	
-    	Gson gson = new Gson();
-        String json = gson.toJson(PLACE);
-        
-    	mockMvc.perform(post("/place").contentType(MediaType.APPLICATION_JSON).content(json))
-		        .andExpect(status().isOk())
-		        .andExpect(header().string("Location", HEADER_LOCATION));
-    }
+	@Test
+	public void testCreatePlace() throws Exception {
+		Mockito.when(placeService.create(Mockito.any(Place.class))).thenReturn(PLACE);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(PLACE);
+
+		mockMvc.perform(post("/place").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk())
+				.andExpect(header().string("Location", HEADER_LOCATION));
+		
+	}
 }
