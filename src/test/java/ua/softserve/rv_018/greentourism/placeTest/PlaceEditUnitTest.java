@@ -35,21 +35,14 @@ public class PlaceEditUnitTest {
 		placeService.setPlaceRepository(placeRepository);
 	}
 
-	/*
-	 * 
-	 * 
-	 */
-
+	/* A method to test whether editing existing place is successful or not. */
 	@Test
 	public void testEditPlaceThatExists() {
 		when(placeRepository.update(newPlace)).thenReturn(newPlace);
 		assertEquals(newPlace, placeService.update(newPlace));
 	}
 
-	/*
-	 * 
-	 * 
-	 */
+	/* A method to test whether editing non-existing place is successful or not. */
 	@Test
 	public void testEditPlaceThatDoesNotExistOrByEmptyPlace() {
 		when(placeRepository.update(newPlace)).thenReturn(null);
