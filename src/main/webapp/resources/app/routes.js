@@ -4,10 +4,10 @@ angular.module('greenApp').config(function($routeProvider) {
 	$routeProvider.when('/login', {
 		template : '<login></login>'
 	}).when('/profile', {
-		template : '<profile></profile>'
+		template : '<profile>'
 	}).when('/user/:userId', {
 		template : '<user></user>'
 	}).when('/map', {
-		template : '<map></map>'
+		template : '<map>'
 	});
 });
