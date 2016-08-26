@@ -5,8 +5,11 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
@@ -19,21 +22,14 @@ import ua.softserve.rv_018.greentourism.service.PlaceServiceImpl;
  * @author Andrey Kluyuko
  * 
  */
-
+@RunWith(MockitoJUnitRunner.class)
 public class PlaceEditUnitTest {
 
-	@Mock
-	private Place newPlace;
+	@InjectMocks
+	private PlaceServiceImpl placeService = new PlaceServiceImpl();
 	@Mock
 	private PlaceRepository placeRepository;
-	private PlaceServiceImpl placeService;
-
-	@Before
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		placeService = new PlaceServiceImpl();
-		placeService.setPlaceRepository(placeRepository);
-	}
+	private Place newPlace = new Place();
 
 	/* A method to test whether editing existing place is successful or not. */
 	@Test
