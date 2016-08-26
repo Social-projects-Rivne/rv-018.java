@@ -91,11 +91,4 @@ public class PlaceServiceImpl implements PlaceService {
 		return points;
 	}
 
-	public PlaceRepository getPlaceRepository() {
-		return placeRepository;
-	}
-
-	public void setPlaceRepository(PlaceRepository placeRepository) {
-		this.placeRepository = placeRepository;
-	}
 }
