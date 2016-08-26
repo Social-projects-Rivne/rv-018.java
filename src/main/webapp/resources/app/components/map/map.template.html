@@ -29,9 +29,9 @@
 						id="newPlaceName" ng-model="newPlaceName" ng-minlength="5" ng-maxlength="70" required>
 				</div>
 				<div ng-messages="placeMaker.name.$error">
-					<p ng-message="minlength">Place name is too short.</p>
-					<p ng-message="maxlength">Place name is too long.</p>
-					<p ng-message="required">Place name is required.</p>
+					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
+					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
+					<p ng-message="required">Place name is required. Place write name for place.</p>
 				</div>
 			<div class="form-group">
 					<label for="newPlaceType"> <span class="title">3.
