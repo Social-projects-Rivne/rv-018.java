@@ -39,7 +39,7 @@ public class PlaceControllerUnitTest {
 	private static final String PLACE_URL = "/api/place";
 	public static final String VALUE ="{\"id\":1,\"placename\":\"placename\",\"somedescription\":\"goodPlaceForVocation\",\"point\":null,\"user\":null,\"category\":\"null}";
     public static final Place PLACE = new Place();
-    public static final String HEADER_LOCATION = "http://localhost/place/1";
+    public static final String HEADER_LOCATION = "http://localhost/api/place/1";
 	
 	private List<Place> places;
 	
@@ -114,7 +114,7 @@ public class PlaceControllerUnitTest {
 		Gson gson = new Gson();
 		String json = gson.toJson(PLACE);
 
-		mockMvc.perform(post("/place").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk())
+		mockMvc.perform(post("/api/place").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk())
 				.andExpect(header().string("Location", HEADER_LOCATION));
 		
 	}
