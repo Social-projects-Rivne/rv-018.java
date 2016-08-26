@@ -73,8 +73,8 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	/**
-	 * This implementation was created just to provide testing possibility, so the
-	 * actual implementation will be provided later
+	 * This implementation was created just to provide testing possibility, so
+	 * the actual implementation will be provided later
 	 */
 	@Override
 	public Place update(Place place) {
@@ -91,4 +91,14 @@ public class PlaceServiceImpl implements PlaceService {
 		return points;
 	}
 
+	@Override
+	public Place create(Place place) {
+		logger.info("> Place create");
+
+		Place savedPlace = placeRepository.save(place);
+
+		logger.info("> Place create");
+
+		return savedPlace;
+	}
 }

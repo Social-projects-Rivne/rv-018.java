@@ -1,0 +1,266 @@
+@CHARSET "UTF-8";
+
+.tabsBackgroundColor {
+	background-color: #0F9C5A !important;
+}
+
+.tabs .indicator {
+    background-color: white !important;
+}
+
+body {
+	background-color: #ededed;
+}
+
+nav {
+	background-color: RGB(15, 156, 90);
+}
+
+nav, nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
+	height: 44px;
+	line-height: 44px;
+}
+
+.search_custom {
+	height: 25px !important;
+	line-height: 25px !important;
+	font-size: 1.4rem !important;
+}
+
+.line {
+	border-left: 1px solid #33ab6f;
+	height: calc(100% - 5px);
+	line-height: 35px;
+	margin-top: 5px;
+}
+
+.row .col {
+	float: left;
+	box-sizing: border-box;
+	padding: 0 0rem !important;
+	min-height: 1px;
+}
+
+.custom {
+	border-radius: 2px !important;
+	background-color: #33ab6f !important;
+	padding: 0px;
+	margin-top: 9px;
+	font-size: 1.0rem !important;
+	box-shadow: none !important;
+	height: 25px !important;
+	line-height: 25px !important;
+}
+
+nav .brand-logo {
+	position: relative;
+	color: #fff;
+	display: inline-block;
+	font-size: 1.2rem;
+	white-space: nowrap;
+}
+
+.right {
+	float: right;
+	padding-right: 10px;
+}
+
+.collection {
+	position: absolute;
+/* 	margin-top: 10px; */
+	margin-top: 0px;
+/* 	height: 100vh;
+ */	height: 86vh;
+	background: #ededed;
+	border: none;
+	bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.collection a.collection-item {
+	color: #858585;
+	background: #ededed;
+	border-bottom: 0px;
+}
+
+.not-active {
+	text-align: left;
+	width: 16.6666666667%;
+	transform: translate3d(-100%, 0, 0);
+	transition: transform 0.4s ease;
+}
+
+.active-ul {
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.4s ease;
+}
+
+.content {
+/* 	height: 100vh; */
+	height: 83.5vh;
+/* 	width: 66.6666666667%; */
+/*  	width: 100%; */ 
+ 	width: 83.4%; 
+/* 	margin-left: 16.6666666667%; */
+	margin-left: 6.13%;
+/* 	margin-top: 20px; */
+	margin-top: 0px;
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.4s ease;
+}
+
+.transf-content {
+	transform: translate3d(12.5%, 0, 0);
+	transition: transform 0.4s ease;
+}
+
+#toggle-button {
+	width: 40px;
+	height: 40px;
+	margin-left: 20px;
+}
+
+.progress {
+	height: 2px !important;
+	border-radius: 1px !important;
+	margin: 0px !important;
+	position: absolute !important;
+	top: -20px !important;
+	z-index: 401;
+}
+
+#mapid {
+	position: absolute;
+    top: -20px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    left: 0px;
+}
+
+.tabsIndent {
+	margin-left: 35%;
+	margin-right: 35%;
+}
+/*-------------- Red button --------------*/
+.fixed-action-btn {
+	bottom: 45px;
+	right: 24px;
+	animation: 0.4s ease-out 0s normal none 1 running expandFab;
+}
+/*-------------- ng-animate --------------*/
+.add-item-menu.ng-hide-add,
+.add-item-menu.ng-hide-remove {
+  transition: all linear 0.4s;
+}
+
+.add-item-menu.ng-hide {
+  opacity: 0;
+}
+
+.fixed-action-btn.ng-hide-add,
+.fixed-action-btn.ng-hide-remove {
+  transition: all linear 0.4s;
+}
+
+.fixed-action-btn.ng-hide {
+  opacity: 0;
+}
+/*-------------- Add place --------------*/
+.add-item-menu {
+    background-color: #f8f8f8;
+    bottom: 0;
+    display: block;
+    overflow: auto;
+    padding: 0 15px 15px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 25%;
+    z-index: 400;
+}
+
+.add-item-menu h2 {
+    text-align: center;
+    font-size: 25px;
+}   
+ 
+.form-group {
+    margin-bottom: 15px;
+}
+
+.center-align {
+  text-align: center;
+  padding: 0;
+}
+
+.label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    max-width: 100%;
+}
+
+.form-control {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.add-item-menu .title {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #009000;
+    font-weight: bold;
+}
+
+.add-item-menu .closeIcon {
+    color: #009000;
+    font-size: 35px;
+    left: 10px;
+    position: absolute;
+    top: 8px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+.add-item-menu .no-padding {
+    padding: 0;
+}
+
+.btn-group, .btn-group-vertical {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.latlng {
+	background-color: #fff;
+    background-image: none;
+    border: 0 solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
