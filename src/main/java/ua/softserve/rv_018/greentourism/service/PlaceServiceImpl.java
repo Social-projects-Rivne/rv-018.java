@@ -80,15 +80,4 @@ public class PlaceServiceImpl implements PlaceService {
 		
 		return points;
 	}
-	
-	@Override
-	public Place create(Place place) {
-		logger.info("> Place create");
-		
-		Place savedPlace = placeRepository.save(place);
-		
-		logger.info("> Place create");
-		
-		return savedPlace;
-	}
 }

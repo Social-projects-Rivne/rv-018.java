@@ -73,10 +73,8 @@
 						</div>
 					</div>
 				</div> 
+
 				<div class="content">
-					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
-						<div class="indeterminate"></div>
-					</div>
 					<ng-view></ng-view>
 				</div>
 			</div>   
@@ -91,13 +89,10 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-route.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-resource.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/angular-animate.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
