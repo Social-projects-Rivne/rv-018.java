@@ -11,15 +11,9 @@ public interface EventService {
      * @return A List of Event objects.
      */
 	List<Event> findAll();
-	
-	/**
-     * Find all Event entities by name using filter.
-     * @return A List of Event objects.
-     */
-	List<Event> findByName(String name, boolean checkWholeWord, boolean checkIgnoreCase);
 
 	/**
-     * Find all Event entities between two coordinates.
+     * Find all Points entities between two coordinates.
      * @return A List of Event objects.
      */
 	List<Point> getEventPointsBetweenTwoCoordinates(Point southWest, Point northEast);

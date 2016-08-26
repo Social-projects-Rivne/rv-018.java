@@ -44,25 +44,25 @@ public class EventController {
 
 		logger.info("> Get all events from the database");
 
-		List<Event> places = eventService.findAll();
+		List<Event> events = eventService.findAll();
 
 		logger.info("< Get all events from the database");
 
-		return new ResponseEntity<>(places, HttpStatus.OK);
+		return new ResponseEntity<>(events, HttpStatus.OK);
 	}
 
 	/**
 	 * Web service endpoint to fetch all Event points between two coordinates.
 	 * The service returns the list of Point entities as JSON.
 	 * 
-	 * @return A ResponseEntity containing a List of Event objects.
+	 * @return A ResponseEntity containing a List of Point objects.
 	 */
 	@RequestMapping(value = "/point", method = RequestMethod.GET,
 			headers = "Accept=application/json", produces = { "application/json" })
 	public ResponseEntity<?> getPlacePointsBetweenTwoCoordinates(
 			@RequestParam (value="south-west", required=true) String southWestParam,
     		@RequestParam (value="north-east", required=true) String northEastParam) {
-		logger.info("> Get event point between (" + southWestParam + " - " + northEastParam);
+		logger.info("> Get event points between (" + southWestParam + " - " + northEastParam);
 		
 		List<Point> points = new ArrayList<>();
 		
@@ -76,29 +76,8 @@ public class EventController {
 		
 		points = eventService.getEventPointsBetweenTwoCoordinates(southWest, northEast);
 
-		logger.info("< Get event point between (" + southWestParam + " - " + northEastParam);
+		logger.info("< Get event points between (" + southWestParam + " - " + northEastParam);
 
 		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
-
-//	/**
-//     * Web service endpoint to fetch all Places entities by name.
-//     * The service returns the list of Place entities as JSON.
-//     *
-//     * @return A ResponseEntity containing a List of Place objects.
-//     */
-//    @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
-//            headers = "Accept=application/json", produces = {"application/json"})
-//    public ResponseEntity<?> getPlacesByName(
-//    		@RequestParam String name,
-//    		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
-//    		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
-//    	logger.info("> Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
-//
-//    	List<Place> places = placeService.findByName(name, ignoreCase, !wholeWord);
-//    	
-//    	logger.info("< Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
-//        
-//        return new ResponseEntity<>(places, HttpStatus.OK);
-//    }
 }

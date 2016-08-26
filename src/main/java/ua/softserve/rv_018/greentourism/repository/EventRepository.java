@@ -10,7 +10,6 @@ import ua.softserve.rv_018.greentourism.model.Event;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-	List<Event> findByNameIgnoreCaseContaining(String name);
 	
 	@Query(value="select event.* "
 			+ "from place inner join point on event.point_id = point.id "

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Event;
-import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.EventRepository;
 
@@ -41,22 +40,6 @@ public class EventServiceImpl implements EventService {
         
         return events;
 	}
-	
-	@Override
-	public List<Event> findByName(String name, boolean checkIgnoreCase, boolean checkContaining) {
-		logger.info("> Event findByName");
-
-		List<Event> events = new ArrayList<>();
-		
-		if (checkIgnoreCase && checkContaining) {
-			events = eventRepository.findByNameIgnoreCaseContaining(name);
-		}
-		// here will be other findByName... methods due to checkIgnoreCase && checkWholeWord values
-
-        logger.info("< Event findByName");
-
-		return events;
-	}
 
 	@Override
 	public List<Point> getEventPointsBetweenTwoCoordinates(Point southWest, Point northEast) {
@@ -81,10 +64,4 @@ public class EventServiceImpl implements EventService {
 		
 		return points;
 	}
-
-//	@Override
-//	public List<Event> findByName(String name, boolean checkWholeWord, boolean checkIgnoreCase) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
