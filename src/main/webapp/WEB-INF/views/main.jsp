@@ -34,7 +34,7 @@
 		                    <div class="col l1 hide-on-med-and-down line">
 		                       Home
 		                    </div>
-		                    <div class="col s7 m4 l3">
+		                    <div class="col s5 m4 l3">
 		                        <nav class="custom">
 		                            <div class="nav-wrapper">
 		                              <form>

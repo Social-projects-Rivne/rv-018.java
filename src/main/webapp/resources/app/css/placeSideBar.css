@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+#placesSidebar {
+	//border-style: solid;
+	border-width: 2px;
+	width: 180px;
+}
+
+.place {
+	margin: 5px;
+	padding: 25px;
+	border-style: solid;
+	border-width: 2px;
+	height: 140px;
+	display: flex;
+	justify-content: center; 
+	align-items: center; 
+}
+
+.places {
+	margin-top: 30px;
+}
+
+.place-name {
+	
+}
