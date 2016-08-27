@@ -23,4 +23,11 @@ public interface PlaceService {
      * @return A List of Point objects.
      */
 	List<Point> getPlacePointsBetweenTwoCoordinates(Point southWest, Point northEast);
+	
+	/**
+     * Persists a Place entity in the data store.
+     * @param place A Place object to be persisted.
+     * @return The persisted Place entity.
+     */
+    Place create(Place place); 
 }
