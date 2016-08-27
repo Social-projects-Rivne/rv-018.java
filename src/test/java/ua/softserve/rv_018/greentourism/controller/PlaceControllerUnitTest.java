@@ -124,7 +124,7 @@ public class PlaceControllerUnitTest {
 	 public void testGetPlace() throws Exception {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
 	 
-	     mockMvc.perform(get("api/place/1"))
+	     mockMvc.perform(get("/api/place/1"))
 	             .andExpect(status().isOk())
 	             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 	             .andExpect(content().string(VALUE));
@@ -132,7 +132,7 @@ public class PlaceControllerUnitTest {
 	
 	@Test
     public void testGetPlaceThatDoesNotExist() throws Exception {
-        mockMvc.perform(get("api/place/-1"))
+        mockMvc.perform(get("/api/place/-1"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(EMPTY_VALUE));
     }
