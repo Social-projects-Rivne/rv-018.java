@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PlaceControllerUnitTest {
 	
 	private static final String EMPTY_COLLECTION = "";
+	public static final String EMPTY_VALUE = "";
 	private static final String COLLECTION = 
 			"[{\"id\":1,\"name\":null,\"description\":null,\"point\":"
 			+ "{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},"
@@ -118,4 +119,21 @@ public class PlaceControllerUnitTest {
 				.andExpect(header().string("Location", HEADER_LOCATION));
 		
 	}
+	
+	@Test
+	 public void testGetPlace() throws Exception {
+	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
+	 
+	     mockMvc.perform(get("api/place/1"))
+	             .andExpect(status().isOk())
+	             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+	             .andExpect(content().string(VALUE));
+    }
+	
+	@Test
+    public void testGetPlaceThatDoesNotExist() throws Exception {
+        mockMvc.perform(get("api/place/-1"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(EMPTY_VALUE));
+    }
 }

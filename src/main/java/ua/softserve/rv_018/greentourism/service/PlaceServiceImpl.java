@@ -42,6 +42,17 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 	
 	@Override
+	public Place findOne(int id) {
+		logger.info("> Place findOne id:{}", id);
+
+        Place place = placeRepository.findById(id);
+
+        logger.info("< Place findOne id:{}", id);
+
+        return place;
+	}
+	
+	@Override
 	public List<Place> findByName(String name, boolean checkIgnoreCase, boolean checkContaining) {
 		logger.info("> Place findByName");
 

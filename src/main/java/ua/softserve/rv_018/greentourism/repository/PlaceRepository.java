@@ -24,4 +24,5 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 			@Param("south_west_longitude") Float southWestLongitude,
 			@Param("north_east_latitude") Float northEastLatitude,
 			@Param("north_east_longitude") Float northEastLongitude);
+	Place findById(int id);
 }
