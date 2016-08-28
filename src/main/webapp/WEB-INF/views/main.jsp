@@ -15,10 +15,13 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
+		<!-- Place page styles -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/place.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
+<img src="<c:url value="/images/gps-icon.png" />" />
 	<div ng-controller="mainController">
 		<header id="header">
 		        <nav role="navigation">
@@ -103,6 +106,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>
