@@ -43,6 +43,8 @@ public class Event {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "owner_id")
 	private User user;
+	
+	public Event() {};
 
 	public int getId() {
 		return id;

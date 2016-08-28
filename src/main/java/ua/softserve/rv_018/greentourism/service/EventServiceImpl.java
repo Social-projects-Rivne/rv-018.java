@@ -42,15 +42,15 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<Point> getEventPointsBetweenTwoCoordinates(Point southWest, Point northEast) {
-		logger.info("> Event getEventPointsBetweenTwoCoordinates");
+	public List<Point> findEventPointsBetweenTwoCoordinates(Point southWest, Point northEast) {
+		logger.info("> Event findEventPointsBetweenTwoCoordinates");
 
 		List<Event> events = eventRepository.findBetweenTwoPoints(
 				southWest.getLatitude(), southWest.getLongitude(),
 				northEast.getLatitude(), northEast.getLongitude());
 		List<Point> points = getPointsFromEvents(events);
 		
-        logger.info("< Event getEventPointsBetweenTwoCoordinates");
+        logger.info("< Event findEventPointsBetweenTwoCoordinates");
 
 		return points;
 	}

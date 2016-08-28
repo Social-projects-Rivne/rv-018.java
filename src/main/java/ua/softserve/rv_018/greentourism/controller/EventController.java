@@ -21,7 +21,6 @@ import ua.softserve.rv_018.greentourism.service.PointService;
 @RequestMapping(value = "/api/event")
 @Controller
 public class EventController {
-
 	/**
 	 * The logger service for logging purpose.
 	 */
@@ -59,7 +58,7 @@ public class EventController {
 	 */
 	@RequestMapping(value = "/point", method = RequestMethod.GET,
 			headers = "Accept=application/json", produces = { "application/json" })
-	public ResponseEntity<?> getPlacePointsBetweenTwoCoordinates(
+	public ResponseEntity<?> findEventPointsBetweenTwoCoordinates(
 			@RequestParam (value="south-west", required=true) String southWestParam,
     		@RequestParam (value="north-east", required=true) String northEastParam) {
 		logger.info("> Get event points between (" + southWestParam + " - " + northEastParam);
@@ -74,7 +73,7 @@ public class EventController {
 			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
 		}
 		
-		points = eventService.getEventPointsBetweenTwoCoordinates(southWest, northEast);
+		points = eventService.findEventPointsBetweenTwoCoordinates(southWest, northEast);
 
 		logger.info("< Get event points between (" + southWestParam + " - " + northEastParam);
 

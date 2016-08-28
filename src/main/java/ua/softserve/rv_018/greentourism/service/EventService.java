@@ -16,5 +16,5 @@ public interface EventService {
      * Find all Points entities between two coordinates.
      * @return A List of Event objects.
      */
-	List<Point> getEventPointsBetweenTwoCoordinates(Point southWest, Point northEast);
+	List<Point> findEventPointsBetweenTwoCoordinates(Point southWest, Point northEast);
 }
