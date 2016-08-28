@@ -1,13 +1,18 @@
-@CHARSET "UTF-8";
-
 .tabsBackgroundColor {
-	background-color: #0F9C5A !important;
+	background-color: #0F9C5A;
 }
 
 .tabs .indicator {
     background-color: white !important;
 }
 
+.tabsIndent {
+	margin-left: 35%;
+	margin-right: 35%;
+}
+.tabs {
+	height: inherit;
+}
 body {
 	background-color: #ededed;
 }
@@ -87,28 +92,21 @@ nav .brand-logo {
 	text-align: left;
 	width: 16.6666666667%;
 	transform: translate3d(-100%, 0, 0);
-	transition: transform 0.4s ease;
+	transition: transform 1s ease;
 }
-
-.active-ul {
+.not-active.ng-hide {
 	transform: translate3d(0, 0, 0);
-	transition: transform 0.4s ease;
+	transition: transform 1s ease;
 }
 
 .content {
-/* 	height: 100vh; */
-	height: 83.5vh;
-/* 	width: 66.6666666667%; */
-/*  	width: 100%; */ 
- 	width: 83.4%; 
-/* 	margin-left: 16.6666666667%; */
-	margin-left: 6.13%;
-/* 	margin-top: 20px; */
-	margin-top: 0px;
+	height: 100vh;
+	width: 66.6666666667%;
+	margin-left: 10%;
+	margin-top: 20px; 
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
 }
-
 .transf-content {
 	transform: translate3d(12.5%, 0, 0);
 	transition: transform 0.4s ease;
@@ -138,10 +136,6 @@ nav .brand-logo {
     left: 0px;
 }
 
-.tabsIndent {
-	margin-left: 35%;
-	margin-right: 35%;
-}
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
