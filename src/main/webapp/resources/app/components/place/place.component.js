@@ -76,10 +76,7 @@ angular
 						            // right -> show next image
 						            changeImage()
 						        }
-						    }
-						    var status = "less";
-
-						      
+						    }					      
 						};
 						
 						$scope.less = true;
@@ -96,6 +93,7 @@ angular
 							$event.preventDefault();
 					    }  
 
+						$scope.user_feedback = "";
 						$scope.id = $routeParams.placeId;
 						$scope.findById();
 

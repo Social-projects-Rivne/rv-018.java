@@ -83,13 +83,24 @@
 		<div class="card-content grey-text text-darken-1">
 			<h3>Feedbacks about place</h3>
 		</div>
-		<div class="card white feedback">
+		<div class="card white feedback s12 l6 m6">
 			<div class="card-content grey-text text-darken-1">
 				<span class="card-title"> <img class="circle"
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/1024px-Blank_woman_placeholder.svg.png" />
 					Elly Dickinson
 				</span><br />
 				<p>{{feedbacks}}</p>
+			</div>
+		</div>
+		<div class="card white feedback s12 l6 m6">
+			<div class="card-content grey-text text-darken-1">
+				<span class="card-title"> 
+					Add a Feedback
+				</span><br />
+				<form ng-submit="">
+					<textarea name="" placeholder="Add a feedback..." id="" cols="30" rows="10" ng-model="user_feedback"></textarea>
+					<input type="submit" class="add-feedback waves-effect waves-light btn-flat" ng-click="addFeedback()" value="Save">
+				</form>
 			</div>
 		</div>
 	</div>

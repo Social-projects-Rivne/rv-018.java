@@ -61,6 +61,10 @@ p.less, p.more {
 	text-align: justify;
 }
 
+input.add-feedback {
+	width: 100%;
+}
+
 /*
 .card.place .card-title {
 	margin: 0;	
