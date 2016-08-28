@@ -2,7 +2,7 @@
 
 angular.module('greenApp').controller('menuController', function($scope) {
 
-	$scope.checkMenu = false;
+	$scope.checkMenu = true;
 	$scope.checkTabs = false;
 	$scope.checkContent = false;
 
