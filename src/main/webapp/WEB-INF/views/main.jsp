@@ -23,7 +23,7 @@
 			       <div class="nav-wrapper">
 		                <div class="row">
 		                    <div class="col s2 m1 l1">
-		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons" ng-click="showMenu();">menu</i>
+		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons" ng-click="showMenu(); moveContent();">menu</i>
 		                    </div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
@@ -73,10 +73,17 @@
 				</div> 
 				<!-- Actual content of the page -->
 				<div class="content">
-					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+					<!--<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
 					</div>
-					<ng-view></ng-view>
+					<ng-view></ng-view> -->
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+					Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, 
+					rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. 
+					Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. 
+					Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, 
+					blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
+					Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 				</div>
 				
 	   
