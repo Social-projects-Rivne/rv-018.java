@@ -109,4 +109,16 @@ public class Event {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id
+				+ ", category=" + category
+				+ ", dateStart=" + dateStart
+				+ ", dateEnd=" + dateEnd
+				+ ", description=" + description
+				+ ", name=" + name
+				+ ", point=" + point
+				+ ", user=" + user + "]";
+	}
 }

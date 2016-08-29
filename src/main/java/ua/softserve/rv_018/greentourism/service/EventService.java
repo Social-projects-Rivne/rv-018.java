@@ -17,4 +17,11 @@ public interface EventService {
      * @return A List of Event objects.
      */
 	List<Point> findEventPointsBetweenTwoCoordinates(Point southWest, Point northEast);
+	
+	/**
+     * Persists a Event entity in the data store.
+     * @param event A Event object to be persisted.
+     * @return The persisted Event entity.
+     */
+    Event create(Event event); 
 }

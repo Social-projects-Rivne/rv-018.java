@@ -31,6 +31,16 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
 
 	@Override
+	public Event create(Event event) {
+		logger.info("> Event create");
+		
+		Event savedEvent = eventRepository.save(event);
+		
+		logger.info("> Event create");
+		
+		return savedEvent;
+	}
+
 	public List<Event> findAll() {
 		logger.info("> Event findAll");
 
