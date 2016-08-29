@@ -76,7 +76,7 @@ public class PlaceController {
 			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
 		}
 		
-		points = placeService.getPlacePointsBetweenTwoCoordinates(southWest, northEast);
+		points = placeService.findPlacePointsBetweenTwoCoordinates(southWest, northEast);
 
 		logger.info("< Get place point between (" + southWestParam + " - " + northEastParam);
 
