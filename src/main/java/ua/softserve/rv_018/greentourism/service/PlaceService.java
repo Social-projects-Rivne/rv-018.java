@@ -7,6 +7,13 @@ import ua.softserve.rv_018.greentourism.model.Point;
 
 public interface PlaceService {
 	/**
+     * Find a single Place entity by primary key identifier.
+     * @param id A Integer primary key identifier.
+     * @return A Place or <code>null</code> if none found.
+     */
+    Place findOne(int id);
+	
+	/**
      * Find all Place entities.
      * @return A List of Place objects.
      */

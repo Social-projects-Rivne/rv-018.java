@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,36 @@ public class PlaceController {
 	@Autowired
 	private PointService pointService;
 
+	 /**
+     * Web service endpoint to fetch a single Place entity by primary key
+     * identifier.
+     * <p>
+     * If found, the Place is returned as JSON with HTTP status 302.
+     * <p>
+     * If not found, the service returns an empty response body with HTTP status
+     * 404.
+     *
+     * @param id A Long URL path variable containing the Place primary key
+     *           identifier.
+     * @return A ResponseEntity containing a single Place object, if found,
+     * and a HTTP status code as described in the method comment.
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getPlace(@PathVariable int id) {
+        logger.info("> getPlace id:{}", id);
+
+        Place place = placeService.findOne(id);
+
+        if (place == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        logger.info("< getPlace id:{}", id);
+        
+        return new ResponseEntity<>(place, HttpStatus.OK);
+    }
+    
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
 	 * the list of Place entities as JSON.

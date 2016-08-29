@@ -1,0 +1,107 @@
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<!-- <img ng-src="{{image_url}}"> -->
+
+			<div class="carousel">
+				<a ng-repeat="(i, image) in images" class="carousel-item"
+					ng-href="#{{i}}!"> <img class="responsive-img"
+					ng-src="{{image}}" id="imgClickAndChange" onclick="changeImage()">
+				</a>
+			</div>
+			<h2 class="place-name">{{name}}</h2>
+
+			<!-- 
+			<div class="carousel carousel-slider">
+				<a class="carousel-item" href="#one!"><img
+					src="http://lorempixel.com/800/400/food/1"></a> <a
+					class="carousel-item" href="#two!"><img
+					src="http://lorempixel.com/800/400/food/2"></a> <a
+					class="carousel-item" href="#three!"><img
+					src="http://lorempixel.com/800/400/food/3"></a> <a
+					class="carousel-item" href="#four!"><img
+					src="http://lorempixel.com/800/400/food/4"></a>
+			</div>
+-->
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="card-content grey-text text-darken-1">
+			<h3>Place details</h3>
+		</div>
+		<div class="col s6">
+
+			<div class="card white place">
+				<div class="card-content grey-text text-darken-1">
+					<span class="card-title">Description</span>
+					<p class="less">{{short_description}}</p>
+					<p class="more hidden">{{description}}</p>
+					<!-- Here additional text is located -->
+
+				</div>
+				<div class="card-action">
+
+					<a ng-click="less_more($event)" href="#" class="green-text">Show
+						more</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col s1 mycol">&nbsp;</div>
+		<div class="col s5">
+
+
+			<div class="card white place">
+				<div class="card-content grey-text text-darken-1">
+					<span class="card-title">Location</span><br />
+
+					<p>
+						<img class="responsive-img"
+							src="https://lh3.googleusercontent.com/PBKB0xsIXLFWSCLJLFODyXNDES6WWQbJJDWLLJvLv4DXLzLUvnJIkxZ4nC_oruEMQ1IHUg=s85" />
+						{{region}}
+					</p>
+					<!-- <img src="/images/gps-icon.png"> -->
+				</div>
+			</div>
+
+			<div class="card white place">
+				<div class="card-content grey-text text-darken-1">
+					<span class="card-title">Other Info</span><br />
+					<p>
+						<img class="responsive-img"
+							src="http://badwolfohio.com/images/facebook.jpg" />
+						{{otherInfo}}
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="card-content grey-text text-darken-1">
+			<h3>Feedbacks about place</h3>
+		</div>
+		<div class="card white feedback s12 l6 m6">
+			<div class="card-content grey-text text-darken-1">
+				<span class="card-title"> <img class="circle"
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/1024px-Blank_woman_placeholder.svg.png" />
+					Elly Dickinson
+				</span><br />
+				<p>{{feedbacks}}</p>
+			</div>
+		</div>
+		<div class="card white feedback s12 l6 m6">
+			<div class="card-content grey-text text-darken-1">
+				<span class="card-title"> 
+					Add a Feedback
+				</span><br />
+				<form ng-submit="">
+					<textarea name="" placeholder="Add a feedback..." id="" cols="30" rows="10" ng-model="user_feedback"></textarea>
+					<input type="submit" class="add-feedback waves-effect waves-light btn-flat" ng-click="addFeedback()" value="Save">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
