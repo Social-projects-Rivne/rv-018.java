@@ -1,20 +1,23 @@
 @CHARSET "UTF-8";
 
 #placesSidebar {
-	//border-style: solid;
-	border-width: 2px;
-	width: 180px;
+	position: fixed;
+	z-index: 400;
+	right: 0;
+	border-style: solid;
+	border-size: 2px;
 }
 
 .place {
 	margin: 5px;
+	height: auto;
+	margin-top: 25px;
 	padding: 25px;
-	border-style: solid;
-	border-width: 2px;
-	height: 140px;
 	display: flex;
 	justify-content: center; 
-	align-items: center; 
+	align-items: center;
+	cursor: pointer;
+	background-color: #0F9C5A
 }
 
 .places {
@@ -22,5 +25,5 @@
 }
 
 .place-name {
-	
+	color: #fff;
 }
