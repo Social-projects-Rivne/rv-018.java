@@ -1,5 +1,8 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +13,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.service.EventService;
+import ua.softserve.rv_018.greentourism.service.PointService;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RequestMapping(value = "/api/event")
 @Controller
 public class EventController {
-	
 	/**
 	 * The logger service for logging purpose.
 	 */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
+	private PointService pointService;
+	
+	@Autowired
 	private EventService eventService;
-
 	/**
      * Web service endpoint to create Event entity.
      * The service returns the created Event entity url.
@@ -46,5 +53,53 @@ public class EventController {
         logger.info("< createEvent");
     
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+	}
+	
+	/**
+	 * Web service endpoint to fetch all Event entities. The service returns
+	 * the list of Event entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Event objects.
+	 */
+	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getEvents() {
+
+		logger.info("> Get all events from the database");
+
+		List<Event> events = eventService.findAll();
+
+		logger.info("< Get all events from the database");
+
+		return new ResponseEntity<>(events, HttpStatus.OK);
+	}
+
+	/**
+	 * Web service endpoint to fetch all Event points between two coordinates.
+	 * The service returns the list of Point entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Point objects.
+	 */
+	@RequestMapping(value = "/point", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> findEventPointsBetweenTwoCoordinates(
+			@RequestParam (value="south-west", required=true) String southWestParam,
+    		@RequestParam (value="north-east", required=true) String northEastParam) {
+		logger.info("> Get event points between (" + southWestParam + " - " + northEastParam);
+		
+		List<Point> points = new ArrayList<>();
+		
+		Point southWest = pointService.createPoint(southWestParam);
+		Point northEast = pointService.createPoint(northEastParam);
+		
+		if (southWest.isEmpty() || northEast.isEmpty()) {
+			logger.debug("< Bad Request for getting event points between (" + southWestParam + " - " + northEastParam);
+			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
+		}
+		
+		points = eventService.findEventPointsBetweenTwoCoordinates(southWest, northEast);
+
+		logger.info("< Get event points between (" + southWestParam + " - " + northEastParam);
+
+		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
 }

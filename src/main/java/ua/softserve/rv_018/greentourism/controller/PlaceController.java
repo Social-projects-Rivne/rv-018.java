@@ -24,7 +24,6 @@ import ua.softserve.rv_018.greentourism.service.PointService;
 @RequestMapping(value = "/api/place")
 @Controller
 public class PlaceController {
-
 	/**
 	 * The logger service for logging purpose.
 	 */
