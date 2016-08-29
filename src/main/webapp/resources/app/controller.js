@@ -4,6 +4,11 @@ $('.sideNavMenuButton').sideNav({
   }
 );
 
+/*$('ul.tabs').on('click', 'a', function(e) {
+	var r = 3;
+    //Your code
+});*/
+
 angular.module('greenApp')
 	.controller('mainController', function($scope){
 		

@@ -11,7 +11,7 @@ import ua.softserve.rv_018.greentourism.model.Event;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 	@Query(value="select event.* "
-			+ "from place inner join point on event.point_id = point.id "
+			+ "from event inner join point on event.point_id = point.id "
 			+ "where point.latitude >= :south_west_latitude "
 			+ "and point.longitude >= :south_west_longitude "
 			+ "and point.latitude <= :north_east_latitude "
