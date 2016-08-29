@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ua.softserve.rv_018.greentourism.model.Event;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Long>{
+public interface EventRepository extends JpaRepository<Event, Integer>{
 
 }
