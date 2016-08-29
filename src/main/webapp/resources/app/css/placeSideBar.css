@@ -2,10 +2,8 @@
 
 #placesSidebar {
 	position: fixed;
-	z-index: 400;
+	z-index: 405;
 	right: 0;
-	border-style: solid;
-	border-size: 2px;
 }
 
 .place {
