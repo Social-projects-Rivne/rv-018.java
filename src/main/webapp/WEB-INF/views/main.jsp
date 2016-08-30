@@ -76,7 +76,7 @@
 				<div class="content">
 					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
-					</div>
+					</div> 
 					<ng-view></ng-view>
 				</div>
 			</div>   
