@@ -1,13 +1,18 @@
-@CHARSET "UTF-8";
-
 .tabsBackgroundColor {
-	background-color: #0F9C5A !important;
+	background-color: #0F9C5A;
 }
 
 .tabs .indicator {
     background-color: white !important;
 }
 
+.tabsIndent {
+	margin-left: 35%;
+	margin-right: 35%;
+}
+.tabs {
+	height: inherit;
+}
 body {
 	background-color: #ededed;
 }
@@ -67,10 +72,10 @@ nav .brand-logo {
 
 .collection {
 	position: absolute;
-/* 	margin-top: 10px; */
+	margin-top: 10px;
 	margin-top: 0px;
-/* 	height: 100vh;
- */	height: 86vh;
+/* 	height: 100vh;*/
+    height: 86vh;
 	background: #ededed;
 	border: none;
 	bottom: 0px;
@@ -84,6 +89,7 @@ nav .brand-logo {
 }
 
 .not-active {
+	margin-top: 20px;
 	text-align: left;
 	width: 16.6666666667%;
 	transform: translate3d(-100%, 0, 0);
@@ -94,6 +100,7 @@ nav .brand-logo {
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
 }
+
 /* Tabs animation css files */
 #tabsRow {
     height: 44px;
@@ -114,7 +121,6 @@ nav .brand-logo {
 	height: 100vh;
  	width: 83.4%; 
 	margin-left: 6.13%;
-	/*margin-left: 14%;*/
 	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -150,9 +156,10 @@ nav .brand-logo {
 }
 
 .tabsIndent {
-	margin-left: 40%;
-	margin-right: 30%;
+	margin-left: 35%;
+	margin-right: 35%;
 }
+
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;

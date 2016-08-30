@@ -1,5 +1,3 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
@@ -15,11 +13,11 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/menu-anim.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
-<body>
-	<div ng-controller="menuController">
+<body ng-controller="menuController">
 		<!-- Header -->
 		<header id="header">
 		        <nav role="navigation">
@@ -53,10 +51,10 @@
 		                </div>
 		            </div>    
 			   </nav>  
-		    </header>   
-	    <main>          
-			<div>         
-				<!-- Hiding menu -->
+		    </header>  
+	    <main>   
+	    	<div>   
+		        <!-- Hiding menu -->
 					<div class="collection not-active">
 						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
 						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
@@ -84,7 +82,7 @@
 				</div>		
 			</div>   
 	    </main>
-	</div>
+
     
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
