@@ -76,7 +76,7 @@
 				<div class="content">
 					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
-					</div> 
+					</div>
 					<ng-view></ng-view>
 				</div>
 			</div>   
@@ -85,7 +85,6 @@
     
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-<%-- 	<script src="${pageContext.request.contextPath}/resources/assets/leaflet.MakiMarkers.js"></script> --%>
 	<!-- Bower components -->
 	<script src="${pageContext.request.contextPath}/resources/assets/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/materialize.min.js"></script>
