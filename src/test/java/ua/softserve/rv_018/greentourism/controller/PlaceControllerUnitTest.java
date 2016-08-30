@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,7 +39,7 @@ public class PlaceControllerUnitTest {
 			+ "{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},"
 			+ "\"user\":null,\"category\":null}]";
 	private static final String PLACE_URL = "/api/place";
-	public static final String VALUE ="{\"id\":1,\"placename\":\"placename\",\"somedescription\":\"goodPlaceForVocation\",\"point\":null,\"user\":null,\"category\":\"null}";
+	public static final String VALUE ="{\"id\":1,\"name\":\"Name1\",\"description\":\"Description1\",\"point\":null,\"user\":null,\"category\":null}";
     public static final Place PLACE = new Place();
     public static final String HEADER_LOCATION = "http://localhost/api/place/1";
 	
@@ -119,7 +120,6 @@ public class PlaceControllerUnitTest {
 				.andExpect(header().string("Location", HEADER_LOCATION));
 		
 	}
-	
 	@Test
 	 public void testGetPlace() throws Exception {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
@@ -135,5 +135,29 @@ public class PlaceControllerUnitTest {
         mockMvc.perform(get("/api/place/-1"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(EMPTY_VALUE));
+    }
+	
+	@Test
+    public void testUpdatePlace() throws Exception {
+    	Mockito.when(placeService.findOne(1)).thenReturn(new Place());
+    	Mockito.when(placeService.update(Mockito.any(Place.class))).thenReturn(PLACE);
+    	
+    	Gson gson = new Gson();
+        String json = gson.toJson(PLACE);
+        
+    	mockMvc.perform(put("/api/place/1").contentType(MediaType.APPLICATION_JSON).content(json))
+		        .andExpect(status().isOk())
+		        .andExpect(content().string(VALUE));
+    }
+    
+    @Test
+    public void testUpdatePlaceThatDoesNotExist() throws Exception {
+    	Mockito.when(placeService.findOne(1)).thenReturn(null);
+    	
+    	Gson gson = new Gson();
+        String json = gson.toJson(PLACE);
+        
+    	mockMvc.perform(put("/api/place/1").contentType(MediaType.APPLICATION_JSON).content(json))
+		        .andExpect(status().isNotFound());
     }
 }

@@ -156,4 +156,37 @@ public class PlaceController {
     
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
+    
+    /**
+     * Web service endpoint to update a single Place entity. 
+     * <p>
+     * If updated successfully, the persisted Place is returned as JSON with
+     * HTTP status 200.
+     * <p>
+     * If not found, the service returns an empty response body and HTTP status
+     * 404.
+     * <p>
+     * If not updated successfully, the service returns an empty response body
+     * with HTTP status 500.
+     *
+     * @param place The Place object to be updated.
+     * @return A ResponseEntity containing a single Place object, if updated
+     * successfully, and a HTTP status code as described in the method
+     * comment.
+     */
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
+        logger.info("> updatePlace id:{}", place.getId());
+
+        if (placeService.findOne(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        
+        Place updatedPlace = placeService.update(place);
+
+        logger.info("< updatePlace id:{}", place.getId());
+        
+        return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
+    }
 }
