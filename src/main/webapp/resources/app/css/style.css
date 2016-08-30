@@ -111,15 +111,10 @@ nav .brand-logo {
 }
 
 .content {
-	border: 1px solid;
 	height: 100vh;
-	/*height: 83.5vh;*/
-/* 	width: 66.6666666667%; */
-/*  	width: 100%; */ 
  	width: 83.4%; 
-/* 	margin-left: 16.6666666667%; */
 	margin-left: 6.13%;
-/* 	margin-top: 20px; */
+	/*margin-left: 14%;*/
 	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -154,6 +149,10 @@ nav .brand-logo {
     left: 0px;
 }
 
+.tabsIndent {
+	margin-left: 40%;
+	margin-right: 30%;
+}
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
