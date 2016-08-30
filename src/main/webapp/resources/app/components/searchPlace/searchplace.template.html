@@ -1,11 +1,11 @@
 <div class="container row">
-	<div id="placesSidebar" ng-show="searchPlacesSidebarOpen" class="col s4, m2, l1">
+	<div id="places-sidebar" ng-show="searchPlacesSidebarOpen" class="col s4, m2, l1">
 		<a href="" class="left" ng-click="closePlacesSidebar();"> 
 			<span class="material-icons closeIcon">close</span>
 	 	</a>
-		<ul class="places">
+		<ul class="places-list">
 			<li ng-repeat="place in places">
-				<div class="place" ng-click="refocusMap(place.point.latitude, place.point.longitude)">
+				<div class="found-place" ng-click="refocusMap(place.point.latitude, place.point.longitude)">
 					<span class="place-name">{{place.name}}</span>
 				</div>
 			</li>

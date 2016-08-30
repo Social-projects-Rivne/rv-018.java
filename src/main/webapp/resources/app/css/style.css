@@ -265,3 +265,30 @@ textarea.form-control {
     width: 100%;
 }
 
+/*Find place side bar*/
+#places-sidebar {
+	position: fixed;
+	z-index: 405;
+	right: 0;
+}
+
+.found-place {
+	margin: 5px;
+	height: auto;
+	margin-top: 25px;
+	padding: 25px;
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+	cursor: pointer;
+	background-color: #0F9C5A
+}
+
+.places-list {
+	margin-top: 30px;
+}
+
+.place-name {
+	color: #fff;
+}
+

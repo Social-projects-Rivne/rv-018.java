@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/placeSideBar.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
@@ -47,7 +46,6 @@
 		                            </div>
 		                        </nav>
 		                    </div>
-		                    
 							<div class="col s1 m1 l1">
                     			<a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn">Search</a>
                     		</div>
