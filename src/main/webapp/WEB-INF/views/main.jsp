@@ -20,6 +20,7 @@
 </head>
 <body>
 	<div ng-controller="menuController">
+		<!-- Header -->
 		<header id="header">
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
@@ -73,18 +74,14 @@
 							</ul>
 						</div>
 					</div>
-				</div> 
-					<!-- Actual content of the page -->
+				</div>
+				<!-- Actual content of the page -->
 				<div class="content">
 					 <div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
 					</div>
 					<ng-view></ng-view>
-					<!--  sdfmsdfmsdfmsdfmsdfsdfmsdfsdfdsfsdfiksdmfksidfmsdmfsdfsd
-					sdifmsdifmsdifsdfmsidfmsdfsdfsdmfsdfmsdf
-					sdifmsdmfsdifmsdfisdfisdmfdsifsfm
-					sdfisdmfisdfmdsfimfsdifmsdifsdmfsifm-->
-				</div>			
+				</div>		
 			</div>   
 	    </main>
 	</div>
