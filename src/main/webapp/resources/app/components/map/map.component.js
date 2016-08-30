@@ -4,20 +4,25 @@ angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope, $http) {
-    	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
-    	$rootScope.myMap = mymap;
+    	if($rootScope.myMap){
+    		var node  = document.getElementById("map");
+    		node.parentNode.removeChild(node);
+    	}
+    	
+    	document.getElementById('map').innerHTML = "<div id='mapid'></div>";
+    	$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
 			maxZoom : 18,
 			attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 			+ '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, '
 			+ 'Imagery � <a href="http://mapbox.com">Mapbox</a>',
-			id : 'mapbox.streets'}).addTo(mymap);
+			id : 'mapbox.streets'}).addTo($rootScope.myMap);
 		
 		var marker;
-		mymap.on('click',function(e) {
+		$rootScope.myMap.on('click',function(e) {
 			marker = new L.Marker(e.latlng, {draggable:true});
-			mymap.addLayer(marker);
+			$rootScope.myMap.addLayer(marker);
 			$scope.latitude = marker.getLatLng().lat;
 			$scope.longitude = marker.getLatLng().lng;
 			document.getElementById('latitude').value = $scope.latitude;
@@ -76,7 +81,7 @@ angular.module('greenApp')
 		};
 		
 		$scope.resetAddPlaceForm = function(form) {
-			mymap.removeLayer(marker);
+			$rootScope.myMap.removeLayer(marker);
 		};
 		
 		$rootScope.$emit('initMarkerController', {});
