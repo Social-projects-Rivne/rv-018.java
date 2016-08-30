@@ -11,15 +11,15 @@ angular.
             	$scope.places = response.data;
             	
             	if (response.data.length != 0)
-            		$scope.searchPlacesSidebarOpen = true;  
+            	    $scope.searchPlacesSidebarOpen = true;  
             });
             
             $scope.closePlacesSidebar = function() {
-            	$scope.searchPlacesSidebarOpen = false;
+                $scope.searchPlacesSidebarOpen = false;
             }
             
             $scope.refocusMap = function(latitude, longitude) {
-            	$rootScope.myMap.panTo(new L.LatLng(latitude, longitude));
+                $rootScope.myMap.panTo(new L.LatLng(latitude, longitude));
             }
         }]
     });
