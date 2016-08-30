@@ -24,7 +24,6 @@ import ua.softserve.rv_018.greentourism.service.PointService;
 @RequestMapping(value = "/api/place")
 @Controller
 public class PlaceController {
-
 	/**
 	 * The logger service for logging purpose.
 	 */
@@ -77,7 +76,7 @@ public class PlaceController {
 			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
 		}
 		
-		points = placeService.getPlacePointsBetweenTwoCoordinates(southWest, northEast);
+		points = placeService.findPlacePointsBetweenTwoCoordinates(southWest, northEast);
 
 		logger.info("< Get place point between (" + southWestParam + " - " + northEastParam);
 
