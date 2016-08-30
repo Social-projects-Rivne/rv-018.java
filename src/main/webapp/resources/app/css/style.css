@@ -94,10 +94,26 @@ nav .brand-logo {
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
 }
+/* Tabs animation css files */
+#tabsRow {
+    height: 44px;
+	transition: 0.2s linear all;	
+}
+#tabsRow.ng-hide {
+    height: 0;
+}
+.tabs {
+	height: 44px;
+	transition: 0.2s linear all;	
+}
+.tabs.ng-hide {
+    height: 0;
+}
 
 .content {
-/* 	height: 100vh; */
-	height: 83.5vh;
+	border: 1px solid;
+	height: 100vh;
+	/*height: 83.5vh;*/
 /* 	width: 66.6666666667%; */
 /*  	width: 100%; */ 
  	width: 83.4%; 
@@ -131,17 +147,13 @@ nav .brand-logo {
 
 #mapid {
 	position: absolute;
-    top: -20px;
+    top: 0px;
     right: 0px;
     bottom: 0px;
     overflow: hidden;
     left: 0px;
 }
 
-.tabsIndent {
-	margin-left: 35%;
-	margin-right: 35%;
-}
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
