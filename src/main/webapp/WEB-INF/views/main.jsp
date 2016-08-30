@@ -23,7 +23,7 @@
 			       <div class="nav-wrapper">
 		                <div class="row">
 		                    <div class="col s2 m1 l1">
-		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons" ng-click="showMenu(); moveContent();">menu</i>
+		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons">menu</i>
 		                    </div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
@@ -51,9 +51,10 @@
 		            </div>    
 			   </nav>  
 		    </header>  
-	    <main>      
+	    <main>   
+	    	<div>   
 		        <!-- Hiding menu -->
-					<div class="collection not-active" ng-hide="checkMenu">
+					<div class="collection not-active">
 						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
 						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
 						<a href="#/event" class="collection-item" ng-click="hideTabs();"><i class="material-icons">redeem</i> Events calendar</a>
@@ -86,6 +87,8 @@
 					Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 				</div>
 				
+			</div>  
+				
 	   
 	    </main>
 
@@ -112,6 +115,6 @@
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<!-- Supporting sliding menu -->
-	<!--  <script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>-->
+	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>
 </html>

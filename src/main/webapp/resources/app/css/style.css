@@ -72,10 +72,10 @@ nav .brand-logo {
 
 .collection {
 	position: absolute;
-/* 	margin-top: 10px; */
+	margin-top: 10px;
 	margin-top: 0px;
-/* 	height: 100vh;
- */	height: 86vh;
+/* 	height: 100vh;*/
+    height: 86vh;
 	background: #ededed;
 	border: none;
 	bottom: 0px;
@@ -89,17 +89,18 @@ nav .brand-logo {
 }
 
 .not-active {
+	margin-top: 20px;
 	border: 1px solid;
 	text-align: left;
 	width: 16.6666666667%;
-	transform: translate3d(0, 0, 0);
-	transition: transform 1s ease;
-}
-.not-active.ng-hide {
-	transform: translate3d(-100%, 0, 0);
-	transition: transform 1s ease;
+	/*transform: translate3d(-100%, 0, 0);
+	transition: transform 0.4s ease;*/
 }
 
+.active-ul {
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.4s ease;
+}
 .content {
 	border: 1px solid;
 	height: 100vh;
