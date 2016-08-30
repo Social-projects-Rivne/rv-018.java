@@ -46,9 +46,9 @@
 		                            </div>
 		                        </nav>
 		                    </div>
-							<div class="col s1 m1 l1">
-                    			<a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn">Search</a>
-                    		</div>
+		                    <div class="col s1 m1 l1">
+		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn">Search</a>
+		                    </div>
 		                    <div class="col s2 m3 l4">
 		                        <i class="small material-icons right">perm_identity</i>
 		                    </div>
