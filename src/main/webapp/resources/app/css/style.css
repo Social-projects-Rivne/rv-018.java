@@ -37,7 +37,7 @@ nav, nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
 .row .col {
 	float: left;
 	box-sizing: border-box;
-	padding: 0 0rem !important;
+	/* padding: 0 0rem !important; */
 	min-height: 1px;
 }
 
@@ -263,4 +263,49 @@ textarea.form-control {
     padding: 6px 12px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
+}
+/*-------------- user profile --------------*/
+#profile-page-header .card-image {
+  height: 250px;
+}
+
+.waves-block {
+  display: block;
+}
+
+#profile-page-header .card-profile-image {
+  cursor: pointer;
+  left: 40px;
+  margin-top: -55px;
+  position: absolute;
+  top: 50%;
+  width: 110px;
+  z-index: 1;
+  /*padding: 10% 0;*/
+}
+
+#profile-page-header .card-profile-username {
+  cursor: pointer;
+  right: 40px;
+  margin-top: -45px;
+  position: absolute;
+  top: 50%;
+  width: 80%;
+  z-index: 1;
+  /*padding: 10% 0;*/
+}
+
+#profile-page-header .card-profile-button {
+  cursor: pointer;
+  right: 40px;
+  margin-top: -15px;
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  z-index: 1;
+  /*padding: 10% 0;*/
+}
+
+.card-profile-image .circle {
+  border: 3px solid white; /* Параметры рамки */
 }
