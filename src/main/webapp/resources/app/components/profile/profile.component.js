@@ -3,7 +3,16 @@
 angular.module('greenApp').
 component('profile', {
 	templateUrl : _contextPath +  '/resources/app/components/profile/profile.template.html',
-	controller : function($scope, $http) {
+	controller : function($scope, $http, $routeParams) {
+		var successCallBack = function(response){
+    		$scope.username = response.data.username;
+			$scope.email = response.data.email;
+			$scope.firstName = response.data.firstName;
+			$scope.lastName = response.data.lastName;
+	    };
+	    
+		$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
+		
 		$scope.findById = function () {
 	    	// update only if id chosen
 	    	if (!$scope.id) {
@@ -18,7 +27,7 @@ component('profile', {
 				$scope.lastName = response.data.lastName;
 		    };
 			
-			$http.get(_contextPath + '/user/' + $scope.id).then(successCallBack);
+			$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
 		};
 		
 		$scope.update = function () {
