@@ -10,6 +10,8 @@ component('profile', {
 			$scope.firstName = response.data.firstName;
 			$scope.lastName = response.data.lastName;
 			$scope.socialAccount = response.data.socialAccount;
+			$scope.userpic = response.data.userpic;
+			
 	    };
 	    
 		$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
@@ -27,6 +29,8 @@ component('profile', {
 				$scope.firstName = response.data.firstName;
 				$scope.lastName = response.data.lastName;
 				$scope.socialAccount = response.data.socialAccount;
+				$scope.userpic = response.data.userpic;
+				
 		    };
 			
 			$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
@@ -34,17 +38,19 @@ component('profile', {
 		
 		$scope.update = function () {
 	    	// update only if id is specified
-	    	if ($scope.id == undefined) {
+	    	/*if ($scope.id == undefined) {
 	    		$scope.errorMessage = "Please, select the id of existing user and try again!"
 	    		return;
-	    	}
+	    	}*/
+			$scope.id = $routeParams.id;
 	        
 	    	var dataObj = {
-	            id: $scope.id,
 	            username: $scope.username,
 	            email: $scope.email,
 	            firstName: $scope.firstName,
+	            id: $routeParams.id,
 	            lastName: $scope.lastName
+	            
 	        };
 	        
 			var res = $http.put(_contextPath + '/user/'+$scope.id, dataObj);
@@ -53,12 +59,13 @@ component('profile', {
 			});
 		};
 		
+		
 		$(document).ready(function(){
 			  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
 			  $('.modal-trigger').leanModal();
 		});
 
-		$('.modal-trigger').leanModal({
+	$('.modal-trigger').leanModal({
 		  dismissible: true, // Modal can be dismissed by clicking outside of the modal
 		  opacity: .1, // Opacity of modal background
 		  in_duration: 300, // Transition in duration
@@ -68,6 +75,8 @@ component('profile', {
 		  ready: function() { alert('Ready'); }, // Callback for Modal open
 		  complete: function() { alert('Closed'); } // Callback for Modal close
 		}
-			);
+		);
+		
+		$scope.ImageUrl="http://content.screencast.com/users/kazakov/folders/Snagit/media/9777b814-7f03-40b4-bafd-c64a0d39e95c/08.31.2016-23.23.png";
 	}
 });

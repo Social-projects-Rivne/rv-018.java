@@ -37,7 +37,7 @@ nav, nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
 .row .col {
 	float: left;
 	box-sizing: border-box;
-	/* padding: 0 0rem !important; */
+	padding: 0 0rem !important;
 	min-height: 1px;
 }
 
@@ -275,19 +275,19 @@ textarea.form-control {
 
 #profile-page-header .card-profile-image {
   cursor: pointer;
-  left: 40px;
-  margin-top: -55px;
+  left: 2%;
+  margin-top: -5%;
   position: absolute;
-  top: 50%;
-  width: 110px;
+  top: 5%;
+  width: 10%;
   z-index: 1;
-  /*padding: 10% 0;*/
+  padding: 10% 0;
 }
 
 #profile-page-header .card-profile-username {
   cursor: pointer;
-  right: 40px;
-  margin-top: -45px;
+  right: 4%;
+  margin-top: -4%;
   position: absolute;
   top: 50%;
   width: 80%;
@@ -308,4 +308,33 @@ textarea.form-control {
 
 .card-profile-image .circle {
   border: 3px solid white; /* Параметры рамки */
+}
+
+.lean-overlay {
+    position: inherit;
+    z-index: 999;
+    top: -100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    background: #000;
+    display: none;
+    will-change: opacity;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    max-height: 100%;
+    width: 55%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
 }

@@ -27,6 +27,8 @@ public class User {
     private boolean isActive;
     @Column(name = "social_account")
     private String socialAccount;
+    @Column(name = "userpic")
+    private String userpic;
 
     public User() {}
 
@@ -110,6 +112,14 @@ public class User {
 
 	public void setSocialAccount(String socialAccount) {
 		this.socialAccount = socialAccount;
+	}
+	
+	public String getUserpic() {
+		return userpic;
+	}
+
+	public void setUserpic(String userpic) {
+		this.userpic = userpic;
 	}
 
 	@Override

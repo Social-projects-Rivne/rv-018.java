@@ -1,11 +1,10 @@
 <div class="container">
   <div id="profile-page-header" class="card">
       <div class="row">
-        <div class="col s12 card-image waves-effect waves-block waves-light">
-          <img class="activator" src="images/user-profile-bg.jpg" alt="user background">
+        <div class="col s12 card-image waves-effect waves-block waves-light" ng-style="{'background-image':'url(' + ImageUrl + ')'}">
           <div class="col s2">
             <figure class="card-profile-image">
-              <img src="images/avatar.jpg" class="circle responsive-img z-depth-2">
+              <img src="{{userpic}}" class="circle responsive-img z-depth-2">
             </figure>
           </div>
           <div class="col s4 card-profile-username">
@@ -53,8 +52,8 @@
 			<div class="card">
 
 				<div class="card-content">
-					<h5 class="card-title activator grey-text text-darken-4">
-						<i class="material-icons right modal-trigger" href="#edit-place">mode_edit</i>{{$ctrl.place.name}}
+					<h5 class="card-title activator grey-text text-darken-4">{{place.name}}
+						<i class="material-icons right modal-trigger" href="#edit-place">mode_edit</i>{{name}}
 					</h5>
 				</div>
 
@@ -72,24 +71,38 @@
 	</div>
 
 	<!-- Modal Structure for edit profile -->
-	<div ng-show="toggleEditProfileTrue" id="modal1" class="modal">
-		<div class="modal-content">
-			<h4>Modal Header</h4>
-			<p>A bunch of text</p>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+         <div>
+			<label for="firstName"><h6>Edit First Name:</h6> </label> <input type="text" id="firstName"
+			ng-model="firstName" placeholder="enter firstName" />
 		</div>
-		<div class="modal-footer">
-			<a href="#!"
-				class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
-			<a href="#!"
-				class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <div>
+			<label for="lastName"><h6>Edit Last Name:</h6> </label> <input type="text" id="lastName"
+			ng-model="lastName" placeholder="enter lastName" />
 		</div>
-	</div>
+		<div>
+			<label for="username"><h6>Edit username:</h6> </label> <input type="text" id="username"
+			ng-model="username" placeholder="enter username" />
+		</div>
+		<div>
+			<label for="userpic"><h6>Edit avatars url:</h6> </label> <input type="text" id="userpic"
+			ng-model="userpic" placeholder="enter avatars url" />
+		</div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+        <input type="button" ng-click="update()" value="Save" class="modal-action modal-close waves-effect waves-green btn-flat "></a>
+      </div>
+    </div>
 
 	<!-- Modal Structure for edit email -->
 	<div id="email" class="modal">
 		<div class="modal-content">
-			<h4>EMAIL Header</h4>
-			<p>A bunch of text</p>
+			<div>
+				<label for="email"><h5>Edit email:</h5> </label> <input type="text" id="email"
+					ng-model="email" placeholder="enter email" />
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="#!"
@@ -102,8 +115,10 @@
 	<!-- Modal Structure for edit social accounts -->
 	<div id="social-accounts" class="modal">
 		<div class="modal-content">
-			<h4>Social accounts Header</h4>
-			<p>A bunch of text</p>
+			<div>
+				<label for="socialAccount"><h5>Edit social account</h5> </label> <input type="text" id="socialAccount"
+					ng-model="socialAccount" placeholder="enter social account" />
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="#!"
