@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/menu-anim.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
@@ -52,8 +51,7 @@
 		            </div>    
 			   </nav>  
 		    </header>  
-	    <main>   
-	    	<div>   
+	    <main>    
 		        <!-- Hiding menu -->
 					<div class="collection not-active">
 						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
@@ -75,12 +73,11 @@
 				</div>
 				<!-- Actual content of the page -->
 				<div class="content">
-					 <div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
 					</div>
 					<ng-view></ng-view>
-				</div>		
-			</div>   
+				</div>		   
 	    </main>
 
     
