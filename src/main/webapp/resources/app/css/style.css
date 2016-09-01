@@ -273,20 +273,9 @@ textarea.form-control {
   display: block;
 }
 
-#profile-page-header .card-profile-image {
-  cursor: pointer;
-  left: 2%;
-  margin-top: -5%;
-  position: absolute;
-  top: 5%;
-  width: 10%;
-  z-index: 1;
-  padding: 10% 0;
-}
-
 #profile-page-header .card-profile-username {
   cursor: pointer;
-  right: 4%;
+  right: 0;
   margin-top: -4%;
   position: absolute;
   top: 50%;
@@ -337,4 +326,16 @@ textarea.form-control {
     overflow-y: auto;
     border-radius: 2px;
     will-change: top, opacity;
+}
+
+.card .card-image img {
+    display: block;
+    position: relative;
+    left: 20px;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+    width: 90%;
+    border: 3px solid white;
+    border-radius: 50%;
 }

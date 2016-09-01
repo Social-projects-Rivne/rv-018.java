@@ -3,16 +3,14 @@
       <div class="row">
         <div class="col s12 card-image waves-effect waves-block waves-light" ng-style="{'background-image':'url(' + ImageUrl + ')'}">
           <div class="col s2">
-            <figure class="card-profile-image">
               <img src="{{userpic}}" class="circle responsive-img z-depth-2">
-            </figure>
           </div>
           <div class="col s4 card-profile-username">
             <h4>{{firstName}} {{lastName}}</h4>
 			<h5>@{{username}}</h5>
           </div>
           <div class="col s6">
-            <button class="btn waves-effect waves-light card-profile-button modal-trigger" href="#modal1" >EDIT PROFILE</button>
+            <button class="btn disabled card-profile-button modal-trigger" href="#modal1" >EDIT PROFILE</button>
           </div>
 
         </div>
