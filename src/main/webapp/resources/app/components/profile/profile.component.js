@@ -49,8 +49,9 @@ component('profile', {
 	            email: $scope.email,
 	            firstName: $scope.firstName,
 	            id: $routeParams.id,
-	            lastName: $scope.lastName
-	            
+	            lastName: $scope.lastName,
+	            socialAccount: $scope.socialAccount,
+	            userpic: $scope.userpic
 	        };
 	        
 			var res = $http.put(_contextPath + '/user/'+$scope.id, dataObj);
@@ -60,10 +61,10 @@ component('profile', {
 		};
 		
 		
-		$(document).ready(function(){
-			  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-			  $('.modal-trigger').leanModal();
-		});
+	$(document).ready(function(){
+		  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		  $('.modal-trigger').leanModal();
+	});
 
 	$('.modal-trigger').leanModal({
 		  dismissible: true, // Modal can be dismissed by clicking outside of the modal
