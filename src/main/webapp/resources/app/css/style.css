@@ -265,6 +265,10 @@ textarea.form-control {
     width: 100%;
 }
 /*-------------- user profile --------------*/
+#profile-page-header {
+  margin-top: -20px;
+}
+
 #profile-page-header .card-image {
   height: 250px;
 }
@@ -282,6 +286,10 @@ textarea.form-control {
   width: 80%;
   z-index: 1;
   /*padding: 10% 0;*/
+}
+
+.places-added-by {
+  margin-top: -2%;
 }
 
 #profile-page-header .card-profile-button {
