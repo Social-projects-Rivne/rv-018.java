@@ -290,11 +290,7 @@ textarea.form-control {
 	/*padding: 10% 0;*/
 }
 
-.places-added-by {
-	margin-top: -2%;
-}
-
-#profile-page-header .card-profile-button  {
+#profile-page-header .card-profile-button {
 	cursor: pointer;
 	right: 40px;
 	margin-top: -15px;
@@ -307,18 +303,36 @@ textarea.form-control {
 	border: none;
 	border-radius: 2px;
 	display: inline-block;
-	height: 45px;
+	height: 20%;
 	line-height: 36px;
 	outline: 0;
 	padding: 0 2rem;
-	font-size: 185%;
+	font-size: 180%;
 	text-transform: uppercase;
 	vertical-align: middle;
 	-webkit-tap-highlight-color: transparent;
 }
 
+.card .card-content p {
+	color: #8e8e8e;
+	font-size: 123%;
+	margin: 0;
+}
+
 .card-profile-image .circle {
 	border: 3px solid white; /* Параметры рамки */
+}
+
+.card .card-view-map {
+	background-color: inherit;
+	border-top: 1px solid rgba(160, 160, 160, 0.2);
+	padding: 20px;
+	position: relative;
+}
+
+.card-view-map a {
+	color: #8E8E8E;
+	font-size: 117%;
 }
 
 .lean-overlay {
@@ -367,4 +381,9 @@ textarea.form-control {
 	position: relative;
 	width: 100%;
 	height: 300px;
+}
+
+.card-anotation {
+	color: #8E8E8E;
+	font-size: 115%;
 }
