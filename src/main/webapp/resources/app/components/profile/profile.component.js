@@ -34,7 +34,7 @@ component('profile', {
 	        
 	    	var dataObj = {
 	    			name: $scope.name,
-	    			placeFoto: $scope.placeFoto
+	    			userpic: $scope.placeFoto
 	        };
 	        
 			var res = $http.put(_contextPath + '/api/place/'+ $scope.id, dataObj);
