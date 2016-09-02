@@ -44,19 +44,23 @@
 	<div class="row">
 		<div class="col s12">Places added by @{{username}}</div>
 	</div>
+	
+<!-- 	<div class="row">
+		<input type="text" data-ng-model="searchTeam">
+	</div> -->
 
 	<div class="row">
-		<div class="col s6" > <!-- ng-repeat="username in username" -->
+		<div class="col s6" data-ng-repeat="place in places | filter: searchTeam | orderBy: 'name'">
 			<div class="card">
 
 				<div class="card-content">
-					<h5 class="card-title activator grey-text text-darken-4">{{name}}
+					<h5 class="card-title activator grey-text text-darken-4">{{place.name}}
 						<i class="material-icons right modal-trigger" href="#edit-place">mode_edit</i>
 					</h5>
 				</div>
 
 				<div class="card-image-place">
-					<img src="{{placeFoto}}">
+					<img src="{{place.placeFoto}}">
 				</div>
 
 
@@ -66,6 +70,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 
 	<!-- Modal Structure for edit profile -->
     <div id="modal1" class="modal">
