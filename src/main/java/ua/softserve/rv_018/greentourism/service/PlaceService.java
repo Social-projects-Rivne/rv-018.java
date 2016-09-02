@@ -4,6 +4,7 @@ import java.util.List;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.User;
 
 public interface PlaceService {
 	/**
@@ -32,4 +33,8 @@ public interface PlaceService {
     Place create(Place place); 
     
     Place findOne(Integer id);
+    
+    /*List<Place> findByUser(User user);*/
+    
+    List<Place> findByUserId(Long id);
 }

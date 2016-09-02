@@ -3,6 +3,8 @@ package ua.softserve.rv_018.greentourism.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
+import ua.softserve.rv_018.greentourism.service.UserService;
 
 @RequestMapping(value = "/api/place")
 @Controller
@@ -36,6 +39,9 @@ public class PlaceController {
 	
 	@Autowired
 	private PointService pointService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -127,7 +133,7 @@ public class PlaceController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET,
+  /* @RequestMapping(value = "/{id}", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getPlace(@PathVariable Integer id) {
         logger.info("> getPlace id:{}", id);
@@ -140,5 +146,21 @@ public class PlaceController {
         logger.info("< getPlace id:{}", id);
         
         return new ResponseEntity<>(place, HttpStatus.OK);
+    }*/
+    
+   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getPlaceByUser(
+    		@PathVariable ("id") long id) {
+        logger.info("> getPlace id:{}", id);
+        
+//        User testUser = new User();
+//        testUser.setId(id);
+        
+        List<Place> places = placeService.findByUserId(id);
+
+        logger.info("< getPlaceByUser id:{}", id);
+        
+        return new ResponseEntity<>(places, HttpStatus.OK);
     }
 }

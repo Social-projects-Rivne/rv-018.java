@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import ua.softserve.rv_018.greentourism.model.Place;
+import ua.softserve.rv_018.greentourism.model.User;
 
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
@@ -25,6 +26,10 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 			@Param("north_east_latitude") Float northEastLatitude,
 			@Param("north_east_longitude") Float northEastLongitude);
 	
-	/*@Query("select user_detail.id, place.name from user_detail inner join place on user_detail.id=place.owner_id")
-	List<Place> getPlaceByOwnerId(@Param ("owner_id") Long id);*/
+	@Query(value="select place.* from place where place.owner_id = :user_id"
+			, nativeQuery=true)
+	List<Place> findByUserId(
+			@Param ("user_id") Long id);
+	
+	/*List<Place> findByUser(User user);*/
 }
