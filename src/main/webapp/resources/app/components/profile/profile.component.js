@@ -4,6 +4,16 @@ angular.module('greenApp').
 component('profile', {
 	templateUrl : _contextPath +  '/resources/app/components/profile/profile.template.html',
 	controller : function($scope, $http, $routeParams) {
+	    	
+		var successCallBack = function(response){
+    		$scope.name = response.data.name;
+    		$scope.placeFoto = response.data.placeFoto;
+			
+	    };
+	    
+		$http.get(_contextPath + '/api/place/' + $routeParams.id).then(successCallBack);
+		
+		
 		var successCallBack = function(response){
     		$scope.username = response.data.username;
 			$scope.email = response.data.email;
@@ -13,6 +23,25 @@ component('profile', {
 			$scope.userpic = response.data.userpic;
 			
 	    };
+	    
+	    $scope.update = function () {
+	    	// update only if id is specified
+	    	/*if ($scope.id == undefined) {
+	    		$scope.errorMessage = "Please, select the id of existing user and try again!"
+	    		return;
+	    	}*/
+			$scope.id = $routeParams.id;
+	        
+	    	var dataObj = {
+	    			name: $scope.name,
+	    			placeFoto: $scope.placeFoto
+	        };
+	        
+			var res = $http.put(_contextPath + '/api/place/'+ $scope.id, dataObj);
+			res.success(function(data, status, headers, config) {
+				// your code in case of success is here
+			});
+		};
 	    
 		$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
 		

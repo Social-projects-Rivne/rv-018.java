@@ -30,4 +30,6 @@ public interface PlaceService {
      * @return The persisted Place entity.
      */
     Place create(Place place); 
+    
+    Place findOne(Integer id);
 }

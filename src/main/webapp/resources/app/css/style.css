@@ -37,7 +37,7 @@ nav, nav .nav-wrapper i,nav a.button-collapse,nav a.button-collapse i {
 .row .col {
 	float: left;
 	box-sizing: border-box;
-	padding: 0 0rem !important;
+	/* padding: 0 0rem !important; */
 	min-height: 1px;
 }
 
@@ -338,4 +338,10 @@ textarea.form-control {
     width: 90%;
     border: 3px solid white;
     border-radius: 50%;
+}
+
+.card .card-image-place img {
+    display: block;
+    position: relative;
+    width: 100%;
 }

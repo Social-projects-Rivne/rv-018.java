@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 
 @Service
@@ -90,5 +91,16 @@ public class PlaceServiceImpl implements PlaceService {
 		logger.info("> Place create");
 		
 		return savedPlace;
+	}
+	
+	@Override
+	public Place findOne(Integer id) {
+		logger.info("> Place findOne id:{}", id);
+
+        Place place = placeRepository.findOne(id);
+
+        logger.info("< Place findOne id:{}", id);
+
+        return place;
 	}
 }
