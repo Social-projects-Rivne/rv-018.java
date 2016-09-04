@@ -2,68 +2,108 @@
 
 	<div id="mapid"></div>
 
-	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
-		<a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out"
+	<div class="fixed-action-btn" ng-show="addButtonAddPlace"
+		ng-hide="false">
+		<a ng-click="addPlaceMenu(); hideButtonAddPlace()"
+			data-activates="slide-out"
 			class="button-collapse btn-floating btn-large red modal-trigger">
 			<i class="large material-icons">mode_edit</i>
 		</a>
 	</div>
 
+	<div ng-controller="calendarCtrl">
+		<calendar-md flex layout layout-fill
+				  ng-show="singletonCalendarIsOpen.calendarIsOpen"
+	 			  calendar-direction="direction"
+	 			  on-prev-month="prevMonth"
+				  on-next-month="nextMonth"
+				  on-day-click="dayClick"
+				  title-format="'MMMM y'"
+				  ng-model='selectedDate'
+				  week-starts-on="firstDayOfWeek"
+				  data-start-month="8"
+				  data-start-year="2016"
+				  tooltips="tooltips"
+				  day-format="dayFormat"
+				  day-label-format="'EEE'"
+				  day-label-tooltip-format="'EEEE'"
+				  day-tooltip-format="'fullDate'"
+				  day-content="setDayContent"
+				  disable-future-selection="false"
+				  class="calendar-custom-style">
+		</calendar-md>
+	</div>
+
+ 	<div class="fixed-action-btn floating-btn-date-picker">
+		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
+			class="material-icons">date_range</i></a>
+	</div>
+
 	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
-			<h2>New Place</h2>
-			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
-				class="material-icons closeIcon">close</span>
-			</a>
-			<form name="placeMaker" novalidate>
-				<div class="form-group">
-					<span class="title">1. Choose place on map:</span><br> <span
-						class="title">Latitude:</span> <input type="text" class="latlng"
-						id="latitude" ng-model="latitude" disabled="disabled"></span> <span
-						class="title">Longitude:</span> <input type="text" class="latlng"
-						id="longitude" ng-model="longitude" disabled="disabled"></span>
-				</div>
-				<div class="form-group">
-					<label for="placeName"> <span class="title">2. Enter
-							place name:</span>
-					</label> <input type="text" name="name" class="form-control"
-						id="newPlaceName" ng-model="newPlaceName" ng-minlength="5" ng-maxlength="70" required>
-				</div>
-				<div ng-messages="placeMaker.name.$error">
-					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
-					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
-					<p ng-message="required">Place name is required. Place write name for place.</p>
-				</div>
+		<h2>New Place</h2>
+		<a href=""
+			ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()">
+			<span class="material-icons closeIcon">close</span>
+		</a>
+		<form name="placeMaker" novalidate>
 			<div class="form-group">
-					<label for="newPlaceType"> <span class="title">3.
-							Select place type:</span>
-					</label> <select name="category" class="form-control"
-						ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
-						ng-model="newPlaceType">
-						<option value="">-- Choose place type --</option>
-					</select>
+				<span class="title">1. Choose place on map:</span><br> <span
+					class="title">Latitude:</span> <input type="text" class="latlng"
+					id="latitude" ng-model="latitude" disabled="disabled"></span> <span
+					class="title">Longitude:</span> <input type="text" class="latlng"
+					id="longitude" ng-model="longitude" disabled="disabled"></span>
+			</div>
+			<div class="form-group">
+				<label for="placeName"> <span class="title">2. Enter
+						place name:</span>
+				</label> <input type="text" name="name" class="form-control"
+					id="newPlaceName" ng-model="newPlaceName" ng-minlength="5"
+					ng-maxlength="70" required>
+			</div>
+			<div ng-messages="placeMaker.name.$error">
+				<p ng-message="minlength">Place name is too short. Place name
+					should be at Least 5 characters</p>
+				<p ng-message="maxlength">Place name is too long. Place name
+					should be no more than 70 characters</p>
+				<p ng-message="required">Place name is required. Place write
+					name for place.</p>
+			</div>
+			<div class="form-group">
+				<label for="newPlaceType"> <span class="title">3.
+						Select place type:</span>
+				</label> <select name="category" class="form-control"
+					ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
+					ng-model="newPlaceType">
+					<option value="">-- Choose place type --</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="description"> <span class="title">4.
+						Enter place description (optional):</span>
+				</label>
+				<textarea name="newPlaceDescription" id="newPlaceDescription"
+					class="form-control" ng-model="newPlaceDescription"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="newPlacePhoto"> <span class="title">5.
+						Add photo (optional):</span>
+				</label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
+					class="form-control" ng-model="newPlacePhotos"
+					placeholder="Photo URL">
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<input type="reset"
+						class="col s12 m6 waves-effect waves-effect waves-light btn-flat disabled"
+						ng-click="resetAddPlaceForm()" value="Reset"> <input
+						type="button"
+						class="col s12 m6 waves-effect waves-light btn-flat disabled"
+						ng-click="createNewPlace()" value="Save">
 				</div>
-				<div class="form-group">
-					<label for="description"> <span class="title">4.
-							Enter place description (optional):</span>
-					</label>
-					<textarea name="newPlaceDescription" id="newPlaceDescription"
-						class="form-control" ng-model="newPlaceDescription"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="newPlacePhoto"> <span class="title">5.
-							Add photo (optional):</span>
-					</label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
-						class="form-control" ng-model="newPlacePhotos"
-						placeholder="Photo URL">
-				</div>
-				<div class="form-group">
-					<div class="row">
-						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat disabled" ng-click="resetAddPlaceForm()" value="Reset"> 
-						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat disabled" ng-click="createNewPlace()" value="Save">
-					</div>
-					<div ng-show="submissionSuccess">Place successfully added!</div>
-					<div ng-show="submissionError">Something wrong happened on our servers, please try again.</div>
-				</div>
-			</form>
+				<div ng-show="submissionSuccess">Place successfully added!</div>
+				<div ng-show="submissionError">Something wrong happened on our
+					servers, please try again.</div>
+			</div>
+		</form>
 	</div>
 </div>

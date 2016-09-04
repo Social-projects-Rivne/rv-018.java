@@ -264,3 +264,29 @@ textarea.form-control {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 }
+
+.floating-btn-date-picker {
+	bottom: 45px;
+	right: 105px;
+	/* animation: 0.4s ease-out 0s normal none 1 running expandFab; */
+}
+
+/* ----calendar----- */
+calendar-md .md-toolbar-tools h2 {
+	overflow: hidden;
+}
+
+.calendar-custom-style {
+	position: fixed;
+	z-index: 999;
+	width: 280px;
+	height:275px;
+	bottom: 115px;
+	right: 15px;
+	min-height: 275px;
+	overflow:hidden;
+}
+
+md-content {
+	overflow: hidden;
+}

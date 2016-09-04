@@ -1,7 +1,11 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,4 +106,38 @@ public class EventController {
 
 		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
+	
+	/**
+	 * Web service endpoint to fetch all Event points in given period of time.
+	 * The service returns the list of Point entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Point objects.
+	 */
+	@RequestMapping(value = "/pointBetweenDates", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> findEventPointsBetweenTwoDates(
+			@RequestParam (value="start-date", required=true) String startDateParam,
+    		@RequestParam (value="end-date", required=true) String endDateParam) {
+		java.sql.Date startDateSql = null;
+		java.sql.Date endDateSql = null;
+
+		try {
+			Date startDateUtil = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH).parse(startDateParam);
+			Date endDateUtil = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH).parse(endDateParam);
+			startDateSql = new java.sql.Date(startDateUtil.getTime());
+			endDateSql = new java.sql.Date(endDateUtil.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		logger.info("> Get event points between (" + startDateParam + " - " + endDateParam);
+		
+		List<Point> points = new ArrayList<>();
+		
+		points = eventService.findEventPointsBetweenTwoDates(startDateSql, endDateSql);
+
+		logger.info("< Get event points between (" + startDateParam + " - " + endDateParam);
+
+		return new ResponseEntity<>(points, HttpStatus.OK);
+	}
+
 }
