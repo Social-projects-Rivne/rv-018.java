@@ -30,6 +30,4 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 			, nativeQuery=true)
 	List<Place> findByUserId(
 			@Param ("user_id") Long id);
-	
-	/*List<Place> findByUser(User user);*/
 }

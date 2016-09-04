@@ -104,17 +104,6 @@ public class PlaceServiceImpl implements PlaceService {
         return place;
 	}
 
-	/*@Override
-	public List<Place> findByUser(User user) {
-		logger.info("> Place findByUser");
-		
-		List<Place> places = placeRepository.findByUser(user);
-		
-		logger.info("< Place findByUser");
-		
-		return places;
-	}*/
-
 	@Override
 	public List<Place> findByUserId(Long id) {
 		logger.info("> Place findByUserId");
@@ -125,6 +114,4 @@ public class PlaceServiceImpl implements PlaceService {
 		
 		return places;
 	}
-	
-	
 }

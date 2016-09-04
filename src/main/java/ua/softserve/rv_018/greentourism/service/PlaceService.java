@@ -34,7 +34,5 @@ public interface PlaceService {
     
     Place findOne(Integer id);
     
-    /*List<Place> findByUser(User user);*/
-    
     List<Place> findByUserId(Long id);
 }

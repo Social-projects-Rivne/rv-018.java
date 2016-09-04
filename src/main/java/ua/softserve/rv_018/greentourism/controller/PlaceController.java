@@ -133,30 +133,12 @@ public class PlaceController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
     
-  /* @RequestMapping(value = "/{id}", method = RequestMethod.GET,
-            headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getPlace(@PathVariable Integer id) {
-        logger.info("> getPlace id:{}", id);
-
-        Place place = placeService.findOne(id);
-        if (place == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        logger.info("< getPlace id:{}", id);
-        
-        return new ResponseEntity<>(place, HttpStatus.OK);
-    }*/
-    
    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getPlaceByUser(
     		@PathVariable ("id") long id) {
         logger.info("> getPlace id:{}", id);
-        
-//        User testUser = new User();
-//        testUser.setId(id);
-        
+
         List<Place> places = placeService.findByUserId(id);
 
         logger.info("< getPlaceByUser id:{}", id);

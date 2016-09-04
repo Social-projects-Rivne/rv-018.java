@@ -37,7 +37,7 @@ public class Place {
 	private Category category;
 	
 	@Column(name = "place_foto")
-    private String placeFoto;
+	private String placeFoto;
 
 	public Place() {}
 
