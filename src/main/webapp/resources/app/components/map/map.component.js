@@ -98,7 +98,6 @@ angular.module('greenApp')
 		};
 
 		if ($routeParams.id) { 
-			$rootScope.$emit = false;
 			$scope.findById(); 
 		} 
     }
