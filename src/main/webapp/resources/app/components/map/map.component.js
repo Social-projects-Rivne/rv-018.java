@@ -3,10 +3,11 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http, CalendarIsOpen) {
+    controller: function($rootScope, $scope, $http, CalendarIsOpen, CalendarButtonIsShown) {
     	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	$rootScope.myMap = mymap;
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
+		$scope.singletonCalendarButtonIsShown = CalendarButtonIsShown; 
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
 			maxZoom : 18,

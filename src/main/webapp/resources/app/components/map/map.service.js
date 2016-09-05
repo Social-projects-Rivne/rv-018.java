@@ -10,3 +10,14 @@ angular.module('greenApp')
 			return this.calendarIsOpen;
 		}
 	})
+	.service('CalendarButtonIsShown', function() {
+		var calendarButtonIsShown;
+		
+		this.setCalendarButtonIsShown = function(value) {
+			this.calendarButtonIsShown = value;
+		}
+
+		this.getCalendarButtonIsShown = function() {
+			return this.calendarButtonIsShown;
+		}
+	})

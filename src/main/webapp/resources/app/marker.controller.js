@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('greenApp')
-	.controller('markerCtrl', function($rootScope, $scope, $http, $log){
+	.controller('markerCtrl', function($rootScope, $scope, $http, $log, CalendarButtonIsShown){
 		var markersArray = [];
     	var currentlySelectedTabInnerHtml = "Places";
+	    $scope.singletonCalendarButtonIsShown = CalendarButtonIsShown;
 		
 		$rootScope.$on('initMarkerController', function() {
 			$rootScope.myMap.on('moveend', function() {
@@ -65,6 +66,12 @@ angular.module('greenApp')
 		$('ul.tabs').on('click', 'a', function(e) {
 			currentlySelectedTabInnerHtml = e.currentTarget.innerHTML;
 			
+			// Check if calendar button need to be shown
+		    if (currentlySelectedTabInnerHtml == "Events")
+		    	$scope.singletonCalendarButtonIsShown.setCalendarButtonIsShown(true);
+		    else
+		    	$scope.singletonCalendarButtonIsShown.setCalendarButtonIsShown(false);
+		    	
 			if (markersArray.length > 0)
 				angular.forEach(markersArray, function(marker, key){
 					$rootScope.myMap.removeLayer(marker);
