@@ -1,5 +1,3 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
@@ -23,8 +21,8 @@
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
-<body>
-	<div ng-controller="mainController">
+<body ng-controller="menuController">
+		<!-- Header -->
 		<header id="header">
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
@@ -57,36 +55,36 @@
 		                </div>
 		            </div>    
 			   </nav>  
-		    </header>   
-	    <main>          
-			<div>         
-				<div class="collection not-active" ng-style="{top: topMarginValue}">
-					<a href="#" class="collection-item"><i class="material-icons">business</i> Home</a>
-					<a href="#/map" class="collection-item"><i class="material-icons">language</i> Map</a>
-					<a href="#/event" class="collection-item"><i class="material-icons">redeem</i> Events calendar</a>
-					<a href="#/profile" class="collection-item"><i class="material-icons">perm_identity</i>Profile</a>
-				</div>
-				
-				<div id="tabsRow" class="tabsBackgroundColor">
+		    </header>  
+	    <main>    
+		        <!-- Hiding menu -->
+					<div class="collection not-active">
+						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
+						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
+						<a href="#/event" class="collection-item" ng-click="hideTabs();"><i class="material-icons">redeem</i> Events calendar</a>
+						<a href="#/profile" class="collection-item" ng-click="hideTabs();"><i class="material-icons">perm_identity</i>Profile</a>
+					</div>
+				<!-- Tabs -->
+				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs">
 					<div class="tabsIndent">
 						<div class="row">
-							<ul class="tabs">
+							<ul class="tabs" ng-show="checkTabs">
 								<li class="tab col m3 tabsBackgroundColor"><a class="active white-text" href="#test1">Places</a></li>
 								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test2">Tracks</a></li>
 								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test3">Events</a></li>
 							</ul>
 						</div>
 					</div>
-				</div> 
+				</div>
+				<!-- Actual content of the page -->
 				<div class="content">
 					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
 					</div>
 					<ng-view></ng-view>
-				</div>
-			</div>   
+				</div>		   
 	    </main>
-	</div>
+
     
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
@@ -110,8 +108,8 @@
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
-
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
