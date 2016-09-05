@@ -7,7 +7,9 @@ component('profile', {
 	    	
 		var successCallBack = function(response){
     		$scope.places = response.data;
-    		console.log (response.data) ;
+    		console.log (response.data);
+    		$scope.latitude = response.data.id;
+    		console.log ('$scope.latitude ' +  $scope.name);
 	    };
 	    
 		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
@@ -19,7 +21,11 @@ component('profile', {
 			$scope.lastName = response.data.lastName;
 			$scope.socialAccount = response.data.socialAccount;
 			$scope.userpic = response.data.userpic;
+			console.log (response.data);
+			console.log ('$scope.username ' +  $scope.username);
 	    };
+	    
+	    $http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
 	    
 	    $scope.update = function () {
 			$scope.id = $routeParams.id;
@@ -42,8 +48,6 @@ component('profile', {
 			});
 		};
 	    
-		$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
-		
 		$scope.findById = function () {
 	    	// update only if id chosen
 	    	if (!$scope.id) {
@@ -58,6 +62,7 @@ component('profile', {
 				$scope.lastName = response.data.lastName;
 				$scope.socialAccount = response.data.socialAccount;
 				$scope.userpic = response.data.userpic;
+				console.log (response) ;
 		    };
 			
 			$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);

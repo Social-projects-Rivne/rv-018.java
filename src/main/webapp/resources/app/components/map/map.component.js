@@ -81,8 +81,6 @@ angular.module('greenApp')
 		
 		$rootScope.$emit('initMarkerController', {});
 		
-		
-		
 /*		
 		var successCallBacks = function(response){
     		//$scope.places = response.data;
@@ -91,22 +89,33 @@ angular.module('greenApp')
 	    };
 	    $http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBacks);
 	    
-	    
-		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);*/
+		*/
+//		
+//		var successCallBack = function(response){
+//    		$scope.places = response.data;
+//    		console.log (response.data) ;
+//	    };
+//	    
+//		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
 		
 		
 		$scope.findById = function () {
-			console.log ('findById');
 	    	    	
 	    	var successCallBack = function(response){
+	    		$scope.places = response.data;
+	    		console.log (response.data) ;
 	    		
-	    		console.log ('scope.latitude ' + $scope.longitude);
-	    		console.log ('$scope.longitude ' +  $scope.longitude);
+	    		$scope.name = response.data.name;
+	    		
+	    		console.log ('$scope.name ' +  $scope.name);
+//	    		console.log ('scope.latitude ' + $scope.place.latitude);
+//	    		console.log ('$scope.longitude ' +  $scope. place.longitude);
 	    		
 	    		$scope.latitude =  50.619900;
 	    		$scope.longitude =  26.251617; 
-	    		console.log (response) ;
 	    		//marker = L.marker([$scope.latitude, $scope.longitude], {icon: greenIcon});
+	    		
+	    		mymap.setView([$scope.latitude, $scope.longitude], 14);
 	    		
 				marker = new L.Marker([$scope.latitude, $scope.longitude]);
 				mymap.addLayer(marker);
@@ -116,7 +125,9 @@ angular.module('greenApp')
 			$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
 		};
 
-		if ($routeParams.id) { console.log ('findById'); $scope.findById(); } 
+		if ($routeParams.id) { 
+			$scope.findById(); 
+		} 
 	
     }
 });
