@@ -85,7 +85,6 @@ angular.module('greenApp')
 	    	var successCallBack = function(response){
 	    		$scope.latitude =  response.data.latitude;
 	    		$scope.longitude =  response.data.longitude; 
-	    		//marker = L.marker([$scope.latitude, $scope.longitude], {icon: greenIcon});
 	    		
 	    		mymap.setView([$scope.latitude, $scope.longitude], 13);
 	    		
