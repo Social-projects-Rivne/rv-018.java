@@ -7,6 +7,11 @@
 		var _contextPath = "${pageContext.request.contextPath}";
 	</script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/materialize.min.css">
+	<!-- Angular material -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/angular-material.min.css">
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/picker.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.css">
 	<!--Import Google Icon Font-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
 	<!-- Leaflet styles -->
@@ -87,21 +92,30 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/materialize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-material.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-route.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-resource.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-animate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-aria.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/assets/moment.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/picker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>
