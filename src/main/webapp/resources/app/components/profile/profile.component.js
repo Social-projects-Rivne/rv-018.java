@@ -7,6 +7,7 @@ component('profile', {
 	    	
 		var successCallBack = function(response){
     		$scope.places = response.data;
+    		console.log (response.data) ;
 	    };
 	    
 		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
@@ -30,7 +31,9 @@ component('profile', {
 	            id: $routeParams.id,
 	            lastName: $scope.lastName,
 	            socialAccount: $scope.socialAccount,
-	            userpic: $scope.userpic
+	            userpic: $scope.userpic,
+	            name: $scope.name,
+	            description: $scope.description
 	        };
 	        
 			var res = $http.put(_contextPath + '/api/place/'+ $scope.id, dataObj);
