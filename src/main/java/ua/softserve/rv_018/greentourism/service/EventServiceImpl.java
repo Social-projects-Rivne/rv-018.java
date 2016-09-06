@@ -1,6 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -74,4 +75,16 @@ public class EventServiceImpl implements EventService {
 		
 		return points;
 	}
+	
+	@Override
+	public List<Point> findEventPointsBetweenTwoDates(Date startDate, Date endDate) {
+		logger.info("> Event findEventPointsBetweenTwoDates");
+
+		List<Event> events = eventRepository.findBetweenTwoDates(startDate, endDate);
+		List<Point> points = getPointsFromEvents(events);
+		
+        logger.info("< Event findEventPointsBetweenTwoDates");
+
+		return points;
+	}	
 }

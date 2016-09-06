@@ -1,13 +1,18 @@
-@CHARSET "UTF-8";
-
 .tabsBackgroundColor {
-	background-color: #0F9C5A !important;
+	background-color: #0F9C5A;
 }
 
 .tabs .indicator {
     background-color: white !important;
 }
 
+.tabsIndent {
+	margin-left: 35%;
+	margin-right: 35%;
+}
+.tabs {
+	height: inherit;
+}
 body {
 	background-color: #ededed;
 }
@@ -67,10 +72,10 @@ nav .brand-logo {
 
 .collection {
 	position: absolute;
-/* 	margin-top: 10px; */
+	margin-top: 10px;
 	margin-top: 0px;
-/* 	height: 100vh;
- */	height: 86vh;
+/* 	height: 100vh;*/
+    height: 86vh;
 	background: #ededed;
 	border: none;
 	bottom: 0px;
@@ -84,6 +89,7 @@ nav .brand-logo {
 }
 
 .not-active {
+	margin-top: 20px;
 	text-align: left;
 	width: 16.6666666667%;
 	transform: translate3d(-100%, 0, 0);
@@ -95,15 +101,26 @@ nav .brand-logo {
 	transition: transform 0.4s ease;
 }
 
+/* Tabs animation files */
+#tabsRow {
+    height: 44px;
+	transition: 0.2s linear all;	
+}
+#tabsRow.ng-hide {
+    height: 0;
+}
+.tabs {
+	height: 44px;
+	transition: 0.2s linear all;	
+}
+.tabs.ng-hide {
+    height: 0;
+}
+/* Actual content of page styles */
 .content {
-/* 	height: 100vh; */
-	height: 83.5vh;
-/* 	width: 66.6666666667%; */
-/*  	width: 100%; */ 
+	height: 100vh;
  	width: 83.4%; 
-/* 	margin-left: 16.6666666667%; */
 	margin-left: 6.13%;
-/* 	margin-top: 20px; */
 	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -131,7 +148,7 @@ nav .brand-logo {
 
 #mapid {
 	position: absolute;
-    top: -20px;
+    top: 0px;
     right: 0px;
     bottom: 0px;
     overflow: hidden;
@@ -142,6 +159,7 @@ nav .brand-logo {
 	margin-left: 35%;
 	margin-right: 35%;
 }
+
 /*-------------- Red button --------------*/
 .fixed-action-btn {
 	bottom: 45px;
@@ -265,6 +283,7 @@ textarea.form-control {
     width: 100%;
 }
 
+<<<<<<< HEAD
 /*Find place side bar*/
 #places-sidebar {
 	overflow-y: auto;
@@ -312,3 +331,31 @@ textarea.form-control {
 	border: 1px solid black;
 }
 
+
+
+
+.floating-btn-date-picker {
+	bottom: 45px;
+	right: 105px;
+	/* animation: 0.4s ease-out 0s normal none 1 running expandFab; */
+}
+
+/* ----calendar----- */
+calendar-md .md-toolbar-tools h2 {
+	overflow: hidden;
+}
+
+.calendar-custom-style {
+	position: fixed;
+	z-index: 999;
+	width: 280px;
+	height:275px;
+	bottom: 115px;
+	right: 15px;
+	min-height: 275px;
+	overflow:hidden;
+}
+
+md-content {
+	overflow: hidden;
+}
