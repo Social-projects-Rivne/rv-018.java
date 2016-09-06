@@ -35,9 +35,6 @@ public class Place {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
-	@Column(name = "place_foto")
-	private String placeFoto;
 
 	public Place() {}
 
@@ -87,14 +84,6 @@ public class Place {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-	
-	public String getPlaceFoto() {
-		return placeFoto;
-	}
-
-	public void setPlaceFoto(String placeFoto) {
-		this.placeFoto = placeFoto;
 	}
 
 	@Override
