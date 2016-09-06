@@ -114,6 +114,8 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<!-- Components -->
+	
+	
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
