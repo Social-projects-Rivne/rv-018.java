@@ -35,4 +35,6 @@ public interface PlaceService {
     Place findOne(Integer id);
     
     List<Place> findByUserId(Long id);
+
+	List<Place> findByUserIdWithAttachments(Long id);
 }

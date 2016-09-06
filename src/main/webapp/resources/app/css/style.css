@@ -429,3 +429,7 @@ md-content {
 	color: #8E8E8E;
 	font-size: 115%;
 }
+
+.card {
+    margin: 0.5rem 10px 1rem 0;
+}

@@ -139,8 +139,8 @@ public class PlaceController {
     		@PathVariable ("id") long id) {
         logger.info("> getPlace id:{}", id);
 
-        List<Place> places = placeService.findByUserId(id);
-
+        List<Place> places = placeService.findByUserIdWithAttachments(id);
+        
         logger.info("< getPlaceByUser id:{}", id);
         
         return new ResponseEntity<>(places, HttpStatus.OK);
