@@ -267,21 +267,36 @@ textarea.form-control {
 
 /*Find place side bar*/
 #places-sidebar {
+	overflow-y: auto;
 	position: fixed;
 	z-index: 405;
 	right: 0;
+	background-color: #FFF;
+	height: 100%;
+	top: -20px;
 }
 
 .found-place {
-	margin: 5px;
-	height: auto;
-	margin-top: 25px;
-	padding: 25px;
-	display: flex;
-	justify-content: center; 
-	align-items: center;
+	height: 100px;
+	padding: 15px;
+	border-bottom: 1px solid #e4e4e4;
 	cursor: pointer;
-	background-color: #0F9C5A
+	font-color: #151515;
+	padding-right: 0px;
+}
+
+.search-error {
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+ 	transform: translate(-50%, -50%);	
+}
+
+.place-image {
+	width: 33%;
+	float: left;
+	height: 100%;
+	border: 1px solid black;
 }
 
 .places-list {
@@ -289,6 +304,11 @@ textarea.form-control {
 }
 
 .place-name {
-	color: #fff;
+	width: 60%;
+	float: left;
+	margin-left: 10px;
+	font-size: 85%;
+	font-color: #545454;
+	border: 1px solid black;
 }
 

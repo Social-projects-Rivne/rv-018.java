@@ -3,13 +3,17 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http) {
+    controller: function($rootScope, $scope, $http, $templateCache) {
     	if($rootScope.myMap){
-    		var node  = document.getElementById("map");
-    		node.parentNode.removeChild(node);
+    		$templateCache.removeAll();
+    		$rootScope.myMap.remove();
+    		
     	}
     	
-    	document.getElementById('map').innerHTML = "<div id='mapid'></div>";
+    	$scope.removeCache = function() {
+    		$templateCache.removeAll();
+    	}
+    	
     	$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
