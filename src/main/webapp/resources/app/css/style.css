@@ -283,16 +283,16 @@ textarea.form-control {
     width: 100%;
 }
 
-<<<<<<< HEAD
+
 /*Find place side bar*/
 #places-sidebar {
 	overflow-y: auto;
 	position: fixed;
-	z-index: 405;
+	z-index: 1000;
 	right: 0;
 	background-color: #FFF;
 	height: 100%;
-	top: -20px;
+	top: 0px;
 }
 
 .found-place {

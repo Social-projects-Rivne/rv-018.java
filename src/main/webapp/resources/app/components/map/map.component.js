@@ -3,9 +3,19 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http, CalendarIsOpen) {
-    	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
-    	$rootScope.myMap = mymap;
+    controller: function($rootScope, $scope, $http, CalendarIsOpen, $templateCache) {
+    	if($rootScope.myMap){
+    		//$templateCache.removeAll();
+    		$rootScope.myMap.remove();
+    		
+    	}
+    	
+    	$scope.removeCache = function() {
+    		$templateCache.removeAll();
+    	}
+    	
+    	$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
+    	
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
