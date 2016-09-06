@@ -3,8 +3,6 @@ package ua.softserve.rv_018.greentourism.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.soap.SOAPBinding.Use;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
-import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
 import ua.softserve.rv_018.greentourism.service.UserService;

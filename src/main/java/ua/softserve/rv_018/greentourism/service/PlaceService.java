@@ -31,10 +31,19 @@ public interface PlaceService {
      * @return The persisted Place entity.
      */
     Place create(Place place); 
-    
+    /**
+     * Find Place entities.
+     * @return A Place objects.
+     */
     Place findOne(Integer id);
-    
+    /**
+     * Find all Place entities by user Id.
+     * @return A List of Place objects.
+     */
     List<Place> findByUserId(Long id);
-
+    /**
+     * Find all Place entities with attachments by user Id.
+     * @return A List of Place objects.
+     */
 	List<Place> findByUserIdWithAttachments(Long id);
 }

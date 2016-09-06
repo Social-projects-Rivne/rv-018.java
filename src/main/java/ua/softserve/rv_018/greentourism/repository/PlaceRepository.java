@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import ua.softserve.rv_018.greentourism.model.Place;
-import ua.softserve.rv_018.greentourism.model.User;
 
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Integer> {

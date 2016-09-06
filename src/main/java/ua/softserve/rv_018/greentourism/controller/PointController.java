@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.softserve.rv_018.greentourism.model.Point;
-import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.PointService;
 
 @RestController
