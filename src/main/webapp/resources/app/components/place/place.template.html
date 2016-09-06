@@ -1,107 +1,132 @@
+
 <div class="container">
-	<div class="row">
-		<div class="col s12">
-			<!-- <img ng-src="{{image_url}}"> -->
 
-			<div class="carousel">
-				<a ng-repeat="(i, image) in images" class="carousel-item"
-					ng-href="#{{i}}!"> <img class="responsive-img"
-					ng-src="{{image}}" id="imgClickAndChange" onclick="changeImage()">
-				</a>
-			</div>
-			<h2 class="place-name">{{name}}</h2>
-
-			<!-- 
-			<div class="carousel carousel-slider">
-				<a class="carousel-item" href="#one!"><img
-					src="http://lorempixel.com/800/400/food/1"></a> <a
-					class="carousel-item" href="#two!"><img
-					src="http://lorempixel.com/800/400/food/2"></a> <a
-					class="carousel-item" href="#three!"><img
-					src="http://lorempixel.com/800/400/food/3"></a> <a
-					class="carousel-item" href="#four!"><img
-					src="http://lorempixel.com/800/400/food/4"></a>
-			</div>
--->
-		</div>
+	<div class="map-container">
+		<div id="mapid"></div>
 	</div>
-
-	<div class="row">
-		<div class="card-content grey-text text-darken-1">
-			<h3>Place details</h3>
+	<div class="close-place" ng-show="close-place-button">
+		<a href="#" ng-click="close_place($event)"> <span
+			class="material-icons closeIcon">close</span>
+		</a>
+	</div>
+	<div class="place-container" ng-show="placeopened">
+		<div class="row">
+			<div class="col s12">
+				<div class="carousel carousel-slider">
+					<i class="material-icons before-arrow">navigate_before</i> <i
+						class="material-icons next-arrow">navigate_next</i> <a
+						ng-repeat="(i, image) in images" class="carousel-item"
+						ng-href="#{{i}}!"> <img class="responsive-img"
+						ng-src="{{image}}" id="imgClickAndChange" onclick="changeImage()">
+					</a>
+				</div>
+				<h2 class="place-name editableplace" ng-click="show_name_modal($event)">{{name}}</h2>
+			</div>
 		</div>
-		<div class="col s6">
 
-			<div class="card white place">
+		<div class="row empty">
+			<div>&nbsp;</div>
+		</div>
+
+		<div class="row indented-header">
+			<div class="col s12 m12 l12 card-content grey-text text-darken-1">
+				<h3>Place details</h3>
+			</div>
+		</div>
+
+		<div class="row indented-content">
+
+			<div class="col s12 l5 m5 card white place editableplace description" less="true">
+				<!-- <div class=" white place"> -->
 				<div class="card-content grey-text text-darken-1">
-					<span class="card-title">Description</span>
+					<span class="card-title" ng-click="show_description_modal($event)">Description</span>
 					<p class="less">{{short_description}}</p>
 					<p class="more hidden">{{description}}</p>
-					<!-- Here additional text is located -->
-
 				</div>
 				<div class="card-action">
-
-					<a ng-click="less_more($event)" href="#" class="green-text">Show
-						more</a>
-					</p>
+					<a ng-click="less_more($event)" href="#"
+						class="green-text show-more-less">Show more</a>
 				</div>
+				<!-- </div> -->
 			</div>
-		</div>
-		<div class="col s1 mycol">&nbsp;</div>
-		<div class="col s5">
 
+			<div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div>
 
-			<div class="card white place">
+			<div class="col s12 l5 m5 card white place location">
+				<!-- <div class="card white place"> -->
 				<div class="card-content grey-text text-darken-1">
-					<span class="card-title">Location</span><br />
-
+					<span class="card-title" ng-click="show_modal($event)">Location</span><br />
 					<p>
-						<img class="responsive-img"
-							src="https://lh3.googleusercontent.com/PBKB0xsIXLFWSCLJLFODyXNDES6WWQbJJDWLLJvLv4DXLzLUvnJIkxZ4nC_oruEMQ1IHUg=s85" />
+						<img class="responsive-img" src="/resources/images/gps-icon.png" />
 						{{region}}
 					</p>
-					<!-- <img src="/images/gps-icon.png"> -->
 				</div>
+				<!-- </div> -->
 			</div>
 
-			<div class="card white place">
+			<div class="col s12 l5 m5 card white place other-info">
+				<!-- <div class=""> -->
 				<div class="card-content grey-text text-darken-1">
-					<span class="card-title">Other Info</span><br />
+					<span class="card-title" ng-click="show_modal($event)">Other Info</span><br />
 					<p>
 						<img class="responsive-img"
 							src="http://badwolfohio.com/images/facebook.jpg" />
 						{{otherInfo}}
 					</p>
 				</div>
+				<!-- </div> -->
+			</div>
+			<!-- </div> mytable -->
+		</div>
+
+		<div class="row indented-header">
+			<div class="col s12 m12 l12 card-content grey-text text-darken-1">
+				<h3>Feedbacks about place</h3>
+			</div>
+		</div>
+		<div class="row grid feedback indented-content">
+
+			<div class="col s12 m5 l5 grid-item card white">
+				<div class="card-content grey-text text-darken-1">
+					<!-- <span class="card-title grey-text"> Add a Feedback </span><br /> -->
+					<span class="card-title" ng-click="show_modal($event)">
+					<img class="circle" src="/resources/images/user_icon.png" />
+					<span class="smallertext">Your feedback </span>
+							<span ng-bind="list.items.text"></span>
+						<div class="circle grey lighten-2">
+							<i class="material-icons">photo_camera</i>
+						</div> 
+					</span>
+					<!-- <p ng-click="show_modal($event)">Your feedback</p> -->
+					<!--  <textarea name="" placeholder="Add a feedback..." id="" cols="30"
+						rows="10" ng-model="user_feedback" ng-change="show_modal($event)"></textarea>
+					<input type="submit"
+						class="add-feedback waves-effect waves-light btn-flat"
+						ng-click="addFeedback()" value="Save"> -->
+
+				</div>
 			</div>
 
+			<!-- <div class=" col l1 m1 emptycol hide-on-small-only grid-item grid-item-spacer">&nbsp;</div> -->
+
+			<div class="col s12 m5 l5 grid-item card white"
+				ng-repeat="(i, feedback) in feedbacks" less="true">
+
+				<div class="card-content grey-text text-darken-1">
+					<span class="card-title"> <img class="circle"
+						ng-src="{{feedback.avatar}}" /> <span>{{feedback.username}}</span>
+					</span><br />
+					<p class="less">{{feedback.text.substr(0, 400)}}</p>
+					<p class="more hidden">{{feedback.text}}</p>
+				</div>
+				<div class="card-action">
+					<a ng-click="less_more($event)" href="#"
+						class="green-text show-more-less">Show more</a>
+				</div>
+			</div>
 		</div>
+		<div class="place-overlay">&nbsp;</div>
 	</div>
 
-	<div class="row">
-		<div class="card-content grey-text text-darken-1">
-			<h3>Feedbacks about place</h3>
-		</div>
-		<div class="card white feedback s12 l6 m6">
-			<div class="card-content grey-text text-darken-1">
-				<span class="card-title"> <img class="circle"
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/1024px-Blank_woman_placeholder.svg.png" />
-					Elly Dickinson
-				</span><br />
-				<p>{{feedbacks}}</p>
-			</div>
-		</div>
-		<div class="card white feedback s12 l6 m6">
-			<div class="card-content grey-text text-darken-1">
-				<span class="card-title"> 
-					Add a Feedback
-				</span><br />
-				<form ng-submit="">
-					<textarea name="" placeholder="Add a feedback..." id="" cols="30" rows="10" ng-model="user_feedback"></textarea>
-					<input type="submit" class="add-feedback waves-effect waves-light btn-flat" ng-click="addFeedback()" value="Save">
-				</form>
-			</div>
-		</div>
-	</div>
+
 </div>

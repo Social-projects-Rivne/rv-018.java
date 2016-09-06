@@ -25,6 +25,7 @@
 </head>
 <body ng-controller="menuController">
 		<!-- Header -->
+	<div ng-controller="mainController">
 		<header id="header">
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
@@ -87,7 +88,82 @@
 				</div>		   
 	    </main>
 
-    
+	</div>
+
+	<div id="feedback-modal" class="modal modal-fixed-footer"
+		ng-controller="PlaceFeedbackController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <img
+				class="circle feedback-userpic" ng-src="{{avatar}}" /> <span>{{username}}</span>
+			</span><br />
+
+			<div class="input-field">
+				<div class="typeit">Type your feedback</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+			<form action="#">
+				<div class="file-field input-field images-uploader">
+					<div class="commenting-button">
+						<span><i
+							class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
+						<input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
+
+	<div id="name-modal" class="modal modal-fixed-footer"
+		ng-controller="EditPlaceController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <span>{{name}}</span>
+			</span><br />
+			<div class="input-field">
+				<div class="typeit">Type new name of the place</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
+
+	<div id="description-modal" class="modal modal-fixed-footer"
+		ng-controller="EditPlaceController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <span>{{description}}</span>
+			</span><br />
+			<div class="input-field">
+				<div class="typeit">Type new description of the place</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
+
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
@@ -100,11 +176,12 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-animate.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-aria.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
-	
 	<script src="${pageContext.request.contextPath}/resources/assets/moment.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/picker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
@@ -119,6 +196,9 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>

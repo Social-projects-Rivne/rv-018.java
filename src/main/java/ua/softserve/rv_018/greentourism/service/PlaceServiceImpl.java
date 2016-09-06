@@ -3,6 +3,8 @@ package ua.softserve.rv_018.greentourism.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +17,18 @@ import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 
 @Service
-@Transactional(
-        propagation = Propagation.SUPPORTS,
-        readOnly = true)
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class PlaceServiceImpl implements PlaceService {
 	/**
-     * The logger service for logging purpose.
-     */
+	 * The logger service for logging purpose.
+	 */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	/**
-     * The Spring Data repository for Places entities.
-     */
-    @Autowired
-    private PlaceRepository placeRepository;
+	 * The Spring Data repository for Places entities.
+	 */
+	@Autowired
+	private PlaceRepository placeRepository;
 
 	@Override
 	public List<Place> findAll() {
@@ -36,34 +36,35 @@ public class PlaceServiceImpl implements PlaceService {
 
 		List<Place> places = placeRepository.findAll();
 
-        logger.info("< Place findAll");
-        
-        return places;
+		logger.info("< Place findAll");
+
+		return places;
 	}
-	
+
 	@Override
 	public Place findOne(int id) {
 		logger.info("> Place findOne id:{}", id);
 
-        Place place = placeRepository.findById(id);
+		Place place = placeRepository.findById(id);
 
-        logger.info("< Place findOne id:{}", id);
+		logger.info("< Place findOne id:{}", id);
 
-        return place;
+		return place;
 	}
-	
+
 	@Override
 	public List<Place> findByName(String name, boolean checkIgnoreCase, boolean checkContaining) {
 		logger.info("> Place findByName");
 
 		List<Place> places = new ArrayList<>();
-		
+
 		if (checkIgnoreCase && checkContaining) {
 			places = placeRepository.findByNameIgnoreCaseContaining(name);
 		}
-		// here will be other findByName... methods due to checkIgnoreCase && checkWholeWord values
+		// here will be other findByName... methods due to checkIgnoreCase &&
+		// checkWholeWord values
 
-        logger.info("< Place findByName");
+		logger.info("< Place findByName");
 
 		return places;
 	}
@@ -72,8 +73,7 @@ public class PlaceServiceImpl implements PlaceService {
 	public List<Point> findPlacePointsBetweenTwoCoordinates(Point southWest, Point northEast) {
 		logger.info("> Place findPlacePointsBetweenTwoCoordinates");
 
-		List<Place> places = placeRepository.findBetweenTwoPoints(
-				southWest.getLatitude(), southWest.getLongitude(),
+		List<Place> places = placeRepository.findBetweenTwoPoints(southWest.getLatitude(), southWest.getLongitude(),
 				northEast.getLatitude(), northEast.getLongitude());
 		List<Point> points = getPointsFromPlaces(places);
 		
@@ -84,22 +84,47 @@ public class PlaceServiceImpl implements PlaceService {
 
 	private List<Point> getPointsFromPlaces(List<Place> places) {
 		List<Point> points = new ArrayList<>();
-		
+
 		for (Place place : places) {
 			points.add(place.getPoint());
 		}
-		
+
 		return points;
 	}
-	
+
 	@Override
 	public Place create(Place place) {
 		logger.info("> Place create");
-		
+
 		Place savedPlace = placeRepository.save(place);
-		
+
 		logger.info("> Place create");
-		
+
 		return savedPlace;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Place update(Place place) {
+		logger.info("> Place update id:{}", place.getId());
+
+		// Ensure the entity object to be updated exists in the repository to
+		// prevent the default behavior of save() which will persist a new
+		// entity if the entity matching the id does not exist
+		Place placeToUpdate = findOne(place.getId());
+		if (placeToUpdate == null) {
+			// Cannot update Place that hasn't been persisted
+			logger.error("Attempted to update a Place, but the entity does not exist.");
+			throw new NoResultException("Requested entity not found.");
+		}
+
+		placeToUpdate.setName(place.getName());
+		placeToUpdate.setDescription(place.getDescription());
+
+		Place updatedPlace = placeRepository.save(placeToUpdate);
+
+		logger.info("< Place update id:{}", updatedPlace.getId());
+
+		return updatedPlace;
 	}
 }

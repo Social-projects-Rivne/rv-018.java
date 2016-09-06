@@ -35,8 +35,12 @@ public class Place {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private Category category;
-
+	
 	public Place() {}
+
+	public Place(int i, String string, String string2, String string3, String string4, String string5) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getId() {
 		return id;

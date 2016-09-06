@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import ua.softserve.rv_018.greentourism.model.Place;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, Long> {
+public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<Place> findByNameIgnoreCaseContaining(String name);
 	
 	@Query(value="select place.* "

@@ -37,4 +37,11 @@ public interface PlaceService {
      * @return The persisted Place entity.
      */
     Place create(Place place); 
+    
+    /**
+     * Updates a previously persisted Place entity in the data store.
+     * @param place A Place object to be updated.
+     * @return The updated Place entity.
+     */
+    Place update(Place place);
 }
