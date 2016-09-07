@@ -1,5 +1,6 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import ua.softserve.rv_018.greentourism.model.Event;
@@ -17,6 +18,12 @@ public interface EventService {
      * @return A List of Event objects.
      */
 	List<Point> findEventPointsBetweenTwoCoordinates(Point southWest, Point northEast);
+	
+	/**
+     * Find all Points entities between two dates.
+     * @return A List of Event objects.
+     */
+	List<Point> findEventPointsBetweenTwoDates(Date startDate, Date endDate);
 	
 	/**
      * Persists a Event entity in the data store.

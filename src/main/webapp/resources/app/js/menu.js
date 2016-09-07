@@ -4,7 +4,7 @@
                     content = body.find('.content'),
                     menuList = body.find('.not-active');
                 menuButton.on('click', function(e){
-                    menuList.toggleClass('active-ul');
                     content.toggleClass('transf-content');
+                    menuList.toggleClass('active-ul');
                 });
             })();
