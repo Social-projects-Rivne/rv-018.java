@@ -72,7 +72,7 @@
 				<div class="card-content">
 					<h5 class="card-title activator grey-text ">
 						{{place.name}}<i class="material-icons right modal-trigger"
-							href="#edit-place">mode_edit</i>
+							href="" ng-click="modalTrigger()">mode_edit</i>
 					</h5>
 				</div>
 				<div class="card-image-place" data-ng-repeat="fileSrc in place.attachments">
@@ -154,13 +154,13 @@
 	<div id="edit-place" class="modal">
 		<div class="modal-content">
 			<div>
-				<label for="name"><h6>Edit First Name:</h6> </label> <input
+				<label for="name"><h6>Place Name:</h6> </label> <input
 					type="text" id="name" ng-model="name"
 					placeholder="enter name of place" />
 			</div>
 			<div>
-				<label for="placeFoto"><h6>Edit Last Name:</h6> </label> <input
-					type="text" id="placeFoto" ng-model="placeFoto"
+				<label for="fileSrc"><h6>Edit Place Foto:</h6> </label> <input
+					type="text" id="fileSrc" ng-model="fileSrc"
 					placeholder="enter places url" />
 			</div>
 		</div>

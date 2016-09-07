@@ -8,6 +8,20 @@ component('profile', {
 		var successCallBack = function(response){
     		$scope.places = response.data;
     		console.log($scope.places);
+    		console.log($scope.places[0].name);
+    		
+    		
+    		
+    		$.each(response.data, function(index, element) {
+    			$scope.attachments = [];
+    			console.log($scope.attachments);
+    			console.log($scope.attachments[0].element.id);
+	    		$.each(this.attachments, function(index, element) {
+	    			$scope.attachments.push({element});
+	    			
+	    		});
+    		});
+    		
 	    };
 	    
 		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
@@ -85,6 +99,8 @@ component('profile', {
 	$(document).ready(function(){
 		  $('.modal-trigger').leanModal();
 	});
+	
+	$scope.modalTrigger = function () { $('#edit-place').openModal() };
 		
 	$scope.ImageUrl="http://content.screencast.com/users/kazakov/folders/Snagit/media/9777b814-7f03-40b4-bafd-c64a0d39e95c/08.31.2016-23.23.png";
 	}
