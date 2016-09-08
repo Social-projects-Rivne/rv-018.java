@@ -118,7 +118,7 @@ nav .brand-logo {
 }
 /* Actual content of page styles */
 .content {
-	height: 100vh;
+	height: 90vh;
  	width: 83.4%; 
 	margin-left: 6.13%;
 	margin-top: 0px;
@@ -307,4 +307,129 @@ calendar-md .md-toolbar-tools h2 {
 
 md-content {
 	overflow: hidden;
+}
+/*-------------- user profile --------------*/
+#profile-page-header {
+	margin-top: -20px;
+	top: 5px;
+}
+
+#profile-page-header .card-image {
+	height: 250px;
+}
+
+.waves-block {
+	display: block;
+}
+
+#profile-page-header .card-profile-username {
+	cursor: pointer;
+	right: 0;
+	margin-top: -4%;
+	position: absolute;
+	top: 50%;
+	width: 80%;
+	z-index: 1;
+	/*padding: 10% 0;*/
+}
+
+#profile-page-header .card-profile-button {
+	cursor: pointer;
+	right: 40px;
+	margin-top: -15px;
+	position: absolute;
+	top: 50%;
+	width: 30%;
+	z-index: 1;
+	background-color: #FFFFFF;
+	color: #8E8E8E;
+	border: none;
+	border-radius: 2px;
+	display: inline-block;
+	height: 20%;
+	line-height: 36px;
+	outline: 0;
+	font-size: 180%;
+	text-transform: uppercase;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.card .card-content p {
+	color: #8e8e8e;
+	font-size: 123%;
+	margin: 0;
+}
+
+.card-profile-image .circle {
+	border: 3px solid white; /* Параметры рамки */
+}
+
+.card .card-view-map {
+	background-color: inherit;
+	border-top: 1px solid rgba(160, 160, 160, 0.2);
+	padding: 20px;
+	position: relative;
+}
+
+.card-view-map a {
+	color: #8E8E8E;
+	font-size: 117%;
+}
+
+.lean-overlay {
+	position: inherit;
+	z-index: 999;
+	top: -100px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 125%;
+	width: 100%;
+	background: #000;
+	display: none;
+	will-change: opacity;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	background-color: #fafafa;
+	padding: 0;
+	max-height: 100%;
+	width: 55%;
+	margin: auto;
+	overflow-y: auto;
+	border-radius: 2px;
+	will-change: top, opacity;
+}
+
+.card .card-image img {
+	display: block;
+	position: relative;
+	left: 20px;
+	right: 0;
+	top: 55px;
+	bottom: 0;
+	width: 75%;
+	border: 3px solid white;
+	border-radius: 50%;
+}
+
+.card .card-image-place img {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 300px;
+}
+
+.card-anotation {
+	color: #8E8E8E;
+	font-size: 115%;
+}
+
+.card {
+    margin: 0.5rem 10px 1rem 0;
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import ua.softserve.rv_018.greentourism.model.Place;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, Long> {
+public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<Place> findByNameIgnoreCaseContaining(String name);
 	
 	@Query(value="select place.* "
@@ -24,4 +24,9 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 			@Param("south_west_longitude") Float southWestLongitude,
 			@Param("north_east_latitude") Float northEastLatitude,
 			@Param("north_east_longitude") Float northEastLongitude);
+	
+	@Query(value="select place.* from place where place.owner_id = :user_id"
+			, nativeQuery=true)
+	List<Place> findByUserId(
+			@Param ("user_id") Long id);
 }

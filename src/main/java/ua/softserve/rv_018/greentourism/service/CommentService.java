@@ -10,4 +10,3 @@ public interface CommentService {
      */
 	Comment create(Comment comment);
 }
-

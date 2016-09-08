@@ -3,7 +3,7 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http, CalendarIsOpen) {
+    controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen) {
     	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	$rootScope.myMap = mymap;
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
@@ -88,5 +88,24 @@ angular.module('greenApp')
 		};
 		
 		$rootScope.$emit('initMarkerController', {});
+		
+		$scope.findById = function () {
+	    	var successCallBack = function(response){
+	    		$scope.latitude =  response.data.latitude;
+	    		$scope.longitude =  response.data.longitude; 
+	    		
+	    		mymap.setView([$scope.latitude, $scope.longitude], 13);
+	    		
+				marker = new L.Marker([$scope.latitude, $scope.longitude]);
+				mymap.addLayer(marker);
+	    		marker.setLatLng([$scope.latitude, $scope.longitude]);
+		    };
+			
+			$http.get(_contextPath + '/point/' + $routeParams.id).then(successCallBack);
+		};
+
+		if ($routeParams.id) { 
+			$scope.findById(); 
+		} 
     }
 });

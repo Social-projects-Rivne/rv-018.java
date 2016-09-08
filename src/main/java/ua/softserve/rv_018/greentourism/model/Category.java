@@ -59,5 +59,4 @@ public class Category {
 				+ ", name=" + name 
 				+ ", tableType=" + tableType + "]";
 	}
-	
 }
