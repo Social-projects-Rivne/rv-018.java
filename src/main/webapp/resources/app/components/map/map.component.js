@@ -4,15 +4,14 @@ angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope, $http, CalendarIsOpen, $templateCache) {
-    	/*if($rootScope.myMap){
-    		//$templateCache.removeAll();
-    		$rootScope.myMap.remove();
-    		
+    	if ($rootScope.myMap) {
+    		$rootScope.myMap
+    		$rootScope.myMap.remove(); 		
     	}
     	
     	$scope.removeCache = function() {
-    		$templateCache.removeAll();
-    	}*/
+    		$templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
+    	}
     	console.log("Map component")
     	$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	

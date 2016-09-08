@@ -312,7 +312,7 @@ textarea.form-control {
 }
 
 .place-image {
-	width: 33%;
+	width: 70px;
 	float: left;
 	height: 100%;
 	border: 1px solid black;
@@ -328,7 +328,7 @@ textarea.form-control {
 	margin-left: 10px;
 	font-size: 85%;
 	font-color: #545454;
-	border: 1px solid black;
+	overflow: hidden;
 }
 
 
