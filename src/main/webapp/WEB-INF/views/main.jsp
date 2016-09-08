@@ -10,7 +10,6 @@
 	<!-- Angular material -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/angular-material.min.css">
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/picker.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.css">
 	<!--Import Google Icon Font-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
@@ -103,7 +102,6 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/resources/assets/moment.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/picker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
 	<!-- Core scripts -->

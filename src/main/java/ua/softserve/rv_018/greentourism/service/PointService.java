@@ -9,4 +9,11 @@ public interface PointService {
 	 * @return A created point
 	 */
 	Point createPoint(String coordinate);
+	
+	/**
+     * Find a single Point entity by primary key identifier.
+     * @param id A Integer primary key identifier.
+     * @return A Point or <code>null</code> if none found.
+     */
+    Point findOne(Integer id);
 }

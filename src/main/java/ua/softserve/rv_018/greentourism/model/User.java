@@ -25,6 +25,10 @@ public class User {
     private String password;
     @Column(name = "is_active", nullable = false, columnDefinition = "boolean default false")
     private boolean isActive;
+    @Column(name = "social_account")
+    private String socialAccount;
+    @Column(name = "userpic")
+    private String userpic;
 
     public User() {}
 
@@ -100,6 +104,22 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getSocialAccount() {
+		return socialAccount;
+	}
+
+	public void setSocialAccount(String socialAccount) {
+		this.socialAccount = socialAccount;
+	}
+	
+	public String getUserpic() {
+		return userpic;
+	}
+
+	public void setUserpic(String userpic) {
+		this.userpic = userpic;
 	}
 
 	@Override

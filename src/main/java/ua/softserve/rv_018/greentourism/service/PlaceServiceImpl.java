@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 
 @Service
@@ -29,6 +31,12 @@ public class PlaceServiceImpl implements PlaceService {
      */
     @Autowired
     private PlaceRepository placeRepository;
+
+	/**
+     * The Spring Data repository for Attachment entities.
+     */
+    @Autowired
+    private GalleryRepository galleryRepository;
 
 	@Override
 	public List<Place> findAll() {
@@ -90,5 +98,51 @@ public class PlaceServiceImpl implements PlaceService {
 		logger.info("> Place create");
 		
 		return savedPlace;
+	}
+	
+	@Override
+	public Place findOne(Integer id) {
+		logger.info("> Place findOne id:{}", id);
+
+        Place place = placeRepository.findOne(id);
+
+        logger.info("< Place findOne id:{}", id);
+
+        return place;
+	}
+
+	@Override
+	public List<Place> findByUserId(Long id) {
+		logger.info("> Place findByUserId");
+		
+		List<Place> places = placeRepository.findByUserId(id);
+		
+		logger.info("< Place findByUserId");
+		
+		return places;
+	}
+
+	@Override
+	public List<Place> findByUserIdWithAttachments(Long id) {
+		logger.info("> Place findByUserIdWithAttachment");
+		
+		List<Place> places = placeRepository.findByUserId(id);
+		
+		List<Gallery> galleries = galleryRepository.findByPlaces(places);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+			
+			for (Place place : places) {
+				if (place.getId() == gallery.getPlace().getId()) {
+					place.getAttachments().add(gallery.getAttachment());
+				}
+			}
+		}
+		
+		logger.info("< Place findByUserIdWithAttachment");
+		
+		return places;
 	}
 }
