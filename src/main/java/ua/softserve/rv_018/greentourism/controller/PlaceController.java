@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
+import ua.softserve.rv_018.greentourism.service.UserService;
 
 @RequestMapping(value = "/api/place")
 @Controller
@@ -34,6 +36,9 @@ public class PlaceController {
 	
 	@Autowired
 	private PointService pointService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -123,5 +128,18 @@ public class PlaceController {
         logger.info("< createPlace");
     
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+    }
+    
+   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getPlaceByUser(
+    		@PathVariable ("id") long id) {
+        logger.info("> getPlace id:{}", id);
+
+        List<Place> places = placeService.findByUserIdWithAttachments(id);
+        
+        logger.info("< getPlaceByUser id:{}", id);
+        
+        return new ResponseEntity<>(places, HttpStatus.OK);
     }
 }
