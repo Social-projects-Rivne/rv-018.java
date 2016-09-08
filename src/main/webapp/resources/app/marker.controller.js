@@ -23,7 +23,7 @@ angular.module('greenApp')
 					})
 					.then(function(response){
 						$scope.progressBarVision = false;
-						var points = response.data;
+						let points = response.data;
 	
 						if (MapMarkersArray.mapMarkersArrayParam.length > 0)
 							angular.forEach(MapMarkersArray.mapMarkersArrayParam, function(marker, key){
@@ -33,14 +33,14 @@ angular.module('greenApp')
 						
 						var markerIcon = null;
 						if (urlPath == "place") {
-							var BlueIcon = L.Icon.Default.extend ({
+							let BlueIcon = L.Icon.Default.extend ({
 								options: {
 									iconUrl: 'http://www.clker.com/cliparts/q/I/Q/u/Z/1/marker-hi.png'
 								}
 							});
 							markerIcon = new BlueIcon(); 
 						} else if (urlPath = "event") {
-							var GreenIcon = L.Icon.Default.extend ({
+							let GreenIcon = L.Icon.Default.extend ({
 								options: {
 									iconUrl: 'http://www.clker.com/cliparts/G/e/o/0/f/m/map-pin-red-hi.png'
 								}
@@ -97,7 +97,7 @@ angular.module('greenApp')
 			})
 			.then(function(response){
 				$scope.progressBarVision = false;
-				var points = response.data;
+				let points = response.data;
 
 				if (MapMarkersArray.mapMarkersArrayParam.length > 0)
 					angular.forEach(MapMarkersArray.mapMarkersArrayParam, function(marker, key){
@@ -107,14 +107,14 @@ angular.module('greenApp')
 					
 				var markerIcon = null;
 				if (urlPath == "place") {
-					var BlueIcon = L.Icon.Default.extend ({
+					let BlueIcon = L.Icon.Default.extend ({
 						options: {
 							iconUrl: 'http://www.clker.com/cliparts/q/I/Q/u/Z/1/marker-hi.png'
 						}
 					});
 					markerIcon = new BlueIcon(); 
 				} else if (urlPath = "event") {
-					var GreenIcon = L.Icon.Default.extend ({
+					let GreenIcon = L.Icon.Default.extend ({
 						options: {
 							iconUrl: 'http://www.clker.com/cliparts/G/e/o/0/f/m/map-pin-red-hi.png'
 						}

@@ -41,7 +41,7 @@ angular.module('greenApp')
 					$scope.selectedDate = [];
 					$log.info(response);
 					
-					var points = response.data;
+					let points = response.data;
 	
 					if (MapMarkersArray.mapMarkersArrayParam.length > 0)
 						angular.forEach(MapMarkersArray.mapMarkersArrayParam, function(marker, key){
@@ -50,7 +50,7 @@ angular.module('greenApp')
 						MapMarkersArray.mapMarkersArrayParam = [];
 						
 					var markerIcon = null;
-					var GreenIcon = L.Icon.Default.extend ({
+					let GreenIcon = L.Icon.Default.extend ({
 						options: {
 							iconUrl: 'http://www.clker.com/cliparts/G/e/o/0/f/m/map-pin-red-hi.png'
 						}

@@ -52,7 +52,7 @@ angular.module('greenApp')
 		};
 
 		$scope.createNewPlace = function(form) {
-			var dataObj = {
+			let dataObj = {
 				name : $scope.newPlaceName,
 				category : $scope.newPlaceType,
 				description : $scope.newPlaceDescription,
@@ -62,7 +62,7 @@ angular.module('greenApp')
 				}
 			};
 			
-			var successCallback = function(response){
+			let successCallback = function(response){
 				$scope.submissionSuccess = true;
 				setTimeout(function() {
 					$scope.$apply(function() {
@@ -71,7 +71,7 @@ angular.module('greenApp')
 				}, 5000);
 		    };
 		    
-		    var errorCallback = function(response){
+		    let errorCallback = function(response){
 				$scope.submissionError = true;
 				$scope.submissionSuccess = false;
 				setTimeout(function() {
@@ -91,7 +91,7 @@ angular.module('greenApp')
 		$rootScope.$emit('initMarkerController', {});
 		
 		$scope.findById = function () {
-	    	var successCallBack = function(response){
+	    	let successCallBack = function(response){
 	    		$scope.latitude =  response.data.latitude;
 	    		$scope.longitude =  response.data.longitude; 
 	    		
