@@ -312,23 +312,27 @@ textarea.form-control {
 }
 
 .place-image {
+	display: inline;
 	width: 70px;
-	float: left;
 	height: 100%;
-	border: 1px solid black;
 }
 
 .places-list {
-	margin-top: 30px;
+	overflow: hidden;
 }
 
 .place-name {
 	width: 60%;
-	float: left;
-	margin-left: 10px;
+	display: inline;
+	padding-left: 10px;
 	font-size: 85%;
-	font-color: #545454;
 	overflow: hidden;
+	height: 100%;
+}
+
+.place-address {
+	font-color: #545454;
+	font-size: 90%;
 }
 
 

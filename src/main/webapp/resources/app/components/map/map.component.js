@@ -5,15 +5,20 @@ angular.module('greenApp')
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
     controller: function($rootScope, $scope, $http, CalendarIsOpen, $templateCache) {
     	if ($rootScope.myMap) {
-    		$rootScope.myMap
+    		$scope.previousMapCenter = $rootScope.myMap.getCenter();
+    		$scope.previousMapZoom = $rootScope.myMap.getZoom();
     		$rootScope.myMap.remove(); 		
     	}
     	
     	$scope.removeCache = function() {
     		$templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
     	}
-    	console.log("Map component")
-    	$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
+    	
+    	if ($scope.previousMapCenter) {
+    		$rootScope.myMap = L.map('mapid').setView($scope.previousMapCenter, $scope.previousMapZoom);
+    	} else {
+    		$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
+    	}
     	
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
     	
