@@ -21,7 +21,6 @@
     "materialize": "^0.97.7",
     "angular-material": "^1.1.0",
     "moment": "^2.14.1",
-    "smDateTimeRangePicker": "^1.6.1",
     "material-calendar": "^0.2.14",
     "angular-sanitize": "^1.5.8"
   }
