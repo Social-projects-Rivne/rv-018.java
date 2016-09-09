@@ -1,5 +1,8 @@
 package ua.softserve.rv_018.greentourism.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
@@ -36,6 +43,9 @@ public class Place {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	@Transient
+	private List<Attachment> attachments = new ArrayList<>();
+
 	public Place() {}
 
 	public Place(int i, String string, String string2, String string3, String string4, String string5) {
@@ -88,6 +98,14 @@ public class Place {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
 	}
 
 	@Override

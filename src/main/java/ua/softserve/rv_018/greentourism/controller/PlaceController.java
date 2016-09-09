@@ -181,7 +181,7 @@ public class PlaceController {
         if (placeService.findOne(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        
+         
         Place updatedPlace = placeService.update(place);
 
         logger.info("< updatePlace id:{}", place.getId());

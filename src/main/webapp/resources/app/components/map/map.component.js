@@ -3,10 +3,11 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http, CalendarIsOpen) {
+    controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown) {
     	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	$rootScope.myMap = mymap;
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
+		$scope.singletonCalendarButtonIsShown = CalendarButtonIsShown; 
     	
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
 			maxZoom : 18,
@@ -51,7 +52,7 @@ angular.module('greenApp')
 		};
 
 		$scope.createNewPlace = function(form) {
-			var dataObj = {
+			let dataObj = {
 				name : $scope.newPlaceName,
 				category : $scope.newPlaceType,
 				description : $scope.newPlaceDescription,
@@ -61,7 +62,7 @@ angular.module('greenApp')
 				}
 			};
 			
-			var successCallback = function(response){
+			let successCallback = function(response){
 				$scope.submissionSuccess = true;
 				setTimeout(function() {
 					$scope.$apply(function() {
@@ -70,7 +71,7 @@ angular.module('greenApp')
 				}, 5000);
 		    };
 		    
-		    var errorCallback = function(response){
+		    let errorCallback = function(response){
 				$scope.submissionError = true;
 				$scope.submissionSuccess = false;
 				setTimeout(function() {
@@ -88,5 +89,24 @@ angular.module('greenApp')
 		};
 		
 		$rootScope.$emit('initMarkerController', {});
+		
+		$scope.findById = function () {
+	    	let successCallBack = function(response){
+	    		$scope.latitude =  response.data.latitude;
+	    		$scope.longitude =  response.data.longitude; 
+	    		
+	    		mymap.setView([$scope.latitude, $scope.longitude], 13);
+	    		
+				marker = new L.Marker([$scope.latitude, $scope.longitude]);
+				mymap.addLayer(marker);
+	    		marker.setLatLng([$scope.latitude, $scope.longitude]);
+		    };
+			
+			$http.get(_contextPath + '/point/' + $routeParams.id).then(successCallBack);
+		};
+
+		if ($routeParams.id) { 
+			$scope.findById(); 
+		} 
     }
 });

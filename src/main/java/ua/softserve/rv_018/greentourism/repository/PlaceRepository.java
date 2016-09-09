@@ -24,5 +24,11 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 			@Param("south_west_longitude") Float southWestLongitude,
 			@Param("north_east_latitude") Float northEastLatitude,
 			@Param("north_east_longitude") Float northEastLongitude);
+
 	Place findById(int id);
+	
+	@Query(value="select place.* from place where place.owner_id = :user_id"
+			, nativeQuery=true)
+	List<Place> findByUserId(
+			@Param ("user_id") Long id);
 }
