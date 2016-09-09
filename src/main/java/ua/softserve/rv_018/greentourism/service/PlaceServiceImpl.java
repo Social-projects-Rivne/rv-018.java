@@ -134,6 +134,7 @@ public class PlaceServiceImpl implements PlaceService {
 		logger.info("< Place update id:{}", updatedPlace.getId());
 
 		return updatedPlace;
+	}
 	
 	@Override
 	public Place findOne(Integer id) {
