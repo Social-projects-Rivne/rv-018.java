@@ -5,7 +5,7 @@
 			<li ng-repeat="place in places">
 				<div class="found-place" ng-click="refocusMap(place.point.latitude, place.point.longitude)">
 					<div class="place-image">
-						<img src="#">
+						<img src="place.attachments[0]">
 					</div>
 					<div class="place-name">
 						<b>{{place.name}}</b>

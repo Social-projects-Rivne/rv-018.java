@@ -49,7 +49,7 @@
 		                        </nav>
 		                    </div>
 		                    <div class="col s1 m1 l1">
-		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn">Search</a>
+		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
 		                    </div>
 		                    <div class="col s2 m3 l4">
 		                        <i class="small material-icons right">perm_identity</i>
@@ -112,8 +112,6 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<!-- Components -->
-	
-	
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>

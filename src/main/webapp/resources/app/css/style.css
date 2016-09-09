@@ -485,3 +485,11 @@ md-content {
 	font-color: #545454;
 	font-size: 90%;
 }
+
+.btn-flat {
+	color: white;
+}
+
+.btn-flat:hover {
+    background-color: inherit;
+}
