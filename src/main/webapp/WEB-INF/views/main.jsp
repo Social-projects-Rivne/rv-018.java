@@ -52,7 +52,10 @@
 		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
 		                    </div>
 		                    <div class="col s2 m3 l4">
-		                        <i class="small material-icons right">perm_identity</i>
+		                      	<div class="user-dropdown" onclick="myFunction()">
+									<div class="top-profile-name">George</div>
+									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
+								</div>
 		                    </div>
 		                </div>
 		            </div>    
@@ -80,10 +83,29 @@
 				</div>
 				<!-- Actual content of the page -->
 				<div class="content">
+				<div id="form" class="login-form">
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="email" type="email" class="validate"> <label
+									for="email">Email</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="password" type="password" class="validate"> <label
+									for="password">Password</label>
+							</div>
+						</div>
+						<div class="row">
+							<a class="waves-effect waves-light btn" ng-click="login()">login</a> Already
+							registered? <a href="#">Sign In</a>
+						</div>
+					</div>
 					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 						<div class="indeterminate"></div>
 					</div>
 					<ng-view></ng-view>
+					
 				</div>		   
 	    </main>
 
