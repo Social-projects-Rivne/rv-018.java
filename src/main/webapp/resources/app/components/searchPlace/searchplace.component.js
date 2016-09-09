@@ -37,11 +37,11 @@ angular.
             $scope.getAddressOfPoint = function(latitude, longitude) {
                 $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude)
              	    .then(function(response) {
-             		    $scope.address.push(response.data.results[0].address_components[1].long_name 
-             			                    + ', ' + response.data.results[0].address_components[2].long_name);
+             	        $scope.address.push(response.data.results[0].address_components[1].long_name 
+                                            + ', ' + response.data.results[0].address_components[2].long_name);
              			
-             		    $scope.places[$scope.counter].address = $scope.address[$scope.counter];
-             		    $scope.counter++;
+                        $scope.places[$scope.counter].address = $scope.address[$scope.counter];
+                        $scope.counter++;
              	});
              }
         }]
