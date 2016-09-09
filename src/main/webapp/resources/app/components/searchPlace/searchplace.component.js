@@ -14,7 +14,6 @@ angular.
                 if($location.path() == '/map/searchplace')
              	    $scope.searchPlacesSidebarOpen = true;
              	
-             	
                 if (response.data.length == 0)
              	    $scope.noSuchResultMessage = true;
              	
@@ -23,7 +22,6 @@ angular.
 
              	    $scope.places[i].address = $scope.address[i];
              	}
-             	
              });
             
             $scope.closePlacesSidebar = function() {
