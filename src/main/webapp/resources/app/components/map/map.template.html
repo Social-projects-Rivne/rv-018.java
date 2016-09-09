@@ -1,7 +1,7 @@
-<div class="content">
-	
-	<div id="mapid"></div>
+<div class="content" ng-init="removeCache();">
 
+	<div id="mapid"></div>
+	
 	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
 		<a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out"
 			class="button-collapse btn-floating btn-large red modal-trigger">
@@ -94,4 +94,5 @@
 				</div>
 			</form>
 	</div>
+	<searchplace></searchplace>
 </div>

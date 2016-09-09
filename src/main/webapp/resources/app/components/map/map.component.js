@@ -3,9 +3,23 @@
 angular.module('greenApp')
   .component('map', {
     templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-    controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown) {
-    	var mymap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
-    	$rootScope.myMap = mymap;
+    controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+    	if ($rootScope.myMap) {
+    		$scope.previousMapCenter = $rootScope.myMap.getCenter();
+    		$scope.previousMapZoom = $rootScope.myMap.getZoom();
+    		$rootScope.myMap.remove(); 		
+    	}
+    	
+    	$scope.removeCache = function() {
+    		$templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
+    	}
+    	
+    	if ($scope.previousMapCenter) {
+    		$rootScope.myMap = L.map('mapid').setView($scope.previousMapCenter, $scope.previousMapZoom);
+    	} else {
+    		$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
+    	}
+    	
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
 		$scope.singletonCalendarButtonIsShown = CalendarButtonIsShown; 
     	
@@ -14,12 +28,12 @@ angular.module('greenApp')
 			attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 			+ '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, '
 			+ 'Imagery � <a href="http://mapbox.com">Mapbox</a>',
-			id : 'mapbox.streets'}).addTo(mymap);
+			id : 'mapbox.streets'}).addTo($rootScope.myMap);
 		
 		var marker;
-		mymap.on('click',function(e) {
+		$rootScope.myMap.on('click',function(e) {
 			marker = new L.Marker(e.latlng, {draggable:true});
-			mymap.addLayer(marker);
+			$rootScope.myMap.addLayer(marker);
 			$scope.latitude = marker.getLatLng().lat;
 			$scope.longitude = marker.getLatLng().lng;
 			document.getElementById('latitude').value = $scope.latitude;
@@ -85,7 +99,7 @@ angular.module('greenApp')
 		};
 		
 		$scope.resetAddPlaceForm = function(form) {
-			mymap.removeLayer(marker);
+			$rootScope.myMap.removeLayer(marker);
 		};
 		
 		$rootScope.$emit('initMarkerController', {});
