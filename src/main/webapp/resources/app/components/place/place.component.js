@@ -2,12 +2,15 @@
 
 angular
 		.module('greenApp')
+		.controller('OpenPlaceCtrl')
 		.component(
 				'place',
 				{
 					templateUrl : '/resources/app/components/place/place.template.html',
-					controller : function($scope, $http, $routeParams) {
-
+					controller : function($scope, $http, $routeParams, $location) {
+						
+						/*$scope.$location = $location;*/
+						
 						$scope.findById = function() {
 							// update only if id chosen
 							if (!$scope.id) {
@@ -219,6 +222,16 @@ angular
 							console.log($scope.placeopened);
 							$event.preventDefault();
 						}
+						
+						 $('.button-collapse').sideNav({
+						      menuWidth: "100%", // Default is 240
+						      edge: 'right', // Choose the horizontal origin
+						      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+						    }
+						  );
+						  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+						  //$('.collapsible').collapsible();
+						        
 
 						/*$scope.close-place-button = function($event) {
 							if($scope.placeopened = false) {

@@ -4,7 +4,7 @@ angular.module('greenApp')
 .controller('EditPlaceController')
   .component('editableplace', {
     templateUrl: _contextPath + '/WEB-INF/views/main.jsp',
-    controller: function($rootScope, $scope, $http) { 
+    controller: function($rootScope, $scope, $http, $routeParams) { 
     	$scope.findById = function () {
 	    	// update only if id chosen
 	    	if (!$scope.id) {
@@ -15,12 +15,14 @@ angular.module('greenApp')
 	    	var successCallBack = function(response){
 	    		$scope.name = response.data.name;
 				$scope.description = response.data.description;
+				console.log (response.data);
 		    };
 			
-			$http.get(_contextPath + '/api/place/' + $scope.id).then(successCallBack);
+			$http.get(_contextPath + '/api/place/' +  $routeParams.id).then(successCallBack);
 		};
     	 
 	    $scope.update = function () {
+	    	$scope.id = $routeParams.id;
 	    		// update only if id is specified
 	        if ($scope.id == undefined) {
 	    	    $scope.errorMessage = "Please, select the id of existing place and try again!"
@@ -35,9 +37,9 @@ angular.module('greenApp')
     	
     	    var res = $http.put(_contextPath + '/api/place/1/'+$scope.id, dataObj);
     	    res.success(function(data, status, headers, config) {
-    			    console.log(response);
+    			    /*console.log(response);
     			    $scope.name = response.data.name;
-    			    $scope.description = response.data.description;
+    			    $scope.description = response.data.description;*/
     		});
 		};
     }

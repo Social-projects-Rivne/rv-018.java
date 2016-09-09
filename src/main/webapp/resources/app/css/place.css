@@ -48,9 +48,6 @@
 	.feedback div.circle {
 		top: 9px !important;
 	}
-	.smallertext {
-        font-size: small;
-    }
 }
 
 .row.indented-content {

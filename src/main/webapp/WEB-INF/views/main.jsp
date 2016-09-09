@@ -20,12 +20,14 @@
 	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
+	<!-- Place page styles -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/place.css">
 	<!-- Supporting mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body ng-controller="menuController">
 		<!-- Header -->
-	<div ng-controller="mainController">
+	<div>
 		<header id="header">
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
