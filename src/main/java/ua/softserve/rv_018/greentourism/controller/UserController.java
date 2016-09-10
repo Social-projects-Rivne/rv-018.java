@@ -24,6 +24,7 @@ import java.util.Collection;
  * Created by Administrator on 6/24/2016.
  */
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
 	/**
      * The logger service for logging purpose.
@@ -50,7 +51,7 @@ public class UserController {
      * @return A ResponseEntity containing a single User object, if found,
      * and a HTTP status code as described in the method comment.
      */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getUser(@PathVariable Long id) {
         logger.info("> getUser id:{}", id);
@@ -72,7 +73,7 @@ public class UserController {
      *
      * @return A ResponseEntity containing a Collection of User objects.
      */
-    @RequestMapping(value = "/user", method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getUsers() {
     	
@@ -101,7 +102,7 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value = "/user", method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> createUser(@RequestBody User user) {
         logger.info("> createUser");
@@ -138,7 +139,7 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value="/user/{id}", method=RequestMethod.PUT,
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
@@ -170,7 +171,7 @@ public class UserController {
      * @return A ResponseEntity with an empty response body and a HTTP status
      * code as described in the method comment.
      */
-    @RequestMapping(value="/user/{id}", method=RequestMethod.DELETE,
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         logger.info("> deleteUser id:{}", id);
