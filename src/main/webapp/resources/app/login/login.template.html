@@ -1,18 +1,18 @@
-<div class="login-page">
-    <div class="well well-sm">
-		<h2>Green tourism</h2>
+<div id="form" class="login-form">
+	<div class="row">
+		<div class="input-field col s12">
+			<input id="email" type="email" ng-model="email"> <label
+				for="email">Email</label>
+		</div>
 	</div>
-  <div class="form">
-    <form class="register-form">
-      <div>
-      <input type="text" placeholder="email address"/><br>
-      <input type="password" placeholder="password"/><br>
-          </div>
-      <button>login</button>
-        <label><input type="checkbox"> Remember me</label>
-
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-  </div>
+	<div class="row">
+		<div class="input-field col s12">
+			<input id="password" type="password" ng-model="password"> <label
+				for="password">Password</label>
+		</div>
+	</div>
+	<div class="row">
+		<a class="waves-effect waves-light btn" ng-click="login()">login</a>
+		Already registered? <a href="#">Sign In</a>
+	</div>
 </div>
