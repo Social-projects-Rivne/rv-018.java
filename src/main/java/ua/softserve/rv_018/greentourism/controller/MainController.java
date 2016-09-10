@@ -44,18 +44,6 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/login")
-	public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error) {
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username or password!");
-		}
-
-		model.setViewName("login");
-
-		return model;
-	}
-	
 	@RequestMapping(value="/accessDenied", method=RequestMethod.GET)
 	public ModelAndView accessDenied(Principal user) {
 		ModelAndView model = new ModelAndView();
