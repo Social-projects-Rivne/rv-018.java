@@ -116,10 +116,10 @@
 						id="longitude" ng-model="longitude" disabled="disabled"></span>
 				</div>
 				<div class="form-group">
-					<label for="placeName"> <span class="title">2. Enter
-							place name:</span>
+					<label for="eventName"> <span class="title">2. Enter
+							event name:</span>
 					</label> <input type="text" name="name" class="form-control"
-						id="newPlaceName" ng-model="newPlaceName" ng-minlength="5" ng-maxlength="70" required>
+						id="newEventName" ng-model="newEventName" ng-minlength="5" ng-maxlength="70" required>
 				</div>
 				<div ng-messages="eventMaker.name.$error">
 					<p ng-message="minlength">Event name is too short. Event name should be at Least 5 characters</p>
@@ -127,8 +127,8 @@
 					<p ng-message="required">Event name is required. Place write name for event.</p>
 				</div>
 			<div class="form-group">
-					<label for="newPlaceType"> <span class="title">3.
-							Select place type:</span>
+					<label for="newEventType"> <span class="title">3.
+							Select event type:</span>
 					</label> <select name="category" class="form-control"
 						ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
 						ng-model="newPlaceType">
@@ -137,16 +137,28 @@
 				</div>
 				<div class="form-group">
 					<label for="description"> <span class="title">4.
-							Enter place description (optional):</span>
+						 Select date From :</span>
 					</label>
-					<textarea name="newPlaceDescription" id="newPlaceDescription"
-						class="form-control" ng-model="newPlaceDescription"></textarea>
+					 <input type="date" class="datepicker">
 				</div>
 				<div class="form-group">
-					<label for="newPlacePhoto"> <span class="title">5.
+					<label for="description"> <span class="title">5.
+						 Select date To :</span>
+					</label>
+					 <input type="date" class="datepicker">
+				</div>
+				<div class="form-group">
+					<label for="description"> <span class="title">6.
+							Enter event description (optional):</span>
+					</label>
+					<textarea name="newEventDescription" id="newEventDescription"
+						class="form-control" ng-model="newEventDescription"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="newEventPhoto"> <span class="title">7.
 							Add photo (optional):</span>
-					</label> <input type="text" name="fileSrc" id="newPlacePhoto"
-						class="form-control" ng-model="newPlacePhotos"
+					</label> <input type="text" name="fileSrc" id="newEventPhoto"
+						class="form-control" ng-model="newEventPhotos"
 						placeholder="Photo URL">
 				</div>
 				<div class="form-group">
