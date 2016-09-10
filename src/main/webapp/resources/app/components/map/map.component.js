@@ -7,48 +7,59 @@ angular.module('greenApp')
     	if ($rootScope.myMap) {
     		$scope.previousMapCenter = $rootScope.myMap.getCenter();
     		$scope.previousMapZoom = $rootScope.myMap.getZoom();
-    		$rootScope.myMap.remove(); 		
+    		$rootScope.myMap.remove();
     	}
-    	
+
     	$scope.removeCache = function() {
     		$templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
     	}
-    	
+
     	if ($scope.previousMapCenter) {
     		$rootScope.myMap = L.map('mapid').setView($scope.previousMapCenter, $scope.previousMapZoom);
     	} else {
     		$rootScope.myMap = L.map('mapid').setView([ 50.619900, 26.251617 ], 13);
     	}
-    	
+
 		$scope.singletonCalendarIsOpen = CalendarIsOpen;
-		$scope.singletonCalendarButtonIsShown = CalendarButtonIsShown; 
-    	
+		$scope.singletonCalendarButtonIsShown = CalendarButtonIsShown;
+
     	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',{
 			maxZoom : 18,
 			attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 			+ '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, '
 			+ 'Imagery � <a href="http://mapbox.com">Mapbox</a>',
 			id : 'mapbox.streets'}).addTo($rootScope.myMap);
-		
-		var marker;
-		$rootScope.myMap.on('click',function(e) {
-			marker = new L.Marker(e.latlng, {draggable:true});
-			$rootScope.myMap.addLayer(marker);
-			$scope.latitude = marker.getLatLng().lat;
-			$scope.longitude = marker.getLatLng().lng;
-			document.getElementById('latitude').value = $scope.latitude;
-			document.getElementById('longitude').value = $scope.longitude;
-			marker.setLatLng(e.latlng);
-			}
-		);
-		
+
+      var marker;
+      $rootScope.myMap.on('click',function(e) {
+        if (typeof(marker) === 'undefined') {
+          marker = new L.Marker(e.latlng);
+          $rootScope.myMap.addLayer(marker);
+          $scope.latitude = marker.getLatLng().lat;
+          $scope.longitude = marker.getLatLng().lng;
+          document.getElementById('latitude').value = $scope.latitude;
+          document.getElementById('longitude').value = $scope.longitude;
+          marker.setLatLng(e.latlng);
+        } else {
+          $rootScope.myMap.removeLayer(marker);
+          marker = new L.Marker(e.latlng);
+          $rootScope.myMap.addLayer(marker);
+          $scope.latitude = marker.getLatLng().lat;
+          $scope.longitude = marker.getLatLng().lng;
+          document.getElementById('latitude').value = $scope.latitude;
+          document.getElementById('longitude').value = $scope.longitude;
+          marker.setLatLng(e.latlng);
+        }
+      }
+    );
+
 		$scope.showOrHideCalendar = function() {
 			if ($scope.singletonCalendarIsOpen.getCalendarIsOpen())
 				$scope.singletonCalendarIsOpen.setCalendarIsOpen(false);
-			else 
+			else
 				$scope.singletonCalendarIsOpen.setCalendarIsOpen(true);
 		};
-		
+
 		$scope.addPlaceMenu = function() {
 			$scope.addPlaceMenuIsOpen = true;
 		};
@@ -56,11 +67,11 @@ angular.module('greenApp')
 		$scope.toggleAddPlaceMenu = function() {
 			$scope.addPlaceMenuIsOpen = false;
 		};
-		
+
 		$scope.hideButtonAddPlace = function(){
 			$scope.addButtonAddPlace = false;
 		}
-		
+
 		$scope.togleButtonAddPlace = function() {
 			$scope.addButtonAddPlace = true;
 		};
@@ -75,7 +86,7 @@ angular.module('greenApp')
 					longitude : $scope.longitude
 				}
 			};
-			
+
 			let successCallback = function(response){
 				$scope.submissionSuccess = true;
 				setTimeout(function() {
@@ -84,7 +95,7 @@ angular.module('greenApp')
 					});
 				}, 5000);
 		    };
-		    
+
 		    let errorCallback = function(response){
 				$scope.submissionError = true;
 				$scope.submissionSuccess = false;
@@ -97,31 +108,42 @@ angular.module('greenApp')
 
 			$http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
 		};
-		
+
 		$scope.resetAddPlaceForm = function(form) {
 			$rootScope.myMap.removeLayer(marker);
 		};
-		
+
 		$rootScope.$emit('initMarkerController', {});
-		
+
 		$scope.findById = function () {
 	    	let successCallBack = function(response){
 	    		$scope.latitude =  response.data.latitude;
-	    		$scope.longitude =  response.data.longitude; 
+	    		$scope.longitude =  response.data.longitude;
 	    		console.log($scope.latitude);
-	    		
+
 	    		$rootScope.myMap.setView([$scope.latitude, $scope.longitude], 13);
-	    		
+
 				marker = new L.Marker([$scope.latitude, $scope.longitude]);
 				$rootScope.myMap.addLayer(marker);
 	    		marker.setLatLng([$scope.latitude, $scope.longitude]);
 		    };
-			
+
 			$http.get(_contextPath + '/point/' + $routeParams.id).then(successCallBack);
 		};
 
-		if ($routeParams.id) { 
-			$scope.findById(); 
-		} 
+		if ($routeParams.id) {
+			$scope.findById();
+		}
+
+    // -----START ADD Event-----
+    $scope.addEventMenu = function() {
+      $scope.addEventMenuIsOpen = true;
+    };
+
+    $scope.toggleAddEventMenu = function() {
+      $scope.addEventMenuIsOpen = false;
+    };
+
+
     }
 });
