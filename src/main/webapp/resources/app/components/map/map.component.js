@@ -108,11 +108,12 @@ angular.module('greenApp')
 	    	let successCallBack = function(response){
 	    		$scope.latitude =  response.data.latitude;
 	    		$scope.longitude =  response.data.longitude; 
+	    		console.log($scope.latitude);
 	    		
-	    		mymap.setView([$scope.latitude, $scope.longitude], 13);
+	    		$rootScope.myMap.setView([$scope.latitude, $scope.longitude], 13);
 	    		
 				marker = new L.Marker([$scope.latitude, $scope.longitude]);
-				mymap.addLayer(marker);
+				$rootScope.myMap.addLayer(marker);
 	    		marker.setLatLng([$scope.latitude, $scope.longitude]);
 		    };
 			
