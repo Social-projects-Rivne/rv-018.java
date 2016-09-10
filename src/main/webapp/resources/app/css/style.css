@@ -530,3 +530,7 @@ md-content {
 .login-form-active {
     display: block;
 }
+/* ---- login from validation styles ---- */
+.login-form input.ng-invalid {
+	background: pink;
+}
