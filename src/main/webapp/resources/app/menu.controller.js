@@ -3,7 +3,7 @@
 angular.module('greenApp').controller('menuController', function($scope) {
 	
 	$scope.checkTabs = false;
-
+	
 	$scope.showTabs = function() {
 		$scope.checkTabs = true;
 		console.log("ShowTabs: $scope.checkTabs = " + $scope.checkTabs);
