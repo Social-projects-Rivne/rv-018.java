@@ -86,7 +86,10 @@ angular.module('greenApp')
     $scope.createNewPlace = function(form) {
       let dataObj = {
         name : $scope.newPlaceName,
-        category : $scope.newPlaceType,
+        category : {
+        	name : $scope.newPlaceType,
+          tableType : "place"
+        },
         description : $scope.newPlaceDescription,
         point : {
           latitude : $scope.latitude,
@@ -115,6 +118,8 @@ angular.module('greenApp')
 
       $http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
     };
+
+    $scope.places = ["Places of interest", "Places near water", "Recreation area"];
 
     $scope.resetAddPlaceForm = function(form) {
       if (marker) {
@@ -196,6 +201,10 @@ angular.module('greenApp')
       description : $scope.newEventDescription,
       dateStart : $scope.newStartDate,
       dateEnd : $scope.newEndDate,
+      category : {
+        name : $scope.newEventType,
+        tableType : "event"
+      },
       point : {
         latitude : $scope.latitudeE,
         longitude : $scope.longitudeE
@@ -224,6 +233,8 @@ angular.module('greenApp')
 
     $http.post(_contextPath + "/api/event/", dataObj).then(successCallback, errorCallback);
   };
+
+  $scope.events = ["Sport competition", "Festival", "Meeting"];
 
 
 }

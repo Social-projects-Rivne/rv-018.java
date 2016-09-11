@@ -71,8 +71,8 @@
 			<div class="form-group">
 					<label for="newPlaceType"> <span class="title">3.
 							Select place type:</span>
-					</label> <select name="category" class="form-control"
-						ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
+					</label> <select name="newPlaceType" class="form-control"
+						ng-options="x for x in places"
 						ng-model="newPlaceType">
 						<option value="">-- Choose place type --</option>
 					</select>
@@ -129,9 +129,9 @@
 			<div class="form-group">
 					<label for="newEventType"> <span class="title">3.
 							Select event type:</span>
-					</label> <select name="category" class="form-control"
-						ng-options="type as typeObj.name for (type, typeObj) in $ctrl.placesType track by type"
-						ng-model="newPlaceType">
+					</label> <select name="newEventType" class="form-control"
+						ng-options="x for x in events"
+						ng-model="newEventType">
 						<option value="">-- Choose event type --</option>
 					</select>
 				</div>
