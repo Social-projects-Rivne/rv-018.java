@@ -83,6 +83,7 @@
 				</div>
 				<!-- Actual content of the page -->
 				<div class="content">
+				<!-- Form for login will be replaced as separate file -->
 				<form id="form" class="login-form" ng-controller="loginController" novalidate>
 					<div class="row">
 						<div class="input-field col s12">
@@ -101,11 +102,12 @@
 						Already registered? <a href="#">Sign In</a>
 					</div>
 				</form>
-					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
-						<div class="indeterminate"></div>
-					</div>
-					<ng-view></ng-view>
-					
+				<!-- Progress bar for map -->
+				<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+					<div class="indeterminate"></div>
+				</div>
+				<!-- Components -->
+				<ng-view></ng-view>
 				</div>		   
 	    </main>
 

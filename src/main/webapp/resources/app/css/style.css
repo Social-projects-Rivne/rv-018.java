@@ -13,7 +13,7 @@
 .tabs {
 	height: inherit;
 }
-body {
+main {
 	background-color: #ededed;
 }
 
@@ -74,11 +74,10 @@ nav .brand-logo {
 	position: absolute;
 	margin-top: 10px;
 	margin-top: 0px;
-    height: 86vh;
+    height: 85vh;
 	background: #ededed;
 	border: none;
 	bottom: 0px;
-	margin-bottom: 7px;
 }
 
 .collection a.collection-item {
@@ -92,7 +91,7 @@ nav .brand-logo {
 	z-index: 1000;
 	margin-top: 20px;
 	text-align: left;
-	width: 16.6666666667%;
+	width: 13.98%;
 	transform: translate3d(-100%, 0, 0);
 	transition: transform 0.4s ease;
 }

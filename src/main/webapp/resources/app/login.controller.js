@@ -9,9 +9,10 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 		})
 		.then(function(response){
 			let user = response.data;
-			$location.path("/profile");
+			$location.path("/profile/" + user.id);
 			console.log(user);
 		}, function(error){
+			
 			console.log(error.data);
 		});
 	}
