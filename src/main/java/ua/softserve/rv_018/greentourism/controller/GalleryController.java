@@ -12,36 +12,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import ua.softserve.rv_018.greentourism.model.Attachment;
-import ua.softserve.rv_018.greentourism.service.AttachmentService;
+import ua.softserve.rv_018.greentourism.model.Gallery;
+import ua.softserve.rv_018.greentourism.service.GalleryService;
 
-@RequestMapping(value = "/api/attachment")
+@RequestMapping(value = "/api/gallery")
 @Controller
-public class AttachmentController {
+public class GalleryController {
 	/**
 	 * The logger service for logging purpose.
 	 */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private AttachmentService attachmentService;
+	private GalleryService galleryService;
 	/**
-     * Web service endpoint to create Attachment entity.
-     * The service returns the created Attachment entity url.
+     * Web service endpoint to create Gallery entity.
+     * The service returns the created Gallery entity url.
      *
-     * @return A ResponseEntity containing a url of created Attachment.
+     * @return A ResponseEntity containing a url of created Gallery.
      */
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json" })
-    public ResponseEntity<?> createAttachment(@RequestBody Attachment attachment) {
-    	logger.info("> createPlace");
+    public ResponseEntity<?> createGallery(@RequestBody Gallery gallery) {
+    	logger.info("> createGallery");
     
-        Attachment savedAttachment = attachmentService.create(attachment);
+        Gallery savedGallery = galleryService.create(gallery);
         
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-        	.buildAndExpand(savedAttachment.getId()).toUri());
+        	.buildAndExpand(savedGallery.getId()).toUri());
         
-        logger.info("< savedAttachment");
+        logger.info("< savedGallery");
     
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
