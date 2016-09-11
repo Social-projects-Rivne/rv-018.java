@@ -91,13 +91,11 @@ angular.module('greenApp')
           tableType : "place"
         },
         description : $scope.newPlaceDescription,
+        fileSrc: $scope.newPlacePhoto,
         point : {
           latitude : $scope.latitude,
           longitude : $scope.longitude
         },
-        attachment: {
-          fileSrc: $scope.newPlacePhoto
-        }
       };
       console.log(dataObj);
 
@@ -121,6 +119,7 @@ angular.module('greenApp')
       };
 
       $http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
+      $http.post(_contextPath + "/api/attachment/", dataObj).then(successCallback, errorCallback);
     };
 
     $scope.places = ["Places of interest", "Places near water", "Recreation area"];
@@ -152,7 +151,6 @@ angular.module('greenApp')
     if ($routeParams.id) {
       $scope.findById();
     }
-
     // -----START ADD Event-----
     $scope.addEventMenu = function() {
       $scope.addEventMenuIsOpen = true;
@@ -205,6 +203,7 @@ angular.module('greenApp')
       description : $scope.newEventDescription,
       dateStart : $scope.newStartDate,
       dateEnd : $scope.newEndDate,
+      fileSrc: $scope.newEventPhoto,
       category : {
         name : $scope.newEventType,
         tableType : "event"
@@ -213,9 +212,6 @@ angular.module('greenApp')
         latitude : $scope.latitudeE,
         longitude : $scope.longitudeE
       },
-      attachment: {
-        fileSrc: $scope.newEventPhoto
-      }
     };
     console.log(dataObj);
 
@@ -239,10 +235,9 @@ angular.module('greenApp')
     };
 
     $http.post(_contextPath + "/api/event/", dataObj).then(successCallback, errorCallback);
+    $http.post(_contextPath + "/api/attachment/", dataObj).then(successCallback, errorCallback);
   };
 
   $scope.events = ["Sport competition", "Festival", "Meeting"];
-
-
 }
 });
