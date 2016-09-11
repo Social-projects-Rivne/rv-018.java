@@ -87,15 +87,19 @@ angular.module('greenApp')
       let dataObj = {
         name : $scope.newPlaceName,
         category : {
-        	name : $scope.newPlaceType,
+          name : $scope.newPlaceType,
           tableType : "place"
         },
         description : $scope.newPlaceDescription,
         point : {
           latitude : $scope.latitude,
           longitude : $scope.longitude
+        },
+        attachment: {
+          fileSrc: $scope.newPlacePhoto
         }
       };
+      console.log(dataObj);
 
       let successCallback = function(response){
         $scope.submissionSuccess = true;
@@ -208,6 +212,9 @@ angular.module('greenApp')
       point : {
         latitude : $scope.latitudeE,
         longitude : $scope.longitudeE
+      },
+      attachment: {
+        fileSrc: $scope.newEventPhoto
       }
     };
     console.log(dataObj);
