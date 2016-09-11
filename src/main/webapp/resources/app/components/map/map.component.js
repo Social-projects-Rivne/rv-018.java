@@ -66,6 +66,13 @@ angular.module('greenApp')
 
     $scope.toggleAddPlaceMenu = function() {
       $scope.addPlaceMenuIsOpen = false;
+      $rootScope.myMap.off('click');
+      $scope.newPlaceName = "";
+      $scope.newPlaceType = "";
+      $scope.newPlaceDescription = "";
+      $scope.latitude = "";
+      $scope.longitude = "";
+      $scope.newPlacePhoto = "";
     };
 
     $scope.hideButtonAddPlace = function(){
@@ -165,6 +172,15 @@ angular.module('greenApp')
 
   $scope.toggleAddEventMenu = function() {
     $scope.addEventMenuIsOpen = false;
+    $rootScope.myMap.off('click');
+    $scope.newEventName = "";
+    $scope.newEventType = "";
+    $scope.newEventDescription = "";
+    $scope.newStartDate = "";
+    $scope.newEndDate = "";
+    $scope.latitudeE = "";
+    $scope.longitudeE = "";
+    $scope.newEventPhoto = "";
   };
 
   $scope.resetAddEventForm = function(form) {
