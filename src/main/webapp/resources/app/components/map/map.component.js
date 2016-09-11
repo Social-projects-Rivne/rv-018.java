@@ -30,7 +30,19 @@ angular.module('greenApp')
 			+ 'Imagery � <a href="http://mapbox.com">Mapbox</a>',
 			id : 'mapbox.streets'}).addTo($rootScope.myMap);
 
-      var marker;
+
+
+		$scope.showOrHideCalendar = function() {
+			if ($scope.singletonCalendarIsOpen.getCalendarIsOpen())
+				$scope.singletonCalendarIsOpen.setCalendarIsOpen(false);
+			else
+				$scope.singletonCalendarIsOpen.setCalendarIsOpen(true);
+		};
+
+    let marker;
+
+		$scope.addPlaceMenu = function() {
+			$scope.addPlaceMenuIsOpen = true;
       $rootScope.myMap.on('click',function(e) {
         if (typeof(marker) === 'undefined') {
           marker = new L.Marker(e.latlng);
@@ -52,16 +64,6 @@ angular.module('greenApp')
         }
       }
     );
-
-		$scope.showOrHideCalendar = function() {
-			if ($scope.singletonCalendarIsOpen.getCalendarIsOpen())
-				$scope.singletonCalendarIsOpen.setCalendarIsOpen(false);
-			else
-				$scope.singletonCalendarIsOpen.setCalendarIsOpen(true);
-		};
-
-		$scope.addPlaceMenu = function() {
-			$scope.addPlaceMenuIsOpen = true;
 		};
 
 		$scope.toggleAddPlaceMenu = function() {
@@ -110,7 +112,9 @@ angular.module('greenApp')
 		};
 
 		$scope.resetAddPlaceForm = function(form) {
-			$rootScope.myMap.removeLayer(marker);
+      if (marker) {
+        	$rootScope.myMap.removeLayer(marker);
+      }
 		};
 
 		$rootScope.$emit('initMarkerController', {});
@@ -145,14 +149,10 @@ angular.module('greenApp')
     };
 
     $scope.resetAddEventForm = function(form) {
-      $rootScope.myMap.removeLayer(marker);
+      if (marker) {
+          $rootScope.myMap.removeLayer(marker);
+      }
     };
-
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-
 
 
     }
