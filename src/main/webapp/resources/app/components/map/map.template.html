@@ -2,18 +2,18 @@
 
 	<div id="mapid"></div>
 
-	<div class="fixed-action-btn click-to-toggle" ng-show="addButtonAddPlace" ng-hide = "false">
+	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
 		<a class="button-collapse btn-floating btn-large red modal-trigger">
 			<i class="large material-icons">mode_edit</i>
 		</a>
 		<ul>
-      <li><a class="btn-floating red">
-				<i class="material-icons">directions_bike</i></a></li>
-      <li><a ng-click="addEventMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating yellow darken-1">
-				<i class="material-icons">sentiment_very_satisfied</i></a></li>
-      <li><a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating green">
-				<i class="material-icons">place</i></a></li>
-    </ul>
+	      <li><a class="btn-floating red">
+					<i class="material-icons">directions_bike</i></a></li>
+	      <li><a ng-click="addEventMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating yellow darken-1">
+					<i class="material-icons">sentiment_very_satisfied</i></a></li>
+	      <li><a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating green">
+					<i class="material-icons">place</i></a></li>
+	    </ul>
 	</div>
 
 	<div ng-controller="calendarCtrl">
@@ -111,9 +111,9 @@
 				<div class="form-group">
 					<span class="title">1. Choose event on map:</span><br>
 						<span class="title">Latitude: <input type="text" class="latlng"
-						id="latitude" ng-model="latitude" disabled="disabled"></span>
+						id="latitudeE" ng-model="latitudeE" disabled="disabled"></span>
 						<span class="title">Longitude: <input type="text" class="latlng"
-						id="longitude" ng-model="longitude" disabled="disabled"></span>
+						id="longitudeE" ng-model="longitudeE" disabled="disabled"></span>
 				</div>
 				<div class="form-group">
 					<label for="eventName"> <span class="title">2. Enter
@@ -136,16 +136,16 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="description"> <span class="title">4.
+					<label for="newStartDate"> <span class="title">4.
 						 Select date From :</span>
 					</label>
-					 <input type="date" class="datepicker">
+					 <input type="date" class="datepicker" id="newStartDate" ng-model="newStartDate" required>
 				</div>
 				<div class="form-group">
-					<label for="description"> <span class="title">5.
+					<label for="newEndDate"> <span class="title">5.
 						 Select date To :</span>
 					</label>
-					 <input type="date" class="datepicker">
+					 <input type="date" class="datepicker" id="newEndDate" ng-model="newEndDate" required>
 				</div>
 				<div class="form-group">
 					<label for="description"> <span class="title">6.
