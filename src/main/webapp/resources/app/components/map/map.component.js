@@ -85,134 +85,24 @@ angular.module('greenApp')
 
     $scope.createNewPlace = function(form) {
       let dataObj = {
-        name : $scope.newPlaceName,
-        category : {
-          name : $scope.newPlaceType,
-          tableType : "place"
+        place : {
+          name : $scope.newPlaceName,
+          description : $scope.newPlaceDescription,
+          point : {
+            latitude : $scope.latitude,
+            longitude : $scope.longitude
+          },
+          category : {
+            name : $scope.newPlaceType,
+            tableType : "place"
+          },
         },
-        description : $scope.newPlaceDescription,
-        fileSrc: $scope.newPlacePhoto,
-        point : {
-          latitude : $scope.latitude,
-          longitude : $scope.longitude
+        attachment: {
+          fileSrc: $scope.newPlacePhoto
         },
-      };
-      console.log(dataObj);
-
-      let successCallback = function(response){
-        $scope.submissionSuccess = true;
-        setTimeout(function() {
-          $scope.$apply(function() {
-            $scope.submissionSuccess = false;
-          });
-        }, 5000);
+        tableType : "place",
       };
 
-      let errorCallback = function(response){
-        $scope.submissionError = true;
-        $scope.submissionSuccess = false;
-        setTimeout(function() {
-          $scope.$apply(function() {
-            $scope.submissionError = false;
-          });
-        }, 5000);
-      };
-
-      $http.post(_contextPath + "/api/place/", dataObj).then(successCallback, errorCallback);
-      $http.post(_contextPath + "/api/attachment/", dataObj).then(successCallback, errorCallback);
-    };
-
-    $scope.places = ["Places of interest", "Places near water", "Recreation area"];
-
-    $scope.resetAddPlaceForm = function(form) {
-      if (marker) {
-        $rootScope.myMap.removeLayer(marker);
-      }
-    };
-
-    $rootScope.$emit('initMarkerController', {});
-
-    $scope.findById = function () {
-      let successCallBack = function(response){
-        $scope.latitude =  response.data.latitude;
-        $scope.longitude =  response.data.longitude;
-        console.log($scope.latitude);
-
-        $rootScope.myMap.setView([$scope.latitude, $scope.longitude], 13);
-
-        marker = new L.Marker([$scope.latitude, $scope.longitude]);
-        $rootScope.myMap.addLayer(marker);
-        marker.setLatLng([$scope.latitude, $scope.longitude]);
-      };
-
-      $http.get(_contextPath + '/point/' + $routeParams.id).then(successCallBack);
-    };
-
-    if ($routeParams.id) {
-      $scope.findById();
-    }
-    // -----START ADD Event-----
-    $scope.addEventMenu = function() {
-      $scope.addEventMenuIsOpen = true;
-      $rootScope.myMap.on('click',function(e) {
-        if (typeof(marker) === 'undefined') {
-          marker = new L.Marker(e.latlng);
-          $rootScope.myMap.addLayer(marker);
-          $scope.latitudeE = marker.getLatLng().lat;
-          $scope.longitudeE = marker.getLatLng().lng;
-          document.getElementById('latitude').value = $scope.latitudeE;
-          document.getElementById('longitude').value = $scope.longitudeE;
-          marker.setLatLng(e.latlng);
-        } else {
-          $rootScope.myMap.removeLayer(marker);
-          marker = new L.Marker(e.latlng);
-          $rootScope.myMap.addLayer(marker);
-          $scope.latitudeE = marker.getLatLng().lat;
-          $scope.longitudeE = marker.getLatLng().lng;
-          document.getElementById('latitude').value = $scope.latitudeE;
-          document.getElementById('longitude').value = $scope.longitudeE;
-          marker.setLatLng(e.latlng);
-        }
-      }
-    )
-  };
-
-  $scope.toggleAddEventMenu = function() {
-    $scope.addEventMenuIsOpen = false;
-    $rootScope.myMap.off('click');
-    $scope.newEventName = "";
-    $scope.newEventType = "";
-    $scope.newEventDescription = "";
-    $scope.newStartDate = "";
-    $scope.newEndDate = "";
-    $scope.latitudeE = "";
-    $scope.longitudeE = "";
-    $scope.newEventPhoto = "";
-  };
-
-  $scope.resetAddEventForm = function(form) {
-    if (marker) {
-      $rootScope.myMap.removeLayer(marker);
-    }
-  };
-
-  $scope.createNewEvent = function(form) {
-    let dataObj = {
-      name : $scope.newEventName,
-      category : $scope.newEventType,
-      description : $scope.newEventDescription,
-      dateStart : $scope.newStartDate,
-      dateEnd : $scope.newEndDate,
-      fileSrc: $scope.newEventPhoto,
-      category : {
-        name : $scope.newEventType,
-        tableType : "event"
-      },
-      point : {
-        latitude : $scope.latitudeE,
-        longitude : $scope.longitudeE
-      },
-    };
     console.log(dataObj);
 
     let successCallback = function(response){
@@ -234,10 +124,128 @@ angular.module('greenApp')
       }, 5000);
     };
 
-    $http.post(_contextPath + "/api/event/", dataObj).then(successCallback, errorCallback);
-    $http.post(_contextPath + "/api/attachment/", dataObj).then(successCallback, errorCallback);
+    $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
   };
 
-  $scope.events = ["Sport competition", "Festival", "Meeting"];
+  $scope.places = ["Places of interest", "Places near water", "Recreation area"];
+
+  $scope.resetAddPlaceForm = function(form) {
+    if (marker) {
+      $rootScope.myMap.removeLayer(marker);
+    }
+  };
+
+  $rootScope.$emit('initMarkerController', {});
+
+  $scope.findById = function () {
+    let successCallBack = function(response){
+      $scope.latitude =  response.data.latitude;
+      $scope.longitude =  response.data.longitude;
+      console.log($scope.latitude);
+
+      $rootScope.myMap.setView([$scope.latitude, $scope.longitude], 13);
+
+      marker = new L.Marker([$scope.latitude, $scope.longitude]);
+      $rootScope.myMap.addLayer(marker);
+      marker.setLatLng([$scope.latitude, $scope.longitude]);
+    };
+
+    $http.get(_contextPath + '/point/' + $routeParams.id).then(successCallBack);
+  };
+
+  if ($routeParams.id) {
+    $scope.findById();
+  }
+  // -----START ADD Event-----
+  $scope.addEventMenu = function() {
+    $scope.addEventMenuIsOpen = true;
+    $rootScope.myMap.on('click',function(e) {
+      if (typeof(marker) === 'undefined') {
+        marker = new L.Marker(e.latlng);
+        $rootScope.myMap.addLayer(marker);
+        $scope.latitudeE = marker.getLatLng().lat;
+        $scope.longitudeE = marker.getLatLng().lng;
+        document.getElementById('latitude').value = $scope.latitudeE;
+        document.getElementById('longitude').value = $scope.longitudeE;
+        marker.setLatLng(e.latlng);
+      } else {
+        $rootScope.myMap.removeLayer(marker);
+        marker = new L.Marker(e.latlng);
+        $rootScope.myMap.addLayer(marker);
+        $scope.latitudeE = marker.getLatLng().lat;
+        $scope.longitudeE = marker.getLatLng().lng;
+        document.getElementById('latitude').value = $scope.latitudeE;
+        document.getElementById('longitude').value = $scope.longitudeE;
+        marker.setLatLng(e.latlng);
+      }
+    }
+  )
+};
+
+$scope.toggleAddEventMenu = function() {
+  $scope.addEventMenuIsOpen = false;
+  $rootScope.myMap.off('click');
+  $scope.newEventName = "";
+  $scope.newEventType = "";
+  $scope.newEventDescription = "";
+  $scope.newStartDate = "";
+  $scope.newEndDate = "";
+  $scope.latitudeE = "";
+  $scope.longitudeE = "";
+  $scope.newEventPhoto = "";
+};
+
+$scope.resetAddEventForm = function(form) {
+  if (marker) {
+    $rootScope.myMap.removeLayer(marker);
+  }
+};
+
+$scope.createNewEvent = function(form) {
+  let dataObj = {
+    event : {
+      name : $scope.newEventName,
+      description : $scope.newEventDescription,
+      dateStart : $scope.newStartDate,
+      dateEnd : $scope.newEndDate,
+      point : {
+        latitude : $scope.latitudeE,
+        longitude : $scope.longitudeE
+      },
+      category : {
+        name : $scope.newEventType,
+        tableType : "event"
+      },
+    },
+    attachment: {
+      fileSrc: $scope.newEventPhoto
+    },
+    tableType : "event",
+  };
+  console.log(dataObj);
+
+  let successCallback = function(response){
+    $scope.submissionSuccess = true;
+    setTimeout(function() {
+      $scope.$apply(function() {
+        $scope.submissionSuccess = false;
+      });
+    }, 5000);
+  };
+
+  let errorCallback = function(response){
+    $scope.submissionError = true;
+    $scope.submissionSuccess = false;
+    setTimeout(function() {
+      $scope.$apply(function() {
+        $scope.submissionError = false;
+      });
+    }, 5000);
+  };
+
+  $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
+};
+
+$scope.events = ["Sport competition", "Festival", "Meeting"];
 }
 });
