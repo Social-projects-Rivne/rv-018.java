@@ -4,7 +4,7 @@
 			<div class="col s12 card-image waves-effect waves-block waves-light"
 				ng-style="{'background-image':'url(' + ImageUrl + ')'}">
 				<div class="col s2">
-					<img src="{{userpic}}" class="circle responsive-img z-depth-2">
+					<img ng-src="{{userpic}}" class="circle responsive-img z-depth-2">
 				</div>
 				<div class="col s4 card-profile-username">
 					<h4>{{firstName}} {{lastName}}</h4>
@@ -76,7 +76,7 @@
 					</h5>
 				</div>
 				<div class="card-image-place" data-ng-repeat="fileSrc in place.attachments">
-					<img src="{{fileSrc.fileSrc}}">
+					<img ng-src="{{fileSrc.fileSrc}}">
 				</div>
 				<div class="card-view-map">
 					<a href="#/map/place/{{place.id}}">VIEW ON MAP</a>
