@@ -7,21 +7,6 @@ component('profile', {
 	    	
 		var successCallBack = function(response){
     		$scope.places = response.data;
-    		console.log($scope.places);
-    		console.log($scope.places[0].name);
-    		
-    		
-    		
-    		$.each(response.data, function(index, element) {
-    			$scope.attachments = [];
-    			console.log($scope.attachments);
-    			console.log($scope.attachments[0].element.id);
-	    		$.each(this.attachments, function(index, element) {
-	    			$scope.attachments.push({element});
-	    			
-	    		});
-    		});
-    		
 	    };
 	    
 		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);

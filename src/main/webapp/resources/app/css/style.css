@@ -308,6 +308,7 @@ calendar-md .md-toolbar-tools h2 {
 md-content {
 	overflow: hidden;
 }
+
 /*-------------- user profile --------------*/
 #profile-page-header {
 	margin-top: -20px;
@@ -809,3 +810,63 @@ img.responsive-img {
 	font-weight: 300;
 }
 /*------------End of place----------*/
+
+/*Find place side bar*/
+#places-sidebar {
+	overflow-y: auto;
+	position: fixed;
+	z-index: 1000;
+	right: 0;
+	background-color: #FFF;
+	height: 100%;
+	top: 0px;
+}
+
+.found-place {
+	height: 100px;
+	padding: 15px;
+	border-bottom: 1px solid #e4e4e4;
+	cursor: pointer;
+	font-color: #151515;
+	padding-right: 0px;
+}
+
+.search-error {
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+ 	transform: translate(-50%, -50%);	
+}
+
+.place-image {
+	display: inline;
+	width: 70px;
+	height: 100%;
+}
+
+.places-list {
+	overflow: hidden;
+}
+
+.place-name {
+	width: 60%;
+	display: inline;
+	padding-left: 10px;
+	font-size: 85%;
+	overflow: hidden;
+	height: 100%;
+}
+
+.place-address {
+	font-color: #545454;
+	font-size: 90%;
+}
+
+.btn-flat {
+	color: white;
+}
+
+.btn-flat:hover {
+    background-color: inherit;
+}
+
