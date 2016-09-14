@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!doctype html>
 <html lang="en" ng-app="greenApp">
 <head>
@@ -22,6 +24,7 @@
 </head>
 <body ng-controller="menuController">
 		<!-- Header -->
+	<div>
 		<header id="header">
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
@@ -87,7 +90,8 @@
 				</div>		   
 	    </main>
 
-    
+	</div>
+
 	<!-- Leaf map js library -->
 	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 	<!-- Bower components -->
@@ -100,10 +104,11 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-animate.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-aria.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-messages.min.js"></script>
-	
 	<script src="${pageContext.request.contextPath}/resources/assets/moment.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
@@ -118,6 +123,10 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.component.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>

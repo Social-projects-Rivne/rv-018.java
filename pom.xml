@@ -143,7 +143,26 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.21</version>
 		</dependency>
-
+<!-- 
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>

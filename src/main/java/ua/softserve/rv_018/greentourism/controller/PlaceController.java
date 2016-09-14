@@ -21,7 +21,6 @@ import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
-import ua.softserve.rv_018.greentourism.service.UserService;
 
 @RequestMapping(value = "/api/place")
 @Controller
@@ -36,10 +35,37 @@ public class PlaceController {
 	
 	@Autowired
 	private PointService pointService;
-	
-	@Autowired
-	private UserService userService;
 
+	 /**
+     * Web service endpoint to fetch a single Place entity by primary key
+     * identifier.
+     * <p>
+     * If found, the Place is returned as JSON with HTTP status 302.
+     * <p>
+     * If not found, the service returns an empty response body with HTTP status
+     * 404.
+     *
+     * @param id A Long URL path variable containing the Place primary key
+     *           identifier.
+     * @return A ResponseEntity containing a single Place object, if found,
+     * and a HTTP status code as described in the method comment.
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getPlace(@PathVariable int id) {
+        logger.info("> getPlace id:{}", id);
+
+        Place place = placeService.findOne(id);
+
+        if (place == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        logger.info("< getPlace id:{}", id);
+        
+        return new ResponseEntity<>(place, HttpStatus.OK);
+    }
+    
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
 	 * the list of Place entities as JSON.
@@ -130,16 +156,36 @@ public class PlaceController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
     
-   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+    /**
+     * Web service endpoint to update a single Place entity. 
+     * <p>
+     * If updated successfully, the persisted Place is returned as JSON with
+     * HTTP status 200.
+     * <p>
+     * If not found, the service returns an empty response body and HTTP status
+     * 404.
+     * <p>
+     * If not updated successfully, the service returns an empty response body
+     * with HTTP status 500.
+     *
+     * @param place The Place object to be updated.
+     * @return A ResponseEntity containing a single Place object, if updated
+     * successfully, and a HTTP status code as described in the method
+     * comment.
+     */
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getPlaceByUser(
-    		@PathVariable ("id") long id) {
-        logger.info("> getPlace id:{}", id);
+    public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
+        logger.info("> updatePlace id:{}", place.getId());
 
-        List<Place> places = placeService.findByUserIdWithAttachments(id);
+        if (placeService.findOne(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+         
+        Place updatedPlace = placeService.update(place);
+
+        logger.info("< updatePlace id:{}", place.getId());
         
-        logger.info("< getPlaceByUser id:{}", id);
-        
-        return new ResponseEntity<>(places, HttpStatus.OK);
+        return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
     }
 }
