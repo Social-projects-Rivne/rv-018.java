@@ -86,7 +86,7 @@ public class EventControllerUnitTest {
 		
 		mockMvc.perform(get("/api/event/pointBetweenDates?start-date=Sun Sep 04 2016 00:00:00&end-date=Tue Sep 20 2016 00:00:00"))
 		       .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(content().string(POINTS));
+		       .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+		       .andExpect(content().string(POINTS));
 	}
 }
