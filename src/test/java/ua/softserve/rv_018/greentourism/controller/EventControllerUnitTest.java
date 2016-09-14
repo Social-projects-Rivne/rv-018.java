@@ -80,7 +80,7 @@ public class EventControllerUnitTest {
 		
 		List<Point> points = Arrays.asList(point1, point2);
 		
-		//Two random dates used here, only think that matters is accordance between dates in URL and dates sent to service
+		//Two random dates used here, only thing that matters is accordance between dates in URL and dates sent to service
 		Mockito.when(eventService.findEventPointsBetweenTwoDates(java.sql.Date.valueOf("2016-09-04"), java.sql.Date.valueOf("2016-09-20")))
 		       .thenReturn(points);
 		
