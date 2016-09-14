@@ -430,7 +430,7 @@ md-content {
 	font-size: 115%;
 }
 
-.card {
+.cardprofile {
     margin: 0.5rem 10px 1rem 0;
 }
 
@@ -528,10 +528,11 @@ h3 {
 	margin-bottom: -9px;
 }
 
-.card.place .card-content p {
+.card.place .grey-text p {
 	margin: 0;
 	color: inherit;
 	padding-left: 20px;
+	font-size: 100% !important;
 }
 
 .card.place .card-title {
@@ -654,7 +655,7 @@ img.responsive-img {
 /* .images-uploader {
 	bottom: -70px;
 } */
-.modal {
+.mymodal {
 	background-color: #FFFFFF;
 }
 
@@ -732,7 +733,7 @@ img.responsive-img {
 	/*z-index: -10;*/
 }
 
-.place-overlay {
+/* .place-overlay {
 	position: absolute;
 	top: -20px;
 	left: -16%;
@@ -740,7 +741,7 @@ img.responsive-img {
 	height: 110%;
 	z-index: -5;
 	background-color: #ededed;
-}
+} */
 
 .place-container {
 	position: absolute;

@@ -1,15 +1,15 @@
 <!-- <div ng-click="goPlace()" ng-controller="OpenPlaceCtrl"> -->
 	<div class="container">
 
-		<div class="map-container">
+		<!-- <div class="map-container">
 			<div id="mapid"></div>
-		</div>
+		</div> -->
 		<div class="close-place" ng-show="close-place-button">
 			<a href="#" ng-click="close_place($event)"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
 		</div>
-		<div class="place-container" ng-show="placeopened">
+		<div class="place-container"> <!-- ng-show="placeopened" -->
 			<div class="row">
 				<div class="col s12">
 					<div class="carousel carousel-slider">
@@ -131,6 +131,78 @@
 			</div>
 			<div class="place-overlay">&nbsp;</div>
 		</div>
+	<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
+		ng-controller="PlaceFeedbackController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <img
+				class="circle feedback-userpic" ng-src="{{avatar}}" /> <span>{{username}}</span>
+			</span><br />
 
+			<div class="input-field">
+				<div class="typeit">Type your feedback</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+			<form action="#">
+				<div class="file-field input-field images-uploader">
+					<div class="commenting-button">
+						<span><i
+							class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
+						<input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
+
+	<div id="name-modal" class="modal modal-fixed-footer mymodal"
+		ng-controller="EditPlaceController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <span>{{name}}</span>
+			</span><br />
+			<div class="input-field">
+				<div class="typeit">Type new name of the place</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
+
+	<div id="description-modal" class="modal modal-fixed-footer mymodal"
+		ng-controller="EditPlaceController">
+		<div class="modal-content">
+			<span class="card-title feedback-username"> <span>{{description}}</span>
+			</span><br />
+			<div class="input-field">
+				<div class="typeit">Type new description of the place</div>
+				<textarea placeholder=" " id="typing-feedback" type="text"
+					class="validate" ng-model="text"></textarea>
+				<label for="typing-feedback" class="typeit"></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href=""
+				class=" modal-action modal-close waves-effect waves-green btn-flat"
+				ng-click="addText(text)">Publish</a> <a href="#!"
+				class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+		</div>
+	</div>
 	</div>
 <!-- </div> -->

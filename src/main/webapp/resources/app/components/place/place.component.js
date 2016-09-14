@@ -7,7 +7,7 @@ angular
 				'place',
 				{
 					templateUrl : '/resources/app/components/place/place.template.html',
-					controller : function($scope, $http, $routeParams, $location) {
+					controller : function($scope, $http, $routeParams, $location, $route) {
 						
 						/*$scope.$location = $location;*/
 						
@@ -91,7 +91,7 @@ angular
 									$('.carousel-slider').carousel('next');
 								});
 
-								var mymap = L
+								/*var mymap = L
 										.map('mapid')
 										.setView(
 												[
@@ -146,13 +146,13 @@ angular
 																	}, 1500,
 																	'easeOutQuint');
 													myFunc();
-												});
+												});*/
 
-								// setTimeout(myFunc, 1500);
-								// $('.grid').isotope({ layoutMode:
-								// 'fitColumns',
-								// itemSelector: '.grid-item', percentPosition:
-								// true});
+								 setTimeout(myFunc, 1500);
+								 $('.grid').isotope({ layoutMode:
+								 'fitColumns',
+								 itemSelector: '.grid-item', percentPosition:
+								 true});
 							};
 
 							var failCallback = function(response) {
