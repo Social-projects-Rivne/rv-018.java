@@ -1,7 +1,5 @@
 package ua.softserve.rv_018.greentourism.service;
 
-import static org.mockito.Matchers.intThat;
-
 import java.util.List;
 
 import org.slf4j.Logger;
