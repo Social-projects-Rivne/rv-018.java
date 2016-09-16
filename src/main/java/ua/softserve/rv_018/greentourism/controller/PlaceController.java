@@ -3,12 +3,16 @@ package ua.softserve.rv_018.greentourism.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,16 +37,16 @@ public class PlaceController {
 
 	@Autowired
 	private PlaceService placeService;
-	
+
 	@Autowired
 	private PointService pointService;
-	
+
 	@Autowired
 	private UserService userService;
 
 	/**
-	 * Web service endpoint to fetch all Place entities. The service returns
-	 * the list of Place entities as JSON.
+	 * Web service endpoint to fetch all Place entities. The service returns the
+	 * list of Place entities as JSON.
 	 * 
 	 * @return A ResponseEntity containing a List of Place objects.
 	 */
@@ -64,23 +68,23 @@ public class PlaceController {
 	 * 
 	 * @return A ResponseEntity containing a List of Point objects.
 	 */
-	@RequestMapping(value = "/point", method = RequestMethod.GET,
-			headers = "Accept=application/json", produces = { "application/json" })
+	@RequestMapping(value = "/point", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
 	public ResponseEntity<?> getPlacePointsBetweenTwoCoordinates(
-			@RequestParam (value="south-west", required=true) String southWestParam,
-    		@RequestParam (value="north-east", required=true) String northEastParam) {
+			@RequestParam(value = "south-west", required = true) String southWestParam,
+			@RequestParam(value = "north-east", required = true) String northEastParam) {
 		logger.info("> Get place point between (" + southWestParam + " - " + northEastParam);
-		
+
 		List<Point> points = new ArrayList<>();
-		
+
 		Point southWest = pointService.createPoint(southWestParam);
 		Point northEast = pointService.createPoint(northEastParam);
-		
+
 		if (southWest.isEmpty() || northEast.isEmpty()) {
 			logger.debug("< Bad Request for getting place points between (" + southWestParam + " - " + northEastParam);
 			return new ResponseEntity<>(points, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		points = placeService.findPlacePointsBetweenTwoCoordinates(southWest, northEast);
 
 		logger.info("< Get place point between (" + southWestParam + " - " + northEastParam);
@@ -89,57 +93,65 @@ public class PlaceController {
 	}
 
 	/**
-     * Web service endpoint to fetch all Places entities by name.
-     * The service returns the list of Place entities as JSON.
-     *
-     * @return A ResponseEntity containing a List of Place objects.
-     */
-    @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
-            headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getPlacesByName(
-    		@RequestParam String name,
-    		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
-    		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
-    	logger.info("> Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+	 * Web service endpoint to fetch all Places entities by name. The service
+	 * returns the list of Place entities as JSON.
+	 *
+	 * @return A ResponseEntity containing a List of Place objects.
+	 */
+	@RequestMapping(value = "/filter/name", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> getPlacesByName(@RequestParam String name,
+			@RequestParam(value = "ignorecase", required = false, defaultValue = "false") Boolean ignoreCase,
+			@RequestParam(value = "wholeword", required = false, defaultValue = "false") Boolean wholeWord) {
+		logger.info("> Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
 
-    	List<Place> places = placeService.findByName(name, ignoreCase, !wholeWord);
-    	
-    	logger.info("< Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
-        
-        return new ResponseEntity<>(places, HttpStatus.OK);
-    }
+		List<Place> places = placeService.findByName(name, ignoreCase, !wholeWord);
+
+		logger.info("< Get places by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+
+		return new ResponseEntity<>(places, HttpStatus.OK);
+	}
 
 	/**
-     * Web service endpoint to create Places entity.
-     * The service returns the created Place entity url.
-     *
-     * @return A ResponseEntity containing a url of created Place.
-     */
-    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json" })
-    public ResponseEntity<?> createPlace(@RequestBody Place place) {
-    	logger.info("> createPlace");
-    
-        Place savedPlace = placeService.create(place);
-        
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-        	.buildAndExpand(savedPlace.getId()).toUri());
-        
-        logger.info("< createPlace");
-    
-        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
-    }
-    
-   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
-            headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getPlaceByUser(
-    		@PathVariable ("id") long id) {
-        logger.info("> getPlace id:{}", id);
+	 * Web service endpoint to create Places entity. The service returns the
+	 * created Place entity url.
+	 *
+	 * @return A ResponseEntity containing a url of created Place.
+	 */
+	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> createPlace(@RequestBody Place place) {
+		logger.info("> createPlace");
 
-        List<Place> places = placeService.findByUserIdWithAttachments(id);
-        
-        logger.info("< getPlaceByUser id:{}", id);
-        
-        return new ResponseEntity<>(places, HttpStatus.OK);
-    }
+		Place savedPlace = placeService.create(place);
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(savedPlace.getId()).toUri());
+
+		logger.info("< createPlace");
+
+		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> getPlaceByUser(@PathVariable("id") long id) {
+		logger.info("> getPlace id:{}", id);
+
+		List<Place> places = placeService.findByUserIdWithAttachments(id);
+
+		logger.info("< getPlaceByUser id:{}", id);
+
+		return new ResponseEntity<>(places, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/something", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> retrieweAuthentication(HttpServletRequest request) {
+
+		SecurityContext context = (SecurityContext) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+		Authentication currentAuthentication = context.getAuthentication();
+		System.out.println("Logout controller: authen " + currentAuthentication);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }
