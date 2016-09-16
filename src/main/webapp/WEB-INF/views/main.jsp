@@ -99,11 +99,13 @@
 					</div>
 					<div class="row">
 						<a class="waves-effect waves-light btn" ng-click="login()">login</a>
+						<a class="waves-effect waves-light btn" ng-click="logout()">logout</a>
 						Already registered? <a href="#">Sign In</a>
 					</div>
 				</form>
 				<!-- Progress bar for map -->
-				<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+				<div class="progress" ng-controller="
+				markerCtrl" ng-show="progressBarVision">
 					<div class="indeterminate"></div>
 				</div>
 				<!-- Components -->
