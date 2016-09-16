@@ -870,3 +870,6 @@ img.responsive-img {
     background-color: inherit;
 }
 
+.btn-flat.modals {
+	color: black;
+}
