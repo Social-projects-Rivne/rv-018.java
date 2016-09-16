@@ -11,4 +11,5 @@ import ua.softserve.rv_018.greentourism.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByUsername(String username);
 	User findByEmailAndPassword(String email, String password);
+	User findByEmail(String email);
 }
