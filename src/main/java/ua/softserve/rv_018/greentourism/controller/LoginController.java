@@ -46,6 +46,7 @@ public class LoginController {
 		
 		HttpSession session = request.getSession(true);
 	    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+	    session.setAttribute("USER", result.getCredentials());
 	    
 	    System.out.println(session.getAttribute("SPRING_SECURITY_CONTEXT"));
 		System.out.println("Login controller: authen " + SecurityContextHolder.getContext().getAuthentication());
