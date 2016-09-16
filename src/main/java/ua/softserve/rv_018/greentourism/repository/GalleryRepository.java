@@ -13,4 +13,8 @@ public interface GalleryRepository extends JpaRepository<Gallery, Integer> {
 	@Query("select g from Gallery as g inner join g.place as pl where pl in :places")
 	List<Gallery> findByPlaces(
 			@Param ("places") List<Place> places);
+	
+	@Query("select g from Gallery as g inner join g.place as pl where pl in :place")
+	List<Gallery> findByPlace(
+			@Param ("place") Place place);
 }
