@@ -66,6 +66,17 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public User findByEmail(String email) {
+		logger.info("> User findByEmail email:{}", email);
+
+		User user = userRepository.findByEmail(email);
+		
+		logger.info("< User findByEmail email:{}", email);
+		
+		return user;
+	}
+	
+	@Override
 	@Transactional(
             propagation = Propagation.REQUIRED,
             readOnly = false)

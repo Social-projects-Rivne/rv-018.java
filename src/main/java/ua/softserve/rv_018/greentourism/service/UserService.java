@@ -26,6 +26,13 @@ public interface UserService {
     User findByEmailAndPassword(String email, String pasword);
     
     /**
+     * Find a single User entity by email.
+     * @param id A Long primary key identifier.
+     * @return A User or <code>null</code> if none found.
+     */
+    User findByEmail(String email);
+    
+    /**
      * Persists a User entity in the data store.
      * @param user A User object to be persisted.
      * @return The persisted User entity.
