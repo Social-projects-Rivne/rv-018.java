@@ -52,8 +52,8 @@
 		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
 		                    </div>
 		                    <div class="col s2 m3 l4">
-		                      	<div class="user-dropdown" onclick="myFunction()">
-									<div class="top-profile-name">George</div>
+		                      	<div class="user-dropdown" onclick="show()">
+									<div class="top-profile-name" ng-bind="name">George</div>
 									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
 								</div>
 		                    </div>
@@ -83,29 +83,10 @@
 				</div>
 				<!-- Actual content of the page -->
 				<div class="content">
-				<!-- Form for login will be replaced as separate file -->
-				<form id="form" class="login-form" ng-controller="loginController" novalidate>
-					<div class="row">
-						<div class="input-field col s12">
-							<input id="email" type="email" ng-model="email" ng-required="true"> <label
-								for="email">Email</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input id="password" type="password" ng-model="password" ng-required="true"> <label
-								for="password">Password</label>
-						</div>
-					</div>
-					<div class="row">
-						<a class="waves-effect waves-light btn" ng-click="login()">login</a>
-						<a class="waves-effect waves-light btn" ng-click="logout()">logout</a>
-						Already registered? <a href="#">Sign In</a>
-					</div>
-				</form>
+				<!-- Form for login  -->
+				<div ng-include="'${pageContext.request.contextPath}/resources/app/components/login/login.template.html'"></div>
 				<!-- Progress bar for map -->
-				<div class="progress" ng-controller="
-				markerCtrl" ng-show="progressBarVision">
+				<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 					<div class="indeterminate"></div>
 				</div>
 				<!-- Components -->
@@ -137,9 +118,9 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/login.controller.js"></script>
+
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
