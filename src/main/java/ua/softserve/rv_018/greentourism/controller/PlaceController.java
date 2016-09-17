@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
 import ua.softserve.rv_018.greentourism.service.UserService;
@@ -38,7 +40,7 @@ public class PlaceController {
 	private PointService pointService;
 	
 	@Autowired
-	private UserService userService;
+	private GalleryRepository galleryRepository;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -163,11 +165,19 @@ public class PlaceController {
        logger.info("> getPlace id:{}", id);
 
        Place place = placeService.findOne(id);
-
        if (place == null) {
            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
        }
-
+       List<Gallery> galleries = galleryRepository.findByPlace(place);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+			if (place.getId() == gallery.getPlace().getId()) {
+				place.getAttachments().add(gallery.getAttachment());
+			}
+		}
+		
        logger.info("< getPlace id:{}", id);
        
        return new ResponseEntity<>(place, HttpStatus.OK);
