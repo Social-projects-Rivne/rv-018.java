@@ -3,6 +3,7 @@ package ua.softserve.rv_018.greentourism.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,5 +145,41 @@ public class PlaceServiceImpl implements PlaceService {
 		logger.info("< Place findByUserIdWithAttachment");
 		
 		return places;
+	}
+	
+	@Override
+	public Place findOne(int id) {
+		logger.info("> Place findOne id:{}", id);
+
+		Place place = placeRepository.findById(id);
+
+		logger.info("< Place findOne id:{}", id);
+
+		return place;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Place update(Place place) {
+		logger.info("> Place update id:{}", place.getId());
+
+		// Ensure the entity object to be updated exists in the repository to
+		// prevent the default behavior of save() which will persist a new
+		// entity if the entity matching the id does not exist
+		Place placeToUpdate = findOne(place.getId());
+		if (placeToUpdate == null) {
+			// Cannot update Place that hasn't been persisted
+			logger.error("Attempted to update a Place, but the entity does not exist.");
+			throw new NoResultException("Requested entity not found.");
+		}
+
+		placeToUpdate.setName(place.getName());
+		placeToUpdate.setDescription(place.getDescription());
+
+		Place updatedPlace = placeRepository.save(placeToUpdate);
+
+		logger.info("< Place update id:{}", updatedPlace.getId());
+
+		return updatedPlace;
 	}
 }

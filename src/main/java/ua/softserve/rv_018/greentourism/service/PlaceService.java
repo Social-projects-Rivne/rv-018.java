@@ -8,6 +8,13 @@ import ua.softserve.rv_018.greentourism.model.User;
 
 public interface PlaceService {
 	/**
+     * Find a single Place entity by primary key identifier.
+     * @param id A Integer primary key identifier.
+     * @return A Place or <code>null</code> if none found.
+     */
+    Place findOne(int id);
+	
+	/**
      * Find all Place entities.
      * @return A List of Place objects.
      */
@@ -31,6 +38,14 @@ public interface PlaceService {
      * @return The persisted Place entity.
      */
     Place create(Place place); 
+    
+    /**
+     * Updates a previously persisted Place entity in the data store.
+     * @param place A Place object to be updated.
+     * @return The updated Place entity.
+     */
+    Place update(Place place);
+
     /**
      * Find Place entities.
      * @return A Place objects.

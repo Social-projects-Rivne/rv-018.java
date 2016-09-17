@@ -19,7 +19,7 @@ public interface UserService {
     User findOne(Long id);
     
     /**
-     * Find a single User entity by primary key identifier.
+     * Find a single User entity by email and password.
      * @param id A Long primary key identifier.
      * @return A User or <code>null</code> if none found.
      */

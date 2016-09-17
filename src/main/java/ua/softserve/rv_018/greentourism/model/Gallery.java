@@ -19,11 +19,15 @@ public class Gallery {
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "item_id", nullable = false)
+	@JoinColumn(name = "item_id", insertable = false, updatable = false)
 	private Place place;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "attach_id", nullable = false)
+	@JoinColumn(name = "item_id", insertable = false, updatable = false)
+	private Event event;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "attach_id")
 	private Attachment attachment;
 	
 	@Column(name = "table_type")
@@ -62,12 +66,21 @@ public class Gallery {
 	public void setTableType(String tableType) {
 		this.tableType = tableType;
 	}
+	
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
 
 	@Override
 	public String toString() {
-		return "Gallery [id=" + id 
-				+ ", place=" + place 
-				+ ", attachment=" + attachment 
+		return "Gallery [id=" + id
+				+ ", place=" + place
+				+ ", event=" + event
+				+ ", attachment=" + attachment
 				+ ", tableType=" + tableType + "]";
 	}
 }

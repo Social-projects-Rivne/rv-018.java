@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
@@ -47,6 +45,10 @@ public class Place {
 	private List<Attachment> attachments = new ArrayList<>();
 
 	public Place() {}
+
+	public Place(int i, String string, String string2, String string3, String string4, String string5) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getId() {
 		return id;
