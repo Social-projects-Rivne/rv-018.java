@@ -6,14 +6,14 @@
                     menuList.toggleClass('active-ul');
                 });
             })();
-function myFunction() {
+function show() {
     document.getElementById("form").classList.toggle("login-form-active");
 }
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
+  if (!event.target.matches('.login-form')) {
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var dropdowns = document.getElementsByClassName(".login-form");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
