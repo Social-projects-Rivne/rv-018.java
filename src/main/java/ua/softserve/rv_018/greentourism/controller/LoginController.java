@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,42 +33,46 @@ public class LoginController {
 	@Autowired
 	private AppAuthenticationProvider appAuthenticationManager;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
 	public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
-
-		System.out.println("Login controller: authen " + SecurityContextHolder.getContext().getAuthentication());
-		
+		logger.info("> loginUser by email: " + email + "password: " + password);
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
-		
 		Authentication result = appAuthenticationManager.authenticate(token);
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-		securityContext.setAuthentication(result);
-		
-		HttpSession session = request.getSession(true);
-	    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-	    session.setAttribute("USER", result.getCredentials());
-	    
-	    System.out.println(session.getAttribute("SPRING_SECURITY_CONTEXT"));
-		System.out.println("Login controller: authen " + SecurityContextHolder.getContext().getAuthentication());
+		if (result != null) {
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			securityContext.setAuthentication(result);
 
-		return new ResponseEntity<>(HttpStatus.OK);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("UserId", result.toString());
+			return new ResponseEntity<>(headers, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
 	public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
 
-		SecurityContext context = (SecurityContext) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
-		Authentication currentAuthentication = context.getAuthentication();
-		System.out.println("Logout controller: authen " + currentAuthentication);
-		if (currentAuthentication != null) {
-			new SecurityContextLogoutHandler().logout(request, response, currentAuthentication);
+		logger.info("> logout User ");
+		
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			session.invalidate();
+			Authentication currentAuthentication = context.getAuthentication();
+			if (currentAuthentication != null) {
+				new SecurityContextLogoutHandler().logout(request, response, currentAuthentication);
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-
-		System.out.println("Logout controller: authen " + SecurityContextHolder.getContext().getAuthentication());
-
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 }
