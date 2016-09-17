@@ -533,7 +533,16 @@ md-content {
 .login-form-active {
     display: block;
 }
-/* ---- login from validation styles ---- */
+/* ---- login form validation styles ---- */
 .login-form input.ng-invalid {
 	background: pink;
+}
+.login-form input.ng-valid {
+	background: #5de09f;
+}
+.login-form input.ng-invalid {
+	background: pink;
+}
+.disabled {
+  pointer-events: none !important;
 }
