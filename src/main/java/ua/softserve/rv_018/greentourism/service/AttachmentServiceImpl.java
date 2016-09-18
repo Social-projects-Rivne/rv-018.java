@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,16 @@ public class AttachmentServiceImpl implements AttachmentService {
 		logger.info("> Attachment created");
 		
 		return savedAttachment;
+	}
+	    
+	@Override
+	public List<Attachment> findByPlaceId(int id) {
+		logger.info("> Attachment findByPlaceId");
+
+		List<Attachment> attachments = attachmentRepository.findByPlaceId(id);
+
+        logger.info("< Attachment findByPlaceId");
+        
+        return attachments;
 	}
 }
