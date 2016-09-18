@@ -17,7 +17,7 @@ component('profile', {
 			$scope.firstName = response.data.firstName;
 			$scope.lastName = response.data.lastName;
 			$scope.socialAccount = response.data.socialAccount;
-			$scope.userpic = response.data.userpic;
+			$scope.userpic = response.data.userpic ? response.data.userpic : 'images/No_Photo_icon.jpg';
 	    };
 	    
 	    $http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
