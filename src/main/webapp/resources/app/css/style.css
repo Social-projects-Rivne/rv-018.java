@@ -358,7 +358,7 @@ md-content {
 
 .card .card-content p {
 	color: #8e8e8e;
-	font-size: 123%;
+	font-size: 100%;
 	margin: 0;
 }
 
@@ -379,15 +379,15 @@ md-content {
 }
 
 .lean-overlay {
-	position: inherit;
-	z-index: 999;
+	position: fixed; /*changed*/
+	/* z-index: 999; */
 	top: -100px;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	height: 125%;
 	width: 100%;
-	background: #000;
+	background: grey;
 	display: none;
 	will-change: opacity;
 }
@@ -441,7 +441,7 @@ md-content {
 
 /* large & medium devices */
 @media only screen and (min-width: 601px) {
-	h2.place-name {
+	h2.myplace-name {
 		top: 0px;
 		left: 17px;
 		margin: 0;
@@ -459,10 +459,10 @@ md-content {
 
 /* mobile devices */
 @media only screen and (min-width: 0) and (max-width: 600px) {
-	h2.place-name {
-		margin-top: -184px;
+	h2.myplace-name {
+		margin-top: -135px;
 		padding-left: 6px;
-		font-size: 28px;
+		font-size: 21px;
 	}
 	.indented-header {
 		margin-top: -39px;
@@ -503,7 +503,7 @@ md-content {
 }
 
 /* common */
-h2.place-name {
+h2.myplace-name {
 	color: white;
 	line-height: inherit;
 	z-index: 9999;
@@ -511,7 +511,8 @@ h2.place-name {
 }
 
 h3 {
-	font-size: 1.05rem;
+	font-size: 115%;
+	color: #8E8E8E;
 }
 
 .card .card-title {
@@ -658,6 +659,9 @@ img.responsive-img {
 } */
 .mymodal {
 	background-color: #FFFFFF;
+	top: 30% !important;
+	width: 48% !important;
+	left: 4% !important;
 }
 
 .modal .modal-footer {
@@ -675,6 +679,14 @@ img.responsive-img {
 
 #feedback-modal, #name-modal, #description-modal {
 	height: 50%;
+}
+
+#name-modal, #description-modal {
+	height: 33%;
+}
+
+#feedback-modal {
+	top: 24% !important;
 }
 
 .camera-icon {
@@ -714,7 +726,6 @@ img.responsive-img {
 	font-size: 15px;
 	margin-top: 8px;
 	border-color: white white lightgray;
-    margin-top: 0px;
     margin-bottom: 0px;
     height: 83px;
     resize: none;
@@ -747,8 +758,9 @@ img.responsive-img {
 .place-container {
 	position: absolute;
 	width: 70%;
-	top: 0px;
+	top: 20px;
 	z-index: 400;
+	right: 9%;
 }
 
 .close-place {
@@ -808,7 +820,17 @@ img.responsive-img {
 
 .bttns {
 	font-weight: 300;
+	color: black !important;
 }
+
+.myright {
+	padding: 2%;
+}
+
+.place_name {
+	font-size: 144% !important;
+}    
+  
 /*------------End of place----------*/
 
 /*Find place side bar*/
