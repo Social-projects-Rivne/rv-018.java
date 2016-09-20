@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,6 +22,7 @@ public class Category {
 	@Column(name = "name")
 	private String name;
 	
+	@NotNull
 	@Column(name = "table_type")
 	private String tableType;
 	

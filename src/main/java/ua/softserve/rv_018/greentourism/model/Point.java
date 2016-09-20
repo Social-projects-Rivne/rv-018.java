@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,9 +19,11 @@ public class Point {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@NotNull
 	@Column(name = "latitude", nullable = false)
 	private float latitude;
 
+	@NotNull
 	@Column(name = "longitude", nullable = false)
 	private float longitude;
 	
