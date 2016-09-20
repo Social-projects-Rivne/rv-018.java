@@ -921,6 +921,8 @@ img.responsive-img {
 }
 .disabled {
   pointer-events: none !important;
+
+}
   
 .btn-flat.modals {
 	color: black;
