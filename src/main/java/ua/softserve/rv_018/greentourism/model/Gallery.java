@@ -19,11 +19,11 @@ public class Gallery {
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "item_id", insertable = false, updatable = false)
+	@JoinColumn(name = "place_item_id")
 	private Place place;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "item_id", insertable = false, updatable = false)
+	@JoinColumn(name = "event_item_id")
 	private Event event;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
