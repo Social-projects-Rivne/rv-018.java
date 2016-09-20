@@ -55,7 +55,10 @@
 		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
 		                    </div>
 		                    <div class="col s2 m3 l4">
-		                        <i class="small material-icons right">perm_identity</i>
+		                      	<div class="user-dropdown" onclick="show()">
+									<div class="top-profile-name" ng-bind="name">George</div>
+									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
+								</div>
 		                    </div>
 		                </div>
 		            </div>    
@@ -83,10 +86,14 @@
 				</div>
 				<!-- Actual content of the page -->
 				<div class="content">
-					<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
-						<div class="indeterminate"></div>
-					</div>
-					<ng-view></ng-view>
+				<!-- Form for login  -->
+				<div ng-include="'${pageContext.request.contextPath}/resources/app/components/login/login.template.html'"></div>
+				<!-- Progress bar for map -->
+				<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
+					<div class="indeterminate"></div>
+				</div>
+				<!-- Components -->
+				<ng-view></ng-view>
 				</div>		   
 	    </main>
 
@@ -112,13 +119,13 @@
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/login.controller.js"></script>
+
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/login/login.component.js"></script>
  	<script src="${pageContext.request.contextPath}/resources/app/components/profile/profile.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/user/user.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>

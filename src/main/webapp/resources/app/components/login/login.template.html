@@ -1,0 +1,27 @@
+<form id="form" name="form" class="login-form" ng-controller="loginController" ng-switch on="loginCondition" novalidate>
+	<div ng-switch-when="login">
+		<!-- Login form -->
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="email" name="email" type="email" ng-model="$parent.email"
+					ng-required="true"> <label for="email">Email</label>
+				<span ng-show="form.email.$dirty && form.email.$error.required">Email is required.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="password" name="password" type="password" ng-model="$parent.password"
+					ng-required="true"> <label for="password">Password</label>
+				<span ng-show="form.password.$dirty && form.password.$error.required">Password is required.</span>
+			</div>
+		</div>
+		<div class="row">
+			<a class="waves-effect waves-light btn" ng-class="{disabled: (form.$invalid == true)}" ng-click="login();">login</a>
+			Already registered? <a href="#">Sign In</a>
+		</div>
+	</div>
+	<!-- Logout form -->
+	<div ng-switch-when="logout">
+		<a class="waves-effect waves-light btn" ng-click="logout()">Logout</a>
+	</div>
+</form>

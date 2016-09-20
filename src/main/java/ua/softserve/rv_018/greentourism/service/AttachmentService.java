@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.util.List;
+
 import ua.softserve.rv_018.greentourism.model.Attachment;
 
 public interface AttachmentService {
@@ -9,4 +11,10 @@ public interface AttachmentService {
      * @return The persisted Attachment entity.
      */
 	Attachment create(Attachment attachment);
+	
+	/**
+     * Find all Attachment entities.
+     * @return A List of Attachment objects.
+     */
+	List<Attachment> findByPlaceId(int id);
 }
