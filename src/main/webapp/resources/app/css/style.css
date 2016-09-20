@@ -108,14 +108,14 @@ nav .brand-logo {
 /* Tabs animation files */
 #tabsRow {
     height: 44px;
-	transition: 0.2s linear all;	
+	transition: 0.2s linear all;
 }
 #tabsRow.ng-hide {
     height: 0;
 }
 .tabs {
 	height: 44px;
-	transition: 0.2s linear all;	
+	transition: 0.2s linear all;
 }
 .tabs.ng-hide {
     height: 0;
@@ -203,8 +203,8 @@ nav .brand-logo {
 .add-item-menu h2 {
     text-align: center;
     font-size: 25px;
-}   
- 
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -522,7 +522,7 @@ h3 {
 /*
 .carousel .carousel-item img {
     width: 1000%;
-}   
+}
 */
 .card .card-content img {
 	border: 0px;
@@ -573,8 +573,8 @@ input.add-feedback {
 
 /*
 .card.place .card-title {
-	margin: 0;	
-} 
+	margin: 0;
+}
 */
 
 /*
@@ -727,8 +727,8 @@ img.responsive-img {
     margin-top: 16px;
     margin-left: 5px;
     font-weight: 300;
-}    
-    
+}
+
 .map-container #mapid {
 	position: fixed;
 	width: 85%;
@@ -837,7 +837,7 @@ img.responsive-img {
 	position: absolute;
   	top: 50%;
   	left: 50%;
- 	transform: translate(-50%, -50%);	
+ 	transform: translate(-50%, -50%);
 }
 
 .place-image {
@@ -921,9 +921,8 @@ img.responsive-img {
 }
 .disabled {
   pointer-events: none !important;
-
 }
-  
+
 .btn-flat.modals {
 	color: black;
 }
