@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.mycompany.myproject.persist", "com.mycompany.myproject.service" })
 @EnableJpaRepositories(basePackages = "ua.softserve.rv_018.greentourism.repository", entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
 @PropertySource("classpath:database.properties")
 public class DataSourceConfig {
