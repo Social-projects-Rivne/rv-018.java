@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "event")
@@ -24,15 +26,21 @@ public class Event {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@NotNull
 	@Column(name = "date_start")
 	private Date dateStart;
 
+	@NotNull
 	@Column(name = "date_end")
 	private Date dateEnd;
 
+	@NotNull
+	@Size(min=10)
 	@Column(name = "description")
 	private String description;
 	
+	@NotNull
+	@Size(min=5, max=70)
 	@Column(name = "name")
 	private String name;
 	
