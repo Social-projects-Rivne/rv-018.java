@@ -7,25 +7,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 @Entity
 @Table(name = "user_role")
 public class Role {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @Column(name = "user_detail_id")
-    private UserDetails user;
     @Column(name = "name", nullable = false, columnDefinition = "varchar(255) default 'ROLE_USER'")
     private String name;
 	
     public Role() {}
 
-	public Role(Long id, UserDetails user, String name) {
+	public Role(Long id, String name) {
 		super();
 		this.id = id;
-		this.user = user;
 		this.name = name;
 	}
 	
@@ -35,14 +30,6 @@ public class Role {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public UserDetails getUser() {
-		return user;
-	}
-
-	public void setUser(UserDetails user) {
-		this.user = user;
 	}
 
 	public String getName() {
