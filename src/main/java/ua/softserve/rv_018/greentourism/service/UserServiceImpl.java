@@ -55,6 +55,28 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public User findByEmailAndPassword(String email, String password) {
+		logger.info("> User findByEmailAndPassword email:{} , password:{}", email, password);
+
+		User user = userRepository.findByEmailAndPassword(email, password);
+		
+		logger.info("< User findByEmailAndPassword email:{} , password:{}", email, password);
+		
+		return user;
+	}
+	
+	@Override
+	public User findByEmail(String email) {
+		logger.info("> User findByEmail email:{}", email);
+
+		User user = userRepository.findByEmail(email);
+		
+		logger.info("< User findByEmail email:{}", email);
+		
+		return user;
+	}
+	
+	@Override
 	@Transactional(
             propagation = Propagation.REQUIRED,
             readOnly = false)

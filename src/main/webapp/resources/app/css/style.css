@@ -1,3 +1,7 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+
 .tabsBackgroundColor {
 	background-color: #0F9C5A;
 }
@@ -13,7 +17,7 @@
 .tabs {
 	height: inherit;
 }
-body {
+main {
 	background-color: #ededed;
 }
 
@@ -74,12 +78,10 @@ nav .brand-logo {
 	position: absolute;
 	margin-top: 10px;
 	margin-top: 0px;
-/* 	height: 100vh;*/
-    height: 86vh;
+    height: 85vh;
 	background: #ededed;
 	border: none;
 	bottom: 0px;
-	margin-bottom: 0px;
 }
 
 .collection a.collection-item {
@@ -89,9 +91,11 @@ nav .brand-logo {
 }
 
 .not-active {
+/* 	border: 3px solid; */
+	z-index: 1000;
 	margin-top: 20px;
 	text-align: left;
-	width: 16.6666666667%;
+	width: 13.98%;
 	transform: translate3d(-100%, 0, 0);
 	transition: transform 0.4s ease;
 }
@@ -104,23 +108,22 @@ nav .brand-logo {
 /* Tabs animation files */
 #tabsRow {
     height: 44px;
-	transition: 0.2s linear all;	
+	transition: 0.2s linear all;
 }
 #tabsRow.ng-hide {
     height: 0;
 }
 .tabs {
 	height: 44px;
-	transition: 0.2s linear all;	
+	transition: 0.2s linear all;
 }
 .tabs.ng-hide {
     height: 0;
 }
 /* Actual content of page styles */
 .content {
-	height: 90vh;
- 	width: 83.4%; 
-	margin-left: 6.13%;
+/* 	border: 3px solid; */
+	height: 100vh;
 	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -140,11 +143,10 @@ nav .brand-logo {
 .progress {
 	height: 2px !important;
 	border-radius: 1px !important;
-	margin: 0px !important;
-	position: absolute !important;
-	top: -20px !important;
 	z-index: 401;
+	margin: 0.0rem 0 0rem 0 !important;
 }
+
 
 #mapid {
 	position: absolute;
@@ -201,8 +203,8 @@ nav .brand-logo {
 .add-item-menu h2 {
     text-align: center;
     font-size: 25px;
-}   
- 
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -521,7 +523,7 @@ h3 {
 /*
 .carousel .carousel-item img {
     width: 1000%;
-}   
+}
 */
 .card .card-content img {
 	border: 0px;
@@ -572,8 +574,8 @@ input.add-feedback {
 
 /*
 .card.place .card-title {
-	margin: 0;	
-} 
+	margin: 0;
+}
 */
 
 /*
@@ -736,8 +738,8 @@ img.responsive-img {
     margin-top: 16px;
     margin-left: 5px;
     font-weight: 300;
-}    
-    
+}
+
 .map-container #mapid {
 	position: fixed;
 	width: 85%;
@@ -857,7 +859,7 @@ img.responsive-img {
 	position: absolute;
   	top: 50%;
   	left: 50%;
- 	transform: translate(-50%, -50%);	
+ 	transform: translate(-50%, -50%);
 }
 
 .place-image {
@@ -890,6 +892,57 @@ img.responsive-img {
 
 .btn-flat:hover {
     background-color: inherit;
+}
+/* ---- login styles ---- */
+.user-dropdown {
+    height: 44px;
+    float: right;
+    width: auto;
+    padding-left: 5px;
+}
+.user-dropdown:hover {
+    cursor: pointer;
+    height: 44px;
+    background: #33ab6f;
+}
+.top-profile-name {
+    width: auto;
+    padding-right: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.top-profile-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    margin: 7px 0;
+}
+.login-form {
+	z-index: 1000;
+    display: none;
+    position: fixed;
+    right: 0px;
+    padding: 10px;
+    height: auto;
+    width: 320px;
+    background: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.login-form-active {
+    display: block;
+}
+/* ---- login form validation styles ---- */
+.login-form input.ng-invalid {
+	background: pink;
+}
+.login-form input.ng-valid {
+	background: #5de09f;
+}
+.login-form input.ng-invalid {
+	background: pink;
+}
+.disabled {
+  pointer-events: none !important;
 }
 
 .btn-flat.modals {
