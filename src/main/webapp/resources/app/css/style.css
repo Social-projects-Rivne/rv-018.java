@@ -78,10 +78,10 @@ nav .brand-logo {
 	position: absolute;
 	margin-top: 10px;
 	margin-top: 0px;
-    height: 65vh;
+    height: 85vh;
 	background: #ededed;
 	border: none;
-	top: 30px;
+	top: 24px;
 }
 
 .collection a.collection-item {
@@ -93,7 +93,7 @@ nav .brand-logo {
 .not-active {
 /* 	border: 3px solid; */
 	z-index: 1000;
-	margin-top: 20px;
+ 	margin-top: 20px;
 	text-align: left;
 	width: 13.98%;
 	transform: translate3d(-100%, 0, 0);
