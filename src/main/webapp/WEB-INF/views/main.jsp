@@ -66,7 +66,7 @@
 		    </header>  
 	    <main>    
 		        <!-- Hiding menu -->
-					<div class="collection not-active">
+					<div id="collection" class="collection not-active">
 						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
 						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
 						<a href="#/event" class="collection-item" ng-click="hideTabs();"><i class="material-icons">redeem</i> Events calendar</a>

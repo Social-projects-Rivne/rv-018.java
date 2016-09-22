@@ -78,10 +78,10 @@ nav .brand-logo {
 	position: absolute;
 	margin-top: 10px;
 	margin-top: 0px;
-    height: 85vh;
+    height: 65vh;
 	background: #ededed;
 	border: none;
-	bottom: 0px;
+	top: 30px;
 }
 
 .collection a.collection-item {
@@ -122,8 +122,8 @@ nav .brand-logo {
 }
 /* Actual content of page styles */
 .content {
-/* 	border: 3px solid; */
-	height: 100vh;
+/* 	border: 3px solid; 
+	height: 100vh;*/
 	margin-top: 0px;
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -925,4 +925,8 @@ img.responsive-img {
 
 .btn-flat.modals {
 	color: black;
+}
+
+map .content {
+	height: 88vh;
 }

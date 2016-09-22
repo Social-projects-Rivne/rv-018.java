@@ -3,13 +3,15 @@
 angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-  controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+  controller: function(TapIsOpen, $rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
       $scope.previousMapZoom = $rootScope.myMap.getZoom();
       $rootScope.myMap.remove();
     }
 
+    TapIsOpen.Open() ;
+    
     $scope.removeCache = function() {
       $templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
     }
