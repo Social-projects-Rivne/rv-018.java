@@ -7,10 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name = "user_role")
-public class Role {
-    @Id
+public class Role implements GrantedAuthority {
+	
+	private static final long serialVersionUID = 5894686183915569602L;
+	
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @Column(name = "name", nullable = false, columnDefinition = "varchar(255) default 'ROLE_USER'")
@@ -43,5 +48,11 @@ public class Role {
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + "]";
+	}
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
