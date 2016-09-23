@@ -18,8 +18,11 @@ import ua.softserve.rv_018.greentourism.config.AppAuthenticationManager;
 
 public class AppAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-	public final static String FILTERED_URL = "/map/**";
+	public final static String FILTERED_URL = "/**";
 
+	@Autowired
+	private TokenUtil tokenUtil;
+	
 	@Autowired
 	private AppAuthenticationManager authenticationManager;
 	
@@ -38,22 +41,22 @@ public class AppAuthenticationFilter extends AbstractAuthenticationProcessingFil
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-
 		String header = request.getHeader("Authorization");
 
-		if (header == null || !header.startsWith("Bearer ")) {
+		if (header == null || !header.startsWith("Basic ")) {
 			 return null;
 		}
 
-		String authToken = header.substring(7);
+		String authToken = header.substring(6);
 
-		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken("","");
+		UsernamePasswordAuthenticationToken authRequest = tokenUtil.parseToken(authToken);
 		return getAuthenticationManager().authenticate(authRequest);
 	}
 
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
+		System.out.println("Successful athentication");
 		super.successfulAuthentication(request, response, chain, authResult);
 		/*
 		 * As this authentication is in HTTP header, after success we need to
