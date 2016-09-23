@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ua.softserve.rv_018.greentourism.config.AppAuthenticationProvider;
+import ua.softserve.rv_018.greentourism.config.authentication.UsernamePasswordAuthenticationProvider;
 
 @Controller
 public class LoginController {
@@ -31,7 +31,7 @@ public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private AppAuthenticationProvider appAuthenticationManager;
+	private UsernamePasswordAuthenticationProvider appAuthenticationManager;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
