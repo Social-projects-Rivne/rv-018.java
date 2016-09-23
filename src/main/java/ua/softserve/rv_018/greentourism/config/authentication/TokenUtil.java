@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.config.authentication;
 
+import java.util.Base64;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +21,18 @@ public class TokenUtil {
 	 * @return the User object extracted from specified token or null if a token
 	 *         is invalid.
 	 */
-	public User parseToken(UsernamePasswordAuthenticationToken token) {
-		User user = new User();
-		user.setEmail((String) token.getPrincipal());
-		user.setPassword((String) token.getCredentials());
-		return user;
+	public UsernamePasswordAuthenticationToken parseToken(String data) {
+		
+		byte[] decoded = Base64.getDecoder().decode(data); 
+		
+		String usernameAndPasswordString = new String(decoded);
+
+		int dividerIndex = usernameAndPasswordString.indexOf(":");
+		String email = usernameAndPasswordString.substring(0, dividerIndex);
+		String password = usernameAndPasswordString.substring(dividerIndex + 1);
+		
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+		return token;
 	}
 
 	/**
@@ -41,4 +50,5 @@ public class TokenUtil {
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
 		return token;
 	}
+
 }
