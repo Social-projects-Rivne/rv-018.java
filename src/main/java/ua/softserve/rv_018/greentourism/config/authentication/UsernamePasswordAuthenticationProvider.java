@@ -41,35 +41,40 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 	protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken token)
 			throws AuthenticationException {
 
-        User parsedUser = tokenUtil.parseToken(token);
+//        User parsedUser = tokenUtil.parseToken(token);
+//
+//        if (parsedUser == null) {
+//            try {
+//				throw new Exception("Athentication fails!");
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        }
 
-        if (parsedUser == null) {
-            try {
-				throw new Exception("Athentication fails!");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-
-        return parsedUser;
+        return new User();
 	}
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		System.out.println("In authentication manager");
 		String email = authentication.getName();
 		User user = userService.findByEmail(email);
+		System.out.println(user);
 		if (user == null) {
+			System.out.println("Nothing was finded");
 			return null;
 		}
 		String expectedUserPassword = user.getPassword();
 		AUTHORITIES.add(new SimpleGrantedAuthority(user.getRole().getName()));
 		if (authentication.getCredentials().equals(expectedUserPassword)) {
+			System.out.println("Successfull athentication");
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 					authentication.getName(), authentication.getCredentials(), AUTHORITIES);
 			token.setDetails(user.getId());
 			return token;
 		} else
+			System.out.println("In authenticate returning null");
 			return null;
 	}
 	
