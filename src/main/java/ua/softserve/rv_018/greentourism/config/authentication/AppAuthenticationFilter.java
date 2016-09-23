@@ -7,17 +7,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 
-public class UsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+import ua.softserve.rv_018.greentourism.config.AppAuthenticationManager;
 
-	public final static String FILTERED_URL = "/**";
+public class AppAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-	public UsernamePasswordAuthenticationFilter() {
+	public final static String FILTERED_URL = "/map/**";
+
+	@Autowired
+	private AppAuthenticationManager authenticationManager;
+	
+	public AppAuthenticationFilter() {
 		super(FILTERED_URL);
+		setAuthenticationManager(authenticationManager);
+	}
+	
+	
+	@Autowired
+	@Override
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		super.setAuthenticationManager(authenticationManager);
 	}
 
 	@Override
@@ -27,8 +42,7 @@ public class UsernamePasswordAuthenticationFilter extends AbstractAuthentication
 		String header = request.getHeader("Authorization");
 
 		if (header == null || !header.startsWith("Bearer ")) {
-			// throw new AuthenticationException("No JWT token found in request
-			// headers");
+			 return null;
 		}
 
 		String authToken = header.substring(7);
