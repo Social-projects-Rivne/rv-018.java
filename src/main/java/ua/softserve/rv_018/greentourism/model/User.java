@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "user_detail")
-public class User {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = -6906839498032929009L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -26,8 +33,6 @@ public class User {
 	private String lastName;
 	@Column(name = "password", nullable = false)
 	private String password;
-	@Column(name = "is_active", nullable = false, columnDefinition = "boolean default false")
-	private boolean isActive;
 	@Column(name = "social_account")
 	private String socialAccount;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -54,9 +59,8 @@ public class User {
 		this.password = user.getPassword();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.isActive = user.isActive();
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -64,31 +68,16 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@Override
 	public String getUsername() {
 		return username;
 	}
-
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -113,20 +102,21 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	@Override
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getSocialAccount() {
 		return socialAccount;
 	}
 
 	public void setSocialAccount(String socialAccount) {
 		this.socialAccount = socialAccount;
-	}
-
-	public String getUserpic() {
-		return userpic;
-	}
-
-	public void setUserpic(String userpic) {
-		this.userpic = userpic;
 	}
 
 	public Role getRole() {
@@ -137,11 +127,38 @@ public class User {
 		this.role = role;
 	}
 
+	public String getUserpic() {
+		return userpic;
+	}
+
+	public void setUserpic(String userpic) {
+		this.userpic = userpic;
+	}
+
 	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", password=" + password + ", isActive=" + isActive + ", socialAccount="
-				+ socialAccount + ", role_id=" + role + "]";
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	
+	@Override
+	public Collection<Role> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
