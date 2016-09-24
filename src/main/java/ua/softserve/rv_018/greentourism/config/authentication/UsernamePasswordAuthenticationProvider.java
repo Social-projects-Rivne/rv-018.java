@@ -28,11 +28,6 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 	private TokenUtil tokenUtil;
 
 	@Override
-	public boolean supports(Class<?> authentication) {
-		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
-	}
-
-	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authenticationToken)
 			throws AuthenticationException {
 	}
@@ -60,9 +55,7 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 		System.out.println("In authentication manager");
 		String email = authentication.getName();
 		User user = userService.findByEmail(email);
-		System.out.println(user);
 		if (user == null) {
-			System.out.println("Nothing was finded");
 			return null;
 		}
 		String expectedUserPassword = user.getPassword();
@@ -74,8 +67,12 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 			token.setDetails(user.getId());
 			return token;
 		} else
-			System.out.println("In authenticate returning null");
 			return null;
+	}
+	
+	@Override
+	public boolean supports(Class<?> authentication) {
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	}
 	
 }

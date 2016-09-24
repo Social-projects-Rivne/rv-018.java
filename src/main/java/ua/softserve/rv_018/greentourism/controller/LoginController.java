@@ -38,19 +38,11 @@ public class LoginController {
 	public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
 		logger.info("> loginUser by email: " + email + "password: " + password);
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
-		Authentication result = appAuthenticationManager.authenticate(token);
-		if (result != null) {
-			SecurityContext securityContext = SecurityContextHolder.getContext();
-			securityContext.setAuthentication(result);
-
-			HttpSession session = request.getSession(true);
-			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("UserId", result.toString());
-			return new ResponseEntity<>(headers, HttpStatus.OK);
-		}
+//		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+//		Authentication result = appAuthenticationManager.authenticate(token);
+//		if (result != null) {
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 	}
@@ -60,19 +52,12 @@ public class LoginController {
 	public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("> logout User ");
-		
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-			session.invalidate();
-			Authentication currentAuthentication = context.getAuthentication();
+			Authentication currentAuthentication = SecurityContextHolder.getContext().getAuthentication();
 			if (currentAuthentication != null) {
 				new SecurityContextLogoutHandler().logout(request, response, currentAuthentication);
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 }
