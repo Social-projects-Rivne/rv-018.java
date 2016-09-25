@@ -100,6 +100,18 @@ nav .brand-logo {
 	transition: transform 0.4s ease;
 }
 
+@media screen and (min-width: 416px) and (max-width:1101px) {
+.not-active {
+   width: 30%;
+  }
+}
+
+@media screen and (max-width:415px) {
+.not-active {
+   width: 70%;
+  }
+}
+
 .active-ul {
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
@@ -166,6 +178,12 @@ nav .brand-logo {
 	right: 24px;
 	animation: 0.4s ease-out 0s normal none 1 running expandFab;
 }
+
+@media screen and (max-width:767px) {
+.fixed-action-btn {
+   display: none;
+  }
+}
 /*-------------- ng-animate --------------*/
 .add-item-menu.ng-hide-add,
 .add-item-menu.ng-hide-remove {
@@ -196,6 +214,18 @@ nav .brand-logo {
     top: 0px;
     width: 25%;
     z-index: 400;
+}
+
+@media screen and (min-width: 768px) and (max-width:1200px) {
+.add-item-menu {
+   width: 40%;
+  }
+}
+
+@media screen and (max-width:767px) {
+.add-item-menu {
+   display: none;
+  }
 }
 
 .add-item-menu h2 {
