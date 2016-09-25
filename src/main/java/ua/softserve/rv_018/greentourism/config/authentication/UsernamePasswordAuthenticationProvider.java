@@ -23,9 +23,6 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 	
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private TokenUtil tokenUtil;
 
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authenticationToken)
@@ -52,7 +49,6 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		System.out.println("In authentication manager");
 		String email = authentication.getName();
 		User user = userService.findByEmail(email);
 		if (user == null) {
@@ -67,6 +63,7 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 			token.setDetails(user.getId());
 			return token;
 		} else
+			System.out.println("Successfull athentication");
 			return null;
 	}
 	
