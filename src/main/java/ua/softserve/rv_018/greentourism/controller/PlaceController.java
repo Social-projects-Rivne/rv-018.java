@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 import ua.softserve.rv_018.greentourism.service.PointService;
-import ua.softserve.rv_018.greentourism.service.UserService;
 
 @RequestMapping(value = "/api/place")
 @Controller
@@ -41,6 +42,9 @@ public class PlaceController {
 	
 	@Autowired
 	private GalleryRepository galleryRepository;
+	
+	@Autowired
+	private CommentItemRepository commentItemRepository;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -175,6 +179,16 @@ public class PlaceController {
 			}
 			if (place.getId() == gallery.getPlace().getId()) {
 				place.getAttachments().add(gallery.getAttachment());
+			}
+		}
+		
+		List<CommentItem> commentItems = commentItemRepository.findByPlace(place);
+		for (CommentItem commentItem : commentItems) {
+			if (commentItem == null) {
+				continue;
+			}
+			if (place.getId() == commentItem.getPlace().getId()) {
+				place.getComments().add(commentItem.getComment());
 			}
 		}
 		

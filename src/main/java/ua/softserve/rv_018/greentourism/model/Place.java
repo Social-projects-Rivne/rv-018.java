@@ -48,12 +48,11 @@ public class Place {
 	
 	@Transient
 	private List<Attachment> attachments = new ArrayList<>();
+	
+	@Transient
+	private List<Comment> comments = new ArrayList<>();
 
 	public Place() {}
-
-	public Place(int i, String string, String string2, String string3, String string4, String string5) {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getId() {
 		return id;
@@ -109,6 +108,14 @@ public class Place {
 
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
+	}
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override
