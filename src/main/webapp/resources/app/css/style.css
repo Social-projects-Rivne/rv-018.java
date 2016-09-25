@@ -166,6 +166,12 @@ nav .brand-logo {
 	right: 24px;
 	animation: 0.4s ease-out 0s normal none 1 running expandFab;
 }
+
+@media screen and (max-width:767px) {
+.fixed-action-btn {
+   display: none;
+  }
+}
 /*-------------- ng-animate --------------*/
 .add-item-menu.ng-hide-add,
 .add-item-menu.ng-hide-remove {
