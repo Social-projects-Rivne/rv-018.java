@@ -100,6 +100,18 @@ nav .brand-logo {
 	transition: transform 0.4s ease;
 }
 
+@media screen and (min-width: 416px) and (max-width:1101px) {
+.not-active {
+   width: 30%;
+  }
+}
+
+@media screen and (max-width:415px) {
+.not-active {
+   width: 70%;
+  }
+}
+
 .active-ul {
 	transform: translate3d(0, 0, 0);
 	transition: transform 0.4s ease;
