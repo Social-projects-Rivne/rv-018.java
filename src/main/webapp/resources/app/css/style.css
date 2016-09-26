@@ -117,6 +117,7 @@ nav .brand-logo {
 .active-ul {
     transform: translate3d(0, 0, 0);
     transition: transform 0.4s ease;
+    z-index: 1001;
 }
 
 /* Tabs animation files */
@@ -995,4 +996,36 @@ img.responsive-img {
 map .content {
     height: 100%;
     width: 100%;
+}
+
+md-sidenav {
+    box-sizing: border-box;
+    position: absolute;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    z-index: 60;
+    width: 320px;
+    max-width: 320px;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1000;
+    margin-top: 88px;
+    background: #f8f8f8;
+}
+
+.layout-margin {
+    background-color: #f8f8f8;
+}
+
+.layout-margin a {
+    color: #0F9C5A;
+    font-size: 19px;;
+}
+
+.md-sidenav-left, md-sidenav {
+    left: 0;
+    top: 0;
+    z-index: 1001;
 }
