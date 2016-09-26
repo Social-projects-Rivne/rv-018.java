@@ -4,6 +4,7 @@
 
 .tabsBackgroundColor {
     background-color: #0F9C5A;
+    margin-top: 1px;
 }
 
 .tabs .indicator {
@@ -1011,7 +1012,7 @@ md-sidenav {
     bottom: 0;
     overflow: auto;
     z-index: 1000;
-    margin-top: 88px;
+    margin-top: 44px;
     background: #f8f8f8;
 }
 
@@ -1020,8 +1021,10 @@ md-sidenav {
 }
 
 .layout-margin a {
-    color: #0F9C5A;
-    font-size: 19px;;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #009000;
+    font-weight: bold;
 }
 
 .md-sidenav-left, md-sidenav {
