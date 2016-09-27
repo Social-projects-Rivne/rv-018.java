@@ -133,6 +133,27 @@ nav .brand-logo {
 .tabs {
     height: 44px;
     transition: 0.2s linear all;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 414px) {
+    .tabs .tab {
+        font-size: 9px;
+        overflow: hidden;
+        letter-spacing: 0.2px;
+        min-width: 36px;
+        text-transform: inherit;
+    }
+}
+
+@media screen and (min-width: 415px ) and (max-width: 768px) {
+    .tabs .tab {
+        font-size: 12px;
+        overflow: hidden;
+        letter-spacing: 0.2px;
+        min-width: 40px;
+        text-transform: inherit;
+    }
 }
 
 .tabs.ng-hide {
