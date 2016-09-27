@@ -10,8 +10,6 @@ angular.module('greenApp')
       $rootScope.myMap.remove();
     }
 
-/*    TapIsOpen.Open() ;*/
-    
     $scope.removeCache = function() {
       $templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
     }
@@ -273,6 +271,5 @@ $scope.events = ["Sport competition", "Festival", "Meeting"];
     $scope.toggleAddEventMenuSmallScreen = function() {
       $scope.addEventMenuIsOpen = false;
     };
-
   }
 });

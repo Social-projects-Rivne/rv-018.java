@@ -65,13 +65,6 @@
 			   </nav>  
 		    </header>  
 	    <main>
-		        <!-- Hiding menu -->
-					<%--<div id="collection" class="collection not-active">
-						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
-						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
-						<a href="#/event" class="collection-item" ng-click="hideTabs();"><i class="material-icons">redeem</i> Events calendar</a>
-						<a href="#/profile" class="collection-item" ng-click="hideTabs();"><i class="material-icons">perm_identity</i>Profile</a>
-					</div>--%>
 				<!-- Tabs -->
 				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs">
 					<div class="tabsIndent">
