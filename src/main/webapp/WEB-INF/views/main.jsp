@@ -29,11 +29,11 @@
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
 		                <div class="row">
-		                    <div class="col s2 m1 l1">
+							<div class="col s2 m1 l1">
 								<a class="waves-effect waves-light">
-		                        	<i ng-click="toggleLeft()" class="material-icons">menu</i>
+									<i ng-click="toggleLeft()" class="material-icons">menu</i>
 								</a>
-		                    </div>
+							</div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
 		                    </div>
