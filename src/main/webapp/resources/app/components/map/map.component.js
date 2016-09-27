@@ -258,7 +258,9 @@ $scope.events = ["Sport competition", "Festival", "Meeting"];
       $scope.addItem = false;
     }
 
-
+    $scope.toggleAddPlaceMenuSmallScreen = function() {
+      $scope.addPlaceMenuIsOpen = false;
+    };
 
 }
 });
