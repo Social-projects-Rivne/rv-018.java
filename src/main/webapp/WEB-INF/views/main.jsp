@@ -30,9 +30,7 @@
 			       <div class="nav-wrapper">
 		                <div class="row">
 							<div class="col s2 m1 l1">
-								<a class="waves-effect waves-light">
-									<i ng-click="toggleLeft()" class="material-icons">menu</i>
-								</a>
+								<i ng-click="toggleLeft()" class="waves-effect waves-light material-icons">menu</i>
 							</div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
