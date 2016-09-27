@@ -1,6 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Attachment;
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.repository.AttachmentRepository;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 
 @Service
 @Transactional(
@@ -27,6 +30,9 @@ public class AttachmentServiceImpl implements AttachmentService {
      */
     @Autowired
     private AttachmentRepository attachmentRepository;
+    
+    @Autowired
+    private GalleryRepository galleryRepository;
 
 	@Override
 	public Attachment create(Attachment attachment) {
@@ -48,5 +54,22 @@ public class AttachmentServiceImpl implements AttachmentService {
         logger.info("< Attachment findByPlaceId");
         
         return attachments;
+	}
+	
+	@Override
+	public List<Attachment> findByPlaceItemId(int id) {
+		logger.info("> Attachment findByPlaceItemId {}", id);
+		
+		List<Gallery> galleries = galleryRepository.findByPlaceItemId(id);
+		
+		ArrayList<Attachment> attachments = new ArrayList<Attachment>();
+		
+		for(Gallery g : galleries) {
+			attachments.add(g.getAttachment());
+		}
+		
+		logger.info("< Attachment findByPlaceItemId {}", id);
+		
+		return attachments;
 	}
 }

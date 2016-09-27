@@ -831,6 +831,7 @@ img.responsive-img {
 	cursor: pointer;
 	font-color: #151515;
 	padding-right: 0px;
+	overflow: hidden;
 }
 
 .search-error {
@@ -841,27 +842,46 @@ img.responsive-img {
 }
 
 .place-image {
-	display: inline;
-	width: 70px;
+	display: block;
+	float: left;
+	width: 90px;
 	height: 100%;
 }
 
 .places-list {
+	margin-top: 30px;
 	overflow: hidden;
 }
 
-.place-name {
+.place-info {
+	float: left;
 	width: 60%;
-	display: inline;
+	padding: 0px;
 	padding-left: 10px;
-	font-size: 85%;
-	overflow: hidden;
 	height: 100%;
 }
 
+.place-name {
+	margin: 0px;
+	padding: 0px;
+}
+
 .place-address {
+	position: relative;
+	top: -5px;
 	font-color: #545454;
 	font-size: 90%;
+}
+
+.closeSearch {
+    color: #009000;
+    font-size: 35px;
+    left: 10px;
+    position: absolute;
+    top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
 }
 
 .btn-flat {
