@@ -880,6 +880,12 @@ input.add-feedback {
     color: white;
 }
 
+@media screen and (max-width: 375px) {
+    .btn-flat {
+        font-size: 12px;
+    }
+}
+
 .btn-flat:hover {
     background-color: inherit;
 }
@@ -903,6 +909,12 @@ input.add-feedback {
     padding-right: 10px;
     display: inline-block;
     vertical-align: top;
+}
+
+@media screen and (max-width: 767px) {
+    .top-profile-name {
+        display: none;
+    }
 }
 
 .top-profile-img {
