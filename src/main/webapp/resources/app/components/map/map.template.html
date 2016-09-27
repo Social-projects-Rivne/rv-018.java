@@ -43,13 +43,21 @@
 		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
 			class="material-icons">date_range</i></a>
 	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addItem">
+		<a ng-click="addPlaceMenu(); hideItemButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
 	<!-- DIV Add places -->
 	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
 			<h2>New Place</h2>
-			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
+			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hideItemButton()"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
-			<a href="" ng-click=" "> <span
+			<a href="" ng-click="toggleAddPlaceMenu(); showItemButton()"> <span
 				<i class="material-icons arrow">expand_more</i></span>
 			</a>
 			<form name="placeMaker" novalidate>

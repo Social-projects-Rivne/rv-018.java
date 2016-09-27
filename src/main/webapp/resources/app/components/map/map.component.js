@@ -249,5 +249,16 @@ $scope.createNewEvent = function(form) {
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
+
+    $scope.showItemButton = function(){
+      $scope.addItem = true;
+    }
+
+    $scope.hideItemButton = function(){
+      $scope.addItem = false;
+    }
+
+
+
 }
 });

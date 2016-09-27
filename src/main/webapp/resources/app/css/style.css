@@ -1044,3 +1044,17 @@ md-sidenav {
         display: none;
     }
 }
+
+/*-------------- Arrow button --------------*/
+.fixed-action-btn .arrow {
+    bottom: 45px;
+    right: 24px;
+    font-size: 20;
+    animation: 0.4s ease-out 0s normal none 1 running expandFab;
+}
+
+@media screen and (min-width: 768px) {
+    .fixed-action-btn .arrow {
+        display: none;
+    }
+}
