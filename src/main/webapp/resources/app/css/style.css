@@ -376,7 +376,7 @@ md-content {
     top: 5px;
 }
 
-#profile-page-header .card-image {
+#profile-page-header .card-user-image {
     height: 250px;
 }
 
@@ -387,11 +387,18 @@ md-content {
 #profile-page-header .card-profile-username {
     cursor: pointer;
     right: 0;
-    margin-top: -4%;
+    margin-top: -5%;
     position: absolute;
     top: 50%;
     width: 80%;
     z-index: 1;
+}
+
+#profile-page-header .card-profile-username p {
+    font-family: Roboto,Helvetica Neue,sans-serif;
+    color: rgba(0,0,0,0.87);
+    font-size: 23px;
+    font-weight: 500;
 }
 
 #profile-page-header .card-profile-button {
@@ -460,21 +467,21 @@ md-content {
     background-color: #fafafa;
     padding: 0;
     max-height: 100%;
-    width: 55%;
+    width: 50%;
     margin: auto;
     overflow-y: auto;
     border-radius: 2px;
     will-change: top, opacity;
 }
 
-.card .card-image img {
+.card .card-user-image img {
     display: block;
     position: relative;
     left: 20px;
     right: 0;
-    top: 55px;
+    top: 45px;
     bottom: 0;
-    width: 75%;
+    width: 80%;
     border: 3px solid white;
     border-radius: 50%;
 }
@@ -495,8 +502,149 @@ md-content {
     margin: 0.5rem 10px 1rem 0;
 }
 
-/* ------------------Place------------------- */
+/* user profile mobile devices */
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    #profile-page-header .card-user-image {
+        height: 200px;
+    }
 
+    #profile-page-header .card-profile-username {
+        right: 0;
+        position: absolute;
+        top: 25%;
+        width: 80%;
+        z-index: 1;
+    }
+
+    #profile-page-header .card-profile-username p {
+        font-family: Roboto,Helvetica Neue,sans-serif;
+        color: rgba(0,0,0,0.87);
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    #profile-page-header .card-profile-username {
+        cursor: pointer;
+        right: 0;
+        margin-top: 0;
+        position: absolute;
+        top: 15%;
+        width: 80%;
+        z-index: 1;
+    }
+}
+
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+    #profile-page-header .card-user-image {
+        height: 150px;
+    }
+
+    #profile-page-header .card-profile-username {
+        right: 7;
+        position: absolute;
+        top: 34%;
+        width: 80%;
+        z-index: 1;
+    }
+
+    .card .card-user-image img {
+        display: block;
+        position: relative;
+        left: 5px;
+        right: 0;
+        top: 40px;
+        width: 100%;
+        bottom: 0;
+        border: 3px solid white;
+        border-radius: 50%;
+    }
+
+    #profile-page-header .card-profile-username p {
+        font-family: Roboto,Helvetica Neue,sans-serif;
+        color: rgba(0,0,0,0.87);
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    #profile-page-header .card-profile-button {
+        cursor: pointer;
+        right: 40px;
+        margin-top: -15px;
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        z-index: 1;
+        background-color: #FFFFFF;
+        color: #8E8E8E;
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 26%;
+        line-height: 36px;
+        outline: 0;
+        font-size: 150%;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 413px) {
+    #profile-page-header .card-user-image {
+        height: 150px;
+    }
+
+    #profile-page-header .card-profile-username {
+        right: -7px;
+        position: absolute;
+        top: 34%;
+        width: 80%;
+        z-index: 1;
+    }
+
+    .card .card-user-image img {
+        display: block;
+        position: relative;
+        left: 5px;
+        right: 0;
+        top: 50px;
+        width: 100%;
+        bottom: 0;
+        border: 3px solid white;
+        border-radius: 50%;
+    }
+
+    #profile-page-header .card-profile-username p {
+        font-family: Roboto,Helvetica Neue,sans-serif;
+        color: rgba(0,0,0,0.87);
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    #profile-page-header .card-profile-button {
+        cursor: pointer;
+        right: 20px;
+        margin-top: -15px;
+        position: absolute;
+        top: 48%;
+        width: 40%;
+        z-index: 1;
+        background-color: #FFFFFF;
+        color: #8E8E8E;
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 24%;
+        line-height: 36px;
+        outline: 0;
+        font-size: 125%;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* ------------------Place------------------- */
 @CHARSET "UTF-8";
 
 /* large & medium devices */
