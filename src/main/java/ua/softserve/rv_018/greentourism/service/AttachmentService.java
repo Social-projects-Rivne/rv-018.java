@@ -17,4 +17,6 @@ public interface AttachmentService {
      * @return A List of Attachment objects.
      */
 	List<Attachment> findByPlaceId(int id);
+	
+	List<Attachment> findByPlaceItemId(int id);
 }

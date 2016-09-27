@@ -981,16 +981,17 @@ input.add-feedback {
     right: 0;
     background-color: #FFF;
     height: 100%;
-    top: 0px;
+    top: 88px;
 }
 
 .found-place {
-    height: 100px;
-    padding: 15px;
-    border-bottom: 1px solid #e4e4e4;
-    cursor: pointer;
-    font-color: #151515;
-    padding-right: 0px;
+	height: 100px;
+	padding: 15px;
+	border-bottom: 1px solid #e4e4e4;
+	cursor: pointer;
+	font-color: #151515;
+	padding-right: 0px;
+	overflow: hidden;
 }
 
 .search-error {
@@ -1001,27 +1002,46 @@ input.add-feedback {
 }
 
 .place-image {
-    display: inline;
-    width: 70px;
-    height: 100%;
+	display: block;
+	float: left;
+	width: 90px;
+	height: 100%;
 }
 
 .places-list {
-    overflow: hidden;
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+.place-info {
+	float: left;
+	width: 60%;
+	padding: 0px;
+	padding-left: 10px;
+	height: 100%;
 }
 
 .place-name {
-    width: 60%;
-    display: inline;
-    padding-left: 10px;
-    font-size: 85%;
-    overflow: hidden;
-    height: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 
 .place-address {
-    font-color: #545454;
-    font-size: 90%;
+	position: relative;
+	top: -5px;
+	font-color: #545454;
+	font-size: 90%;
+}
+
+.closeSearch {
+    color: #009000;
+    font-size: 35px;
+    left: 10px;
+    position: absolute;
+    top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
 }
 
 .btn-flat {
