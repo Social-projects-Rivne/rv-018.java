@@ -3,15 +3,13 @@
 angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-  controller: function(TapIsOpen, $rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+  controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
       $scope.previousMapZoom = $rootScope.myMap.getZoom();
       $rootScope.myMap.remove();
     }
 
-    TapIsOpen.Open() ;
-    
     $scope.removeCache = function() {
       $templateCache.remove(_contextPath + '/resources/app/components/map/map.template.html');
     }
@@ -249,5 +247,29 @@ $scope.createNewEvent = function(form) {
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
-}
+
+    $scope.showPlaceButton = function(){
+      $scope.addPlace = true;
+    }
+
+    $scope.hidePlaceButton = function(){
+      $scope.addPlace = false;
+    }
+
+    $scope.toggleAddPlaceMenuSmallScreen = function() {
+      $scope.addPlaceMenuIsOpen = false;
+    };
+
+    $scope.showEventButton = function(){
+      $scope.addEvent = true;
+    }
+
+    $scope.hideEventButton = function(){
+      $scope.addEvent = false;
+    }
+
+    $scope.toggleAddEventMenuSmallScreen = function() {
+      $scope.addEventMenuIsOpen = false;
+    };
+  }
 });

@@ -43,11 +43,29 @@
 		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
 			class="material-icons">date_range</i></a>
 	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addPlace">
+		<a ng-click="addPlaceMenu(); hidePlaceButton(); hideEventButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addEvent">
+		<a ng-click="addEventMenu(); hideEventButton(); hidePlaceButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
 	<!-- DIV Add places -->
 	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
 			<h2>New Place</h2>
-			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
+			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hidePlaceButton(); hideEventButton()"> <span
 				class="material-icons closeIcon">close</span>
+			</a>
+			<a href="" ng-click="toggleAddPlaceMenuSmallScreen(); showPlaceButton()"> <span
+				<i class="material-icons arrow">expand_more</i></span>
 			</a>
 			<form name="placeMaker" novalidate>
 				<div class="form-group">
@@ -106,8 +124,11 @@
 	<!-- DIV Add events -->
 	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen">
 			<h2>New Event</h2>
-			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace()"> <span
+			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace(); hideEventButton(); hidePlacebutton()"> <span
 				class="material-icons closeIcon">close</span>
+			</a>
+			<a href="" ng-click="toggleAddEventMenuSmallScreen(); showEventButton()"> <span
+				<i class="material-icons arrow">expand_more</i></span>
 			</a>
 			<form name="eventMaker" novalidate>
 				<div class="form-group">
