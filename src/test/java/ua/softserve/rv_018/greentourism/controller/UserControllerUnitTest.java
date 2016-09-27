@@ -29,7 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerUnitTest {
     public static final String EMPTY_COLLECTION = "[]";
     public static final String EMPTY_VALUE = "";
-    public static final String VALUE ="{\"id\":1,\"username\":\"username\",\"email\":\"some@gmail.com\",\"firstName\":null,\"lastName\":null,\"password\":\"password\",\"active\":false}";
+    public static final String VALUE ="{\"id\":1,\"username\":\"username\",\"email\":\"some@gmail.com\",\"firstName\":null,\"lastName\":null"
+    		+ ",\"password\":\"password\",\"socialAccount\":\"facebook.com/account.name\",\"role\":null,\"userpic\":\"http://userpic\",\"active\":false}";
     public static final User USER = new User(1l, "username", "some@gmail.com", "password");
     public static final String HEADER_LOCATION = "http://localhost/user/1";
 
@@ -49,6 +50,10 @@ public class UserControllerUnitTest {
         MockitoAnnotations.initMocks(this);
         
         mockMvc = MockMvcBuilders.standaloneSetup(this.userController).build();
+        
+        USER.setSocialAccount("facebook.com/account.name");
+        USER.setUserpic("http://userpic");
+        USER.setRole(null);
     }
 
     @Test

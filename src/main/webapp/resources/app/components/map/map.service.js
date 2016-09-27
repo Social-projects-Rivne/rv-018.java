@@ -42,5 +42,8 @@ angular.module('greenApp')
 		this.getMapMarkersArray = function() {
 			return this.mapMarkersArrayParam;
 		}
+	})
+	.service('TapIsOpen', function() {
+		return this;
 	});
 
