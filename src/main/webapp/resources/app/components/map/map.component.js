@@ -250,17 +250,29 @@ $scope.createNewEvent = function(form) {
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
 
-    $scope.showItemButton = function(){
-      $scope.addItem = true;
+    $scope.showPlaceButton = function(){
+      $scope.addPlace = true;
     }
 
-    $scope.hideItemButton = function(){
-      $scope.addItem = false;
+    $scope.hidePlaceButton = function(){
+      $scope.addPlace = false;
     }
 
     $scope.toggleAddPlaceMenuSmallScreen = function() {
       $scope.addPlaceMenuIsOpen = false;
     };
 
-}
+    $scope.showEventButton = function(){
+      $scope.addEvent = true;
+    }
+
+    $scope.hideEventButton = function(){
+      $scope.addEvent = false;
+    }
+
+    $scope.toggleAddEventMenuSmallScreen = function() {
+      $scope.addEventMenuIsOpen = false;
+    };
+
+  }
 });
