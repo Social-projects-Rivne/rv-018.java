@@ -484,6 +484,8 @@ md-content {
     width: 80%;
     border: 3px solid white;
     border-radius: 50%;
+    width: 150px;
+    height: 150px;
 }
 
 .card .card-image-place img {
@@ -508,12 +510,18 @@ md-content {
         height: 200px;
     }
 
-    #profile-page-header .card-profile-username {
+    .card .card-user-image img {
+        display: block;
+        position: relative;
+        left: 20px;
         right: 0;
-        position: absolute;
-        top: 25%;
+        top: 25px;
+        bottom: 0;
         width: 80%;
-        z-index: 1;
+        border: 3px solid white;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
     }
 
     #profile-page-header .card-profile-username p {
@@ -525,7 +533,7 @@ md-content {
 
     #profile-page-header .card-profile-username {
         cursor: pointer;
-        right: 0;
+        right: -45px;
         margin-top: 0;
         position: absolute;
         top: 15%;
@@ -543,7 +551,7 @@ md-content {
         right: 7;
         position: absolute;
         top: 34%;
-        width: 80%;
+        width: 73%;
         z-index: 1;
     }
 
@@ -552,11 +560,13 @@ md-content {
         position: relative;
         left: 5px;
         right: 0;
-        top: 40px;
+        top: 21px;
         width: 100%;
         bottom: 0;
         border: 3px solid white;
         border-radius: 50%;
+        width: 100px;
+        height: 100px;
     }
 
     #profile-page-header .card-profile-username p {
@@ -568,11 +578,11 @@ md-content {
 
     #profile-page-header .card-profile-button {
         cursor: pointer;
-        right: 40px;
-        margin-top: -15px;
+        right: 5px;
+        margin-top: -18px;
         position: absolute;
         top: 50%;
-        width: 40%;
+        width: 36%;
         z-index: 1;
         background-color: #FFFFFF;
         color: #8E8E8E;
@@ -582,7 +592,7 @@ md-content {
         height: 26%;
         line-height: 36px;
         outline: 0;
-        font-size: 150%;
+        font-size: 145%;
         text-transform: uppercase;
         vertical-align: middle;
         -webkit-tap-highlight-color: transparent;
@@ -595,7 +605,7 @@ md-content {
     }
 
     #profile-page-header .card-profile-username {
-        right: -7px;
+        right: -24px;
         position: absolute;
         top: 34%;
         width: 80%;
@@ -607,11 +617,13 @@ md-content {
         position: relative;
         left: 5px;
         right: 0;
-        top: 50px;
+        top: 30px;
         width: 100%;
         bottom: 0;
         border: 3px solid white;
         border-radius: 50%;
+        width: 90px;
+        height: 90px;
     }
 
     #profile-page-header .card-profile-username p {
@@ -623,11 +635,11 @@ md-content {
 
     #profile-page-header .card-profile-button {
         cursor: pointer;
-        right: 20px;
+        right: 4px;
         margin-top: -15px;
         position: absolute;
         top: 48%;
-        width: 40%;
+        width: 30%;
         z-index: 1;
         background-color: #FFFFFF;
         color: #8E8E8E;
@@ -637,7 +649,7 @@ md-content {
         height: 24%;
         line-height: 36px;
         outline: 0;
-        font-size: 125%;
+        font-size: 90%;
         text-transform: uppercase;
         vertical-align: middle;
         -webkit-tap-highlight-color: transparent;
