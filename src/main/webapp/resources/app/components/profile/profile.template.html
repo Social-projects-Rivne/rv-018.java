@@ -1,14 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div id="profile-page-header" class="card">
-			<div class="col s12 card-image waves-effect waves-block waves-light"
+			<div class="col s12 card-user-image waves-effect waves-block waves-light"
 				ng-style="{'background-image':'url(' + ImageUrl + ')'}">
-				<div class="col s2">
+				<div class="col s3">
 					<img ng-src="{{userpic}}" class="circle responsive-img z-depth-2">
 				</div>
-				<div class="col s4 card-profile-username">
-					<h4>{{firstName}} {{lastName}}</h4>
-					<h5>@{{username}}</h5>
+				<div class="col s3 card-profile-username">
+					<p>{{firstName}} {{lastName}}</p>
+					<p>@{{username}}</p>
 				</div>
 				<div class="col s6">
 					<button class="card-profile-button modal-trigger" href="#modal1">EDIT
@@ -26,8 +26,8 @@
 		<div class="col s12 m6">
 			<div class="card cardprofile">
 				<div class="card-content">
-					<span class="card-title activator grey-text ">Email<i
-						class="material-icons right modal-trigger" href="#email"">mode_edit</i></span>
+					<span class="card-title activator grey-text ">Email
+						<i class="material-icons right modal-trigger" href="#user-email">mode_edit</i></span>
 					<p>
 						<i class="material-icons left">mail</i>{{email}}
 					</p>
@@ -37,10 +37,8 @@
 		<div class="col s12 m6">
 			<div class="card cardprofile">
 				<div class="card-content">
-					<span class="card-title activator grey-text ">Social
-						accounts<i class="material-icons right modal-trigger"
-						href="#social-accounts">mode_edit</i>
-					</span>
+					<span class="card-title activator grey-text ">Social accounts
+						<i class="material-icons right modal-trigger" href="#social-accounts">mode_edit</i></span>
 					<p>
 						<i class="material-icons left">account_circle</i>{{socialAccount}}
 					</p>
@@ -118,7 +116,7 @@
 	</div>
 
 	<!-- Modal Structure for edit email -->
-	<div id="email" class="modal">
+	<div id="user-email" class="modal">
 		<div class="modal-content">
 			<div>
 				<label for="email"><h5>Edit email:</h5> </label> <input type="text"

@@ -10,19 +10,31 @@ angular.
     	    
             $http.get(_contextPath + '/api/place/filter/name?name=' + $routeParams.name + '&ignorecase=true').then(function(response) {
                 $scope.places = response.data;
-             	
+                
                 if($location.path() == '/map/searchplace')
              	    $scope.searchPlacesSidebarOpen = true;
-             	
+                console.log($scope.places);
                 if (response.data.length == 0)
              	    $scope.noSuchResultMessage = true;
+                
+                $scope.places.forEach($scope.getAttachments);
              	
                 for (var i = 0; i < $scope.places.length; i++) {
              	    $scope.getAddressOfPoint($scope.places[i].point.latitude, $scope.places[i].point.longitude);
 
              	    $scope.places[i].address = $scope.address[i];
              	}
+                
              });
+            
+            $scope.getAttachments = function(item, index) {
+            	$http.get(_contextPath + 'api/attachment/find/place?id=' + item.id)
+            		.then(function(response) {
+            			item.attachments = response.data;
+            			if (item.attachments.length == 0)
+            				item.attachments[0] = {fileSrc: '\\resources\\images\\gps-icon.png'};
+            		});
+            }
             
             $scope.closePlacesSidebar = function() {
                 $scope.searchPlacesSidebarOpen = false;

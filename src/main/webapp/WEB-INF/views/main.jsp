@@ -29,9 +29,9 @@
 		        <nav role="navigation">
 			       <div class="nav-wrapper">
 		                <div class="row">
-		                    <div class="col s2 m1 l1">
-		                        <i id="toggle-button" class="circle waves-effect waves-light material-icons">menu</i>
-		                    </div>
+							<div class="col s2 m1 l1">
+								<i ng-click="toggleLeft()" class="waves-effect waves-light material-icons">menu</i>
+							</div>
 		                    <div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
 		                    </div>
@@ -51,10 +51,10 @@
 		                            </div>
 		                        </nav>
 		                    </div>
-		                    <div class="col s1 m1 l1">
+		                    <div class="col s2 m2 l2">
 		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
 		                    </div>
-		                    <div class="col s2 m3 l4">
+		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()">
 									<div class="top-profile-name" ng-bind="name">George</div>
 									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
@@ -64,14 +64,7 @@
 		            </div>    
 			   </nav>  
 		    </header>  
-	    <main>    
-		        <!-- Hiding menu -->
-					<div class="collection not-active">
-						<a href="#" class="collection-item" ng-click="hideTabs();"><i class="material-icons">business</i> Home</a>
-						<a href="#/map" class="collection-item" ng-click="showTabs();"><i class="material-icons">language</i> Map</a>
-						<a href="#/event" class="collection-item" ng-click="hideTabs();"><i class="material-icons">redeem</i> Events calendar</a>
-						<a href="#/profile" class="collection-item" ng-click="hideTabs();"><i class="material-icons">perm_identity</i>Profile</a>
-					</div>
+	    <main>
 				<!-- Tabs -->
 				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs">
 					<div class="tabsIndent">
@@ -84,6 +77,26 @@
 						</div>
 					</div>
 				</div>
+
+				<md-sidenav class="md-sidenav-left" md-component-id="left"
+							md-disable-backdrop md-whiteframe="4">
+
+					<md-content layout-margin>
+						<div>
+							<a href="#" class="collection-item" ng-click="hideTabs(); toggleLeft()"><i class="material-icons">business</i> Home</a>
+						</div>
+						<div>
+							<a href="#/map" class="collection-item" ng-click="showTabs(); toggleLeft()"><i class="material-icons">language</i> Map</a>
+						</div>
+						<div>
+							<a href="#/event" class="collection-item" ng-click="hideTabs(); toggleLeft()"><i class="material-icons">redeem</i> Events calendar</a>
+						</div>
+						<div>
+							<a href="#/profile" class="collection-item" ng-click="hideTabs(); toggleLeft()"><i class="material-icons">perm_identity</i>Profile</a>
+						</div>
+					</md-content>
+
+				</md-sidenav>
 				<!-- Actual content of the page -->
 				<div class="content">
 				<!-- Form for login  -->
