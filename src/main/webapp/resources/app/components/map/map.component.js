@@ -107,6 +107,19 @@ angular.module('greenApp')
 
     let successCallback = function(response){
       Materialize.toast('Place successfully added!', 5000);
+      setTimeout(function () {
+        $scope.$apply(function () {
+          $scope.addPlaceMenuIsOpen = false;
+          $rootScope.myMap.off('click');
+          $scope.newPlaceName = "";
+          $scope.newPlaceType = "";
+          $scope.newPlaceDescription = "";
+          $scope.latitude = "";
+          $scope.longitude = "";
+          $scope.newPlacePhoto = "";
+          $scope.addButtonAddPlace = true;
+        });
+      }, 50);
     };
 
     let errorCallback = function(response){
@@ -215,6 +228,21 @@ $scope.createNewEvent = function(form) {
 
   let successCallback = function(response){
     Materialize.toast('Event successfully added!', 5000);
+    setTimeout(function () {
+      $scope.$apply(function () {
+        $scope.addEventMenuIsOpen = false;
+        $rootScope.myMap.off('click');
+        $scope.newEventName = "";
+        $scope.newEventType = "";
+        $scope.newEventDescription = "";
+        $scope.newStartDate = "";
+        $scope.newEndDate = "";
+        $scope.latitudeE = "";
+        $scope.longitudeE = "";
+        $scope.newEventPhoto = "";
+        $scope.addButtonAddPlace = true;
+      });
+    }, 50);
   };
 
   let errorCallback = function(response){
