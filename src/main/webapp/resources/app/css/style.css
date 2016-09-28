@@ -457,6 +457,9 @@ md-content {
 	.indented-content {
 		margin-top: -0px;
 	}
+	.feedback span>span {
+	    font-size: 87%;
+	}
 }
 
 /* mobile devices */
@@ -786,14 +789,14 @@ img.responsive-img {
 
 .before-arrow {
 	top: 25px;
-    right: 661px;
+    right: 803px;
     opacity: 0.4;
     font-size: 200px;
 }
 
 .next-arrow {
 	top: 25px;
-    left: 661px;
+    left: 803px;
     opacity: 0.4;
     font-size: 200px;
 }

@@ -110,6 +110,7 @@
 						class="validate" ng-model="text"></textarea>
 					<label for="typing-feedback" class="typeit"></label>
 				</div>
+				<span ng-bind="text"></span>
 				<form action="#">
 					<div class="file-field input-field images-uploader">
 						<div class="commenting-button">
@@ -124,10 +125,10 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#/place/1"
+				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText(text)">Publish</a> <a href="#/place/1"  
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+					ng-click="addText()">Publish</button> <button type="button" 
+					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
 		
@@ -144,10 +145,10 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="#/place/1"
+				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="update_name()">Publish</a> <a href="#/place/1"
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+					ng-click="update_name()">Publish</button> <button type="button" 
+					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
 
@@ -163,10 +164,10 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="#/place/1"
+				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="update_description()">Publish</a> <a href="#/place/1"
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+					ng-click="update_description()">Publish</button> <button type="button" 
+					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
 
@@ -206,6 +207,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
+	
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>

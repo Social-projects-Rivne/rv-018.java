@@ -5,18 +5,42 @@ angular
 		.controller(
 				'EditPlaceCtrl',
 				["$scope", "$http", "$routeParams", "$route", function($scope, $http, $routeParams, $route) {
+					
+					/*$scope.childmethod = function() {
+			            $rootScope.$emit("CallThatParentMethod", {});
+			        }*/
+					
 					$scope.update_name = function () {
+						/*$rootScope.$emit("CallThatParentMethod", {});*/
 						console.log("update");
-				    	$scope.id = $routeParams.id;
 				    		
 			    	    var dataObj = {
 			    	    	name: $scope.name,
 					    };
 			    	    
-			    	    var res = $http.put(_contextPath + '/api/place/' + $scope.id, dataObj);
+			    	    var successCallback = function(response){
+						      $scope.submissionSuccess = true;
+						      setTimeout(function() {
+						        $scope.$apply(function() {
+						          $scope.submissionSuccess = false;
+						        });
+						      }, 5000);
+						    };
+
+					    var errorCallback = function(response){
+					      console.log(response);
+					      $scope.submissionError = true;
+					      $scope.submissionSuccess = false;
+					      setTimeout(function() {
+					        $scope.$apply(function() {
+					          $scope.submissionError = false;
+					        });
+					      }, 5000);
+					    };
+			    	    
+			    	    $http.put(_contextPath + '/api/place/' + 1, dataObj).then(successCallback, errorCallback);
 			    	    console.log(dataObj);
-			    	    res.success(function(data, status, headers, config) {
-			    		});
+			    	    
 					};
 					
 					$scope.update_description = function () {
@@ -27,54 +51,28 @@ angular
 			    	        description: $scope.description,
 					    };
 			    	    
-			    	    var res = $http.put(_contextPath + '/api/place/' + $scope.id, dataObj);
-			    	    console.log(dataObj);
-			    	    res.success(function(data, status, headers, config) {
-			    		});
-					};
-				}]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-'use strict';
-
-angular
-		.module('greenApp')
-		.controller('EditPlaceController'
-		.component(
-				'editableplace',
-				{
-					templateUrl : _contextPath +'/WEB-INF/views/main.jsp',
-					controller : function($scope, $http, $routeParams, $location, $route) {
-						
-						$scope.update = function () {
-							console.log("update");
-					    	$scope.id = $routeParams.id;
-					    		
-				    	    var dataObj = {
-				    	    	//id: $routeParams.id,
-				    	    	name: $scope.name,
-				    	        description: $scope.description,
+			    	    var successCallback = function(response){
+						      $scope.submissionSuccess = true;
+						      setTimeout(function() {
+						        $scope.$apply(function() {
+						          $scope.submissionSuccess = false;
+						        });
+						      }, 5000);
 						    };
-				    	    
-				    	    var res = $http.put(_contextPath + '/api/place/' + $scope.id, dataObj);
-				    	    console.log(dataObj);
-				    	    res.success(function(data, status, headers, config) {
-				    		});
-						};	
-					}
-				}));
-*/
+
+					    var errorCallback = function(response){
+					      console.log(response);
+					      $scope.submissionError = true;
+					      $scope.submissionSuccess = false;
+					      setTimeout(function() {
+					        $scope.$apply(function() {
+					          $scope.submissionError = false;
+					        });
+					      }, 5000);
+					    };
+			    	    
+			    	    $http.put(_contextPath + '/api/place/' + $scope.$id, dataObj).then(successCallback, errorCallback);
+			    	    console.log(dataObj);
+			    	    
+					 };
+				}]);

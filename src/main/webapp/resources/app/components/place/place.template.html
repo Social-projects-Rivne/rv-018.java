@@ -87,8 +87,7 @@
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title" ng-click="show_modal($event)"> <img
 							class="circle" ng-src={{userpicture.userpic}} /> <span
-							class="smallertext">Your feedback </span> <span
-							ng-bind="list.items.text"></span>
+							class="smallertext">Your feedback </span> 
 							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
 							</div>
@@ -97,14 +96,14 @@
 				</div>
 
 				<div class="col s12 m5 l5 grid-item card white"
-					ng-repeat="(i, feedback) in feedbacks" less="true">
+					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<img class="circle" ng-src="{{feedback.userpic}}" />
-						<span class="card-title"> <span>{{feedback.username}}</span></br>
-							<span class="rel_date">{{feedback.date}}</span>
+					<img class="circle" ng-src="{{feedback.user.userpic}}" />
+						<span class="card-title"> <span>{{feedback.user.username}}</span></br>
+							<span class="rel_date" ng-bind="date | date:'MM/dd/yyyy'">{{feedback.date}}</span>
 						</span><br />
-						<p class="less">{{feedback.text.substr(0, 400)}}</p>
-						<p class="more hidden">{{feedback.text}}</p>
+						<p class="less">{{feedback.body.substr(0, 400)}}</p>
+						<p class="more hidden">{{feedback.body}}</p>
 					</div>
 					<div class="card-action">
 						<a ng-click="less_more($event)" href="#"
