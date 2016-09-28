@@ -1210,3 +1210,27 @@ md-sidenav {
         display: none;
     }
 }
+
+/*-------------- Toast for callback --------------*/
+@media only screen and (min-width: 993px) {
+    #toast-container {
+        top: 10%;
+        right: 40%;
+        max-width: 86%;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {
+    #toast-container {
+        left: 30%;
+        top: 10%;
+        max-width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #toast-container {
+        min-width: 100%;
+        top: 10%;
+    }
+}

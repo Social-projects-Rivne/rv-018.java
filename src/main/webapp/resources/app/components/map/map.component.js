@@ -106,22 +106,11 @@ angular.module('greenApp')
     console.log(dataObj);
 
     let successCallback = function(response){
-      $scope.submissionSuccess = true;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionSuccess = false;
-        });
-      }, 5000);
+      Materialize.toast('Place successfully added!', 5000);
     };
 
     let errorCallback = function(response){
-      $scope.submissionError = true;
-      $scope.submissionSuccess = false;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionError = false;
-        });
-      }, 5000);
+      Materialize.toast('Something wrong. Please try again!', 5000);
     };
 
     $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
@@ -225,22 +214,11 @@ $scope.createNewEvent = function(form) {
   console.log(dataObj);
 
   let successCallback = function(response){
-    $scope.submissionSuccess = true;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionSuccess = false;
-      });
-    }, 5000);
+    Materialize.toast('Event successfully added!', 5000);
   };
 
   let errorCallback = function(response){
-    $scope.submissionError = true;
-    $scope.submissionSuccess = false;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionError = false;
-      });
-    }, 5000);
+    Materialize.toast('Something wrong. Please try again!', 5000);
   };
 
   $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
