@@ -4,7 +4,6 @@
 
 .tabsBackgroundColor {
     background-color: #0F9C5A;
-    margin-top: 1px;
 }
 
 .tabs .indicator {
@@ -1160,17 +1159,17 @@ md-sidenav {
     overflow: auto;
     z-index: 1000;
     margin-top: 44px;
-    background: #f8f8f8;
+    background: RGB(15, 156, 90);
 }
 
 .layout-margin {
-    background-color: #f8f8f8;
+    background-color: RGB(15, 156, 90);
 }
 
 .layout-margin a {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    color: #009000;
+    font-size: 14px;
+    color: #f8f8f8;
 }
 
 .md-sidenav-left, md-sidenav {
@@ -1238,4 +1237,9 @@ md-sidenav {
 /*-------------- font for search input --------------*/
 .input-field input[type=search]:focus {
     color: #fff;
+}
+
+/*-------------- shadow for side nav --------------*/
+.md-whiteframe-4dp, .md-whiteframe-z2 {
+    box-shadow: none;
 }
