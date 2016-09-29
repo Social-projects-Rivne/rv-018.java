@@ -1234,3 +1234,8 @@ md-sidenav {
         bottom: 30%;
     }
 }
+
+/*-------------- font for search input --------------*/
+.input-field input[type=search]:focus {
+    color: #fff;
+}
