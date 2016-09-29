@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('greenApp').controller('menuController', function($scope, $timeout, $mdSidenav) {
+angular.module('greenApp').controller('menuController', function($rootScope, $scope, $timeout, $mdSidenav) {
 
-	$scope.checkTabs = false; 
+	$scope.checkTabs = false ;
 
 	$scope.name = "Oracle";
 	
@@ -11,7 +11,11 @@ angular.module('greenApp').controller('menuController', function($scope, $timeou
 	};
 
 	$scope.hideTabs = function() {
-		$scope.checkTabs = false;
+ ;		$scope.checkTabs = false;
+	};
+
+	$rootScope.mopen = function() {
+		$scope.checkTabs = true;
 	};
 
 	$scope.toggleLeft = buildToggler('left');
