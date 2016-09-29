@@ -68,10 +68,7 @@
 			data-ng-repeat="place in places | filter: searchTeam | orderBy: 'name'">
 			<div class="card cardprofile">
 				<div class="card-content">
-					<h5 class="card-title activator grey-text ">
-						{{place.name}}<i class="material-icons right modal-trigger"
-							href="" ng-click="modalTrigger()">mode_edit</i>
-					</h5>
+					<h5 class="card-title activator grey-text ">{{place.name}}</h5>
 				</div>
 				<div class="card-image-place" data-ng-repeat="fileSrc in place.attachments">
 					<img ng-src="{{fileSrc.fileSrc}}">
@@ -138,28 +135,6 @@
 				<label for="socialAccount"><h5>Edit social account</h5> </label> <input
 					type="text" id="socialAccount" ng-model="socialAccount"
 					placeholder="enter social account" />
-			</div>
-		</div>
-		<div class="modal-footer">
-			<input type="button" value="Cancel"
-				class="modal-action modal-close waves-effect waves-red btn-flat modals close"></a>
-			<input type="button" ng-click="update()" value="Ok"
-				class="modal-action modal-close waves-effect waves-green btn-flat modals"></a>
-		</div>
-	</div>
-
-	<!-- Modal Structure for edit place -->
-	<div id="edit-place" class="modal">
-		<div class="modal-content">
-			<div>
-				<label for="name"><h6>Place Name:</h6> </label> <input
-					type="text" id="name" ng-model="name"
-					placeholder="enter name of place" />
-			</div>
-			<div>
-				<label for="fileSrc"><h6>Edit Place Foto:</h6> </label> <input
-					type="text" id="fileSrc" ng-model="fileSrc"
-					placeholder="enter places url" />
 			</div>
 		</div>
 		<div class="modal-footer">
