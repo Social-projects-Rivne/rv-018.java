@@ -52,7 +52,7 @@
 		                        </nav>
 		                    </div>
 		                    <div class="col s2 m2 l2">
-		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
+		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="waves-effect waves-light btn-search">Search</a>
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()">
