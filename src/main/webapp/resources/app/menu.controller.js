@@ -21,4 +21,8 @@ angular.module('greenApp').controller('menuController', function($scope, $timeou
 			$mdSidenav(componentId).toggle();
 		}
 	}
+
+	$scope.clearSearchLine = function() {
+		$scope.searchLine = "";
+	};
 });
