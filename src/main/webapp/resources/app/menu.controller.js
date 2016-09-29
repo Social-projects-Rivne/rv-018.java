@@ -2,7 +2,7 @@
 
 angular.module('greenApp').controller('menuController', function($rootScope, $scope, $timeout, $mdSidenav) {
 
-	$scope.checkTabs = false ;
+	$scope.checkTabs = false;
 
 	$scope.name = "Oracle";
 	
