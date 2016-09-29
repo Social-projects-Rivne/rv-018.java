@@ -50,8 +50,7 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            //document.getElementById('latitude').value = $scope.latitude;
-            //document.getElementById('longitude').value = $scope.longitude;
+            ntById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           } else {
             $rootScope.myMap.removeLayer(marker);
@@ -59,8 +58,6 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            //document.getElementById('latitude').value = $scope.latitude;
-            //document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           }
               $scope.$apply();
@@ -172,8 +169,6 @@ angular.module('greenApp')
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        //document.getElementById('latitudE').value = $scope.latitudeE;
-        //document.getElementById('longitudE').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       } else {
         $rootScope.myMap.removeLayer(marker);
@@ -181,8 +176,6 @@ angular.module('greenApp')
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        //document.getElementById('latitudE').value = $scope.latitudeE;
-        //document.getElementById('longitudE').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       }
           $scope.$apply();

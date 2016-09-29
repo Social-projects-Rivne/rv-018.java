@@ -69,11 +69,9 @@
 			</a>
 			<form name="placeMaker" novalidate>
 				<div class="form-group">
-					<span class="title">1. Choose place on map:</span><br> <span
-						class="title">Latitude:</span> <input type="text" class="latlng"
-						id="latitude" ng-model="latitude" disabled="disabled" value="{{latitude}}"></span> <span
-						class="title">Longitude:</span> <input type="text" class="latlng"
-						id="longitude" ng-model="longitude" disabled="disabled" value="{{longitude}}"></span>
+					<span class="title">1. Choose place on map:</span><br>
+					<span id="latitude" ng-model="latitude"></span>Latitude: {{latitude}}<br>
+					<span id="longitude" ng-model="longitude"></span>Longitude: {{longitude}}<br>
 				</div>
 				<div class="form-group">
 					<label for="placeName"> <span class="title">2. Enter
@@ -131,10 +129,8 @@
 			<form name="eventMaker" novalidate>
 				<div class="form-group">
 					<span class="title">1. Choose event on map:</span><br>
-						<span class="title">Latitude: <input type="text" class="latlng"
-						id="latitudeE" ng-model="latitudeE" disabled="disabled" value="{{latitudeE}}"></span>
-						<span class="title">Longitude: <input type="text" class="latlng"
-						id="longitudeE" ng-model="longitudeE" disabled="disabled" value="{{longitudeE}}"></span>
+					<span id="latitudeE" ng-model="latitudeE"></span>Latitude: {{latitudeE}}<br>
+					<span id="longitudeE" ng-model="longitudeE"></span>Longitude: {{longitudeE}}<br>
 				</div>
 				<div class="form-group">
 					<label for="eventName"> <span class="title">2. Enter
