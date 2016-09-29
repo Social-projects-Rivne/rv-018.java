@@ -1,12 +1,5 @@
 package ua.softserve.rv_018.greentourism.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +7,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
 import ua.softserve.rv_018.greentourism.service.PointService;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 @RequestMapping(value = "/api/event")
 @Controller
@@ -38,6 +36,9 @@ public class EventController {
 	
 	@Autowired
 	private EventService eventService;
+
+	@Autowired
+	private GalleryRepository galleryRepository;
 	/**
      * Web service endpoint to create Event entity.
      * The service returns the created Event entity url.
@@ -140,4 +141,68 @@ public class EventController {
 		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
 
+	/**
+	 * Web service endpoint to fetch a single Event entity by User primary key
+	 * identifier.
+	 * <p>
+	 * If found, the Event is returned as JSON with HTTP status 302.
+	 * <p>
+	 * If not found, the service returns an empty response body with HTTP status
+	 * 404.
+	 *
+	 * @param id A Long URL path variable containing the User primary key
+	 *           identifier.
+	 * @return A ResponseEntity containing a single Event object, if found,
+	 * and a HTTP status code as described in the method comment.
+	 */
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = {"application/json"})
+	public ResponseEntity<?> getEventByUser(
+			@PathVariable ("id") long id) {
+		logger.info("> getPlace id:{}", id);
+
+		List<Event> events = eventService.findByUserIdWithAttachments(id);
+
+		logger.info("< getPlaceByUser id:{}", id);
+
+		return new ResponseEntity<>(events, HttpStatus.OK);
+	}
+
+	/**
+	 * Web service endpoint to fetch a single Event entity by primary key
+	 * identifier.
+	 * <p>
+	 * If found, the Event is returned as JSON with HTTP status 302.
+	 * <p>
+	 * If not found, the service returns an empty response body with HTTP status
+	 * 404.
+	 *
+	 * @param id A Long URL path variable containing the Event primary key
+	 *           identifier.
+	 * @return A ResponseEntity containing a single Event object, if found,
+	 * and a HTTP status code as described in the method comment.
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = {"application/json"})
+	public ResponseEntity<?> getEvent(@PathVariable int id) {
+		logger.info("> getEvent id:{}", id);
+
+		Event event = eventService.findOne(id);
+		if (event == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<Gallery> galleries = galleryRepository.findByEvent(event);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+			if (event.getId() == gallery.getEvent().getId()) {
+				event.getAttachments().add(gallery.getAttachment());
+			}
+		}
+
+		logger.info("< getEvent id:{}", id);
+
+		return new ResponseEntity<>(event, HttpStatus.OK);
+	}
 }
