@@ -4,6 +4,9 @@ angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
   controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+
+    $rootScope.mopen();
+
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
       $scope.previousMapZoom = $rootScope.myMap.getZoom();
@@ -47,8 +50,8 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
+            //document.getElementById('latitude').value = $scope.latitude;
+            //document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           } else {
             $rootScope.myMap.removeLayer(marker);
@@ -56,10 +59,11 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
+            //document.getElementById('latitude').value = $scope.latitude;
+            //document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           }
+              $scope.$apply();
         }
       )
     };
@@ -162,13 +166,14 @@ angular.module('greenApp')
   $scope.addEventMenu = function() {
     $scope.addEventMenuIsOpen = true;
     $rootScope.myMap.on('click',function(e) {
+
       if (typeof(marker) === 'undefined') {
         marker = new L.Marker(e.latlng);
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
+        //document.getElementById('latitudE').value = $scope.latitudeE;
+        //document.getElementById('longitudE').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       } else {
         $rootScope.myMap.removeLayer(marker);
@@ -176,10 +181,11 @@ angular.module('greenApp')
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
+        //document.getElementById('latitudE').value = $scope.latitudeE;
+        //document.getElementById('longitudE').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       }
+          $scope.$apply();
     }
   )
 };
