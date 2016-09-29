@@ -134,6 +134,8 @@ angular.module('greenApp')
   $scope.resetAddPlaceForm = function(form) {
     if (marker) {
       $rootScope.myMap.removeLayer(marker);
+      $scope.latitude = "";
+      $scope.longitude = "";
     }
   };
 
@@ -198,6 +200,8 @@ $scope.toggleAddEventMenu = function() {
 $scope.resetAddEventForm = function(form) {
   if (marker) {
     $rootScope.myMap.removeLayer(marker);
+    $scope.latitudeE = "";
+    $scope.longitudeE = "";
   }
 };
 
