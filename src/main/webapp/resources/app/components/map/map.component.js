@@ -106,7 +106,7 @@ angular.module('greenApp')
     console.log(dataObj);
 
     let successCallback = function(response){
-      Materialize.toast('Place successfully added!', 5000);
+      Materialize.toast('Place successfully added!', 2000);
       setTimeout(function () {
         $scope.$apply(function () {
           $scope.addPlaceMenuIsOpen = false;
@@ -123,7 +123,7 @@ angular.module('greenApp')
     };
 
     let errorCallback = function(response){
-      Materialize.toast('Something wrong. Please try again!', 5000);
+      Materialize.toast('Something wrong. Please try again!', 2000);
     };
 
     $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
@@ -227,7 +227,7 @@ $scope.createNewEvent = function(form) {
   console.log(dataObj);
 
   let successCallback = function(response){
-    Materialize.toast('Event successfully added!', 5000);
+    Materialize.toast('Event successfully added!', 2000);
     setTimeout(function () {
       $scope.$apply(function () {
         $scope.addEventMenuIsOpen = false;
@@ -246,7 +246,7 @@ $scope.createNewEvent = function(form) {
   };
 
   let errorCallback = function(response){
-    Materialize.toast('Something wrong. Please try again!', 5000);
+    Materialize.toast('Something wrong. Please try again!', 2000);
   };
 
   $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
