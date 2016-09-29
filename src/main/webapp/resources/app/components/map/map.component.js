@@ -106,22 +106,24 @@ angular.module('greenApp')
     console.log(dataObj);
 
     let successCallback = function(response){
-      $scope.submissionSuccess = true;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionSuccess = false;
+      Materialize.toast('Place successfully added!', 5000);
+      setTimeout(function () {
+        $scope.$apply(function () {
+          $scope.addPlaceMenuIsOpen = false;
+          $rootScope.myMap.off('click');
+          $scope.newPlaceName = "";
+          $scope.newPlaceType = "";
+          $scope.newPlaceDescription = "";
+          $scope.latitude = "";
+          $scope.longitude = "";
+          $scope.newPlacePhoto = "";
+          $scope.addButtonAddPlace = true;
         });
-      }, 5000);
+      }, 50);
     };
 
     let errorCallback = function(response){
-      $scope.submissionError = true;
-      $scope.submissionSuccess = false;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionError = false;
-        });
-      }, 5000);
+      Materialize.toast('Something wrong. Please try again!', 5000);
     };
 
     $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
@@ -225,22 +227,26 @@ $scope.createNewEvent = function(form) {
   console.log(dataObj);
 
   let successCallback = function(response){
-    $scope.submissionSuccess = true;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionSuccess = false;
+    Materialize.toast('Event successfully added!', 5000);
+    setTimeout(function () {
+      $scope.$apply(function () {
+        $scope.addEventMenuIsOpen = false;
+        $rootScope.myMap.off('click');
+        $scope.newEventName = "";
+        $scope.newEventType = "";
+        $scope.newEventDescription = "";
+        $scope.newStartDate = "";
+        $scope.newEndDate = "";
+        $scope.latitudeE = "";
+        $scope.longitudeE = "";
+        $scope.newEventPhoto = "";
+        $scope.addButtonAddPlace = true;
       });
-    }, 5000);
+    }, 50);
   };
 
   let errorCallback = function(response){
-    $scope.submissionError = true;
-    $scope.submissionSuccess = false;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionError = false;
-      });
-    }, 5000);
+    Materialize.toast('Something wrong. Please try again!', 5000);
   };
 
   $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
