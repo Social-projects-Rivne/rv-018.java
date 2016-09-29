@@ -50,7 +50,6 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            ntById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           } else {
             $rootScope.myMap.removeLayer(marker);
