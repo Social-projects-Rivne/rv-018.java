@@ -155,6 +155,12 @@ nav .brand-logo {
     }
 }
 
+@media screen and (min-width: 415px ) {
+    .tabs .tab {
+        text-transform: inherit;
+    }
+}
+
 .tabs.ng-hide {
     height: 0;
 }
