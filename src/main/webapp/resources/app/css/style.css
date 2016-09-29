@@ -1229,7 +1229,8 @@ md-sidenav {
 
 @media only screen and (max-width: 600px) {
     #toast-container {
-        min-width: 100%;
-        top: 10%;
+        max-width: 90%;
+        left: 5%;
+        bottom: 30%;
     }
 }

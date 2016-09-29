@@ -66,7 +66,7 @@
 		    </header>  
 	    <main>
 				<!-- Tabs -->
-				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs">
+				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs" ng-cloak>
 					<div class="tabsIndent">
 						<div class="row">
 							<ul class="tabs" ng-show="checkTabs">
@@ -79,7 +79,7 @@
 				</div>
 
 				<md-sidenav class="md-sidenav-left" md-component-id="left"
-							md-disable-backdrop md-whiteframe="4">
+							md-disable-backdrop md-whiteframe="4" ng-cloak>
 
 					<md-content layout-margin>
 						<div>

@@ -39,7 +39,7 @@
 		</calendar-md>
 	</div>
 
- 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown">
+ 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown" ng-cloak>
 		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
 			class="material-icons">date_range</i></a>
 	</div>
@@ -59,7 +59,7 @@
 	</div>
 
 	<!-- DIV Add places -->
-	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
+	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen" ng-cloak>
 			<h2>New Place</h2>
 			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hidePlaceButton(); hideEventButton()"> <span
 				class="material-icons closeIcon">close</span>
@@ -120,7 +120,7 @@
 			</form>
 	</div>
 	<!-- DIV Add events -->
-	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen">
+	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen" ng-cloak>
 			<h2>New Event</h2>
 			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace(); hideEventButton(); hidePlacebutton()"> <span
 				class="material-icons closeIcon">close</span>
