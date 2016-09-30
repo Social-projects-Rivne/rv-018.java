@@ -15,5 +15,7 @@ angular.module('greenApp').config(function($routeProvider) {
 		template : '<map></map'
 	}).when('/map/place/:id', {
 		template : '<map></map>'
+	}).when('/map/event/:id', {
+		template : '<map></map>'
 	});
 });
