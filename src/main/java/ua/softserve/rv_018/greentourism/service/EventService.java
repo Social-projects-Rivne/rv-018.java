@@ -30,5 +30,24 @@ public interface EventService {
      * @param event A Event object to be persisted.
      * @return The persisted Event entity.
      */
-    Event create(Event event); 
+    Event create(Event event);
+
+	/**
+	 * Find all Event entities by user Id.
+	 * @return A List of Event objects.
+	 */
+	List<Event> findByUserId(Long id);
+
+	/**
+	 * Find all Event entities with attachments by user Id.
+	 * @return A List of Event objects.
+	 */
+	List<Event> findByUserIdWithAttachments(Long id);
+
+	/**
+	 * Find a single Event entity by primary key identifier.
+	 * @param id A Integer primary key identifier.
+	 * @return A Event or <code>null</code> if none found.
+	 */
+	Event findOne(Integer id);
 }

@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.EventRepository;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 
 @Service
 @Transactional(
@@ -30,6 +32,12 @@ public class EventServiceImpl implements EventService {
      */
     @Autowired
     private EventRepository eventRepository;
+
+	/**
+	 * The Spring Data repository for Attachment entities.
+	 */
+	@Autowired
+	private GalleryRepository galleryRepository;
 
 	@Override
 	public Event create(Event event) {
@@ -86,5 +94,51 @@ public class EventServiceImpl implements EventService {
         logger.info("< Event findEventPointsBetweenTwoDates");
 
 		return points;
-	}	
+	}
+
+	@Override
+	public List<Event> findByUserId(Long id) {
+		logger.info("> Event findByUserId");
+
+		List<Event> events = eventRepository.findByUserId(id);
+
+		logger.info("< Place findByUserId");
+
+		return events;
+	}
+
+	@Override
+	public List<Event> findByUserIdWithAttachments(Long id) {
+		logger.info("> Event findByUserIdWithAttachment");
+
+		List<Event> events = eventRepository.findByUserId(id);
+
+		List<Gallery> galleries = galleryRepository.findByEvents(events);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+
+			for (Event event : events) {
+				if (event.getId() == gallery.getEvent().getId()) {
+					event.getAttachments().add(gallery.getAttachment());
+				}
+			}
+		}
+
+		logger.info("< Place findByUserIdWithAttachment");
+
+		return events;
+	}
+
+	@Override
+	public Event findOne(Integer id) {
+		logger.info("> Event findOne id:{}", id);
+
+		Event event = eventRepository.findById(id);
+
+		logger.info("< Event findOne id:{}", id);
+
+		return event;
+	}
 }
