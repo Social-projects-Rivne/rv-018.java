@@ -1,20 +1,21 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.EventRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
-
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional(
