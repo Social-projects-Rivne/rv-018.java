@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +28,9 @@ public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
+	private TokenAuthenticationUtil tokenUtil;
+	
+	@Autowired
 	private AppAuthenticationManager appAuthenticationManager;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, headers = "Accept=application/json", produces = {
@@ -37,33 +38,33 @@ public class LoginController {
 	public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
 		logger.info("> loginUser by email: ");
-		UsernamePasswordAuthenticationToken token = TokenAuthenticationUtil.generateTokenFromCredentials(email, password);
+		
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
 		Authentication result = appAuthenticationManager.authenticate(token);
-
 		if (result != null) {
-			SecurityContextHolder.getContext().setAuthentication(result);
-			response.setHeader("Authorization", "haaha");
+			tokenUtil.saveTokenToUser(result);
+			String authorizationHeader = TokenAuthenticationUtil.generateAuthorizationHeaderFromToken(token);
+			response.setHeader("Authorization", authorizationHeader);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
+		
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+	@RequestMapping(value = "/logout", method = RequestMethod.PATCH, headers = "Accept=application/json", produces = {
 			"application/json" })
 	public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String authorization,
 			HttpServletRequest request, HttpServletResponse response) {
 		logger.info("> logout User ");
 
-		// Authentication currentAuthentication =
-		// SecurityContextHolder.getContext().getAuthentication();
-		// System.out.println("Logout user: " + currentAuthentication);
-		// if (currentAuthentication != null) {
-		// new SecurityContextLogoutHandler().logout(request, response,
-		// currentAuthentication);
-		// return new ResponseEntity<>(HttpStatus.OK);
-		// }
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if (authorization != null) {
+			Authentication authentication = tokenUtil.genarateTokenFromData(authorization);
+			tokenUtil.deleteTokenFromUser(authentication);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	}
 
 }
