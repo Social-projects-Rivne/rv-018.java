@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
 
 public class EventControllerUnitTest {
@@ -33,6 +34,8 @@ public class EventControllerUnitTest {
 	public static final String POINTS = "[{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},{\"id\":2,\"latitude\":2.0,\"longitude\":2.0}]";
 	private static final String EVENT_URL = "/api/event";
 	private static final String EMPTY_COLLECTION = "";
+	public static final String VALUE ="{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":\"AwesomeEvent\","
+			+ "\"name\":\"NewEventInOurCity\",\"point\":null,\"user\":null,\"attachments\":[]}";
 	
 	private MockMvc mockMvc;
 	
@@ -41,6 +44,9 @@ public class EventControllerUnitTest {
 	
 	@Mock
 	private EventService eventService;
+	
+	@Mock
+	private GalleryRepository galleryRepository;
 	
 	@Mock
 	private HttpHeaders httpHeaders;
@@ -98,5 +104,16 @@ public class EventControllerUnitTest {
 		mockMvc.perform(get(EVENT_URL))
 		        .andExpect(status().isOk())
 		        .andExpect(content().string(EMPTY_COLLECTION));
+	}
+	
+	@Test
+	public void testGetEvent() throws Exception {
+		Mockito.when(eventService.findOne(1)).thenReturn(EVENT);
+		Mockito.when(galleryRepository.findByEvents(eventService.findAll())).thenReturn(null);
+
+		mockMvc.perform(get("/api/event/1"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().string(VALUE));
 	}
 }
