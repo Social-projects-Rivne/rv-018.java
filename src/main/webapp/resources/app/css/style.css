@@ -36,6 +36,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 25px !important;
     line-height: 25px !important;
     font-size: 1.4rem !important;
+    outline: none;
 }
 
 .line {
