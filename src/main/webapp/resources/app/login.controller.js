@@ -1,21 +1,19 @@
 'use strict';
 
-angular.module('greenApp').controller('loginController',['$scope', '$http', '$location', 'base64', function($scope, $http, $location, base64) {
+angular.module('greenApp').controller('loginController',['$scope','$rootScope','$http', '$location', function($scope, $rootScope, $http, $location) {
 	
 	$scope.loginCondition = "login";
 	
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
-		// encode credentials and create header
-		var encodedUserData = base64.encode($scope.email + ":" + $scope.password); 
-		var authorizationHeader = 'Basic ' + encodedUserData;
 		$http({
 			method: 'POST',
 			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
 		})
 		.then(function(response){
-			console.log("Headers sended by java: " + response.headers('UserId'));
+			$rootScope.authorization = response.headers('Authorization'); 
+			console.log("Headers sended by java: " + $rootScope.authorization);
 			$scope.email = "";
 			$scope.password = "";
 			$scope.loginCondition = "logout";
@@ -27,16 +25,16 @@ angular.module('greenApp').controller('loginController',['$scope', '$http', '$lo
 	$scope.logout = function() {
 		console.log("In logout function");
 		$http({
-			method: 'GET',
+			method: 'PATCH',
 			url: _contextPath + '/logout',
-			headers: { 'Authorization': 'Gosdfsdfs:sdfsddfhell' }
+			headers: { 'Authorization': $rootScope.authorization }
 		})
 		.then(function(response){
 			console.log("Success in logout function");
+			$scope.loginCondition = "login";
 		}, function(error){
 			console.log("Error in logout function");
 			console.log(error.data);
 		});
-		$scope.loginCondition = "login";
 	}
 }]);
