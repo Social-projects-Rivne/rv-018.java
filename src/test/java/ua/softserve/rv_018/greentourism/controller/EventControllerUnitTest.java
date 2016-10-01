@@ -141,7 +141,7 @@ public class EventControllerUnitTest {
 	}
 	
 	@Test
-	public void testGetPlaceThatDoesNotExist() throws Exception {
+	public void testGetEventThatDoesNotExist() throws Exception {
 		mockMvc.perform(get("/api/event/-1"))
 				.andExpect(status().isNotFound())
 				.andExpect(content().string(EMPTY_VALUE));
