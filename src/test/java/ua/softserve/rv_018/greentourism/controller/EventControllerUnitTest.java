@@ -36,6 +36,7 @@ public class EventControllerUnitTest {
 	private static final String EMPTY_COLLECTION = "";
 	public static final String VALUE ="{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":\"AwesomeEvent\","
 			+ "\"name\":\"NewEventInOurCity\",\"point\":null,\"user\":null,\"attachments\":[]}";
+	public static final String EMPTY_VALUE = "";
 	
 	private MockMvc mockMvc;
 	
@@ -115,5 +116,12 @@ public class EventControllerUnitTest {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().string(VALUE));
+	}
+	
+	@Test
+	public void testGetPlaceThatDoesNotExist() throws Exception {
+		mockMvc.perform(get("/api/event/-1"))
+				.andExpect(status().isNotFound())
+				.andExpect(content().string(EMPTY_VALUE));
 	}
 }
