@@ -40,16 +40,8 @@ public class User implements UserDetails {
 	private Role role;
 	@Column(name = "userpic")
 	private String userpic;
-	@Column(name = "accountNonExpired", columnDefinition = "tinyint default true")
-	private boolean accountNonExpired;
-	@Column(name = "accountNonLocked", columnDefinition = "tinyint default true")
-	private boolean accountNonLocked;
-	@Column(name = "credentialsNonExpired", columnDefinition = "tinyint default true")
-	private boolean credentialsNonExpired;
 	@Column(name = "token")
 	private String token;
-	@Column(name = "enabled", columnDefinition = "tinyint default true")
-	private boolean enabled;
 
 	public User() {
 	}
@@ -150,27 +142,27 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
+//	public void setAccountNonExpired(boolean accountNonExpired) {
+//		this.accountNonExpired = accountNonExpired;
+//	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
+//	public void setAccountNonLocked(boolean accountNonLocked) {
+//		this.accountNonLocked = accountNonLocked;
+//	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
+//	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+//		this.credentialsNonExpired = credentialsNonExpired;
+//	}
 
 	
 	public String getToken() {
@@ -186,10 +178,6 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	@Override
 	public Collection<Role> getAuthorities() {
 		return null;
@@ -199,8 +187,9 @@ public class User implements UserDetails {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", password=" + password + ", socialAccount=" + socialAccount + ", role="
-				+ role + ", userpic=" + userpic + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked="
-				+ accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled + "]";
+				+ role + ", userpic=" + userpic + ", token=" + token + "]";
 	}
+
+	
 
 }
