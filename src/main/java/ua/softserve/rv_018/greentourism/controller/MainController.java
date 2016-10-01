@@ -16,7 +16,7 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Current user: " + SecurityContextHolder.getContext().getAuthentication());
-		String authorizationData = TokenAuthenticationUtil.createAuthorizationHeader(SecurityContextHolder.getContext().getAuthentication());
+		String authorizationData = TokenAuthenticationUtil.generateAuthorizationHeaderFromToken(SecurityContextHolder.getContext().getAuthentication());
 		System.out.println("Authorization data: " + authorizationData);
 		response.setHeader("Authorization", authorizationData);
 		return "main";
