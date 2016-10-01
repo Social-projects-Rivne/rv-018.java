@@ -2,6 +2,7 @@ package ua.softserve.rv_018.greentourism.controller;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 
 import java.util.List;
@@ -52,6 +53,9 @@ public class PlaceControllerUnitTest {
 	
 	@Mock
 	private PlaceService placeService;
+	
+	@Mock
+	private GalleryRepository galleryRepository;
 	
 	@Mock
     private HttpHeaders httpHeaders;
@@ -123,6 +127,7 @@ public class PlaceControllerUnitTest {
 	@Test
 	public void testGetPlace() throws Exception {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
+	     Mockito.when(galleryRepository.findByPlaces(placeService.findAll())).thenReturn(null);
 	 
 	     mockMvc.perform(get("/api/place/1"))
 	             .andExpect(status().isOk())
