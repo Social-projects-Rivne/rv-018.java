@@ -31,6 +31,8 @@ public class EventControllerUnitTest {
 	public static final Event EVENT = new Event();
 	public static final String HEADER_LOCATION = "http://localhost/api/event/1";
 	public static final String POINTS = "[{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},{\"id\":2,\"latitude\":2.0,\"longitude\":2.0}]";
+	private static final String EVENT_URL = "/api/event";
+	private static final String EMPTY_COLLECTION = "";
 	
 	private MockMvc mockMvc;
 	
@@ -88,5 +90,15 @@ public class EventControllerUnitTest {
 		       .andExpect(status().isOk())
 		       .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 		       .andExpect(content().string(POINTS));
+	}
+	
+	@Test
+	public void testGetEvents_ShouldReturnEmptyString() throws Exception {
+		Mockito.when(eventService.findAll()).thenReturn(null);
+		
+		mockMvc.perform(get(EVENT_URL))
+		        .andExpect(status().isOk())
+		        .andExpect(content().string(EMPTY_COLLECTION));
+		
 	}
 }
