@@ -65,7 +65,6 @@ public class EventControllerUnitTest {
 
 		mockMvc.perform(post("/api/event").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk())
 				.andExpect(header().string("Location", HEADER_LOCATION));
-		
 	}
 	
 	@Test
@@ -99,6 +98,5 @@ public class EventControllerUnitTest {
 		mockMvc.perform(get(EVENT_URL))
 		        .andExpect(status().isOk())
 		        .andExpect(content().string(EMPTY_COLLECTION));
-		
 	}
 }
