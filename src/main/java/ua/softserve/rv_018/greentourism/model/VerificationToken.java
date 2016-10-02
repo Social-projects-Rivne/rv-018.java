@@ -1,17 +1,12 @@
 package ua.softserve.rv_018.greentourism.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.*;
+
 @Entity
-public class PasswordResetToken {
+public class VerificationToken {
 
     private static final int EXPIRATION = 60 * 24;
 
@@ -22,23 +17,23 @@ public class PasswordResetToken {
     private String token;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
+    @JoinColumn(nullable = false, name = "user_id", foreignKey = @ForeignKey( name = "FK_VERIFY_USER" ))
     private User user;
 
     private Date expiryDate;
 
-    public PasswordResetToken() {
+    public VerificationToken() {
         super();
     }
 
-    public PasswordResetToken(final String token) {
+    public VerificationToken(final String token) {
         super();
 
         this.token = token;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
-    public PasswordResetToken(final String token, final User user) {
+    public VerificationToken(final String token, final User user) {
         super();
 
         this.token = token;
@@ -107,7 +102,7 @@ public class PasswordResetToken {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final PasswordResetToken other = (PasswordResetToken) obj;
+        final VerificationToken other = (VerificationToken) obj;
         if (expiryDate == null) {
             if (other.expiryDate != null) {
                 return false;
