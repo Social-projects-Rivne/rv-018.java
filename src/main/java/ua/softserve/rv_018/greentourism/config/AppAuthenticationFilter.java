@@ -21,7 +21,7 @@ import ua.softserve.rv_018.greentourism.config.authentication.UsernamePasswordAu
 @ComponentScan("ua.softserve.rv_018.greentourism.config")
 public class AppAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-	public final static String FILTERED_URL = "/**";
+	public static final String FILTERED_URL = "/**";
 
 	@Autowired
 	private AppAuthenticationManager authenticationManager;
@@ -55,7 +55,7 @@ public class AppAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
 		String authToken = header.substring(6);
 
-		UsernamePasswordAuthenticationToken authRequest = TokenAuthenticationUtil.genarateTokenFromData(authToken);
+		UsernamePasswordAuthenticationToken authRequest = TokenAuthenticationUtil.genarateTokenFromHeader(authToken);
 		return getAuthenticationManager().authenticate(authRequest);
 	}
 

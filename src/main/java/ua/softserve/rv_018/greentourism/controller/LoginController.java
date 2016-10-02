@@ -59,7 +59,7 @@ public class LoginController {
 		logger.info("> logout User ");
 
 		if (authorization != null) {
-			Authentication authentication = tokenUtil.genarateTokenFromData(authorization);
+			Authentication authentication = TokenAuthenticationUtil.genarateTokenFromHeader(authorization);
 			tokenUtil.deleteTokenFromUser(authentication);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}

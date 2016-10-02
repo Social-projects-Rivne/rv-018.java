@@ -15,26 +15,38 @@ public class TokenAuthenticationUtil {
 
 	@Autowired
 	private UserService userService;
-	
+
 	/**
-	 *
+	 * Encodes authentication token with base64 algorithm
+	 * 
+	 * @param token
+	 *            Authentication token which will be encoded
+	 * @return Encoded String
 	 */
 	public static String encodeToken(Authentication token) {
 		return new String(Base64.getEncoder()
 				.encodeToString((token.getName() + ":" + (String) token.getCredentials()).getBytes()));
 	}
-	
+
 	/**
+	 * Saves encoded authentication token String representation to user in
+	 * database.
 	 * 
+	 * @param authentication
+	 *            Authentication token which will be saved
 	 */
 	public void saveTokenToUser(Authentication authentication) {
 		User user = userService.findByEmail(authentication.getName());
 		user.setToken(encodeToken(authentication));
 		userService.update(user);
 	}
-	
+
 	/**
+	 * Deletes encoded authentication token String representation from user in
+	 * database.
 	 * 
+	 * @param authentication
+	 *            Authentication token which will be deleted
 	 */
 	public void deleteTokenFromUser(Authentication authentication) {
 		User user = userService.findByEmail(authentication.getName());
@@ -43,10 +55,15 @@ public class TokenAuthenticationUtil {
 	}
 
 	/**
+	 * Generates UsernamePasswordAuthenticationToken from header value
 	 * 
+	 * @param header
+	 *            Header String value which will be transformed
+	 * 
+	 * @return UsernamePasswordAuthenticationToken
 	 */
-	public static UsernamePasswordAuthenticationToken genarateTokenFromData(String data) {
-		byte[] decoded = Base64.getDecoder().decode(data.substring(6));
+	public static UsernamePasswordAuthenticationToken genarateTokenFromHeader(String header) {
+		byte[] decoded = Base64.getDecoder().decode(header.substring(6));
 
 		String usernameAndPasswordString = new String(decoded);
 
@@ -59,13 +76,12 @@ public class TokenAuthenticationUtil {
 	}
 
 	/**
-	 * Generates a JWT token containing username as subject, and userId and role
-	 * as additional claims. These properties are taken from the specified User
-	 * object. Tokens validity is infinite.
+	 * Generates a Authorization header from token.
 	 * 
-	 * @param u
-	 *            the user for which the token will be generated
-	 * @return the JWT token
+	 * @param token
+	 *            The token which will be transformed
+	 * 
+	 * @return String token representation
 	 */
 
 	public static String generateAuthorizationHeaderFromToken(Authentication token) {
