@@ -66,6 +66,7 @@ public class PlaceControllerUnitTest {
 	private CommentItemRepository commentItemRepository;
 	
 	@Mock
+
     private HttpHeaders httpHeaders;
 	
 	@Before
@@ -138,7 +139,7 @@ public class PlaceControllerUnitTest {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
 	     Mockito.when(galleryRepository.findByPlace(PLACE)).thenReturn(new ArrayList<Gallery>());
 	     Mockito.when(commentItemRepository.findByPlace(PLACE)).thenReturn(new ArrayList<CommentItem>());
-	     
+
 	     mockMvc.perform(get("/api/place/1"))
 	             .andExpect(status().isOk())
 	             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))

@@ -4,6 +4,9 @@ angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
   controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+
+    $rootScope.mopen();
+
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
       $scope.previousMapZoom = $rootScope.myMap.getZoom();
@@ -47,8 +50,6 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           } else {
             $rootScope.myMap.removeLayer(marker);
@@ -56,10 +57,9 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           }
+              $scope.$apply();
         }
       )
     };
@@ -106,7 +106,7 @@ angular.module('greenApp')
     console.log(dataObj);
 
     let successCallback = function(response){
-      Materialize.toast('Place successfully added!', 5000);
+      Materialize.toast('Place successfully added!', 2000);
       setTimeout(function () {
         $scope.$apply(function () {
           $scope.addPlaceMenuIsOpen = false;
@@ -123,7 +123,7 @@ angular.module('greenApp')
     };
 
     let errorCallback = function(response){
-      Materialize.toast('Something wrong. Please try again!', 5000);
+      Materialize.toast('Something wrong. Please try again!', 2000);
     };
 
     $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
@@ -134,6 +134,8 @@ angular.module('greenApp')
   $scope.resetAddPlaceForm = function(form) {
     if (marker) {
       $rootScope.myMap.removeLayer(marker);
+      $scope.latitude = "";
+      $scope.longitude = "";
     }
   };
 
@@ -162,13 +164,12 @@ angular.module('greenApp')
   $scope.addEventMenu = function() {
     $scope.addEventMenuIsOpen = true;
     $rootScope.myMap.on('click',function(e) {
+
       if (typeof(marker) === 'undefined') {
         marker = new L.Marker(e.latlng);
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       } else {
         $rootScope.myMap.removeLayer(marker);
@@ -176,10 +177,9 @@ angular.module('greenApp')
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       }
+          $scope.$apply();
     }
   )
 };
@@ -200,6 +200,8 @@ $scope.toggleAddEventMenu = function() {
 $scope.resetAddEventForm = function(form) {
   if (marker) {
     $rootScope.myMap.removeLayer(marker);
+    $scope.latitudeE = "";
+    $scope.longitudeE = "";
   }
 };
 
@@ -227,7 +229,7 @@ $scope.createNewEvent = function(form) {
   console.log(dataObj);
 
   let successCallback = function(response){
-    Materialize.toast('Event successfully added!', 5000);
+    Materialize.toast('Event successfully added!', 2000);
     setTimeout(function () {
       $scope.$apply(function () {
         $scope.addEventMenuIsOpen = false;
@@ -246,7 +248,7 @@ $scope.createNewEvent = function(form) {
   };
 
   let errorCallback = function(response){
-    Materialize.toast('Something wrong. Please try again!', 5000);
+    Materialize.toast('Something wrong. Please try again!', 2000);
   };
 
   $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);

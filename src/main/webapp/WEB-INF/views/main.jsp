@@ -45,14 +45,15 @@
 		                                <div class="input-field">
 		                                  <input ng-model="searchLine" class="custom search_custom" id="search" type="search" placeholder="Search" required>
 		                                  <label for="search" class="search_custom"><i class="material-icons search_custom">search</i></label>
-		                                  <i class="material-icons search_custom">close</i>
+		                                  <i class="material-icons search_custom" ng-click="clearSearchLine()">close</i>
 		                                </div>
 		                              </form>
 		                            </div>
 		                        </nav>
 		                    </div>
 		                    <div class="col s2 m2 l2">
-		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}" class="btn-flat">Search</a>
+		                        <a href="${pageContext.request.contextPath}/#/map/searchplace?name={{searchLine}}"
+								   class="waves-effect waves-light btn-search">Search</a>
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()">
@@ -66,7 +67,7 @@
 		    </header>  
 	    <main>
 				<!-- Tabs -->
-				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs">
+				<div id="tabsRow" class="tabsBackgroundColor" ng-show="checkTabs" ng-cloak>
 					<div class="tabsIndent">
 						<div class="row">
 							<ul class="tabs" ng-show="checkTabs">
@@ -79,7 +80,7 @@
 				</div>
 
 				<md-sidenav class="md-sidenav-left" md-component-id="left"
-							md-disable-backdrop md-whiteframe="4">
+							md-disable-backdrop md-whiteframe="4" ng-cloak>
 
 					<md-content layout-margin>
 						<div>

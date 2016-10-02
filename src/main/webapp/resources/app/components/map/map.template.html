@@ -39,7 +39,7 @@
 		</calendar-md>
 	</div>
 
- 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown">
+ 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown" ng-cloak>
 		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
 			class="material-icons">date_range</i></a>
 	</div>
@@ -59,7 +59,7 @@
 	</div>
 
 	<!-- DIV Add places -->
-	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
+	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen" ng-cloak>
 			<h2>New Place</h2>
 			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hidePlaceButton(); hideEventButton()"> <span
 				class="material-icons closeIcon">close</span>
@@ -69,11 +69,9 @@
 			</a>
 			<form name="placeMaker" novalidate>
 				<div class="form-group">
-					<span class="title">1. Choose place on map:</span><br> <span
-						class="title">Latitude:</span> <input type="text" class="latlng"
-						id="latitude" ng-model="latitude" disabled="disabled"></span> <span
-						class="title">Longitude:</span> <input type="text" class="latlng"
-						id="longitude" ng-model="longitude" disabled="disabled"></span>
+					<span class="title">1. Choose place on map:</span><br>
+					<span id="latitude" ng-model="latitude"></span>Latitude: {{latitude}}<br>
+					<span id="longitude" ng-model="longitude"></span>Longitude: {{longitude}}<br>
 				</div>
 				<div class="form-group">
 					<label for="placeName"> <span class="title">2. Enter
@@ -120,7 +118,7 @@
 			</form>
 	</div>
 	<!-- DIV Add events -->
-	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen">
+	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen" ng-cloak>
 			<h2>New Event</h2>
 			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace(); hideEventButton(); hidePlacebutton()"> <span
 				class="material-icons closeIcon">close</span>
@@ -131,10 +129,8 @@
 			<form name="eventMaker" novalidate>
 				<div class="form-group">
 					<span class="title">1. Choose event on map:</span><br>
-						<span class="title">Latitude: <input type="text" class="latlng"
-						id="latitudeE" ng-model="latitudeE" disabled="disabled"></span>
-						<span class="title">Longitude: <input type="text" class="latlng"
-						id="longitudeE" ng-model="longitudeE" disabled="disabled"></span>
+					<span id="latitudeE" ng-model="latitudeE"></span>Latitude: {{latitudeE}}<br>
+					<span id="longitudeE" ng-model="longitudeE"></span>Longitude: {{longitudeE}}<br>
 				</div>
 				<div class="form-group">
 					<label for="eventName"> <span class="title">2. Enter

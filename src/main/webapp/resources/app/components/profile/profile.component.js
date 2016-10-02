@@ -88,5 +88,13 @@ component('profile', {
 	$scope.modalTrigger = function () { $('#edit-place').openModal() };
 		
 	$scope.ImageUrl="http://content.screencast.com/users/kazakov/folders/Snagit/media/9777b814-7f03-40b4-bafd-c64a0d39e95c/08.31.2016-23.23.png";
+	
+	/*User's events*/
+	var successCallBack = function(responseev){
+		$scope.events = responseev.data;
+    };
+    
+	$http.get(_contextPath + '/api/event/user/' + $routeParams.id).then(successCallBack);
+	
 	}
 });
