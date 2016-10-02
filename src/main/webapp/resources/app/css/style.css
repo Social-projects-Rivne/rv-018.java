@@ -990,6 +990,7 @@ input.add-feedback {
 
 .feedback-userpic {
     height: 71px;
+    width: 71px !important;
 }
 
 .images-uploader {

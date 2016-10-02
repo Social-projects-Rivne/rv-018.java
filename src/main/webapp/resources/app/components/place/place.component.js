@@ -25,6 +25,7 @@ angular
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
 								$scope.userpicture = response.data.user;
+								$scope.nickname = response.data.user;
 								
 								$scope.feedbacks = response.data.comments;
 								
