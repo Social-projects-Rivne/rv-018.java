@@ -7,7 +7,7 @@ angular
 				{
 					templateUrl : _contextPath +'/resources/app/components/place/place.template.html',
 					controller : function($scope, $http, $routeParams, $route, $rootScope) {
-						
+			    		
 						$scope.findById = function() {
 							// update only if id chosen
 							if (!$scope.id) {
@@ -43,8 +43,6 @@ angular
 												});
 
 								$scope.images = response.data.attachments;
-								
-								/*$scope.singletonFeedbackModalIsOpen = FeedbackModalIsOpen;*/
 								
 								var myFunc = function() {
 									$('.carousel.carousel-slider').carousel({
@@ -82,6 +80,75 @@ angular
 							$http.get(_contextPath + '/api/place/' + $scope.id).then(successCallBack,failCallback);
 						};
 						
+						$scope.update_name = function () {
+				    		
+							$scope.id = $routeParams.placeId;
+							
+				    	    var dataObj = {
+				    	    		id: $routeParams.placeId,
+				    	    		name: $scope.name
+						    };
+				    	    
+				    	    var successCallback = function(response){
+							      $scope.submissionSuccess = true;
+							      setTimeout(function() {
+							        $scope.$apply(function() {
+							          $scope.submissionSuccess = false;
+							        });
+							      }, 5000);
+							    };
+
+						    var errorCallback = function(response){
+						      console.log(response);
+						      $scope.submissionError = true;
+						      $scope.submissionSuccess = false;
+						      setTimeout(function() {
+						        $scope.$apply(function() {
+						          $scope.submissionError = false;
+						        });
+						      }, 5000);
+						    };
+				    	    
+				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
+				    	    console.log(dataObj);
+				    	    
+						};
+						
+						$scope.update_description = function () {
+				    		
+							/*console.log("update");*/
+							$scope.id = $routeParams.placeId;
+					    	
+				    	    var dataObj = {
+				    	    		id: $routeParams.placeId,
+				    	    		description: $scope.description
+						    };
+				    	    
+				    	    var successCallback = function(response){
+							      $scope.submissionSuccess = true;
+							      setTimeout(function() {
+							        $scope.$apply(function() {
+							          $scope.submissionSuccess = false;
+							        });
+							      }, 5000);
+							    };
+
+						    var errorCallback = function(response){
+						      console.log(response);
+						      $scope.submissionError = true;
+						      $scope.submissionSuccess = false;
+						      setTimeout(function() {
+						        $scope.$apply(function() {
+						          $scope.submissionError = false;
+						        });
+						      }, 5000);
+						    };
+						    
+				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
+				    	    console.log(dataObj);
+				    	    
+						 };
+						
 						$scope.less_more = function($event) {
 							//console.log($event);
 							var elem = $($event.currentTarget).parents('.card')[0];
@@ -99,15 +166,15 @@ angular
 						}
 
 						$scope.show_modal = function($event) {
-							$('#feedback-modal').openModal();
+							$('#feedback-modal').appendTo($("body")).openModal();
 						}
 						
 						$scope.show_name_modal = function($event) {
-							$('#name-modal').openModal();
+							$('#name-modal').appendTo($("body")).openModal();
 						}
 						
 						$scope.show_description_modal = function($event) {
-							$('#description-modal').openModal();
+							$('#description-modal').appendTo($("body")).openModal();
 						}
 
 						$scope.close_place = function($event) {
@@ -123,12 +190,9 @@ angular
 						    }
 						  );
 						 
-						$scope.user_feedback = "";
 						$scope.placeopened = false;
 						$scope.id = $routeParams.placeId;
 						console.log($scope.id);
-						/*$rootScope.$on("CallThatParentMethod", function(){*/
-					           $scope.findById();
-					    /*});*/
+						$scope.findById();
 					}
 				});

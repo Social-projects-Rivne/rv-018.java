@@ -6,29 +6,26 @@ angular
 				'PlaceFeedbackController',
 				["$scope", "$http", "$routeParams", "$route", function($scope, $http, $routeParams, $route) {
 					
-					/*$scope.singletonFeedbackModalIsOpen = FeedbackModalIsOpen;*/
-					
 					$scope.addText = function() {
 					      var dataObj = {
-					        feedback : {
-					          body : $scope.text,
-					          date : $scope.date,
-					        },
+					          body : $scope.text
 					      };
 
 					    console.log(dataObj);
-					    console.log($scope.date);
+					    console.log($scope.text);
 
 					    var successCallback = function(response){
+					        Materialize.toast('Feedback successfully added!', 5000);
 					      $scope.submissionSuccess = true;
 					      setTimeout(function() {
 					        $scope.$apply(function() {
 					          $scope.submissionSuccess = false;
 					        });
-					      }, 5000);
+					      }, 50);
 					    };
 
 					    var errorCallback = function(response){
+					    	Materialize.toast('Something wrong. Please try again!', 5000);
 					      console.log(response);
 					      $scope.submissionError = true;
 					      $scope.submissionSuccess = false;
@@ -36,7 +33,7 @@ angular
 					        $scope.$apply(function() {
 					          $scope.submissionError = false;
 					        });
-					      }, 5000);
+					      }, 50);
 					    };
 
 					    $http.post(_contextPath + '/api/comment/', dataObj).then(successCallback, errorCallback);

@@ -1,10 +1,15 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import ua.softserve.rv_018.greentourism.model.CommentItem;
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.mockito.InjectMocks;
@@ -53,6 +58,12 @@ public class PlaceControllerUnitTest {
 	
 	@Mock
 	private PlaceService placeService;
+	
+	@Mock
+	private GalleryRepository galleryRepository;
+	
+	@Mock
+	private CommentItemRepository commentItemRepository;
 	
 	@Mock
     private HttpHeaders httpHeaders;
@@ -122,15 +133,17 @@ public class PlaceControllerUnitTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	 public void testGetPlace() throws Exception {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
-	 
+	     Mockito.when(galleryRepository.findByPlace(PLACE)).thenReturn(new ArrayList<Gallery>());
+	     Mockito.when(commentItemRepository.findByPlace(PLACE)).thenReturn(new ArrayList<CommentItem>());
+	     
 	     mockMvc.perform(get("/api/place/1"))
 	             .andExpect(status().isOk())
 	             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 	             .andExpect(content().string(VALUE));
-    }*/
+    }
 	
 	@Test
     public void testGetPlaceThatDoesNotExist() throws Exception {

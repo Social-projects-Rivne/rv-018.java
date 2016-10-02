@@ -109,80 +109,6 @@
 				<ng-view></ng-view>
 				</div>		   
 	    </main>
-	    
-	    <!-- Modal Structure for Feedback About Place: -->
-		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
-			ng-controller="PlaceFeedbackController">
-			<div class="modal-content">
-				<span class="card-title feedback-username"> <img
-					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{username.username}}</span>
-				</span><br />
-				<div class="input-field">
-					<div class="typeit">Type your feedback</div>
-					<textarea placeholder=" " id="typing-feedback" type="text"
-						class="validate" ng-model="text"></textarea>
-					<label for="typing-feedback" class="typeit"></label>
-				</div>
-				<span ng-bind="text"></span>
-				<form action="#">
-					<div class="file-field input-field images-uploader">
-						<div class="commenting-button">
-							<span><i
-								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
-							<input type="file">
-						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text">
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button"
-					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText()">Publish</button> <button type="button" 
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
-			</div>
-		</div>
-		
-		<!-- Modal Structures of Edit Place: -->
-		<div id="name-modal" class="modal modal-fixed-footer mymodal"
-			ng-controller="EditPlaceCtrl">
-			<div class="modal-content">
-				<span class="card-title feedback-username"> <span></span>
-				</span><br />
-				<div class="input-field">
-					<label for="" class="place_name">Place Name:</label>
-					<input type="text" placeholder="enter place name" id=""
-						class="validate" ng-model="name" />
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button"
-					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="update_name()">Publish</button> <button type="button" 
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
-			</div>
-		</div>
-
-		<div id="description-modal" class="modal modal-fixed-footer mymodal"
-			ng-controller="EditPlaceCtrl">
-			<div class="modal-content">
-				<span class="card-title feedback-username"> <span></span>
-				</span><br />
-				<div class="input-field">
-				    <label for="" class="place_name">Place Description:</label>
-					<input type="text" placeholder="enter place description" id=""
-						class="validate" ng-model="description" />
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button"
-					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="update_description()">Publish</button> <button type="button" 
-					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
-			</div>
-		</div>
 
 	</div>
 
@@ -218,7 +144,6 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
 	
 	<!-- Supporting sliding menu -->

@@ -446,8 +446,8 @@ md-content {
 }
 
 .lean-overlay {
-	position: fixed; /*changed*/
-	/* z-index: 999; */
+    position: fixed; 
+	z-index: 999;
 	top: -100px;
 	left: 0;
 	bottom: 0;
@@ -934,7 +934,7 @@ input.add-feedback {
 	width: 70%;
 	top: 64px;
 	z-index: 400;
-	right: 9%;
+	right: 15%;
 }
 
 .close-place {
@@ -997,7 +997,17 @@ input.add-feedback {
 
 .place_name {
 	font-size: 144% !important;
-}    
+}
+    
+.grid-sizer,
+.grid-item { 
+	width: 20%; 
+}
+
+/* columnWidth: '.grid-sizer',
+itemSelector: '.grid-item',
+percentPosition: true */
+
 /*------------End of place----------*/
 
 /*Find place side bar*/
@@ -1228,7 +1238,7 @@ md-sidenav {
 /*-------------- Toast for callback --------------*/
 @media only screen and (min-width: 993px) {
     #toast-container {
-        top: 10%;
+        top: 40% !important;
         right: 40%;
         max-width: 86%;
     }
