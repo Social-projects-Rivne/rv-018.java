@@ -8,12 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import ua.softserve.rv_018.greentourism.repository.PasswordResetTokenRepository;
 import ua.softserve.rv_018.greentourism.repository.UserRepository;
+import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.model.User;
 
 @Service
@@ -31,6 +34,12 @@ public class UserServiceImpl implements UserService{
      */
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private PasswordResetTokenRepository passwordTokenRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
 	@Override
 	public Collection<User> findAll() {
@@ -154,4 +163,21 @@ public class UserServiceImpl implements UserService{
 	        super("User already exists: " + user + ".");
 	    }
 	}
+
+	@Override
+	public void createPasswordResetTokenForUser(final User user, final String token) {
+        final PasswordResetToken myToken = new PasswordResetToken(token, user);
+        passwordTokenRepository.save(myToken);
+	}
+
+	@Override
+	public PasswordResetToken getPasswordResetToken(String token) {
+		return passwordTokenRepository.findByToken(token);
+	}
+
+	@Override
+	 public void changeUserPassword(final User user, final String password) {
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
 }

@@ -2,6 +2,7 @@ package ua.softserve.rv_018.greentourism.service;
 
 import java.util.Collection;
 
+import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.model.User;
 
 public interface UserService {
@@ -58,4 +59,10 @@ public interface UserService {
      * @exception  UserAlreadyExistsException if user with given name already exists
      */
     void validateUserBeforeCreating(String name);
+    
+    void createPasswordResetTokenForUser(User user, String token);
+    
+    PasswordResetToken getPasswordResetToken(String token);
+    
+    void changeUserPassword(User user, String password); 
 }
