@@ -210,4 +210,37 @@ public class EventController {
 
 		return new ResponseEntity<>(event, HttpStatus.OK);
 	}
+	
+	/**
+	    * Web service endpoint to update a single Event entity. 
+	    * <p>
+	    * If updated successfully, the persisted Event is returned as JSON with
+	    * HTTP status 200.
+	    * <p>
+	    * If not found, the service returns an empty response body and HTTP status
+	    * 404.
+	    * <p>
+	    * If not updated successfully, the service returns an empty response body
+	    * with HTTP status 500.
+	    *
+	    * @param event The Event object to be updated.
+	    * @return A ResponseEntity containing a single Event object, if updated
+	    * successfully, and a HTTP status code as described in the method
+	    * comment.
+	    */
+	   @RequestMapping(value="/{id}", method=RequestMethod.PUT,
+	           headers = "Accept=application/json", produces = {"application/json"})
+	   public ResponseEntity<?> updateEvent(@PathVariable int id, @RequestBody Event event) {
+	       logger.info("> updateEvent id:{}", event.getId());
+
+	       if (eventService.findOne(id) == null) {
+	           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	       }
+	        
+	       Event updatedEvent = eventService.update(event);
+
+	       logger.info("< updateEvent id:{}", event.getId());
+	       
+	       return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+	   }
 }
