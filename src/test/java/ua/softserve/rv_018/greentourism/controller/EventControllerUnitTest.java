@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class EventControllerUnitTest {
@@ -156,4 +158,28 @@ public class EventControllerUnitTest {
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().string(COLLECTION));
 	}
+	
+	@Test
+    public void testUpdateEvent() throws Exception {
+    	Mockito.when(eventService.findOne(1)).thenReturn(new Event());
+    	Mockito.when(eventService.update(Mockito.any(Event.class))).thenReturn(EVENT);
+    	
+    	Gson gson = new Gson();
+        String json = gson.toJson(EVENT);
+        
+    	mockMvc.perform(put("/api/event/1").contentType(MediaType.APPLICATION_JSON).content(json))
+		        .andExpect(status().isOk())
+		        .andExpect(content().string(VALUE));
+    }
+    
+    @Test
+    public void testUpdateEventThatDoesNotExist() throws Exception {
+    	Mockito.when(eventService.findOne(1)).thenReturn(null);
+    	
+    	Gson gson = new Gson();
+        String json = gson.toJson(EVENT);
+        
+    	mockMvc.perform(put("/api/event/1").contentType(MediaType.APPLICATION_JSON).content(json))
+		        .andExpect(status().isNotFound());
+    }
 }
