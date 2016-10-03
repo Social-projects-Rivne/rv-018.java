@@ -55,4 +55,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 			, nativeQuery=true)
 	List<Event> findByUserId(
 			@Param ("user_id") Long id);
+	
+	List<Event> findByNameIgnoreCaseContaining(String name);
 }

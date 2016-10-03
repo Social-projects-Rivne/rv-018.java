@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 
 public interface EventService {
@@ -50,4 +51,10 @@ public interface EventService {
 	 * @return A Event or <code>null</code> if none found.
 	 */
 	Event findOne(Integer id);
+	
+	/**
+     * Find all Event entities by name using filter.
+     * @return A List of Event objects.
+     */
+	List<Event> findByName(String name, boolean checkWholeWord, boolean checkIgnoreCase);
 }

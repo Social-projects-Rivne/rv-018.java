@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.EventRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
@@ -140,5 +141,21 @@ public class EventServiceImpl implements EventService {
 		logger.info("< Event findOne id:{}", id);
 
 		return event;
+	}
+	
+	@Override
+	public List<Event> findByName(String name, boolean checkIgnoreCase, boolean checkContaining) {
+		logger.info("> Event findByName");
+
+		List<Event> events = new ArrayList<>();
+		
+		if (checkIgnoreCase && checkContaining) {
+			events = eventRepository.findByNameIgnoreCaseContaining(name);
+		}
+		// here will be other findByName... methods due to checkIgnoreCase && checkWholeWord values
+
+        logger.info("< Event findByName");
+
+		return events;
 	}
 }

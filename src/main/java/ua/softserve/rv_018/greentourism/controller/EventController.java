@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
@@ -210,4 +211,25 @@ public class EventController {
 
 		return new ResponseEntity<>(event, HttpStatus.OK);
 	}
+	
+	/**
+     * Web service endpoint to fetch all Events entities by name.
+     * The service returns the list of Event entities as JSON.
+     *
+     * @return A ResponseEntity containing a List of Event objects.
+     */
+    @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getEventsByName(
+    		@RequestParam String name,
+    		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
+    		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
+    	logger.info("> Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+
+    	List<Event> events = eventService.findByName(name, ignoreCase, !wholeWord);
+    	
+    	logger.info("< Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+        
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
 }
