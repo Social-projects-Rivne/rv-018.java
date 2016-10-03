@@ -1,9 +1,6 @@
 package ua.softserve.rv_018.greentourism.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,16 +11,34 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.google.gson.Gson;
-
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class EventControllerUnitTest {
 	
 	public static final Event EVENT = new Event();
 	public static final String HEADER_LOCATION = "http://localhost/api/event/1";
+	public static final String POINTS = "[{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},{\"id\":2,\"latitude\":2.0,\"longitude\":2.0}]";
+	private static final String EVENT_URL = "/api/event";
+	private static final String EMPTY_COLLECTION = "";
+	public static final String VALUE ="{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":\"AwesomeEvent\","
+			+ "\"name\":\"NewEventInOurCity\",\"point\":null,\"user\":null,\"attachments\":[]}";
+	public static final String EMPTY_VALUE = "";
+	private static final String COLLECTION = "[{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":null,"
+			+ "\"name\":null,\"point\":{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},\"user\":null,\"attachments\":[]},"
+			+ "{\"id\":2,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":null,\"name\":null,"
+			+ "\"point\":{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},\"user\":null,\"attachments\":[]}]";
+
+	private List<Event> events;
 	
 	private MockMvc mockMvc;
 	
@@ -32,6 +47,9 @@ public class EventControllerUnitTest {
 	
 	@Mock
 	private EventService eventService;
+
+	@Mock
+	private GalleryRepository galleryRepository;
 	
 	@Mock
 	private HttpHeaders httpHeaders;
@@ -41,7 +59,27 @@ public class EventControllerUnitTest {
 		MockitoAnnotations.initMocks(this);
 		
 		mockMvc = MockMvcBuilders.standaloneSetup(this.eventController).build();
-		
+
+		Point point1 = new Point();
+		point1.setId(1);
+		point1.setLatitude(1);
+		point1.setLongitude(1);
+
+		Point point2 = new Point();
+		point2.setId(2);
+		point2.setLatitude(2);
+		point2.setLongitude(2);
+
+		Event event1 = new Event();
+		event1.setId(1);
+		event1.setPoint(point1);
+
+		Event event2 = new Event();
+		event2.setId(2);
+		event2.setPoint(point2);
+
+		events = Arrays.asList(event1, event2);
+
 		EVENT.setId(1);
 		EVENT.setName("NewEventInOurCity");
 		EVENT.setDescription("AwesomeEvent");
@@ -56,6 +94,66 @@ public class EventControllerUnitTest {
 
 		mockMvc.perform(post("/api/event").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk())
 				.andExpect(header().string("Location", HEADER_LOCATION));
+	}
+	
+	@Test
+	public void testFindEventPointsBetweenTwoDates_ShouldReturnTwoPointsAsJSON() throws Exception {
+		Point point1 = new Point();
+		point1.setId(1);
+		point1.setLatitude(1);
+		point1.setLongitude(1);
 		
+		Point point2 = new Point();
+		point2.setId(2);
+		point2.setLatitude(2);
+		point2.setLongitude(2);
+		
+		List<Point> points = Arrays.asList(point1, point2);
+		
+		//Two random dates used here, only thing that matters is accordance between dates in URL and dates sent to service
+		Mockito.when(eventService.findEventPointsBetweenTwoDates(java.sql.Date.valueOf("2016-09-04"), java.sql.Date.valueOf("2016-09-20")))
+		       .thenReturn(points);
+		
+		mockMvc.perform(get("/api/event/pointBetweenDates?start-date=Sun Sep 04 2016 00:00:00&end-date=Tue Sep 20 2016 00:00:00"))
+		       .andExpect(status().isOk())
+		       .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+		       .andExpect(content().string(POINTS));
+	}
+	
+	@Test
+	public void testGetEvents_ShouldReturnEmptyString() throws Exception {
+		Mockito.when(eventService.findAll()).thenReturn(null);
+		
+		mockMvc.perform(get(EVENT_URL))
+		        .andExpect(status().isOk())
+		        .andExpect(content().string(EMPTY_COLLECTION));
+	}
+	
+	@Test
+	public void testGetEvent() throws Exception {
+		Mockito.when(eventService.findOne(1)).thenReturn(EVENT);
+		Mockito.when(galleryRepository.findByEvents(eventService.findAll())).thenReturn(null);
+
+		mockMvc.perform(get("/api/event/1"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().string(VALUE));
+	}
+	
+	@Test
+	public void testGetEventThatDoesNotExist() throws Exception {
+		mockMvc.perform(get("/api/event/-1"))
+				.andExpect(status().isNotFound())
+				.andExpect(content().string(EMPTY_VALUE));
+	}
+
+	@Test
+	public void testGetEventByUser() throws Exception {
+		Mockito.when(eventService.findByUserIdWithAttachments((long) 1)).thenReturn(events);
+
+		mockMvc.perform(get("/api/event/user/1"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().string(COLLECTION));
 	}
 }

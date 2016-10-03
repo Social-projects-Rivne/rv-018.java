@@ -2,6 +2,7 @@ package ua.softserve.rv_018.greentourism.controller;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
 
 import java.util.List;
@@ -34,12 +35,12 @@ public class PlaceControllerUnitTest {
 	private static final String COLLECTION = 
 			"[{\"id\":1,\"name\":null,\"description\":null,\"point\":"
 			+ "{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},"
-			+ "\"user\":null,\"category\":null},"
+			+ "\"user\":null,\"category\":null,\"attachments\":[]},"
 			+ "{\"id\":2,\"name\":null,\"description\":null,\"point\":"
 			+ "{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},"
-			+ "\"user\":null,\"category\":null}]";
+			+ "\"user\":null,\"category\":null,\"attachments\":[]}]";
 	private static final String PLACE_URL = "/api/place";
-	public static final String VALUE ="{\"id\":1,\"name\":\"Name1\",\"description\":\"Description1\",\"point\":null,\"user\":null,\"category\":null}";
+	public static final String VALUE ="{\"id\":1,\"name\":\"Name1\",\"description\":\"Description1\",\"point\":null,\"user\":null,\"category\":null,\"attachments\":[]}";
     public static final Place PLACE = new Place();
     public static final String HEADER_LOCATION = "http://localhost/api/place/1";
 	
@@ -52,6 +53,9 @@ public class PlaceControllerUnitTest {
 	
 	@Mock
 	private PlaceService placeService;
+	
+	@Mock
+	private GalleryRepository galleryRepository;
 	
 	@Mock
     private HttpHeaders httpHeaders;
@@ -121,8 +125,9 @@ public class PlaceControllerUnitTest {
 		
 	}
 	@Test
-	 public void testGetPlace() throws Exception {
+	public void testGetPlace() throws Exception {
 	     Mockito.when(placeService.findOne(1)).thenReturn(PLACE);
+	     Mockito.when(galleryRepository.findByPlaces(placeService.findAll())).thenReturn(null);
 	 
 	     mockMvc.perform(get("/api/place/1"))
 	             .andExpect(status().isOk())

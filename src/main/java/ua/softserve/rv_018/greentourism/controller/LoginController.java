@@ -37,7 +37,7 @@ public class LoginController {
 			"application/json" })
 	public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
-		logger.info("> loginUser by email: ");
+		logger.info("> loginUser by email: " + email);
 		
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
 		Authentication result = appAuthenticationManager.authenticate(token);

@@ -55,13 +55,6 @@ public class MainControllerUnitTest {
     }
 
     @Test
-    public void testLogin_ShouldReturnView() throws Exception {
-        mockMvc.perform(get("/login"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("login"));
-    }
-
-    @Test
     public void testLogout_LogoutHandlerGetsNullAndMethodsReturnsRedirectView() throws Exception {
         HttpServletRequest request =  Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);

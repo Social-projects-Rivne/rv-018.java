@@ -1,6 +1,8 @@
 package ua.softserve.rv_018.greentourism.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "event")
@@ -24,15 +29,21 @@ public class Event {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@NotNull
 	@Column(name = "date_start")
 	private Date dateStart;
 
+	@NotNull
 	@Column(name = "date_end")
 	private Date dateEnd;
 
+	@NotNull
+	@Size(min=10)
 	@Column(name = "description")
 	private String description;
 	
+	@NotNull
+	@Size(min=5, max=70)
 	@Column(name = "name")
 	private String name;
 	
@@ -43,6 +54,9 @@ public class Event {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "owner_id")
 	private User user;
+
+	@Transient
+	private List<Attachment> attachments = new ArrayList<>();
 	
 	public Event() {};
 
@@ -108,6 +122,14 @@ public class Event {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
 	}
 
 	@Override

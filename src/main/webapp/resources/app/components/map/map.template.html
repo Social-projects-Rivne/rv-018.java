@@ -1,4 +1,4 @@
-<div class="content" ng-init="removeCache();">
+<div id="content" class="content" ng-init="removeCache();">
 
 	<div id="mapid"></div>
 
@@ -39,23 +39,39 @@
 		</calendar-md>
 	</div>
 
- 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown">
+ 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown" ng-cloak>
 		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
 			class="material-icons">date_range</i></a>
 	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addPlace">
+		<a ng-click="addPlaceMenu(); hidePlaceButton(); hideEventButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addEvent">
+		<a ng-click="addEventMenu(); hideEventButton(); hidePlaceButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
 	<!-- DIV Add places -->
-	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen">
+	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen" ng-cloak>
 			<h2>New Place</h2>
-			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace()"> <span
+			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hidePlaceButton(); hideEventButton()"> <span
 				class="material-icons closeIcon">close</span>
+			</a>
+			<a href="" ng-click="toggleAddPlaceMenuSmallScreen(); showPlaceButton()"> <span
+				<i class="material-icons arrow">expand_more</i></span>
 			</a>
 			<form name="placeMaker" novalidate>
 				<div class="form-group">
-					<span class="title">1. Choose place on map:</span><br> <span
-						class="title">Latitude:</span> <input type="text" class="latlng"
-						id="latitude" ng-model="latitude" disabled="disabled"></span> <span
-						class="title">Longitude:</span> <input type="text" class="latlng"
-						id="longitude" ng-model="longitude" disabled="disabled"></span>
+					<span class="title">1. Choose place on map:</span><br>
+					<span id="latitude" ng-model="latitude"></span>Latitude: {{latitude}}<br>
+					<span id="longitude" ng-model="longitude"></span>Longitude: {{longitude}}<br>
 				</div>
 				<div class="form-group">
 					<label for="placeName"> <span class="title">2. Enter
@@ -66,9 +82,8 @@
 				<div ng-messages="placeMaker.name.$error">
 					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
 					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
-					<p ng-message="required">Place name is required. Place write name for place.</p>
 				</div>
-			<div class="form-group">
+				<div class="form-group">
 					<label for="newPlaceType"> <span class="title">3.
 							Select place type:</span>
 					</label> <select name="newPlaceType" class="form-control"
@@ -77,12 +92,15 @@
 						<option value="">-- Choose place type --</option>
 					</select>
 				</div>
-				<div class="form-group">
+				<div class="form-group" >
 					<label for="description"> <span class="title">4.
-							Enter place description (optional):</span>
+							Enter place description:</span>
 					</label>
 					<textarea name="newPlaceDescription" id="newPlaceDescription"
-						class="form-control" ng-model="newPlaceDescription"></textarea>
+						class="form-control" ng-model="newPlaceDescription" ng-minlength="10" required></textarea>
+				</div>
+				<div ng-messages="placeMaker.newPlaceDescription.$error">
+					<p ng-message="minlength">Description is too short. Description should be at Least 10 characters</p>
 				</div>
 				<div class="form-group">
 					<label for="newPlacePhoto"> <span class="title">5.
@@ -93,27 +111,26 @@
 				</div>
 				<div class="form-group">
 					<div class="row">
-						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat disabled" ng-click="resetAddPlaceForm()" value="Reset">
-						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat disabled" ng-click="createNewPlace()" value="Save">
+						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat modals" ng-click="resetAddPlaceForm()" value="Reset">
+						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat modals" ng-click="createNewPlace()" value="Save">
 					</div>
-					<div ng-show="submissionSuccess">Place successfully added!</div>
-					<div ng-show="submissionError">Something wrong happened on our servers, please try again.</div>
 				</div>
 			</form>
 	</div>
 	<!-- DIV Add events -->
-	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen">
+	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen" ng-cloak>
 			<h2>New Event</h2>
-			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace()"> <span
+			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace(); hideEventButton(); hidePlacebutton()"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
-			<form name="placeMaker" novalidate>
+			<a href="" ng-click="toggleAddEventMenuSmallScreen(); showEventButton()"> <span
+				<i class="material-icons arrow">expand_more</i></span>
+			</a>
+			<form name="eventMaker" novalidate>
 				<div class="form-group">
 					<span class="title">1. Choose event on map:</span><br>
-						<span class="title">Latitude: <input type="text" class="latlng"
-						id="latitudeE" ng-model="latitudeE" disabled="disabled"></span>
-						<span class="title">Longitude: <input type="text" class="latlng"
-						id="longitudeE" ng-model="longitudeE" disabled="disabled"></span>
+					<span id="latitudeE" ng-model="latitudeE"></span>Latitude: {{latitudeE}}<br>
+					<span id="longitudeE" ng-model="longitudeE"></span>Longitude: {{longitudeE}}<br>
 				</div>
 				<div class="form-group">
 					<label for="eventName"> <span class="title">2. Enter
@@ -124,7 +141,6 @@
 				<div ng-messages="eventMaker.name.$error">
 					<p ng-message="minlength">Event name is too short. Event name should be at Least 5 characters</p>
 					<p ng-message="maxlength">Event name is too long. Event name should be no more than 70 characters</p>
-					<p ng-message="required">Event name is required. Place write name for event.</p>
 				</div>
 			<div class="form-group">
 					<label for="newEventType"> <span class="title">3.
@@ -149,10 +165,13 @@
 				</div>
 				<div class="form-group">
 					<label for="description"> <span class="title">6.
-							Enter event description (optional):</span>
+							Enter event description:</span>
 					</label>
 					<textarea name="newEventDescription" id="newEventDescription"
-						class="form-control" ng-model="newEventDescription"></textarea>
+						class="form-control" ng-model="newEventDescription" ng-minlength="10" required></textarea>
+				</div>
+				<div ng-messages="eventMaker.newEventDescription.$error">
+					<p ng-message="minlength">Description is too short. Description should be at Least 10 characters</p>
 				</div>
 				<div class="form-group">
 					<label for="newEventPhoto"> <span class="title">7.
@@ -163,11 +182,9 @@
 				</div>
 				<div class="form-group">
 					<div class="row">
-						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat disabled" ng-click="resetAddEventForm()" value="Reset">
-						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat disabled" ng-click="createNewEvent()" value="Save">
+						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat modals" ng-click="resetAddEventForm()" value="Reset">
+						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat modals" ng-click="createNewEvent()" value="Save">
 					</div>
-					<div ng-show="submissionSuccess">Event successfully added!</div>
-					<div ng-show="submissionError">Something wrong happened on our servers, please try again.</div>
 				</div>
 			</form>
 	</div>

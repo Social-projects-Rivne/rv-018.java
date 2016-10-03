@@ -4,6 +4,9 @@ angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
   controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+
+    $rootScope.mopen();
+
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
       $scope.previousMapZoom = $rootScope.myMap.getZoom();
@@ -47,8 +50,6 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           } else {
             $rootScope.myMap.removeLayer(marker);
@@ -56,10 +57,9 @@ angular.module('greenApp')
             $rootScope.myMap.addLayer(marker);
             $scope.latitude = marker.getLatLng().lat;
             $scope.longitude = marker.getLatLng().lng;
-            document.getElementById('latitude').value = $scope.latitude;
-            document.getElementById('longitude').value = $scope.longitude;
             marker.setLatLng(e.latlng);
           }
+              $scope.$apply();
         }
       )
     };
@@ -106,22 +106,24 @@ angular.module('greenApp')
     console.log(dataObj);
 
     let successCallback = function(response){
-      $scope.submissionSuccess = true;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionSuccess = false;
+      Materialize.toast('Place successfully added!', 2000);
+      setTimeout(function () {
+        $scope.$apply(function () {
+          $scope.addPlaceMenuIsOpen = false;
+          $rootScope.myMap.off('click');
+          $scope.newPlaceName = "";
+          $scope.newPlaceType = "";
+          $scope.newPlaceDescription = "";
+          $scope.latitude = "";
+          $scope.longitude = "";
+          $scope.newPlacePhoto = "";
+          $scope.addButtonAddPlace = true;
         });
-      }, 5000);
+      }, 50);
     };
 
     let errorCallback = function(response){
-      $scope.submissionError = true;
-      $scope.submissionSuccess = false;
-      setTimeout(function() {
-        $scope.$apply(function() {
-          $scope.submissionError = false;
-        });
-      }, 5000);
+      Materialize.toast('Something wrong. Please try again!', 2000);
     };
 
     $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
@@ -132,6 +134,8 @@ angular.module('greenApp')
   $scope.resetAddPlaceForm = function(form) {
     if (marker) {
       $rootScope.myMap.removeLayer(marker);
+      $scope.latitude = "";
+      $scope.longitude = "";
     }
   };
 
@@ -160,13 +164,12 @@ angular.module('greenApp')
   $scope.addEventMenu = function() {
     $scope.addEventMenuIsOpen = true;
     $rootScope.myMap.on('click',function(e) {
+
       if (typeof(marker) === 'undefined') {
         marker = new L.Marker(e.latlng);
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       } else {
         $rootScope.myMap.removeLayer(marker);
@@ -174,10 +177,9 @@ angular.module('greenApp')
         $rootScope.myMap.addLayer(marker);
         $scope.latitudeE = marker.getLatLng().lat;
         $scope.longitudeE = marker.getLatLng().lng;
-        document.getElementById('latitude').value = $scope.latitudeE;
-        document.getElementById('longitude').value = $scope.longitudeE;
         marker.setLatLng(e.latlng);
       }
+          $scope.$apply();
     }
   )
 };
@@ -198,6 +200,8 @@ $scope.toggleAddEventMenu = function() {
 $scope.resetAddEventForm = function(form) {
   if (marker) {
     $rootScope.myMap.removeLayer(marker);
+    $scope.latitudeE = "";
+    $scope.longitudeE = "";
   }
 };
 
@@ -225,27 +229,55 @@ $scope.createNewEvent = function(form) {
   console.log(dataObj);
 
   let successCallback = function(response){
-    $scope.submissionSuccess = true;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionSuccess = false;
+    Materialize.toast('Event successfully added!', 2000);
+    setTimeout(function () {
+      $scope.$apply(function () {
+        $scope.addEventMenuIsOpen = false;
+        $rootScope.myMap.off('click');
+        $scope.newEventName = "";
+        $scope.newEventType = "";
+        $scope.newEventDescription = "";
+        $scope.newStartDate = "";
+        $scope.newEndDate = "";
+        $scope.latitudeE = "";
+        $scope.longitudeE = "";
+        $scope.newEventPhoto = "";
+        $scope.addButtonAddPlace = true;
       });
-    }, 5000);
+    }, 50);
   };
 
   let errorCallback = function(response){
-    $scope.submissionError = true;
-    $scope.submissionSuccess = false;
-    setTimeout(function() {
-      $scope.$apply(function() {
-        $scope.submissionError = false;
-      });
-    }, 5000);
+    Materialize.toast('Something wrong. Please try again!', 2000);
   };
 
   $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
-}
+
+    $scope.showPlaceButton = function(){
+      $scope.addPlace = true;
+    }
+
+    $scope.hidePlaceButton = function(){
+      $scope.addPlace = false;
+    }
+
+    $scope.toggleAddPlaceMenuSmallScreen = function() {
+      $scope.addPlaceMenuIsOpen = false;
+    };
+
+    $scope.showEventButton = function(){
+      $scope.addEvent = true;
+    }
+
+    $scope.hideEventButton = function(){
+      $scope.addEvent = false;
+    }
+
+    $scope.toggleAddEventMenuSmallScreen = function() {
+      $scope.addEventMenuIsOpen = false;
+    };
+  }
 });

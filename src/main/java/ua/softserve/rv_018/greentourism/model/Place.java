@@ -11,7 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
@@ -23,9 +24,13 @@ public class Place {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@NotNull
+	@Size(min=5, max=70)
 	@Column(name = "name")
 	private String name;
 
+	@NotNull
+	@Size(min=10)
 	@Column(name = "description")
 	private String description;
 

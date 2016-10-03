@@ -11,29 +11,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "gallery")
-public class Gallery {
+@Table(name = "comment_item")
+public class CommentItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "place_item_id")
+	@JoinColumn(name = "item_id", insertable = false, updatable = false)
 	private Place place;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "event_item_id")
+	@JoinColumn(name = "item_id", insertable = false, updatable = false)
 	private Event event;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "attach_id")
-	private Attachment attachment;
+	@JoinColumn(name = "comment_id")
+	private Comment comment;
 	
 	@Column(name = "table_type")
 	private String tableType;
 
-	public Gallery() {}
+	public CommentItem() {}
 
 	public int getId() {
 		return id;
@@ -51,12 +51,12 @@ public class Gallery {
 		this.place = place;
 	}
 
-	public Attachment getAttachment() {
-		return attachment;
+	public Comment getComment() {
+		return comment;
 	}
 
-	public void setAttachment(Attachment attachment) {
-		this.attachment = attachment;
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 
 	public String getTableType() {
@@ -77,10 +77,10 @@ public class Gallery {
 
 	@Override
 	public String toString() {
-		return "Gallery [id=" + id
+		return "CommentItem [id=" + id
 				+ ", place=" + place
 				+ ", event=" + event
-				+ ", attachment=" + attachment
+				+ ", comment=" + comment
 				+ ", tableType=" + tableType + "]";
 	}
 }

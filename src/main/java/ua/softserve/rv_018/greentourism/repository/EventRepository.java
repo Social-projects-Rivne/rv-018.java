@@ -48,4 +48,11 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 	List<Event> findBetweenTwoDates(
 			@Param("start_date_param") Date startDate,
 			@Param("end_date_param") Date endDate);
+
+	Event findById(int id);
+
+	@Query(value="select event.* from event where event.owner_id = :user_id"
+			, nativeQuery=true)
+	List<Event> findByUserId(
+			@Param ("user_id") Long id);
 }
