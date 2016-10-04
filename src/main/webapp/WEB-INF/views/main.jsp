@@ -57,8 +57,9 @@
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()">
-									<div class="top-profile-name" ng-bind="name">George</div>
-									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
+									<!-- <div class="top-profile-name" ng-bind="name">George</div>
+									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg"> -->
+									<a class="waves-effect green darken-2 waves-light btn " href="#">Login</a>
 								</div>
 		                    </div>
 		                </div>

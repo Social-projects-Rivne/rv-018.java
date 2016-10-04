@@ -49,7 +49,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 .row .col {
     float: left;
     box-sizing: border-box;
-    padding: 0 0rem !important;
+    /* padding: 0 0rem !important; */
     min-height: 1px;
 }
 
@@ -1121,9 +1121,31 @@ input.add-feedback {
     right: 0px;
     padding: 10px;
     height: auto;
-    width: 320px;
-    background: white;
+    width: 100%;
+    background-color: RGB(15, 156, 90);
+    opacity: 0.95;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 0.75rem;
+}
+
+.input-field label {
+    color: #fff;
+    position: absolute;
+    top: 0.8rem;
+    left: 0.75rem;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+@media only screen and (min-width: 993px)
+.row .col.l4 {
+    width: 33.33333%;
+    margin-left: 0;
 }
 
 .login-form-active {
@@ -1131,17 +1153,17 @@ input.add-feedback {
 }
 
 /* ---- login form validation styles ---- */
-.login-form input.ng-invalid {
+/* .login-form input.ng-invalid {
     background: pink;
-}
+} */
 
-.login-form input.ng-valid {
+/* .login-form input.ng-valid {
     background: #5de09f;
 }
 
 .login-form input.ng-invalid {
     background: pink;
-}
+} */
 
 .disabled {
     pointer-events: none !important;

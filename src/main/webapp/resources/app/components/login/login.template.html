@@ -1,27 +1,61 @@
 <form id="form" name="form" class="login-form" ng-controller="loginController" ng-switch on="loginCondition" novalidate>
-	<div ng-switch-when="login">
+	
+	<div class="row">
+	<div class="col s12 m12 l4 center">
+          <h5>Don't have Account..?</h5>
+          <div class="sign-up-btn">
+          	<a class="waves-effect grey darken-4 waves-light btn " href="#">Create Account</a>
+          </div>
+    </div>
+	
+	<div class="col s12 m12 l4 center" ng-switch-when="login">
 		<!-- Login form -->
 		<div class="row">
+			  <h5>Already Registered..?</h5>
+			  <!-- Email for login -->
 			<div class="input-field col s12">
-				<input id="email" name="email" type="email" ng-model="$parent.email"
-					ng-required="true"> <label for="email">Email</label>
+				<input autocomplete="off" id="email" name="email" type="email" ng-model="$parent.email"	
+					ng-required="true">
+				<label for="email">Email</label>
 				<span ng-show="form.email.$dirty && form.email.$error.required">Email is required.</span>
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="input-field col s12">
 				<input id="password" name="password" type="password" ng-model="$parent.password"
-					ng-required="true"> <label for="password">Password</label>
+					ng-required="true"> 
+				<label for="password">Password</label>
 				<span ng-show="form.password.$dirty && form.password.$error.required">Password is required.</span>
 			</div>
 		</div>
-		<div class="row">
-			<a class="waves-effect waves-light btn" ng-class="{disabled: (form.$invalid == true)}" ng-click="login();">login</a>
-			Already registered? <a href="#">Sign In</a>
+		
+		<div class="row left">
+			<a class="waves-effect waves-light btn grey darken-4" ng-class="{disabled: (form.$invalid == true)}" ng-click="login();">login</a>
 		</div>
+		
 	</div>
 	<!-- Logout form -->
 	<div ng-switch-when="logout">
 		<a class="waves-effect waves-light btn" ng-click="logout()">Logout</a>
 	</div>
+	
+	<div class="col s12 m12 l4 center">
+          <h5>Forgot Your Password?</h5>
+          <div class="input-field col s12">
+				<input autocomplete="off" id="email" name="email" type="email" ng-model=""	
+					ng-required="true">
+				<label for="email">Email</label>
+			</div>
+          
+          <div class="input-field col s12">
+           	 <button class="btn waves-effect waves-light left grey darken-4" type="submit" name="action">Submit
+             <i class="material-icons right">send</i>
+            </button>
+          </div>
+          
+
+      </div>
+      </div>
 </form>
+
