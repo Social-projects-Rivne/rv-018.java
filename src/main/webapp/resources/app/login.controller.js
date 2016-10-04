@@ -34,5 +34,29 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 			console.log(error.data);
 		});
 		$scope.loginCondition = "login";
-	}
+	};
+	
+	// -----Forgot Password Functionality-----
+	 $scope.forgotPassword = function() {
+	      let dataObj = {
+	        email : $scope.forgotPaswordEmail,
+	      };
+
+	    console.log(dataObj);
+
+	    let successCallback = function(response){
+	      Materialize.toast('Resetting email was sent!', 2000);
+	      setTimeout(function () {
+	        $scope.$apply(function () {
+	          $scope.forgotPaswordEmail = "";
+	        });
+	      }, 50);
+	    };
+
+	    let errorCallback = function(response){
+	      Materialize.toast('Something wrong. Please try again!', 2000);
+	    };
+
+	    $http.post(_contextPath + "/user/resetPassword", dataObj).then(successCallback, errorCallback);
+	 };
 });

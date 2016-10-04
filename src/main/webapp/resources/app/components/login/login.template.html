@@ -43,14 +43,13 @@
 	<div class="col s12 m12 l4 center">
           <h5>Forgot Your Password?</h5>
           <div class="input-field col s12">
-				<input autocomplete="off" id="email" name="email" type="email" ng-model=""	
+				<input autocomplete="off" id="email" name="email" type="email" ng-model="forgotPaswordEmail"	
 					ng-required="true">
 				<label for="email">Email</label>
 			</div>
           
           <div class="input-field col s12">
-           	 <button class="btn waves-effect waves-light left grey darken-4" type="submit" name="action">Submit
-             <i class="material-icons right">send</i>
+           	 <button class="btn waves-effect waves-light left grey darken-4" type="submit" ng-click="forgotPassword()" name="action">Submit
             </button>
           </div>
           
