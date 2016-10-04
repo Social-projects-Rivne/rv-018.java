@@ -10,9 +10,9 @@ import ua.softserve.rv_018.greentourism.model.Attachment;
 
 public interface AttachmentRepository extends JpaRepository<Attachment, Integer>{
 	@Query(value="select gallery.attach_id"
-			+ "from gallery where place.id = gallery.item_id AND gallery.table_type = 'place'"
+			+ "from gallery where place.id = gallery.place_item_id AND gallery.table_type = 'place'"
 			, nativeQuery=true)
 	List<Attachment> findByPlaceId(
-			@Param ("item_id") int id);
+			@Param ("place_item_id") int id);
 }
 
