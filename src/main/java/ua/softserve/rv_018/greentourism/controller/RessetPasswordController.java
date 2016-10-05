@@ -16,10 +16,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,28 +51,30 @@ public class RessetPasswordController {
         super();
     }
     
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    @ResponseBody
-    public GenericResponse resetPassword(final HttpServletRequest request, @RequestParam("email") final String email) {
-    	logger.info("> resetPassword by email: " + email);
-    	final User user = userService.findByEmail(email);
-        if (user == null) {
-            throw new UserNotFoundException();
-        }
-        final String token = UUID.randomUUID().toString();
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST,
+    		 headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> resetPassword(@RequestBody String email, HttpServletRequest request){
+    	
+    	User user = userService.findByEmail(email);
+    	if (user == null) {
+    		throw new UserNotFoundException();
+    	}
+    	
+    	final String token = UUID.randomUUID().toString();
         userService.createPasswordResetTokenForUser(user, token);
         mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
-        return new GenericResponse(messages.getMessage("message.resetPasswordEmail", null, request.getLocale()));
+    	
+    	return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
     }
-
+    
     @RequestMapping(value = "/savePassword", method = RequestMethod.POST)
     @ResponseBody
     public GenericResponse savePassword(final Locale locale, @Valid PasswordDto passwordDto) {
         final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userService.changeUserPassword(user, passwordDto.getNewPassword());
         return new GenericResponse(messages.getMessage("message.resetPasswordSuc", null, locale));
-    }
-
+    }  
+    
  // ============== NON-API ============
 
     private SimpleMailMessage constructResetTokenEmail(final String contextPath, final Locale locale, final String token, final User user) {

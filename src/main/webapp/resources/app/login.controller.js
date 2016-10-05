@@ -38,13 +38,9 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 	
 	// -----Forgot Password Functionality-----
 	 $scope.forgotPassword = function() {
-	      let dataObj = {
-	    		  user : {
-	    			  email : $scope.forgotPaswordEmail		  
-	    		  }
-	      };
+	      let email = $scope.forgotPaswordEmail;
 
-	    console.log(dataObj);
+	    console.log(email);
 
 	    let successCallback = function(response){
 	      Materialize.toast('Resetting email was sent!', 2000);
@@ -59,6 +55,6 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 	      Materialize.toast('Something wrong. Please try again!', 2000);
 	    };
 
-	    $http.post(_contextPath + "/api/user/resetPassword", dataObj).then(successCallback, errorCallback);
+	    $http.post(_contextPath + "/api/user/resetPassword", email).then(successCallback, errorCallback);
 	 };
 });
