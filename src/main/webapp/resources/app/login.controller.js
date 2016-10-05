@@ -55,6 +55,6 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 	      Materialize.toast('Something wrong. Please try again!', 2000);
 	    };
 
-	    $http.post(_contextPath + "/api/user/resetPassword", email).then(successCallback, errorCallback);
+	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
 	 };
 });

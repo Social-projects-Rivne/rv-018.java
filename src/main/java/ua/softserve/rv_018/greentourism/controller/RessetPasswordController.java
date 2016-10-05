@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ua.softserve.rv_018.greentourism.service.SecurityUserService;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
-@RequestMapping(value = "api/user")
+@RequestMapping(value = "/user")
 @Controller
 public class RessetPasswordController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -84,7 +84,7 @@ public class RessetPasswordController {
              return "redirect:/" + locale.getLanguage();
          }
          
-         return "redirect:/#/resources/app/components/updatePassword/updatepassword.template.html";
+         return "/user/changePassword";
     }
      
      
