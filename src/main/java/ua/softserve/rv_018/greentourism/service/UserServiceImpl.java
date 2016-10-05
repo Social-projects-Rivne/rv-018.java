@@ -180,4 +180,9 @@ public class UserServiceImpl implements UserService{
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
+	
+	@Override
+    public boolean checkIfValidOldPassword(final User user, final String oldPassword) {
+        return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
 }
