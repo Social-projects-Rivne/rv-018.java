@@ -1,5 +1,6 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import ua.softserve.rv_018.greentourism.error.UserNotFoundException;
+import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.util.GenericResponse;
 import ua.softserve.rv_018.greentourism.util.PasswordDto;
@@ -20,14 +22,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ua.softserve.rv_018.greentourism.service.SecurityUserService;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
 @RequestMapping(value = "api/user")
@@ -46,6 +52,9 @@ public class RessetPasswordController {
     
     @Autowired
     private Environment env;
+    
+    @Autowired
+    private SecurityUserService securityUserService ;
     
     public RessetPasswordController() {
         super();
@@ -66,6 +75,23 @@ public class RessetPasswordController {
     	
     	return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+    public String showChangePasswordPage(final Locale locale, final Model model, @RequestParam("id") final long id, @RequestParam("token") final String token) {
+    	 final String result = securityUserService.validatePasswordResetToken(id, token);
+         if (result != null) {
+             model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));
+             return "redirect:/" + locale.getLanguage();
+         }
+         
+         return "redirect:/#/resources/app/components/updatePassword/updatepassword.template.html";
+    }
+     
+     
+   /*     return "redirect:/updatePassword.html";*/
+    
+    
+    
     
     @RequestMapping(value = "/savePassword", method = RequestMethod.POST)
     @ResponseBody

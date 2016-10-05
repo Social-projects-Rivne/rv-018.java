@@ -13,6 +13,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -24,13 +27,25 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan({ "ua.softserve.rv_018.greentourism.config", "ua.softserve.rv_018.greentourism.controller",
-		"ua.softserve.rv_018.greentourism.service", "ua.softserve.rv_018.greentourism.repository" })
+		"ua.softserve.rv_018.greentourism.service", "ua.softserve.rv_018.greentourism.repository", "ua.softserve.rv_018.greentourism.security" })
 @PropertySource("classpath:email.properties")
 public class WebConfig extends WebMvcConfigurerAdapter {
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
     private Environment env;
+	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
+			
+			@Override
+			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
+	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
