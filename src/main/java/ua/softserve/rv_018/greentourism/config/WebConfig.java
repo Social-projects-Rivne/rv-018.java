@@ -5,10 +5,12 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -71,5 +73,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         mailSenderImpl.setJavaMailProperties(javaMailProps);
         return mailSenderImpl;
     }
+	
+	 @Bean
+     public MessageSource messageSource() {
+     final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+     messageSource.setBasename("classpath:messages");
+     messageSource.setUseCodeAsDefaultMessage(true);
+     messageSource.setDefaultEncoding("UTF-8");
+     messageSource.setCacheSeconds(0);
+     return messageSource;
+     }
 
 }
