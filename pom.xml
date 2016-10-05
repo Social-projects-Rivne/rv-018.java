@@ -26,6 +26,7 @@
 		<compiler-plugin.version>3.5.1</compiler-plugin.version>
 		<war-plugin.version>2.6</war-plugin.version>
 		<checkstyle-plugin.version>2.17</checkstyle-plugin.version>
+		<lutung.version>0.0.7</lutung.version>
 	</properties>
 
 	<dependencies>
@@ -147,6 +148,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.21</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.mandrillapp.wrapper.lutung</groupId>
+			<artifactId>lutung</artifactId>
+			<version>${lutung.version}</version>
 		</dependency>
 <!-- 
 		<dependency>

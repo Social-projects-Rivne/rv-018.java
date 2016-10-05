@@ -53,9 +53,18 @@ public interface UserService {
     void delete(Long id);
 
     /**
-     * Validate User name before creating.
-     * @param name A String user name.
-     * @exception  UserAlreadyExistsException if user with given name already exists
+     * Validate User before creating.
+     * @param user.
+     * @exception  UserAlreadyExistsException if user with given name already exists.
+     * @exception InvalidCredentialsException if user data is invalid.
      */
-    void validateUserBeforeCreating(String name);
+    void validateUserBeforeCreating(User user);
+    
+    /**
+     * Send email to user
+     * @param userEmail
+     * @param userName
+     * @param message
+     */
+    void sendEmail(User user, String message);
 }

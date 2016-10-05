@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ua.softserve.rv_018.greentourism.repository.UserRepository;
+import ua.softserve.rv_018.greentourism.service.UserDataInputValidation;
 import ua.softserve.rv_018.greentourism.model.User;
 
 @Service
@@ -83,7 +84,7 @@ public class UserServiceImpl implements UserService{
 	public User create(User user) {
 		logger.info("> User create");
 
-        validateUserBeforeCreating(user.getUsername());
+        validateUserBeforeCreating(user);
         User savedUser = userRepository.save(user);
 
         logger.info("< User create");
@@ -136,15 +137,30 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void validateUserBeforeCreating(String username) {
-		// OpenShift doesn't work with java 1.8
-//		this.userRepository.findByUsername(username).ifPresent(
-//                (user) -> {throw new UserAlreadyExistsException(user);});
+	public void validateUserBeforeCreating(User user) {
+		if (userRepository.findByUsername(user.getUsername()) != null ||
+			userRepository.findByEmail(user.getEmail()) != null) {
+				throw new UserAlreadyExistsException(user);
+		}
+		
+		if (!UserDataInputValidation.validateEmail(user.getEmail()) ||
+			!UserDataInputValidation.validateName(user.getFirstName()) ||
+			!UserDataInputValidation.validateName(user.getLastName()) ||
+			!UserDataInputValidation.validatePassword(user.getPassword()) ||
+			!UserDataInputValidation.validateUsername(user.getUsername())) {
+				throw new InvalidCredentialsException(user);
+		}
+		
+	}
+	
+	@Override
+	public void sendEmail(User user, String message) {
+		
 	}
 	
 	/**
 	 * Exception should be thrown before User creating
-	 * 	if User with given name already exists
+	 * if User with given name already exists
 	 */
 	@ResponseStatus(HttpStatus.CONFLICT)
 	class UserAlreadyExistsException extends RuntimeException {
@@ -153,5 +169,14 @@ public class UserServiceImpl implements UserService{
 		public UserAlreadyExistsException(User user) {
 	        super("User already exists: " + user + ".");
 	    }
+	}
+	
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	class InvalidCredentialsException extends RuntimeException {
+		private static final long serialVersionUID = -1L;
+		
+		public InvalidCredentialsException(User user) {
+			super("Invalid data of user: " + user + ".");
+		}
 	}
 }
