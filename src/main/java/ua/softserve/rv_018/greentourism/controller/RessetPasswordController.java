@@ -27,6 +27,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -84,7 +85,7 @@ public class RessetPasswordController {
              return "redirect:/" + locale.getLanguage();
          }
          
-         return "/user/changePassword";
+         return "/changePassword";
     }
      
      
@@ -92,14 +93,27 @@ public class RessetPasswordController {
     
     
     
-    
+/*    
     @RequestMapping(value = "/savePassword", method = RequestMethod.POST)
     @ResponseBody
     public GenericResponse savePassword(final Locale locale, @Valid PasswordDto passwordDto) {
         final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userService.changeUserPassword(user, passwordDto.getNewPassword());
         return new GenericResponse(messages.getMessage("message.resetPasswordSuc", null, locale));
-    }  
+    }  */
+    
+    
+    @RequestMapping(value="/savePassword", method=RequestMethod.PUT,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> updateUser(@PathVariable String password, @RequestBody User user) {
+        logger.info("> updateUser id:{}", user.getId());
+        
+        User updatedUser = userService.changeUserPassword(user, password);;
+
+        logger.info("< updateUser email:{}", user.getEmail());
+        
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
     
  // ============== NON-API ============
 

@@ -6,13 +6,13 @@ component('updatepassword', {
 	controller : function($scope, $http, $routeParams) {
 	    	
 		$scope.updatePassword = function () {
-			$scope.id = $routeParams.id;
+			email = $scope.email;
 	        
 	    	var dataObj = {
 	            password: $scope.password,
 	        };
 	        
-			var res = $http.put(_contextPath + '/api/user/changePassword', dataObj);
+			var res = $http.put(_contextPath + '/user/savePassword', dataObj);
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});

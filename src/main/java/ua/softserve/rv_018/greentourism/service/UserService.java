@@ -64,7 +64,7 @@ public interface UserService {
     
     PasswordResetToken getPasswordResetToken(String token);
     
-    void changeUserPassword(User user, String password); 
+    User changeUserPassword(User user, String password); 
     
     boolean checkIfValidOldPassword(User user, String password);
 }
