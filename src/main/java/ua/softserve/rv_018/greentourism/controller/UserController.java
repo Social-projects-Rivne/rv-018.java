@@ -181,4 +181,16 @@ public class UserController {
         
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    @RequestMapping(value="/confirmation/{token}", method=RequestMethod.GET,
+    		headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> confirmEmail(@PathVariable String token) {
+    	logger.info("> confirmEmail token:{}", token);
+    	
+    	userService.confirmEmail(token);
+    	
+    	logger.info("< confirmEmail token:{}", token);
+    		
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

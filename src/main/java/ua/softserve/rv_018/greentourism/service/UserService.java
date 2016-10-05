@@ -66,5 +66,11 @@ public interface UserService {
      * @param userName
      * @param message
      */
-    void sendEmail(User user, String message);
+    void sendEmail(User user, String message, String subject);
+    
+    /**
+     * Checks if token is valid and if so updates user isActive to true
+     * @param token
+     */
+    void confirmEmail(String token);
 }

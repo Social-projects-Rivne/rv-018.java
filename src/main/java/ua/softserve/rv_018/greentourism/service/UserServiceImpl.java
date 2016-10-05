@@ -1,6 +1,8 @@
 package ua.softserve.rv_018.greentourism.service;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.NoResultException;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ua.softserve.rv_018.greentourism.repository.UserRepository;
 import ua.softserve.rv_018.greentourism.service.UserDataInputValidation;
+import ua.softserve.rv_018.greentourism.service.Mailin;
 import ua.softserve.rv_018.greentourism.model.User;
 
 @Service
@@ -86,6 +89,19 @@ public class UserServiceImpl implements UserService{
 
         validateUserBeforeCreating(user);
         User savedUser = userRepository.save(user);
+        
+        String subject = "Email verification";
+        String url = "http://localhost:8080/user/confirmation/" 
+                     + String.format("%04d", user.getId()) 
+                     + (user.getEmail().hashCode() + user.getUsername().hashCode());
+        
+        String message = "Hello, " + user.getFirstName() + "\n\n"
+                         + "Please confirm your email by clicking on this url:" + "\n\n"
+                         + url;
+        
+        System.out.println(url);
+        
+        sendEmail(user, message, subject);
 
         logger.info("< User create");
         
@@ -117,6 +133,7 @@ public class UserServiceImpl implements UserService{
         userToUpdate.setLastName(user.getLastName());
         userToUpdate.setSocialAccount(user.getSocialAccount());
         userToUpdate.setUserpic(user.getUserpic());
+        userToUpdate.setActive(user.isActive());
         User updatedUser = userRepository.save(userToUpdate);
 
         logger.info("< User update id:{}", updatedUser.getId());
@@ -154,8 +171,52 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void sendEmail(User user, String message) {
+	public void sendEmail(User user, String message, String subject) {
+		Mailin http = new Mailin("https://api.sendinblue.com/v2.0","D6fFX3OIqtWU02ms");
 		
+		Map < String, String > to = new HashMap < String, String > ();
+		to.put(user.getEmail(), user.getFirstName());
+		
+		Map < String, String > headers = new HashMap < String, String > ();
+		headers.put("Content-Type", "text/html; charset=iso-8859-1");
+		
+		
+		Map < String, Object > data = new HashMap < String, Object > ();
+		data.put("to", to);
+		data.put("from", new String [] {"green.tour.inc@gmail.com","GreenTourism"});
+		data.put("subject", subject);
+		data.put("text", message);
+		data.put("headers", headers);
+		
+		String str = http.send_email(data);
+		
+		System.out.println(str);
+	}
+	
+	@Override
+	public void confirmEmail(String token) {
+		logger.info("> User confirmEmail by token: {}", token);
+		
+		User user = userRepository.findOne(Long.parseLong(token.substring(0, 4)));
+		
+		if (user == null) {
+			logger.error(
+                    "Attempted to update a User, but the entity does not exist.");
+			
+			throw new InvalidTokenException(token);
+		}
+		
+		if (user.getEmail().hashCode() + user.getUsername().hashCode() == Integer.parseInt(token.substring(4))) {
+			user.setActive(true);
+			update(user);
+			
+			logger.info("< User confirmEmail by token: {}", token);
+		} else {
+			logger.error(
+                    "Attempted to update a User, but the token: {} is invalid.", token);
+			
+			throw new InvalidTokenException(token);
+		}
 	}
 	
 	/**
@@ -177,6 +238,15 @@ public class UserServiceImpl implements UserService{
 		
 		public InvalidCredentialsException(User user) {
 			super("Invalid data of user: " + user + ".");
+		}
+	}
+	
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	class InvalidTokenException extends RuntimeException {
+		private static final long serialVersionUID = -124314L;
+		
+		public InvalidTokenException(String token) {
+			super("Invalid token:" + token + ".");
 		}
 	}
 }
