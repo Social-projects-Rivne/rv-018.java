@@ -119,7 +119,7 @@ public class RessetPasswordController {
  // ============== NON-API ============
 
     private SimpleMailMessage constructResetTokenEmail(final String contextPath, final Locale locale, final String token, final User user) {
-        final String url = contextPath + "/user/changePassword?id=" + user.getId() + "&token=" + token;
+        final String url = contextPath + "/#/changePassword?id=" + user.getId() + "&token=" + token;
         final String message = messages.getMessage("message.resetPassword", null, locale);
         return constructEmail("Reset Password", message + " \r\n" + url, user);
     }

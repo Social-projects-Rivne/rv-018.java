@@ -176,9 +176,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	 public void changeUserPassword(final User user, final String password) {
+	 public User changeUserPassword(final User user, final String password) {
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
+        return user;
     }
 	
 	@Override
