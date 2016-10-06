@@ -36,7 +36,7 @@ public class AttachmentController {
      */
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json" })
     public ResponseEntity<?> createAttachment(@RequestBody Attachment attachment) {
-    	logger.info("> createPlace");
+    	logger.info("> createAttachment");
     
         Attachment savedAttachment = attachmentService.create(attachment);
         

@@ -429,9 +429,9 @@ md-content {
 }
 
 .card .card-content p {
-    color: #8e8e8e;
-    font-size: 123%;
-    margin: 0;
+	color: #8e8e8e;
+	font-size: 100%;
+	margin: 0;
 }
 
 .card-profile-image .circle {
@@ -451,17 +451,17 @@ md-content {
 }
 
 .lean-overlay {
-    position: inherit;
-    z-index: 999;
-    top: -100px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: 125%;
-    width: 100%;
-    background: #000;
-    display: none;
-    will-change: opacity;
+    position: fixed; 
+	z-index: 999;
+	top: -100px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 125%;
+	width: 100%;
+	background: grey;
+	display: none;
+	will-change: opacity;
 }
 
 .modal {
@@ -671,60 +671,55 @@ md-content {
 
 /* large & medium devices */
 @media only screen and (min-width: 601px) {
-    h2.place-name {
-        top: 0px;
-        left: 17px;
-        margin: 0;
-        font-weight: 300;
-        margin-top: -86px;
-        /*padding-left: 17px; */
-    }
-
-    .indented-header {
-        margin-top: -21px;
-    }
-
-    .indented-content {
-        margin-top: -0px;
-    }
+	h2.myplace-name {
+		top: 0px;
+		left: 17px;
+		margin: 0;
+		font-weight: 300;
+		margin-top: -86px;
+		/*padding-left: 17px; */
+	}
+	.indented-header {
+		margin-top: -21px;
+	}
+	.indented-content {
+		margin-top: -0px;
+	}
+	.feedback span>span {
+	    font-size: 87%;
+	}
 }
 
 /* mobile devices */
 @media only screen and (min-width: 0) and (max-width: 600px) {
-    h2.place-name {
-        margin-top: -184px;
-        padding-left: 6px;
-        font-size: 28px;
-    }
-
-    .indented-header {
-        margin-top: -39px;
-    }
-
-    .indented-content {
-        margin-top: -20px;
-    }
-
-    .feedback img.circle, .feedback div.circle {
-        position: relative;
-        top: 5px;
-        width: 35px !important;
-        height: 35px !important;
-    }
-
-    .feedback span > span {
-        top: 2px !important;
-        position: relative !important;
-    }
-
-    .feedback div.circle i {
-        padding: 6px !important;
-        font-size: 24px !important;
-    }
-
-    .feedback div.circle {
-        top: 9px !important;
-    }
+	h2.myplace-name {
+		margin-top: -135px;
+		padding-left: 6px;
+		font-size: 21px;
+	}
+	.indented-header {
+		margin-top: -39px;
+	}
+	.indented-content {
+		margin-top: -20px;
+	}
+	.feedback img.circle, .feedback div.circle {
+		position: relative;
+		top: 5px;
+		width: 35px !important;
+		height: 35px !important;
+	}
+	.feedback span>span {
+		top: 2px !important;
+		position: relative !important;
+	}
+	.feedback div.circle i {
+		padding: 6px !important;
+		font-size: 24px !important;
+	}
+	.feedback div.circle {
+		top: 9px !important;
+	}
 }
 
 .row.indented-content {
@@ -741,15 +736,16 @@ md-content {
 }
 
 /* common */
-h2.place-name {
-    color: white;
-    line-height: inherit;
-    z-index: 9999;
-    position: relative;
+h2.myplace-name {
+	color: white;
+	line-height: inherit;
+	z-index: 9999;
+	position: relative;
 }
 
 h3 {
-    font-size: 1.05rem;
+	font-size: 115%;
+	color: #8E8E8E;
 }
 
 .card .card-title {
@@ -857,7 +853,10 @@ input.add-feedback {
 }
 
 .mymodal {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
+	top: 30% !important;
+	width: 48% !important;
+	left: 4% !important;
 }
 
 .modal .modal-footer {
@@ -875,6 +874,14 @@ input.add-feedback {
 
 #feedback-modal, #name-modal, #description-modal {
     height: 50%;
+}
+
+#name-modal, #description-modal {
+	height: 33%;
+}
+
+#feedback-modal {
+	top: 24% !important;
 }
 
 .camera-icon {
@@ -911,10 +918,9 @@ input.add-feedback {
 }
 
 #typing-feedback {
-    font-size: 15px;
-    margin-top: 8px;
-    border-color: white white lightgray;
-    margin-top: 0px;
+	font-size: 15px;
+	margin-top: 8px;
+	border-color: white white lightgray;
     margin-bottom: 0px;
     height: 83px;
     resize: none;
@@ -934,10 +940,11 @@ input.add-feedback {
 }
 
 .place-container {
-    position: absolute;
-    width: 70%;
-    top: 0px;
-    z-index: 400;
+	position: absolute;
+	width: 70%;
+	top: 64px;
+	z-index: 400;
+	right: 15%;
 }
 
 .close-place {
@@ -960,15 +967,15 @@ input.add-feedback {
 }
 
 .before-arrow {
-    top: 25px;
-    right: 661px;
+	top: 25px;
+    right: 803px;
     opacity: 0.4;
     font-size: 200px;
 }
 
 .next-arrow {
-    top: 25px;
-    left: 661px;
+	top: 25px;
+    left: 803px;
     opacity: 0.4;
     font-size: 200px;
 }
@@ -983,6 +990,7 @@ input.add-feedback {
 
 .feedback-userpic {
     height: 71px;
+    width: 71px !important;
 }
 
 .images-uploader {
@@ -990,8 +998,26 @@ input.add-feedback {
 }
 
 .bttns {
-    font-weight: 300;
+	font-weight: 300;
+	color: black !important;
 }
+
+.myright {
+	padding: 2%;
+}
+
+.place_name {
+	font-size: 144% !important;
+}
+    
+.grid-sizer,
+.grid-item { 
+	width: 20%; 
+}
+
+/* columnWidth: '.grid-sizer',
+itemSelector: '.grid-item',
+percentPosition: true */
 
 /*------------End of place----------*/
 
@@ -1223,7 +1249,7 @@ md-sidenav {
 /*-------------- Toast for callback --------------*/
 @media only screen and (min-width: 993px) {
     #toast-container {
-        top: 10%;
+        top: 40% !important;
         right: 40%;
         max-width: 86%;
     }
