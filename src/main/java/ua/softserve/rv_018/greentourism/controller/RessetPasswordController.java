@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ua.softserve.rv_018.greentourism.service.PasswordResetTokenService;
 import ua.softserve.rv_018.greentourism.service.SecurityUserService;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
@@ -103,7 +104,7 @@ public class RessetPasswordController {
     }  */
     
     
-    @RequestMapping(value="/savePassword", method=RequestMethod.PUT,
+    @RequestMapping(value="/savePassword/{token}", method=RequestMethod.PUT,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> updateUser(@PathVariable String password, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
