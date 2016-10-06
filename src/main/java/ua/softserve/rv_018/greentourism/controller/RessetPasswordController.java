@@ -1,11 +1,14 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import ua.softserve.rv_018.greentourism.error.UserNotFoundException;
 import ua.softserve.rv_018.greentourism.model.User;
+import ua.softserve.rv_018.greentourism.repository.PasswordResetTokenRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,9 @@ public class RessetPasswordController {
     @Autowired
     private SecurityUserService securityUserService ;
     
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository ;
+    
     public RessetPasswordController() {
         super();
     }
@@ -66,7 +72,9 @@ public class RessetPasswordController {
     
     @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
     public String showChangePasswordPage(final Locale locale, final Model model, @RequestParam("id") final long id, @RequestParam("token") final String token) {
-    	 final String result = securityUserService.validatePasswordResetToken(id, token);
+    	Date date = new Date();
+    	passwordResetTokenRepository.deleteAllExpiredSince(date); 
+    	final String result = securityUserService.validatePasswordResetToken(id, token);
          if (result != null) {
              model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));
              return "redirect:/" + locale.getLanguage();

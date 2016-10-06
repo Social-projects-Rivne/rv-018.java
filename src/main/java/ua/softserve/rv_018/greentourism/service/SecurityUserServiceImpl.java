@@ -38,8 +38,8 @@ public class SecurityUserServiceImpl implements SecurityUserService {
         }
 
         final User user = passToken.getUser();
-      /*  final Authentication auth = new UsernamePasswordAuthenticationToken(user, null, userDetailsService.loadUserByUsername(user.getEmail()).getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(auth);*/
+        final Authentication auth = new UsernamePasswordAuthenticationToken(user, null, userDetailsService.loadUserByUsername(user.getEmail()).getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
         return null;
     }
 
