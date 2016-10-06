@@ -84,20 +84,23 @@ public class UserServiceImpl implements UserService{
 	@Transactional(
             propagation = Propagation.REQUIRED,
             readOnly = false)
-	public User create(User user) {
+	public User create(User user, String domain) {
 		logger.info("> User create");
 
         validateUserBeforeCreating(user);
         User savedUser = userRepository.save(user);
         
         String subject = "Email verification";
-        String url = "http://localhost:8080/user/confirmation/" 
+        
+        /*Build verification url*/
+        String url = "http://" + domain + "/user/confirmation/" 
                      + String.format("%04d", user.getId()) 
                      + (user.getEmail().hashCode() + user.getUsername().hashCode());
         
-        String message = "Hello, " + user.getFirstName() + "\n\n"
-                         + "Please confirm your email by clicking on this url:" + "\n\n"
-                         + url;
+        /* Build message to be sent */
+        String message = "<p>" + "Hello, " + user.getFirstName() + "!" + "</p>"
+                       + "<p>" + "Please confirm your email by clicking on this link:" + "</p>"
+                       + "<p>" + url + "</p>";
         
         System.out.println(url);
         
@@ -185,12 +188,12 @@ public class UserServiceImpl implements UserService{
 		data.put("to", to);
 		data.put("from", new String [] {"green.tour.inc@gmail.com","GreenTourism"});
 		data.put("subject", subject);
-		data.put("text", message);
+		data.put("html", message);
 		data.put("headers", headers);
 		
 		String str = http.send_email(data);
 		
-		System.out.println(str);
+		logger.info(str);
 	}
 	
 	@Override
@@ -232,6 +235,10 @@ public class UserServiceImpl implements UserService{
 	    }
 	}
 	
+	/**
+	 * Exception should be thrown before User creating
+	 * if User's credentials were invalid
+	 */
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	class InvalidCredentialsException extends RuntimeException {
 		private static final long serialVersionUID = -1L;
@@ -241,6 +248,10 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
+	/**
+	 * Exception should be thrown before User Email
+	 * verification if given token were invalid
+	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	class InvalidTokenException extends RuntimeException {
 		private static final long serialVersionUID = -124314L;
