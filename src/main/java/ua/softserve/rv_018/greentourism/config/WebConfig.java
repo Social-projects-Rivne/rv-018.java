@@ -69,34 +69,34 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
-    public JavaMailSenderImpl javaMailSenderImpl() {
-        final JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
+	public JavaMailSenderImpl javaMailSenderImpl() {
+		final JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
 
-        try {
-            mailSenderImpl.setHost(env.getRequiredProperty("smtp.host"));
-            mailSenderImpl.setPort(env.getRequiredProperty("smtp.port", Integer.class));
-            mailSenderImpl.setProtocol(env.getRequiredProperty("smtp.protocol"));
-            mailSenderImpl.setUsername(env.getRequiredProperty("smtp.username"));
-            mailSenderImpl.setPassword(env.getRequiredProperty("smtp.password"));
-        } catch (IllegalStateException ise) {
-            LOGGER.error("Could not resolve email.properties.  See email.properties.sample");
-            throw ise;
-        }
-        final Properties javaMailProps = new Properties();
-        javaMailProps.put("mail.smtp.auth", true);
-        javaMailProps.put("mail.smtp.starttls.enable", true);
-        mailSenderImpl.setJavaMailProperties(javaMailProps);
-        return mailSenderImpl;
-    }
-	
-	 @Bean
-     public MessageSource messageSource() {
-     final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-     messageSource.setBasename("classpath:messages");
-     messageSource.setUseCodeAsDefaultMessage(true);
-     messageSource.setDefaultEncoding("UTF-8");
-     messageSource.setCacheSeconds(0);
-     return messageSource;
-     }
+		try {
+			mailSenderImpl.setHost(env.getRequiredProperty("smtp.host"));
+			mailSenderImpl.setPort(env.getRequiredProperty("smtp.port", Integer.class));
+			mailSenderImpl.setProtocol(env.getRequiredProperty("smtp.protocol"));
+			mailSenderImpl.setUsername(env.getRequiredProperty("smtp.username"));
+			mailSenderImpl.setPassword(env.getRequiredProperty("smtp.password"));
+		} catch (IllegalStateException ise) {
+			LOGGER.error("Could not resolve email.properties.  See email.properties.sample");
+			throw ise;
+		}
+		final Properties javaMailProps = new Properties();
+		javaMailProps.put("mail.smtp.auth", true);
+		javaMailProps.put("mail.smtp.starttls.enable", true);
+		mailSenderImpl.setJavaMailProperties(javaMailProps);
+		return mailSenderImpl;
+	}
+
+	@Bean
+	public MessageSource messageSource() {
+		final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setUseCodeAsDefaultMessage(true);
+		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setCacheSeconds(0);
+		return messageSource;
+	}
 
 }

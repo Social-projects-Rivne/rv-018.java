@@ -31,76 +31,78 @@ import ua.softserve.rv_018.greentourism.service.UserService;
 @Controller
 public class RessetPasswordController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
-    private MessageSource messages;
+	private MessageSource messages;
 
-    @Autowired
-    private JavaMailSender mailSender;
-    
-    @Autowired
-    private Environment env;
-    
-    @Autowired
-    private SecurityUserService securityUserService ;
-    
-    @Autowired
-    private PasswordResetTokenRepository passwordResetTokenRepository ;
-    
-    public RessetPasswordController() {
-        super();
-    }
-    
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST,
-    		 headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> resetPassword(@RequestBody String email, HttpServletRequest request){
-    	
-    	User user = userService.findByEmail(email);
-    	if (user == null) {
-    		throw new UserNotFoundException();
-    	}
-    	
-    	final String token = UUID.randomUUID().toString();
-        userService.createPasswordResetTokenForUser(user, token);
-        mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
-    	
-    	return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
-    }
-    
-    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-    public String showChangePasswordPage(final Locale locale, final Model model, @RequestParam("id") final long id, @RequestParam("token") final String token) {
-    	Date date = new Date();
-    	passwordResetTokenRepository.deleteAllExpiredSince(date); 
-    	final String result = securityUserService.validatePasswordResetToken(id, token);
-         if (result != null) {
-             model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));
-             return "redirect:/" + locale.getLanguage();
-         }
-         
-         return "/changePassword";
-    }
-    
- // ============== NON-API ============
-    private SimpleMailMessage constructResetTokenEmail(final String contextPath, final Locale locale, final String token, final User user) {
-        final String url = contextPath + "/#/changePassword?id=" + user.getId() + "&token=" + token;
-        final String message = messages.getMessage("message.resetPassword", null, locale);
-        return constructEmail("Reset Password", message + " \r\n" + url, user);
-    }
+	@Autowired
+	private JavaMailSender mailSender;
 
-    private SimpleMailMessage constructEmail(String subject, String body, User user) {
-        final SimpleMailMessage email = new SimpleMailMessage();
-        email.setSubject(subject);
-        email.setText(body);
-        email.setTo(user.getEmail());
-        email.setFrom(env.getProperty("support.email"));
-        return email;
-    }
+	@Autowired
+	private Environment env;
 
-    private String getAppUrl(HttpServletRequest request) {
-        return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-    }
-	
+	@Autowired
+	private SecurityUserService securityUserService;
+
+	@Autowired
+	private PasswordResetTokenRepository passwordResetTokenRepository;
+
+	public RessetPasswordController() {
+		super();
+	}
+
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> resetPassword(@RequestBody String email, HttpServletRequest request) {
+
+		User user = userService.findByEmail(email);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
+
+		final String token = UUID.randomUUID().toString();
+		userService.createPasswordResetTokenForUser(user, token);
+		mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
+
+		return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	public String showChangePasswordPage(final Locale locale, final Model model, @RequestParam("id") final long id,
+			@RequestParam("token") final String token) {
+		Date date = new Date();
+		passwordResetTokenRepository.deleteAllExpiredSince(date);
+		final String result = securityUserService.validatePasswordResetToken(id, token);
+		if (result != null) {
+			model.addAttribute("message", messages.getMessage("auth.message." + result, null, locale));
+			return "redirect:/" + locale.getLanguage();
+		}
+
+		return "/changePassword";
+	}
+
+	// ============== NON-API ============
+	private SimpleMailMessage constructResetTokenEmail(final String contextPath, final Locale locale,
+			final String token, final User user) {
+		final String url = contextPath + "/#/changePassword?id=" + user.getId() + "&token=" + token;
+		final String message = messages.getMessage("message.resetPassword", null, locale);
+		return constructEmail("Reset Password", message + " \r\n" + url, user);
+	}
+
+	private SimpleMailMessage constructEmail(String subject, String body, User user) {
+		final SimpleMailMessage email = new SimpleMailMessage();
+		email.setSubject(subject);
+		email.setText(body);
+		email.setTo(user.getEmail());
+		email.setFrom(env.getProperty("support.email"));
+		return email;
+	}
+
+	private String getAppUrl(HttpServletRequest request) {
+		return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+	}
+
 }

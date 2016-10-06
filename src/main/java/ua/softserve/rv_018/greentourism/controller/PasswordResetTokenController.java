@@ -16,25 +16,25 @@ import ua.softserve.rv_018.greentourism.service.PasswordResetTokenService;
 @RestController
 @RequestMapping(value = "/passwordResetToken")
 public class PasswordResetTokenController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private PasswordResetTokenService passwordResetTokenService;
-	
-	@RequestMapping(value = "/{token}", method = RequestMethod.GET,
-            headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getToken(@PathVariable String token) {
-        logger.info("> getToken string:{}", token);
 
-        PasswordResetToken passwordResetToken = passwordResetTokenService.findeByToken(token);
-        if (passwordResetToken == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+	@RequestMapping(value = "/{token}", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> getToken(@PathVariable String token) {
+		logger.info("> getToken string:{}", token);
 
-        logger.info("< passwordResetToken token:{}", token);
-        
-        return new ResponseEntity<>(passwordResetToken, HttpStatus.OK);
-    }
+		PasswordResetToken passwordResetToken = passwordResetTokenService.findeByToken(token);
+		if (passwordResetToken == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		logger.info("< passwordResetToken token:{}", token);
+
+		return new ResponseEntity<>(passwordResetToken, HttpStatus.OK);
+	}
 
 }

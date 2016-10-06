@@ -66,5 +66,4 @@ public interface UserService {
     
     User changeUserPassword(User user, String password); 
     
-    boolean checkIfValidOldPassword(User user, String password);
 }

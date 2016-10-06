@@ -53,6 +53,7 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 
 	    let errorCallback = function(response){
 	      Materialize.toast('Something wrong. Please try again!', 2000);
+	      $scope.forgotPaswordEmail = "";
 	    };
 
 	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);

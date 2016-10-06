@@ -11,25 +11,23 @@ import org.springframework.transaction.annotation.Propagation;
 import ua.softserve.rv_018.greentourism.repository.PasswordResetTokenRepository;
 
 @Service
-@Transactional(
-        propagation = Propagation.SUPPORTS,
-        readOnly = true)
-public class PasswordResetTokenServiceImpl  implements PasswordResetTokenService{
-	
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+public class PasswordResetTokenServiceImpl implements PasswordResetTokenService {
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private PasswordResetTokenRepository passwordResetTokenRepository;
 
 	@Override
 	public PasswordResetToken findeByToken(String token) {
-		logger.info("> PasswordResetToken findeByToken token:{}", token); 
-		
+		logger.info("> PasswordResetToken findeByToken token:{}", token);
+
 		PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
-		
-		logger.info("< PasswordResetToken findeByToken token:{}", token); 
-		
+
+		logger.info("< PasswordResetToken findeByToken token:{}", token);
+
 		return passwordResetToken;
 	}
-	
+
 }
