@@ -94,17 +94,17 @@ public class RessetPasswordController {
     
     
     
-/*    
-    @RequestMapping(value = "/savePassword", method = RequestMethod.POST)
+    
+    @RequestMapping(value = "/savePassword/{token}", method = RequestMethod.POST)
     @ResponseBody
     public GenericResponse savePassword(final Locale locale, @Valid PasswordDto passwordDto) {
         final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userService.changeUserPassword(user, passwordDto.getNewPassword());
         return new GenericResponse(messages.getMessage("message.resetPasswordSuc", null, locale));
-    }  */
+    } 
     
     
-    @RequestMapping(value="/savePassword/{token}", method=RequestMethod.PUT,
+/*    @RequestMapping(value="/savePassword/{token}", method=RequestMethod.PUT,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> updateUser(@PathVariable String password, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
@@ -114,7 +114,7 @@ public class RessetPasswordController {
         logger.info("< updateUser email:{}", user.getEmail());
         
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    }
+    }*/
     
  // ============== NON-API ============
 

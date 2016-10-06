@@ -20,7 +20,7 @@ component('updatepassword', {
 	            /*password: $scope.password,*/
 	    	console.log($scope.password);
 	        
-			var res = $http.put(_contextPath + '/user/savePassword/' + $scope.token, {password: $scope.password});
+			var res = $http.post(_contextPath + '/user/savePassword/' + $scope.token, {password: $scope.password});
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});
