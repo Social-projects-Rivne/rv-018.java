@@ -14,7 +14,7 @@ import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.service.PasswordResetTokenService;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/passwordResetToken")
 public class PasswordResetTokenController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());

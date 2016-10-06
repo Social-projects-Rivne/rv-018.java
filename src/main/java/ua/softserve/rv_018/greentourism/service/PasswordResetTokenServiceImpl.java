@@ -32,5 +32,4 @@ public class PasswordResetTokenServiceImpl  implements PasswordResetTokenService
 		return passwordResetToken;
 	}
 	
-	
 }
