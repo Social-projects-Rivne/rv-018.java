@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,7 +133,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Event findOne(Integer id) {
+	public Event findOne(int id) {
 		logger.info("> Event findOne id:{}", id);
 
 		Event event = eventRepository.findById(id);
@@ -140,5 +141,34 @@ public class EventServiceImpl implements EventService {
 		logger.info("< Event findOne id:{}", id);
 
 		return event;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public Event update(Event event) {
+		logger.info("> Event update id:{}", event.getId());
+
+		// Ensure the entity object to be updated exists in the repository to
+		// prevent the default behavior of save() which will persist a new
+		// entity if the entity matching the id does not exist
+		Event eventToUpdate = findOne(event.getId());
+		if (eventToUpdate == null) {
+			// Cannot update Event that hasn't been persisted
+			logger.error("Attempted to update a Event, but the entity does not exist.");
+			throw new NoResultException("Requested entity not found.");
+		}
+
+		if (event.getName() != null) {
+			eventToUpdate.setName(event.getName());
+		}
+		if (event.getDescription() != null) {
+			eventToUpdate.setDescription(event.getDescription());
+		}
+		
+		Event updatedEvent = eventRepository.save(eventToUpdate);
+
+		logger.info("< Event update id:{}", updatedEvent.getId());
+
+		return updatedEvent;
 	}
 }

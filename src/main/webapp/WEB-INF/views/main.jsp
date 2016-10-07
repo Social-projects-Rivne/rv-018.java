@@ -146,10 +146,10 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/updatePassword/updatepassword.component.js"></script>
+
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>
