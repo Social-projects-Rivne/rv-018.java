@@ -100,6 +100,7 @@ angular
 							    };
 
 						    var errorCallback = function(response){
+						      Materialize.toast('Something wrong. Please try again!', 2000);
 						      console.log(response);
 						      $scope.submissionError = true;
 						      $scope.submissionSuccess = false;
@@ -135,6 +136,7 @@ angular
 							    };
 
 						    var errorCallback = function(response){
+						      Materialize.toast('Something wrong. Please try again!', 2000);
 						      console.log(response);
 						      $scope.submissionError = true;
 						      $scope.submissionSuccess = false;
