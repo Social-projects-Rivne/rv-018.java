@@ -1,6 +1,6 @@
 package ua.softserve.rv_018.greentourism.model;
 
-import javax.persistence.CascadeType;
+import javax.persistence.PrePersist;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +30,7 @@ public class User {
 	private boolean isActive;
 	@Column(name = "social_account")
 	private String socialAccount;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 	@Column(name = "userpic")
@@ -135,6 +135,20 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	/** Sets User's role to USER if one wasn't
+	 * recieved explicitly.
+	 */
+	@PrePersist
+	public void preInsert() {
+		if (this.role == null) {
+			Role role = new Role();
+			role.setId((long)1);
+			role.setName("USER");
+			
+			this.role = role;
+		}
 	}
 
 	@Override

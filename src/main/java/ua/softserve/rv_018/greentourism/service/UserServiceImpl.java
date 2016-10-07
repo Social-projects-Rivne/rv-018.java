@@ -1,6 +1,8 @@
 package ua.softserve.rv_018.greentourism.service;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.NoResultException;
 
@@ -14,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ua.softserve.rv_018.greentourism.repository.UserRepository;
+import ua.softserve.rv_018.greentourism.service.UserDataInputValidation;
+import ua.softserve.rv_018.greentourism.service.Mailin;
 import ua.softserve.rv_018.greentourism.model.User;
 
 @Service
@@ -80,11 +84,27 @@ public class UserServiceImpl implements UserService{
 	@Transactional(
             propagation = Propagation.REQUIRED,
             readOnly = false)
-	public User create(User user) {
+	public User create(User user, String domain) {
 		logger.info("> User create");
 
-        validateUserBeforeCreating(user.getUsername());
+        validateUserBeforeCreating(user);
         User savedUser = userRepository.save(user);
+        
+        String subject = "Email verification";
+        
+        /*Build verification url*/
+        String url = "http://" + domain + "/user/confirmation/" 
+                     + String.format("%04d", user.getId()) 
+                     + (user.getEmail().hashCode() + user.getUsername().hashCode());
+        
+        /* Build message to be sent */
+        String message = "<p>" + "Hello, " + user.getFirstName() + "!" + "</p>"
+                       + "<p>" + "Please confirm your email by clicking on this link:" + "</p>"
+                       + "<p>" + url + "</p>";
+        
+        System.out.println(url);
+        
+        sendEmail(user, message, subject);
 
         logger.info("< User create");
         
@@ -116,6 +136,7 @@ public class UserServiceImpl implements UserService{
         userToUpdate.setLastName(user.getLastName());
         userToUpdate.setSocialAccount(user.getSocialAccount());
         userToUpdate.setUserpic(user.getUserpic());
+        userToUpdate.setActive(user.isActive());
         User updatedUser = userRepository.save(userToUpdate);
 
         logger.info("< User update id:{}", updatedUser.getId());
@@ -136,15 +157,74 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void validateUserBeforeCreating(String username) {
-		// OpenShift doesn't work with java 1.8
-//		this.userRepository.findByUsername(username).ifPresent(
-//                (user) -> {throw new UserAlreadyExistsException(user);});
+	public void validateUserBeforeCreating(User user) {
+		if (userRepository.findByUsername(user.getUsername()) != null ||
+			userRepository.findByEmail(user.getEmail()) != null) {
+				throw new UserAlreadyExistsException(user);
+		}
+		
+		if (!UserDataInputValidation.validateEmail(user.getEmail()) ||
+			!UserDataInputValidation.validateName(user.getFirstName()) ||
+			!UserDataInputValidation.validateName(user.getLastName()) ||
+			!UserDataInputValidation.validatePassword(user.getPassword()) ||
+			!UserDataInputValidation.validateUsername(user.getUsername())) {
+				throw new InvalidCredentialsException(user);
+		}
+		
+	}
+	
+	@Override
+	public void sendEmail(User user, String message, String subject) {
+		Mailin http = new Mailin("https://api.sendinblue.com/v2.0","D6fFX3OIqtWU02ms");
+		
+		Map < String, String > to = new HashMap < String, String > ();
+		to.put(user.getEmail(), user.getFirstName());
+		
+		Map < String, String > headers = new HashMap < String, String > ();
+		headers.put("Content-Type", "text/html; charset=iso-8859-1");
+		
+		
+		Map < String, Object > data = new HashMap < String, Object > ();
+		data.put("to", to);
+		data.put("from", new String [] {"green.tour.inc@gmail.com","GreenTourism"});
+		data.put("subject", subject);
+		data.put("html", message);
+		data.put("headers", headers);
+		
+		String str = http.send_email(data);
+		
+		logger.info(str);
+	}
+	
+	@Override
+	public void confirmEmail(String token) {
+		logger.info("> User confirmEmail by token: {}", token);
+		
+		User user = userRepository.findOne(Long.parseLong(token.substring(0, 4)));
+		
+		if (user == null) {
+			logger.error(
+                    "Attempted to update a User, but the entity does not exist.");
+			
+			throw new InvalidTokenException(token);
+		}
+		
+		if (user.getEmail().hashCode() + user.getUsername().hashCode() == Integer.parseInt(token.substring(4))) {
+			user.setActive(true);
+			update(user);
+			
+			logger.info("< User confirmEmail by token: {}", token);
+		} else {
+			logger.error(
+                    "Attempted to update a User, but the token: {} is invalid.", token);
+			
+			throw new InvalidTokenException(token);
+		}
 	}
 	
 	/**
 	 * Exception should be thrown before User creating
-	 * 	if User with given name already exists
+	 * if User with given name already exists
 	 */
 	@ResponseStatus(HttpStatus.CONFLICT)
 	class UserAlreadyExistsException extends RuntimeException {
@@ -153,5 +233,31 @@ public class UserServiceImpl implements UserService{
 		public UserAlreadyExistsException(User user) {
 	        super("User already exists: " + user + ".");
 	    }
+	}
+	
+	/**
+	 * Exception should be thrown before User creating
+	 * if User's credentials were invalid
+	 */
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	class InvalidCredentialsException extends RuntimeException {
+		private static final long serialVersionUID = -1L;
+		
+		public InvalidCredentialsException(User user) {
+			super("Invalid data of user: " + user + ".");
+		}
+	}
+	
+	/**
+	 * Exception should be thrown before User Email
+	 * verification if given token were invalid
+	 */
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	class InvalidTokenException extends RuntimeException {
+		private static final long serialVersionUID = -124314L;
+		
+		public InvalidTokenException(String token) {
+			super("Invalid token:" + token + ".");
+		}
 	}
 }
