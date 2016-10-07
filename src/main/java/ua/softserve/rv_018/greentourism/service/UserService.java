@@ -2,6 +2,7 @@ package ua.softserve.rv_018.greentourism.service;
 
 import java.util.Collection;
 
+import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.model.User;
 
 public interface UserService {
@@ -73,4 +74,15 @@ public interface UserService {
      * @param token
      */
     void confirmEmail(String token);
+    
+    /**
+     * Create for user if user want to resset password
+     * @param token
+     */
+    void createPasswordResetTokenForUser(User user, String token);
+
+	PasswordResetToken getPasswordResetToken(String token);
+
+	User changeUserPassword(User user, String password);
+
 }
