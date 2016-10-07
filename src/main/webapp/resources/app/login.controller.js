@@ -44,15 +44,10 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 
 	    let successCallback = function(response){
 	      Materialize.toast('Resetting email was sent!', 2000);
-	      setTimeout(function () {
-	        $scope.$apply(function () {
 	          $scope.forgotPaswordEmail = "";
-	        });
-	      }, 50);
 	    };
 
 	    let errorCallback = function(response){
-	      Materialize.toast('Something wrong. Please try again!', 2000);
 	      $scope.forgotPaswordEmail = "";
 	    };
 

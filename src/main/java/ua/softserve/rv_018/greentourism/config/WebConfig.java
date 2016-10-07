@@ -33,7 +33,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-    private Environment env;
+	private Environment env;
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
