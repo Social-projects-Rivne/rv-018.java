@@ -53,4 +53,33 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 
 	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
 	 };
+	 
+	// -----User Registration Functionality-----
+	 $scope.userRegistration = function() {
+	      let dataObj = {
+		      firstName: $scope.firsName,
+		      lastName: $scope.lastName,
+		      username : $scope.userName,
+		      email: $scope.userEmail,
+		      password: $scope.userPassword
+	      }
+	      let email = $scope.userEmail;
+
+	    console.log(dataObj);
+
+	    let successCallback = function(response){
+	      Materialize.toast('Success! Check your emeil for confirmation!', 2000);
+	      $scope.firsName = "";
+	      $scope.lastName = "";
+	      $scope.userName = "";
+	      $scope.userEmail = "";
+	      $scope.userPassword = "";
+	    };
+
+	    let errorCallback = function(response){
+	    	Materialize.toast('Something wrong. Please try again!', 2000);
+	    };
+
+	    $http.post(_contextPath + "/user", dataObj).then(successCallback, errorCallback);
+	 };
 });
