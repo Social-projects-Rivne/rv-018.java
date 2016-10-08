@@ -134,6 +134,7 @@
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>

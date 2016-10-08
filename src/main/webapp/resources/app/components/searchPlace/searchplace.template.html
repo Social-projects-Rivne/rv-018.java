@@ -5,12 +5,12 @@
 		</a>
 		<div class="search-error" ng-show="noSuchResultMessage">No such result</div> 
 		<ul class="places-list" ng-init="placeAddAddress()">	
-			<li ng-repeat="place in places">
-				<div class="found-place" ng-click="refocusMap(place.point.latitude, place.point.longitude)">
-					<img class="place-image hide-on-small-only" src="{{place.attachments[0].fileSrc}}">
+			<li ng-repeat="item in items">
+				<div class="found-place" ng-click="refocusMap(item.point.latitude, item.point.longitude)">
+					<img class="place-image hide-on-small-only" src="{{item.attachments[0].fileSrc}}">
 					<div class="place-info">
-						<p class="place-name"><b>{{place.name}}</b><p>
-						<p class="place-address">{{place.address}}</>
+						<p class="place-name"><b>{{item.name}}</b><p>
+						<p class="place-address">{{item.address}}</>
 					</div>
 				</div>
 			</li>

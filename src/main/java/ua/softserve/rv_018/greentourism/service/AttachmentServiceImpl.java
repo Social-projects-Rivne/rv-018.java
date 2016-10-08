@@ -72,4 +72,21 @@ public class AttachmentServiceImpl implements AttachmentService {
 		
 		return attachments;
 	}
+	
+	@Override
+	public List<Attachment> findByEventItemId(int id) {
+		logger.info("> Attachment findByEventItemId {}", id);
+		
+		List<Gallery> galleries = galleryRepository.findByEventItemId(id);
+		
+		ArrayList<Attachment> attachments = new ArrayList<Attachment>();
+		
+		for(Gallery g : galleries) {
+			attachments.add(g.getAttachment());
+		}
+		
+		logger.info("< Attachment findByEventItemId {}", id);
+		
+		return attachments;
+	}
 }

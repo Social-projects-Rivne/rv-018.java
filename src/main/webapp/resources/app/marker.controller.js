@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('greenApp')
-	.controller('markerCtrl', function($rootScope, $scope, $http, $log, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray){
+	.controller('markerCtrl', function($rootScope, $scope, $http, $log, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray, CurrentlySelectedTab){
 		MapMarkersArray.mapMarkersArrayParam = [];
     	var currentlySelectedTabInnerHtml = "Places";
+    	CurrentlySelectedTab.setCurrentlySelectedTab(currentlySelectedTabInnerHtml);
 	    $scope.singletonCalendarButtonIsShown = CalendarButtonIsShown;
 		
 		$rootScope.$on('initMarkerController', function() {
@@ -70,6 +71,7 @@ angular.module('greenApp')
 			CalendarDateRangeIsChosen.setCalendarDateRangeIsChosen(false);
 			
 			currentlySelectedTabInnerHtml = e.currentTarget.innerHTML;
+			CurrentlySelectedTab.setCurrentlySelectedTab(currentlySelectedTabInnerHtml);
 			
 			// Check if calendar button need to be shown
 		    if (currentlySelectedTabInnerHtml == "Events")
