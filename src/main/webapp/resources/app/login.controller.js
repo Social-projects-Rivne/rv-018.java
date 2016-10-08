@@ -20,6 +20,7 @@ angular.module('greenApp').controller('loginController',['$scope','$rootScope','
 		}, function(error){
 			console.log("Error in login function");
 			console.log(error.data);
+			$scope.inputError = true;
 		});
 	}
 	$scope.logout = function() {
