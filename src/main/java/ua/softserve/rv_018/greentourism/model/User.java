@@ -33,6 +33,8 @@ public class User implements UserDetails {
 	private String lastName;
 	@Column(name = "password", nullable = false)
 	private String password;
+	@Column(name = "is_active", nullable = false, columnDefinition = "boolean default false")
+	private boolean isActive;
 	@Column(name = "social_account")
 	private String socialAccount;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -113,6 +115,14 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 	public String getSocialAccount() {
 		return socialAccount;
 	}
@@ -142,29 +152,16 @@ public class User implements UserDetails {
 		return true;
 	}
 
-//	public void setAccountNonExpired(boolean accountNonExpired) {
-//		this.accountNonExpired = accountNonExpired;
-//	}
-
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
-
-//	public void setAccountNonLocked(boolean accountNonLocked) {
-//		this.accountNonLocked = accountNonLocked;
-//	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-//	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-//		this.credentialsNonExpired = credentialsNonExpired;
-//	}
-
-	
 	public String getToken() {
 		return token;
 	}
@@ -186,10 +183,8 @@ public class User implements UserDetails {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", password=" + password + ", socialAccount=" + socialAccount + ", role="
-				+ role + ", userpic=" + userpic + ", token=" + token + "]";
+				+ ", lastName=" + lastName + ", password=" + password + ", isActive=" + isActive + ", socialAccount="
+				+ socialAccount + ", role=" + role + ", userpic=" + userpic + ", token=" + token + "]";
 	}
-
-	
 
 }
