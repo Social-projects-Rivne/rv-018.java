@@ -212,23 +212,56 @@ public class EventController {
 	}
 	
 	/**
-     * Web service endpoint to fetch all Events entities by name.
-     * The service returns the list of Event entities as JSON.
-     *
-     * @return A ResponseEntity containing a List of Event objects.
-     */
-    @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
-            headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> getEventsByName(
-    		@RequestParam String name,
-    		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
-    		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
-    	logger.info("> Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+    * Web service endpoint to update a single Event entity. 
+    * <p>
+    * If updated successfully, the persisted Event is returned as JSON with
+    * HTTP status 200.
+    * <p>
+    * If not found, the service returns an empty response body and HTTP status
+    * 404.
+    * <p>
+    * If not updated successfully, the service returns an empty response body
+    * with HTTP status 500.
+    *
+    * @param event The Event object to be updated.
+    * @return A ResponseEntity containing a single Event object, if updated
+    * successfully, and a HTTP status code as described in the method
+    * comment.
+    */
+   @RequestMapping(value="/{id}", method=RequestMethod.PUT,
+           headers = "Accept=application/json", produces = {"application/json"})
+   public ResponseEntity<?> updateEvent(@PathVariable int id, @RequestBody Event event) {
+       logger.info("> updateEvent id:{}", event.getId());
 
-    	List<Event> events = eventService.findByName(name, ignoreCase, !wholeWord);
-    	
-    	logger.info("< Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+       if (eventService.findOne(id) == null) {
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       }
         
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
+       Event updatedEvent = eventService.update(event);
+
+       logger.info("< updateEvent id:{}", event.getId());
+       
+       return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+   }
+   
+   /*
+   * Web service endpoint to fetch all Events entities by name.
+   * The service returns the list of Event entities as JSON.
+   *
+   * @return A ResponseEntity containing a List of Event objects.
+   */
+  @RequestMapping(value = "/filter/name", method = RequestMethod.GET,
+          headers = "Accept=application/json", produces = {"application/json"})
+  public ResponseEntity<?> getEventsByName(
+  		@RequestParam String name,
+  		@RequestParam (value="ignorecase", required=false, defaultValue="false") Boolean ignoreCase,
+  		@RequestParam (value="wholeword", required=false, defaultValue="false") Boolean wholeWord) {
+  	logger.info("> Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+
+  	List<Event> events = eventService.findByName(name, ignoreCase, !wholeWord);
+  	
+  	logger.info("< Get events by filter (ignorecase=" + ignoreCase + ", wholeword=" + wholeWord);
+      
+      return new ResponseEntity<>(events, HttpStatus.OK);
+  }
 }

@@ -14,6 +14,8 @@ import ua.softserve.rv_018.greentourism.service.UserService;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * The UserController class is a RESTful web service controller. The
  * <code>@RestController</code> annotation informs Spring that each
@@ -104,12 +106,13 @@ public class UserController {
      */
     @RequestMapping(method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user, HttpServletRequest request) {
         logger.info("> createUser");
         
-        userService.validateUserBeforeCreating(user.getUsername());
-        User savedUser = userService.create(user);
-
+        String domain = request.getHeader("host");
+        
+        User savedUser = userService.create(user, domain); 
+        
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -181,5 +184,33 @@ public class UserController {
         logger.info("< deleteUser id:{}", id);
         
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    /**
+     * Web service endpoint to verify a User's Email. The primary key 
+     * identifier of the User which Email has to be verified and the confirmation
+     * token is supplied in the URL as a path variable.
+     * <p>
+     * If confirmed successfully, the service returns an empty response body with
+     * HTTP status 200.
+     * <p>
+     * If User's id or verification token are invalid,
+     *  the service returns an empty response body with HTTP status 404.
+     *
+     * @param token A String URL path variable containing the User primary key and 
+     * verification token.
+     * @return A ResponseEntity with an empty response body and a HTTP status
+     * code as described in the method comment.
+     */
+    @RequestMapping(value="/confirmation/{token}", method=RequestMethod.GET,
+    		headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> confirmEmail(@PathVariable String token) {
+    	logger.info("> confirmEmail token:{}", token);
+    	
+    	userService.confirmEmail(token);
+    	
+    	logger.info("< confirmEmail token:{}", token);
+    		
+    	return new ResponseEntity<>(HttpStatus.OK);
     }
 }

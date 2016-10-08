@@ -49,7 +49,14 @@ public interface EventService {
 	 * @param id A Integer primary key identifier.
 	 * @return A Event or <code>null</code> if none found.
 	 */
-	Event findOne(Integer id);
+	Event findOne(int id);
+	
+	/**
+	 * Updates a previously persisted Event entity in the data store.
+	 * @param event An Event object to be updated.
+	 * @return The updated Event entity.
+	 */
+	Event update(Event event);
 	
 	/**
      * Find all Event entities by name using filter.

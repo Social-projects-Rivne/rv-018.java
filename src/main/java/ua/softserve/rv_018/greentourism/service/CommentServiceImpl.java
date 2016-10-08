@@ -1,5 +1,7 @@
 package ua.softserve.rv_018.greentourism.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
-	 * The Spring Data repository for Events entities.
+	 * The Spring Data repository for Comment entities.
 	 */
 	@Autowired
 	private CommentRepository commentRepository;
@@ -35,5 +37,16 @@ public class CommentServiceImpl implements CommentService {
 		logger.info("> Comment create");
 		
 		return savedComment;
+	}
+	
+	@Override
+	public List<Comment> findByPlaceId(int id) {
+		logger.info("> Comment findByPlaceId");
+
+		List<Comment> comments = commentRepository.findByPlaceId(id);
+
+        logger.info("< Comment findByPlaceId");
+        
+        return comments;
 	}
 }
