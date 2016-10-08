@@ -60,4 +60,16 @@ public class AttachmentController {
     	
     	return new ResponseEntity<>(attachments, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/find/event", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+    public ResponseEntity<?> getAttachmentsByEventId(@RequestParam int id) {
+    	logger.info("> getAttachmentsByEventId");
+    	
+    	List<Attachment> attachments = attachmentService.findByEventItemId(id);
+    	
+    	logger.info("< getAttachmentsByEventId");
+    	
+    	return new ResponseEntity<>(attachments, HttpStatus.OK);
+    }
 }

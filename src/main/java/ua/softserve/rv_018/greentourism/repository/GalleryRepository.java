@@ -22,6 +22,10 @@ public interface GalleryRepository extends JpaRepository<Gallery, Integer> {
 	@Query(value = "select gallery.* from gallery where gallery.place_item_id = :placeId", nativeQuery=true)
 	List<Gallery> findByPlaceItemId(
 			@Param ("placeId") int placeId);
+	
+	@Query(value = "select gallery.* from gallery where gallery.event_item_id = :eventId", nativeQuery=true)
+	List<Gallery> findByEventItemId(
+			@Param ("eventId") int eventId);
 
 	@Query("select g from Gallery as g inner join g.event as ev where ev in :events")
 	List<Gallery> findByEvents(
