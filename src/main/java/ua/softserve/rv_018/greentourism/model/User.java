@@ -1,8 +1,8 @@
 package ua.softserve.rv_018.greentourism.model;
 
+
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +38,7 @@ public class User implements UserDetails {
 	private boolean isActive;
 	@Column(name = "social_account")
 	private String socialAccount;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 	@Column(name = "userpic")
@@ -178,6 +179,20 @@ public class User implements UserDetails {
 	@Override
 	public Collection<Role> getAuthorities() {
 		return null;
+	}
+	
+	/** Sets User's role to USER if one wasn't
+	 * recieved explicitly.
+	 */
+	@PrePersist
+	public void preInsert() {
+		if (this.role == null) {
+			Role role = new Role();
+			role.setId((long)1);
+			role.setName("USER");
+			
+			this.role = role;
+		}
 	}
 
 	@Override

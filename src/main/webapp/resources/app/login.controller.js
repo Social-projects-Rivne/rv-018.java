@@ -36,5 +36,25 @@ angular.module('greenApp').controller('loginController',['$scope','$rootScope','
 			console.log("Error in logout function");
 			console.log(error.data);
 		});
-	}
+		
+		$scope.loginCondition = "login";
+	};
+	
+	// -----Forgot Password Functionality-----
+	 $scope.forgotPassword = function() {
+	      let email = $scope.forgotPaswordEmail;
+
+	    console.log(email);
+
+	    let successCallback = function(response){
+	      Materialize.toast('Resetting email was sent!', 2000);
+	          $scope.forgotPaswordEmail = "";
+	    };
+
+	    let errorCallback = function(response){
+	      $scope.forgotPaswordEmail = "";
+	    };
+
+	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
+	 };
 }]);

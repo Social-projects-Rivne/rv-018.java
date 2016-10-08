@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import ua.softserve.rv_018.greentourism.model.Comment;
 import ua.softserve.rv_018.greentourism.service.CommentService;
 
@@ -42,7 +41,7 @@ public class CommentController {
         httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         	.buildAndExpand(savedComment.getId()).toUri());
         
-        logger.info("< createComment");
+        logger.info("< savedComment");
     
         return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
 	}

@@ -57,8 +57,9 @@
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()">
-									<div class="top-profile-name" ng-bind="name">George</div>
-									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg">
+									<!-- <div class="top-profile-name" ng-bind="name">George</div>
+									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg"> -->
+									<a class="waves-effect">Login</a>
 								</div>
 		                    </div>
 		                </div>
@@ -145,9 +146,10 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/updatePassword/updatepassword.component.js"></script>
+
 	<!-- Supporting sliding menu -->
 	<script src="${pageContext.request.contextPath}/resources/app/js/menu.js"></script>
 </body>

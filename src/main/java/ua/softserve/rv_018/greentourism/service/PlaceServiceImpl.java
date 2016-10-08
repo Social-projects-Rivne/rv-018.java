@@ -173,9 +173,13 @@ public class PlaceServiceImpl implements PlaceService {
 			throw new NoResultException("Requested entity not found.");
 		}
 
-		placeToUpdate.setName(place.getName());
-		placeToUpdate.setDescription(place.getDescription());
-
+		if (place.getName() != null) {
+			placeToUpdate.setName(place.getName());
+		}
+		if (place.getDescription() != null) {
+			placeToUpdate.setDescription(place.getDescription());
+		}
+		
 		Place updatedPlace = placeRepository.save(placeToUpdate);
 
 		logger.info("< Place update id:{}", updatedPlace.getId());
