@@ -43,15 +43,12 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 			return null;
 		}
 		String expectedUserPassword = user.getPassword();
-		System.out.println("Expected password: " + expectedUserPassword);
 		
 		if (encoder.matches(enteredPassword, expectedUserPassword)) {
-			System.out.println("Equals");
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 					authentication.getName(), authentication.getCredentials());
 			return token;
 		} else
-			System.out.println("Not equals");
 			return null;
 	}
 	

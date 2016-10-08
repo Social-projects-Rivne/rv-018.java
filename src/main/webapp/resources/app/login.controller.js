@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('greenApp').controller('loginController',['$scope','$rootScope','$http', '$location', function($scope, $rootScope, $http, $location) {
+angular.module('greenApp').controller('loginController', function($scope, $rootScope, $http, $location, $localStorage) {
 	
-	$scope.loginCondition = "login";
-	
+	$scope.loginCondition = $localStorage.message;
+	console.log($localStorage.message);
+	if ($scope.loginCondition) {
+		$scope.loginCondition = 'login';
+	}
+	console.log($scope.loginCondition);
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
@@ -13,10 +17,10 @@ angular.module('greenApp').controller('loginController',['$scope','$rootScope','
 		})
 		.then(function(response){
 			$rootScope.authorization = response.headers('Authorization'); 
-			console.log("Headers sended by java: " + $rootScope.authorization);
 			$scope.email = "";
 			$scope.password = "";
 			$scope.loginCondition = "logout";
+			$localStorage.message = 'logout';
 		}, function(error){
 			console.log("Error in login function");
 			console.log(error.data);
@@ -33,6 +37,7 @@ angular.module('greenApp').controller('loginController',['$scope','$rootScope','
 		.then(function(response){
 			console.log("Success in logout function");
 			$scope.loginCondition = "login";
+			$localStorage.message = 'login';
 		}, function(error){
 			console.log("Error in logout function");
 			console.log(error.data);
@@ -58,4 +63,4 @@ angular.module('greenApp').controller('loginController',['$scope','$rootScope','
 
 	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
 	 };
-}]);
+});
