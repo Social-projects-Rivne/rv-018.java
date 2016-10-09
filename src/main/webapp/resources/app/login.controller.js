@@ -82,4 +82,16 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 
 	    $http.post(_contextPath + "/user", dataObj).then(successCallback, errorCallback);
 	 };
+	 
+	 $scope.hideLoginForm = function(){
+	      $scope.loginFormIsOpen = false;
+	 }
+	 
+	 $scope.createAccount = function(){
+	      $scope.createAccountFormIsOpen = true;
+	 }
+	 
+	 $scope.forgotPassword = function(){
+	      $scope.forgotPasswordFormIsOpen = true;
+	 }
 });
