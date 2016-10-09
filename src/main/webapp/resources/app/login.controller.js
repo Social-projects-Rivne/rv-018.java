@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greenApp').controller('loginController', function($scope, $rootScope, $http, $location, $localStorage) {
-	
+	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
@@ -22,6 +22,7 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 			$scope.password = '';
 			$localStorage.message = 'logout';
 			$scope.loginCondition = $localStorage.message;
+			$scope.loginFormShow = 'hideform' ;
 		}, function(error){
 			console.log("Error in login function");
 			console.log(error.data);
@@ -37,6 +38,7 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 		})
 		.then(function(response){
 			console.log('Success in logout function');
+			$scope.loginFormShow = '' ;
 			$localStorage.message = 'login';
 			$scope.loginCondition = $localStorage.message;
 			$localStorage.authorization = null;
@@ -63,4 +65,63 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 
 	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
 	 };
+	 
+	// -----User Registration Functionality-----
+	 $scope.userRegistration = function() {
+	      let dataObj = {
+		      firstName: $scope.firsName,
+		      lastName: $scope.lastName,
+		      username : $scope.userName,
+		      email: $scope.userEmail,
+		      password: $scope.userPassword
+	      }
+	      let email = $scope.userEmail;
+
+	    console.log(dataObj);
+
+	    let successCallback = function(response){
+	      Materialize.toast('Success! Check your emeil for confirmation!', 2000);
+	      $scope.firsName = "";
+	      $scope.lastName = "";
+	      $scope.userName = "";
+	      $scope.userEmail = "";
+	      $scope.userPassword = "";
+	    };
+
+	    let errorCallback = function(response){
+	    	Materialize.toast('Something wrong. Please try again!', 2000);
+	    };
+
+	    $http.post(_contextPath + "/user", dataObj).then(successCallback, errorCallback);
+	 };
+	 
+	 $scope.hideLoginForm = function(){
+	      $scope.loginFormIsOpen = false;
+	 }
+	 
+	 $scope.createAccount = function(){
+	      $scope.createAccountFormIsOpen = true;
+	 }
+	 
+	 $scope.forgotPasswordForm = function(){
+	      $scope.forgotPasswordFormIsOpen = true;
+	 }
+	 
+	 $scope.openLoginForm = function(){
+	      $scope.loginFormIsOpen = true;
+	 }
+	 $rootScope.showLoginForm = function(){
+		 if ($scope.loginCondition == null) {
+			 $scope.loginCondition = 'login';
+			 console.log("clickLoginForm")
+			 $scope.loginFormIsOpen = false;
+			 $scope.createAccountFormIsOpen = false;
+			 $scope.forgotPasswordFormIsOpen = false;
+			 $scope.loginFormIsOpen = true;
+		}
+		 $scope.loginFormIsOpen = false;
+		 $scope.createAccountFormIsOpen = false;
+		 $scope.forgotPasswordFormIsOpen = false;
+		 $scope.loginFormIsOpen = true;
+	 }	 
 });

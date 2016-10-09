@@ -1336,3 +1336,17 @@ md-sidenav {
 	margin: 0 auto;
 	text-align: center;
 }
+
+.row.left.login {
+    display: -webkit-inline-box;
+}
+
+#login-link ul {
+	margin-left: 20px;
+	margin-top: -3px;
+}
+
+#login-link li {
+	text-align: left;
+	cursor: pointer;
+}
