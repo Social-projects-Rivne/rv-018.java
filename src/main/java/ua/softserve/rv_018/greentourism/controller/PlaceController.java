@@ -1,14 +1,18 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import static org.mockito.Mockito.RETURNS_SMART_NULLS;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +25,8 @@ import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.Role;
+import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.PlaceService;
@@ -45,6 +51,15 @@ public class PlaceController {
 	
 	@Autowired
 	private CommentItemRepository commentItemRepository;
+	
+	@Autowired
+	private Role role;
+	
+	@Autowired
+	private Place place;
+	
+	@Autowired
+	private User user;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -196,7 +211,6 @@ public class PlaceController {
        
        return new ResponseEntity<>(place, HttpStatus.OK);
    }
-   
    /**
     * Web service endpoint to update a single Place entity. 
     * <p>
@@ -218,15 +232,19 @@ public class PlaceController {
            headers = "Accept=application/json", produces = {"application/json"})
    public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
        logger.info("> updatePlace id:{}", place.getId());
-
-       if (placeService.findOne(id) == null) {
-           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
-        
-       Place updatedPlace = placeService.update(place);
-
-       logger.info("< updatePlace id:{}", place.getId());
        
-       return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
+       if ((role.getName() == "admin") || (place.getUser().getId() == user.getId())) {
+    	   if (placeService.findOne(id) == null) {
+               return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           }
+    	   
+           Place updatedPlace = placeService.update(place);
+
+           logger.info("< updatePlace id:{}", place.getId());
+           
+           return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
+       } else {
+    	   return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+       }
    }
 }

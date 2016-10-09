@@ -49,8 +49,13 @@ angular.module('greenApp')
 						}
 						
 						angular.forEach(points, function(point, key){
-							MapMarkersArray.mapMarkersArrayParam.push(L.marker([point.latitude, point.longitude], {icon: markerIcon}).addTo($rootScope.myMap).on('click',
-									function (e) {$log.info(e + "was clicked")}));
+							MapMarkersArray.mapMarkersArrayParam
+							.push(L.marker([point.latitude, point.longitude], {icon: markerIcon})
+									.addTo($rootScope.myMap)
+									.on('click',function (e) {
+								$log.info(e + "was clicked")
+								window.location = 'http://localhost:8080/#/map/place-details/1';
+								}));
 						})
 					}, function(error){
 						$scope.progressBarVision = false;

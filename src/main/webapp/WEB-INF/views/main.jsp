@@ -130,7 +130,9 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/isotope.pkgd.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/fit-columns.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
@@ -147,7 +149,6 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/updatePassword/updatepassword.component.js"></script>
 
 	<!-- Supporting sliding menu -->

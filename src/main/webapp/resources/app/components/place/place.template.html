@@ -1,21 +1,19 @@
 <!-- <div ng-click="goPlace()" ng-controller="OpenPlaceCtrl"> -->
+<!-- <div class="container side-nav  id="slide-out"> -->
 	<div class="container">
 
-		<!-- <div class="map-container">
-			<div id="mapid"></div>
-		</div> -->
-		<div class="close-place" ng-show="close-place-button">
+		<div class="close-place">   <!-- ng-show="close-place-button"> -->
 			<a href="#" ng-click="close_place($event)"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
 		</div>
-		<div class="place-container"> <!-- ng-show="placeopened" -->
+		<div class="place-container" ng-show="placeopened">
 			<div class="row">
 				<div class="col s12">
 					<div class="carousel carousel-slider">
 						<i class="material-icons before-arrow">navigate_before</i> <i
 							class="material-icons next-arrow">navigate_next</i> <a
-							ng-repeat="(i, image) in images" class="carousel-item"
+							ng-repeat="(i, image) in images" class="carousel-item mycaruosel"
 							ng-href="#{{i}}!"> <img class="responsive-img"
 							ng-src="{{image.fileSrc}}" id="imgClickAndChange" onclick="changeImage()">
 						</a>
@@ -25,9 +23,9 @@
 				</div>
 			</div>
 
-			<div class="row empty">
+			<!-- <div class="row empty">
 				<div>&nbsp;</div>
-			</div>
+			</div> -->
 
 			<div class="row indented-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
@@ -35,10 +33,10 @@
 				</div>
 			</div>
 
-			<div class="row indented-content">
+			<div class="row indented-content grid">
 
 				<div
-					class="col s12 l5 m5 card white place editableplace description"
+					class="col s12 l5 m5 card white place editableplace description grid-item"
 					less="true">
 					<!-- <div class=" white place"> -->
 					<div class="card-content grey-text text-darken-1">
@@ -52,9 +50,10 @@
 					</div>
 				</div>
 
-				<div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div>
+				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
+				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
 
-				<div class="col s12 l5 m5 card white place location">
+				<div class="col s12 l5 m5 card white place location grid-item grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
 						<p>
@@ -64,7 +63,7 @@
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place other-info">
+				<div class="col s12 l5 m5 card white place other-info grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Other
 							Info</span><br />
@@ -100,7 +99,7 @@
 					<div class="card-content grey-text text-darken-1">
 					<img class="circle" ng-src="{{feedback.user.userpic}}" />
 						<span class="card-title"> <span>{{feedback.user.username}}</span></br>
-							<span class="rel_date" ng-bind="date | date:'MM/dd/yyyy'">{{feedback.date}}</span>
+							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
 						<p class="more hidden">{{feedback.body}}</p>
@@ -111,7 +110,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="place-overlay">&nbsp;</div>
+			
+			<!-- <div class="emptycol hide-on-small-only">&nbsp;</div> -->
+			<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
+			
 			
 			  <!-- Modal Structure for Feedback About Place: -->
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
@@ -155,9 +157,13 @@
 				<span class="card-title feedback-username"> <span></span>
 				</span><br />
 				<div class="input-field">
-					<label for="" class="place_name">Place Name:</label>
+					<label for="" class="place_name"></label>
 					<input type="text" placeholder="" id=""
-						class="validate" ng-model="name" />
+						class="validate" ng-model="name" ng-minlength="5" ng-maxlength="70" required />
+				</div>
+				<div ng-messages="nameForm.name.$error">
+					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
+					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -167,13 +173,14 @@
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
+		</form>
 
 		<div id="description-modal" class="modal modal-fixed-footer mymodal">
 			<div class="modal-content">
 				<span class="card-title feedback-username"> <span></span>
 				</span><br />
 				<div class="input-field">
-				    <label for="" class="place_name">Place Description:</label>
+				    <label for="" class="place_name"></label>
 					<input type="text" placeholder="" id=""
 						class="validate" ng-model="description" />
 				</div>

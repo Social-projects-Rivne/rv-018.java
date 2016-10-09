@@ -666,11 +666,14 @@ md-content {
     }
 }
 
-/* ------------------Place------------------- */
+/* ------------------Place details page------------------- */
 @CHARSET "UTF-8";
 
 /* large & medium devices */
 @media only screen and (min-width: 601px) {
+	.card {
+	    position: relative;
+	}
 	h2.myplace-name {
 		top: 0px;
 		left: 17px;
@@ -679,9 +682,9 @@ md-content {
 		margin-top: -86px;
 		/*padding-left: 17px; */
 	}
-	.indented-header {
+	/* .indented-header {
 		margin-top: -21px;
-	}
+	} */
 	.indented-content {
 		margin-top: -0px;
 	}
@@ -697,9 +700,9 @@ md-content {
 		padding-left: 6px;
 		font-size: 21px;
 	}
-	.indented-header {
+	/* .indented-header {
 		margin-top: -39px;
-	}
+	} */
 	.indented-content {
 		margin-top: -20px;
 	}
@@ -720,6 +723,35 @@ md-content {
 	.feedback div.circle {
 		top: 9px !important;
 	}
+}
+
+@media only screen and (min-width: 993px) {
+    .description.card, .location.card, .other-info.card {
+        width: 48% !important;
+    }
+    
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 48% !important;
+    }
+    
+    .row .col.l1 {
+        width: 3.3% !important;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .description.card, .location.card, .other-info.card {
+        width: 48% !important;
+    }
+    
+    .feedback .card {
+        width: 48% !important;
+    }
+    .row .col.l1 {
+        width: 3.2% !important;
+    }
+    .closeIcon {
+        right: 57px !important;
 }
 
 .row.indented-content {
@@ -799,7 +831,7 @@ input.add-feedback {
 }
 
 .col.emptycol {
-    width: 3% !important;
+    width: 2.5% !important;
     margin-bottom: 201px;
 }
 
@@ -814,6 +846,7 @@ input.add-feedback {
 .carousel.carousel-slider {
     height: 300px !important;
     margin-top: -20px;
+    left: -6px;
 }
 
 .masonry {
@@ -834,16 +867,8 @@ input.add-feedback {
     height: 65px;
 }
 
-@media only screen and (min-width: 993px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
-}
-
-@media only screen and (min-width: 601px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
+.description .card-content {
+    height: 160px;
 }
 
 .add-pic {
@@ -952,11 +977,15 @@ input.add-feedback {
     z-index: 600;
     top: -19px;
     right: -4px;
+    display: block !important;
 }
 
 .closeIcon {
-    font-size: 88px;
-    color: grey;
+    position: relative;
+    font-size: 83px;
+    color: darkgrey;
+    top: 58px;
+    right: 86px;
 }
 
 .before-arrow, .next-arrow {
@@ -984,9 +1013,9 @@ input.add-feedback {
     overflow: hidden;
 }
 
-.hide-it {
+/* .hide-it {
     visibility: hidden;
-}
+} */
 
 .feedback-userpic {
     height: 71px;
@@ -1010,14 +1039,15 @@ input.add-feedback {
 	font-size: 144% !important;
 }
     
-.grid-sizer,
+/* .grid-sizer,
 .grid-item { 
 	width: 20%; 
 }
-
-/* columnWidth: '.grid-sizer',
-itemSelector: '.grid-item',
-percentPosition: true */
+ */
+ 
+/*  .grid-item.card {
+    width: 460px !important;
+} */
 
 /*------------End of place----------*/
 
