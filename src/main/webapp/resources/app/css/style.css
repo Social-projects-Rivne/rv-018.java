@@ -1350,3 +1350,13 @@ md-sidenav {
 	text-align: left;
 	cursor: pointer;
 }
+
+.hideform {
+	height: 0px;
+}
+
+.logot-button {
+	position: absolute;
+    top: -40px;
+    right: 10px;
+}

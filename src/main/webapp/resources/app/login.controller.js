@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('greenApp').controller('loginController', function($scope, $http, $location) {
+angular.module('greenApp').controller('loginController', function($rootScope, $scope, $http, $location) {
 	
 	$scope.loginCondition = "login";
+	$scope.loginFormShow = '' ;
 	
 	/* Login and logout functionality */
 	$scope.login = function() {
@@ -16,6 +17,7 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 			$scope.email = "";
 			$scope.password = "";
 			$scope.loginCondition = "logout";
+			$scope.loginFormShow = 'hideform' ;
 		}, function(error){
 			console.log("Error in login function");
 			console.log(error.data);
@@ -29,6 +31,7 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 		})
 		.then(function(response){
 			console.log("Success in logout function");
+			$scope.loginFormShow = '' ;
 		}, function(error){
 			console.log("Error in logout function");
 			console.log(error.data);
@@ -94,4 +97,20 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 	 $scope.forgotPasswordForm = function(){
 	      $scope.forgotPasswordFormIsOpen = true;
 	 }
+	 
+	 $scope.openLoginForm = function(){
+	      $scope.loginFormIsOpen = true;
+	 }
+	 $rootScope.showLoginForm = function(){
+		 console.log("clickLoginForm")
+		 //$scope.loginFormIsOpen = true;
+		 $scope.loginCondition = "login";
+		 $scope.createAccountFormIsOpen = false;
+		 $scope.forgotPasswordFormIsOpen = false;
+		 $scope.loginFormIsOpen = true;
+		 
+	     
+	 }	 
+	 
+	 
 });
