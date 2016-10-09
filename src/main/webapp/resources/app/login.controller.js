@@ -91,7 +91,7 @@ angular.module('greenApp').controller('loginController', function($scope, $http,
 	      $scope.createAccountFormIsOpen = true;
 	 }
 	 
-	 $scope.forgotPassword = function(){
+	 $scope.forgotPasswordForm = function(){
 	      $scope.forgotPasswordFormIsOpen = true;
 	 }
 });
