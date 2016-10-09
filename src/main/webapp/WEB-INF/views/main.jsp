@@ -131,6 +131,7 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/masonry.pkgd.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/ngStorage.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>

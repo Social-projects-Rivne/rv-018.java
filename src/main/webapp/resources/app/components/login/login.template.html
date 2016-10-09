@@ -27,6 +27,7 @@
 					ng-required="true"> 
 				<label for="password">Password</label>
 				<span ng-show="form.password.$dirty && form.password.$error.required">Password is required.</span>
+				<span ng-show="inputError">Invalid credentials. Please input right credentials or register.</span>
 			</div>
 		</div>
 		
