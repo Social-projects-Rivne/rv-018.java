@@ -1,7 +1,7 @@
 <form id="form" name="form" class="login-form" ng-controller="loginController" ng-switch on="loginCondition" novalidate>
 	
 	<div class="row">
-	<div class="col s4 offset-l4 center" ng-show="createAccountFormIsOpen" ng-cloak>
+	<div class="col s12 m8 offset-m2 l4 offset-l4 center" ng-show="createAccountFormIsOpen" ng-cloak>
 			<h5>Don't have Account..?</h5>
 			<div class="input-field col s12">
 				<input autocomplete="off" id="firsName"
@@ -39,7 +39,7 @@
 			</div>
     </div>
 	
- 	<div id="login-form" class="col s4 offset-l4 center" ng-switch-when="login" ng-show="loginFormIsOpen" ng-hide="false" ng-cloak>
+ 	<div id="login-form" class="col s12 m8 offset-m2 l4 offset-l4 center" ng-switch-when="login" ng-show="loginFormIsOpen" ng-hide="false" ng-cloak>
 		<div class="row">
 			<h5>Already Registered..?</h5>
 			<div class="input-field col s12">
@@ -80,7 +80,7 @@
 				<label for="forgotPaswordEmail">Email</label>
 			</div>
           
-          <div class="input-field col s12">
+          <div class="col s12 m8 offset-m2 l4 offset-l4 center">
            	 <button class="btn waves-effect waves-light left grey darken-4" type="submit" ng-click="forgotPassword()" name="action">Submit
             </button>
           </div>
