@@ -57,9 +57,7 @@
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
 		                      	<div class="user-dropdown" onclick="show()" ng-click="showLoginForm()">
-		                      
 		                      		<a class="waves-effect">Login</a>
-		                      	
 								</div>
 		                    </div>
 		                </div>

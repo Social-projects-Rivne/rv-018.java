@@ -111,13 +111,17 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 	      $scope.loginFormIsOpen = true;
 	 }
 	 $rootScope.showLoginForm = function(){
-		 console.log("clickLoginForm")
-		 //$scope.loginFormIsOpen = true;
-		 $scope.loginCondition = "login";
+		 if ($scope.loginCondition == null) {
+			 $scope.loginCondition = 'login';
+			 console.log("clickLoginForm")
+			 $scope.loginFormIsOpen = false;
+			 $scope.createAccountFormIsOpen = false;
+			 $scope.forgotPasswordFormIsOpen = false;
+			 $scope.loginFormIsOpen = true;
+		}
+		 $scope.loginFormIsOpen = false;
 		 $scope.createAccountFormIsOpen = false;
 		 $scope.forgotPasswordFormIsOpen = false;
 		 $scope.loginFormIsOpen = true;
-		 
-	     
 	 }	 
 });
