@@ -56,10 +56,8 @@
 								   class="waves-effect waves-light btn-search">Search</a>
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
-		                      	<div class="user-dropdown" onclick="show()">
-									<!-- <div class="top-profile-name" ng-bind="name">George</div>
-									<img class="top-profile-img" src="https://pp.vk.me/c626416/v626416332/21d46/PqEDVFQjwl0.jpg"> -->
-									<a class="waves-effect">Login</a>
+		                      	<div class="user-dropdown" onclick="show()" ng-click="showLoginForm()">
+		                      		<a class="waves-effect">Login</a>
 								</div>
 		                    </div>
 		                </div>
@@ -133,9 +131,11 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/isotope.pkgd.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/fit-columns.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/ngStorage.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/routes.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>

@@ -19,4 +19,6 @@ public interface AttachmentService {
 	List<Attachment> findByPlaceId(int id);
 	
 	List<Attachment> findByPlaceItemId(int id);
+	
+	List<Attachment> findByEventItemId(int id);
 }

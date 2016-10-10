@@ -57,4 +57,10 @@ public interface EventService {
 	 * @return The updated Event entity.
 	 */
 	Event update(Event event);
+	
+	/**
+     * Find all Event entities by name using filter.
+     * @return A List of Event objects.
+     */
+	List<Event> findByName(String name, boolean checkWholeWord, boolean checkIgnoreCase);
 }

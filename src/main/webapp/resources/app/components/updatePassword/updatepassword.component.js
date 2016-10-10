@@ -39,7 +39,7 @@ component('updatepassword', {
 	        };
 	    	console.log(dataObj);
 	        
-			var res = $http.put(_contextPath + '/user/'+$scope.id, dataObj);
+			var res = $http.put(_contextPath + '/user/password/'+$scope.id, dataObj);
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});
