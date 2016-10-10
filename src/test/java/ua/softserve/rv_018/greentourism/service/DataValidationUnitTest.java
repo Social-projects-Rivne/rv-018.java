@@ -45,7 +45,7 @@ public class DataValidationUnitTest {
 			"#12%$" };  //Absolutely wrong name
 	
 	private static final String[] VALID_DESCRIPTIONS = 
-		{"Whatever", "smth", "It's beautiful", "fortress.", "great!", "at 5 o'clock" };
+		{"Whatever", "smth", "Tarakaniv", "fortress", "me" };
 	
 	private static final String[] INVALID_DESCRIPTIONS = 
 		{   "123123", 	//Doesn't contain any letter
@@ -95,31 +95,31 @@ public class DataValidationUnitTest {
 			assertFalse(UserDataInputValidation.validateUsername(str));
 	}
 	
-	//Checks if validateName method returns true for every string in validNames array
+	//Checks if validatePlaceName method returns true for every string in validPlaceNames array
 	@Test
 	public void testValidPlaceNames() {
 		for (String str : VALID_PLACE_NAMES)
-			assertTrue(UserDataInputValidation.validateName(str));
+			assertTrue(PlaceDataInputValidation.validatePlaceName(str));
 	}
 		
-		//Checks if validateName method returns false for every string in invalidNames array
+	//Checks if validatePlaceName method returns false for every string in invalidPlaceNames array
 	@Test
 	public void testInvalidPlaceNames() {
 		for (String str : INVALID_PLACE_NAMES)
-			assertFalse(UserDataInputValidation.validateName(str));
+			assertFalse(PlaceDataInputValidation.validatePlaceName(str));
 	}
 	
-	//Checks if validateName method returns true for every string in validNames array
+	//Checks if validateDescription method returns true for every string in validDescriptions array
 	@Test
 	public void testValidDescriptions() {
 		for (String str : VALID_DESCRIPTIONS)
-			assertTrue(UserDataInputValidation.validateName(str));
+			assertTrue(PlaceDataInputValidation.validateDescription(str));
 	}
 			
-			//Checks if validateName method returns false for every string in invalidNames array
+	//Checks if validateDescription method returns false for every string in invalidDescriptions array
 	@Test
 	public void testInvalidDescriptions() {
 		for (String str : INVALID_DESCRIPTIONS)
-			assertFalse(UserDataInputValidation.validateName(str));
+			assertFalse(PlaceDataInputValidation.validateDescription(str));
 	}
 }
