@@ -51,15 +51,6 @@ public class PlaceController {
 	
 	@Autowired
 	private CommentItemRepository commentItemRepository;
-	
-	@Autowired
-	private Role role;
-	
-	@Autowired
-	private Place place;
-	
-	@Autowired
-	private User user;
 
 	/**
 	 * Web service endpoint to fetch all Place entities. The service returns
@@ -232,19 +223,15 @@ public class PlaceController {
            headers = "Accept=application/json", produces = {"application/json"})
    public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
        logger.info("> updatePlace id:{}", place.getId());
-       
-       if ((role.getName() == "admin") || (place.getUser().getId() == user.getId())) {
-    	   if (placeService.findOne(id) == null) {
-               return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-           }
-    	   
-           Place updatedPlace = placeService.update(place);
 
-           logger.info("< updatePlace id:{}", place.getId());
-           
-           return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
-       } else {
-    	   return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+       if (placeService.findOne(id) == null) {
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
        }
+        
+       Place updatedPlace = placeService.update(place);
+
+       logger.info("< updatePlace id:{}", place.getId());
+       
+       return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
    }
 }
