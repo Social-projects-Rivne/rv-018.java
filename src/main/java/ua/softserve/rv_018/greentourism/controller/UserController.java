@@ -1,8 +1,10 @@
 package ua.softserve.rv_018.greentourism.controller;
 
 import java.util.Collection;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +22,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
-
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The UserController class is a RESTful web service controller. The
