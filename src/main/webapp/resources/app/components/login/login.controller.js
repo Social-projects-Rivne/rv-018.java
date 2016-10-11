@@ -1,14 +1,17 @@
 'use strict';
 
-angular.module('greenApp').controller('loginController', function($scope, $rootScope, $http, $location, $localStorage) {
+angular.module('greenApp').
+component('login', {
+		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
+		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
+			
 	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	if ($scope.loginCondition == null) {
-		$scope.loginCondition = 'login';
-	}
-	console.log($scope.loginCondition);
+	$scope.loginstatus = $scope.loginCondition
+	console.log($scope.loginstatus);
+	
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
@@ -17,6 +20,8 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
 		})
 		.then(function(response){
+			$scope.loginstatus = 'logout' ;
+			$scope.formshow = '' ;
 			$localStorage.authorization = response.headers('Authorization'); 
 			$scope.email = '';
 			$scope.password = '';
@@ -30,22 +35,26 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 		});
 	}
 	$scope.logout = function() {
-		console.log("In logout function");
-		$http({
-			method: 'PATCH',
-			url: _contextPath + '/logout',
-			headers: { 'Authorization': $localStorage.authorization }
-		})
-		.then(function(response){
-			console.log('Success in logout function');
-			$scope.loginFormShow = '' ;
-			$localStorage.message = 'login';
-			$scope.loginCondition = $localStorage.message;
-			$localStorage.authorization = null;
-		}, function(error){
-			console.log('Error in logout function');
-			console.log(error.data);
-		});
+		console.log($scope.loginstatus + 1);
+		if ($scope.loginstatus == 'logout') {
+			console.log("In logout function");
+			$http({
+				method: 'PATCH',
+				url: _contextPath + '/logout',
+				headers: { 'Authorization': $localStorage.authorization }
+			})
+			.then(function(response){
+				$scope.loginstatus = 'login' ;
+				console.log('Success in logout function');
+				$scope.loginFormShow = '' ;
+				$localStorage.message = 'login';
+				$scope.loginCondition = $localStorage.message;
+				$localStorage.authorization = null;
+			}, function(error){
+				console.log('Error in logout function');
+				console.log(error.data);
+			});
+		}
 	};
 	
 	// -----Forgot Password Functionality-----
@@ -110,18 +119,22 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 	 $scope.openLoginForm = function(){
 	      $scope.loginFormIsOpen = true;
 	 }
-	 $rootScope.showLoginForm = function(){
-		 if ($scope.loginCondition == null) {
-			 $scope.loginCondition = 'login';
+	 
+	 $scope.showLoginForm = function(){
+		 if ($scope.loginstatus = 'login') {
 			 console.log("clickLoginForm")
 			 $scope.loginFormIsOpen = false;
 			 $scope.createAccountFormIsOpen = false;
 			 $scope.forgotPasswordFormIsOpen = false;
 			 $scope.loginFormIsOpen = true;
-		}
-		 $scope.loginFormIsOpen = false;
-		 $scope.createAccountFormIsOpen = false;
-		 $scope.forgotPasswordFormIsOpen = false;
-		 $scope.loginFormIsOpen = true;
-	 }	 
+		} 
+		
+	 }
+	 
+	 $scope.show = function() {
+		 if ( $scope.formshow == '')  $scope.formshow = 'login-form-active' ;
+		 else  $scope.formshow = '' ;
+	}
+  }
+		
 });
