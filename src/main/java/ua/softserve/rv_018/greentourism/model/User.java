@@ -1,6 +1,8 @@
 package ua.softserve.rv_018.greentourism.model;
 
-import javax.persistence.PrePersist;
+
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user_detail")
-public class User {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = -6906839498032929009L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -35,6 +43,8 @@ public class User {
 	private Role role;
 	@Column(name = "userpic")
 	private String userpic;
+	@Column(name = "token")
+	private String token;
 
 	public User() {
 	}
@@ -54,7 +64,6 @@ public class User {
 		this.password = user.getPassword();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.isActive = user.isActive();
 	}
 
 	public Long getId() {
@@ -65,28 +74,13 @@ public class User {
 		this.id = id;
 	}
 
+	@Override
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
 	}
 
 	public String getEmail() {
@@ -113,12 +107,37 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 	public String getSocialAccount() {
 		return socialAccount;
 	}
 
 	public void setSocialAccount(String socialAccount) {
 		this.socialAccount = socialAccount;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public String getUserpic() {
@@ -129,12 +148,37 @@ public class User {
 		this.userpic = userpic;
 	}
 
-	public Role getRole() {
-		return role;
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public Collection<Role> getAuthorities() {
+		return null;
 	}
 	
 	/** Sets User's role to USER if one wasn't
@@ -154,7 +198,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", password=" + password + ", isActive=" + isActive + ", socialAccount="
-				+ socialAccount + ", role_id=" + role + "]";
+				+ socialAccount + ", role=" + role + ", userpic=" + userpic + ", token=" + token + "]";
 	}
 
 }

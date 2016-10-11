@@ -1,21 +1,28 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
 import java.io.IOException;
-import java.util.Collection;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -40,6 +47,9 @@ public class UserController {
      */
     @Autowired
     private UserService userService;
+    
+    @Autowired
+	public PasswordEncoder encoder;
 
     /**
      * Web service endpoint to fetch a single User entity by primary key
@@ -159,6 +169,30 @@ public class UserController {
         
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
+    
+    /**
+     * 
+     *
+     * @param user The User object to be updated.
+     * @return A ResponseEntity containing a single User object, if updated
+     * successfully, and a HTTP status code as described in the method
+     * comment.
+     */
+    @RequestMapping(value="/password/{id}", method=RequestMethod.PUT,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> updateUsersPassword(@PathVariable Long id, @RequestBody User user) {
+        logger.info("> updateUsersPassword id:{}", user.getId());
+
+        if (userService.findOne(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        user.setPassword(encoder.encode(user.getPassword()));
+        userService.update(user);
+
+        logger.info("< updateUsersPassword id:{}", user.getId());
+        
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     /**
      * Web service endpoint to delete a single User entity. The HTTP request
@@ -216,4 +250,5 @@ public class UserController {
     		
     	resp.sendRedirect("http://" + req.getHeader("host") + "/#/profile/" + Long.parseLong(token.substring(0, 4)));
     }
+
 }

@@ -171,4 +171,20 @@ public class EventServiceImpl implements EventService {
 
 		return updatedEvent;
 	}
+	
+	@Override
+	public List<Event> findByName(String name, boolean checkIgnoreCase, boolean checkContaining) {
+		logger.info("> Event findByName");
+
+		List<Event> events = new ArrayList<>();
+		
+		if (checkIgnoreCase && checkContaining) {
+			events = eventRepository.findByNameIgnoreCaseContaining(name);
+		}
+		// here will be other findByName... methods due to checkIgnoreCase && checkWholeWord values
+
+        logger.info("< Event findByName");
+
+		return events;
+	}
 }
