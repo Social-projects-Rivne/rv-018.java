@@ -5,7 +5,7 @@ component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
 	
-			$scope.loginstatus = 'login' ;
+	$scope.loginstatus = 'login' ;
 			
 	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
@@ -24,6 +24,7 @@ component('login', {
 		})
 		.then(function(response){
 			$scope.loginstatus = 'logaut' ;
+			$scope.formshow = '' ;
 			$localStorage.authorization = response.headers('Authorization'); 
 			$scope.email = '';
 			$scope.password = '';
@@ -118,8 +119,9 @@ component('login', {
 	 $scope.openLoginForm = function(){
 	      $scope.loginFormIsOpen = true;
 	 }
-	 $rootScope.showLoginForm = function(){
-		 if ($scope.loginCondition == null) {
+	 
+	 $scope.showLoginForm = function(){
+		 if ($scope.loginstatus = 'login') {
 			 $scope.loginCondition = 'login';
 			 console.log("clickLoginForm")
 			 $scope.loginFormIsOpen = false;
@@ -127,15 +129,14 @@ component('login', {
 			 $scope.forgotPasswordFormIsOpen = false;
 			 $scope.loginFormIsOpen = true;
 		}
-		 $scope.loginFormIsOpen = false;
-		 $scope.createAccountFormIsOpen = false;
-		 $scope.forgotPasswordFormIsOpen = false;
-		 $scope.loginFormIsOpen = true;
+		
 	 }
 	 
 	 $scope.show = function() {
-		    document.getElementById("form").classList.toggle("login-form-active");
-		}
-    }
+		    //document.getElementById("form").classList.toggle("login-form-active");
+		 if ( $scope.formshow == '')  $scope.formshow = 'login-form-active' ;
+		 else  $scope.formshow = '' ;
+	}
+  }
 		
 });

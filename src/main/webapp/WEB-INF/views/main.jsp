@@ -56,8 +56,7 @@
 								   class="waves-effect waves-light btn-search">Search</a>
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
-		                    <login></login>
-								
+		                    	<login></login>
 		                    </div>
 		                </div>
 		            </div>    
