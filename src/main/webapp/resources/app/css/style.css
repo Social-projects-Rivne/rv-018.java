@@ -1353,4 +1353,16 @@ md-sidenav {
 
 #form  {
 	margin-top: 40px;
-	position: absolute;}
+	position: absolute;
+}
+
+nav .input-field input {
+    height: 100%;
+    font-size: 1.2rem;
+    border: none;
+    padding-left: 0px;
+}
+
+.input-field.col.s12 {
+    padding-top: 1rem;
+}

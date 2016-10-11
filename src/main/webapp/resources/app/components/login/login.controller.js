@@ -9,10 +9,6 @@ component('login', {
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	/*if ($scope.loginCondition == null) {
-		$scope.loginCondition = 'login';
-		$scope.loginstatus = $scope.loginCondition;
-	} */
 	$scope.loginstatus = $scope.loginCondition
 	console.log($scope.loginstatus);
 	
@@ -136,7 +132,6 @@ component('login', {
 	 }
 	 
 	 $scope.show = function() {
-		    //document.getElementById("form").classList.toggle("login-form-active");
 		 if ( $scope.formshow == '')  $scope.formshow = 'login-form-active' ;
 		 else  $scope.formshow = '' ;
 	}
