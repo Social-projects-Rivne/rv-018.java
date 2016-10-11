@@ -1341,9 +1341,22 @@ md-sidenav {
     display: -webkit-inline-box;
 }
 
+@media only screen and (max-width: 600px) and (min-width: 375px) {
+    .row.left.login {
+    	display: flex;
+    }
+}
+
 #login-link ul {
 	margin-left: 20px;
 	margin-top: -3px;
+}
+
+@media only screen and (max-width: 600px) and (min-width: 320px) {
+    #login-link ul {
+		margin-left: 20px;
+		margin-top: -25px;
+    }
 }
 
 #login-link li {
