@@ -134,6 +134,7 @@ public class PlaceController {
     	
     	User user = tokenUtil.getUserFromHeader(authorization);
     	System.out.println("In createPlace: User is: " + user.getEmail());
+    	place.setUser(user);
         Place savedPlace = placeService.create(place);
         
         HttpHeaders httpHeaders = new HttpHeaders();
