@@ -86,6 +86,17 @@ public class UserServiceImpl implements UserService {
 
 		return user;
 	}
+	
+	@Override
+	public User findByToken(String token) {
+		logger.info("> User findByToken token:{}", token);
+
+		User user = userRepository.findByToken(token);
+
+		logger.info("< User findByToken token:{}", token);
+
+		return user;
+	}
 
 	@Override
 	@Transactional(
