@@ -18,13 +18,13 @@ angular.module('greenApp')
 						method: 'GET',
 						url: _contextPath + '/api/' 
 											+ urlPath  
-											+ '/point' 
+											+ '/places_coordinates' 
 											+ '?south-west=' + latLngBounds.getSouthWest().lat + ':' + latLngBounds.getSouthWest().lng 
 											+ '&north-east=' + latLngBounds.getNorthEast().lat + ':' + latLngBounds.getNorthEast().lng
 					})
 					.then(function(response){
 						$scope.progressBarVision = false;
-						let points = response.data;
+						let places = response.data;
 	
 						if (MapMarkersArray.mapMarkersArrayParam.length > 0)
 							angular.forEach(MapMarkersArray.mapMarkersArrayParam, function(marker, key){
@@ -49,13 +49,14 @@ angular.module('greenApp')
 							markerIcon = new GreenIcon(); 					
 						}
 						
-						angular.forEach(points, function(point, key){
+						angular.forEach(places, function(place, key){
+							console.log(place);
 							MapMarkersArray.mapMarkersArrayParam
-							.push(L.marker([point.latitude, point.longitude], {icon: markerIcon})
+							.push(L.marker([place.point.latitude, place.point.longitude], {icon: markerIcon})
 									.addTo($rootScope.myMap)
 									.on('click',function (e) {
 								$log.info(e + "was clicked")
-								window.location = 'http://localhost:8080/#/map/place-details/1';
+								window.location = 'http://localhost:8080/#/map/place-details/' + place.id;
 								}));
 						})
 					}, function(error){

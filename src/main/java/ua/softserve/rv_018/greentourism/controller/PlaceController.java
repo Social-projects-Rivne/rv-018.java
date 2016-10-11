@@ -99,6 +99,36 @@ public class PlaceController {
 
 		return new ResponseEntity<>(points, HttpStatus.OK);
 	}
+	
+	/**
+	 * Web service endpoint to fetch all Place points between two coordinates.
+	 * The service returns the list of Point entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Point objects.
+	 */
+	@RequestMapping(value = "/places_coordinates", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getPlacesBetweenTwoCoordinates(
+			@RequestParam (value="south-west", required=true) String southWestParam,
+    		@RequestParam (value="north-east", required=true) String northEastParam) {
+		logger.info("> Get places between (" + southWestParam + " - " + northEastParam);
+		
+		List<Place> places = new ArrayList<>();
+		
+		Point southWest = pointService.createPoint(southWestParam);
+		Point northEast = pointService.createPoint(northEastParam);
+		
+		if (southWest.isEmpty() || northEast.isEmpty()) {
+			logger.debug("< Bad Request for getting places between (" + southWestParam + " - " + northEastParam);
+			return new ResponseEntity<>(places, HttpStatus.BAD_REQUEST);
+		}
+		
+		places = placeService.findPlacesBetweenTwoCoordinates(southWest, northEast);
+
+		logger.info("< Get places between (" + southWestParam + " - " + northEastParam);
+
+		return new ResponseEntity<>(places, HttpStatus.OK);
+	}
 
 	/**
      * Web service endpoint to fetch all Places entities by name.

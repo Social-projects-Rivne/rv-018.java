@@ -39,7 +39,7 @@
 					class="col s12 l5 m5 card white place editableplace description grid-item"
 					less="true">
 					<!-- <div class=" white place"> -->
-					<div class="card-content grey-text text-darken-1">
+					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
 						<span class="card-title grey-text" ng-click="show_description_modal($event)">Description<i class="material-icons myright right">mode_edit</i></span>
 						<p class="less">{{short_description}}</p>
 						<p class="more hidden">{{description}}</p>
@@ -53,7 +53,7 @@
 				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
 				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
 
-				<div class="col s12 l5 m5 card white place location grid-item grid-item">
+				<div class="col s12 l5 m5 card white place location grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
 						<p>
@@ -84,10 +84,10 @@
 			<div class="row grid feedback indented-content">
 				<div class="col s12 m5 l5 grid-item card white">
 					<div class="card-content grey-text text-darken-1">
-						<span class="card-title" ng-click="show_modal($event)"> <img
-							class="circle" ng-src={{userpicture.userpic}} /> <span
+						<span class="card-title" ng-click="show_modal($event)"> <div
+							class="circle" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span
 							class="smallertext">Your feedback </span> 
-							<div class="circle grey lighten-2">
+							<div class="circle grey lighten-2 photo-camera">
 								<i class="material-icons">photo_camera</i>
 							</div>
 						</span>
@@ -97,8 +97,8 @@
 				<div class="col s12 m4 l5 grid-item card white"
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<img class="circle" ng-src="{{feedback.user.userpic}}" />
-						<span class="card-title"> <span>{{feedback.user.username}}</span></br>
+					<div class="circle" style="background-image: url('{{feedback.user.userpic}}');background-size:cover"></div>
+						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
 							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
@@ -119,8 +119,8 @@
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
-				<span class="card-title feedback-username"> <img
-					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{nickname.username}}</span>
+				<span class="card-title feedback-username"> <div
+					class="circle feedback-userpic" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span>{{firstname.firstName}} {{firstname.lastName}}</span>
 				</span><br />
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
@@ -134,18 +134,20 @@
 						<div class="commenting-button">
 							<span><i
 								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
-							<input type="file">
+							<input type="text">
 						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text">
-						</div>
+						<!-- <div class="file-path-wrapper"> -->
+							<input type="text" name="newPlacePhoto" id="newPlacePhoto"
+						class="form-control" ng-model="newPlacePhoto"
+						placeholder="Photo URL">
+						<!-- </div> -->
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText()">Publish</button> <button type="button" 
+					ng-click="addText(); addImage()">Publish</button> <button type="button" 
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>

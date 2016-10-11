@@ -40,4 +40,28 @@ angular
 					    
 					  };
 					  
+					  $scope.addImage = function(form) {
+					      let dataObj = {
+					        attachment: {
+					          fileSrc: $scope.newPlacePhoto
+					        },
+					      };
+
+					    console.log(dataObj);
+
+					    let successCallback = function(response){
+					    	console.log("Image added");
+					      setTimeout(function () {
+					        $scope.$apply(function () {
+					          $scope.newPlacePhoto = "";
+					        });
+					      }, 50);
+					    };
+
+					    let errorCallback = function(response){
+					    	console.log("No image added");
+					    };
+
+					    $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
+					  };
 				}]);

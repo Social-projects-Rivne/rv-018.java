@@ -689,7 +689,7 @@ md-content {
 		margin-top: -0px;
 	}
 	.feedback span>span {
-	    font-size: 87%;
+	    font-size: 97%;
 	}
 }
 
@@ -708,7 +708,7 @@ md-content {
 	}
 	.feedback img.circle, .feedback div.circle {
 		position: relative;
-		top: 5px;
+		/* top: 5px; */
 		width: 35px !important;
 		height: 35px !important;
 	}
@@ -862,12 +862,12 @@ input.add-feedback {
 
 .feedback img.circle, .feedback div.circle {
     position: relative;
-    top: 5px;
+    top: 9px;
     width: 65px;
     height: 65px;
 }
 
-.description .card-content {
+.description .card-content.less {
     height: 160px;
 }
 
@@ -893,8 +893,12 @@ input.add-feedback {
 }
 
 .feedback span > span {
-    top: -10px;
+    top: -17px;
     position: relative;
+}
+
+.photo-camera {
+	float: right;
 }
 
 #feedback-modal, #name-modal, #description-modal {
@@ -916,7 +920,6 @@ input.add-feedback {
 
 .feedback div.circle {
     display: inline-block;
-    float: right;
     width: 65px;
     height: 65px;
     text-align: center;
@@ -935,6 +938,10 @@ input.add-feedback {
     font-size: 24px;
     font-weight: 300;
     color: green !important;
+}
+
+.feedback-userpic {
+	display: inline-block;
 }
 
 .feedback-username span {

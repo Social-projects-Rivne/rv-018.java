@@ -25,7 +25,8 @@ angular
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
 								$scope.userpicture = response.data.user;
-								$scope.nickname = response.data.user;
+								$scope.lastname = response.data.user;
+								$scope.firstname = response.data.user;
 								$scope.mypoint = response.data.point;
 								
 								$scope.feedbacks = response.data.comments;
@@ -54,7 +55,7 @@ angular
 									console.log('slider loaded!');
 									
 									
-									$('.grid').masonry({
+									$scope.masonry = $('.grid').masonry({
 										itemSelector : '.grid-item',
 										gutter : 25,
 									});
@@ -180,7 +181,10 @@ angular
 							} else {
 								$($event.currentTarget).text("Show more");
 							}
-
+                            $scope.less = less;
+                            setTimeout(function() {
+                            	$scope.masonry.masonry();
+                            }, 0);
 							$event.preventDefault();
 						}
 
