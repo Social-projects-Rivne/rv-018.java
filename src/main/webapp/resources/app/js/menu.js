@@ -6,9 +6,7 @@
                     menuList.toggleClass('active-ul');
                 });
             })();
-function show() {
-    document.getElementById("form").classList.toggle("login-form-active");
-}
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.login-form')) {

@@ -1,4 +1,7 @@
-<form id="form" name="form" class="login-form" ng-controller="loginController" ng-switch on="loginCondition" novalidate >
+<div class="user-dropdown" ng-click="show(); showLoginForm()">
+	<a class="waves-effect">{{loginstatus}}</a>
+</div>
+<form id="form" name="form" class="login-form" ng-switch on="loginCondition" novalidate >
 	
 	<div class="row">
 	<div class="col s12 m8 offset-m2 l4 offset-l4 center" ng-show="createAccountFormIsOpen" ng-cloak>

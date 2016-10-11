@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('greenApp').controller('loginController', function($scope, $rootScope, $http, $location, $localStorage) {
+angular.module('greenApp').
+component('login', {
+		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
+		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
+	
+			$scope.loginstatus = 'login' ;
+			
 	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
@@ -17,6 +23,7 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
 		})
 		.then(function(response){
+			$scope.loginstatus = 'logaut' ;
 			$localStorage.authorization = response.headers('Authorization'); 
 			$scope.email = '';
 			$scope.password = '';
@@ -37,6 +44,7 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 			headers: { 'Authorization': $localStorage.authorization }
 		})
 		.then(function(response){
+			$scope.loginstatus = 'login' ;
 			console.log('Success in logout function');
 			$scope.loginFormShow = '' ;
 			$localStorage.message = 'login';
@@ -123,5 +131,11 @@ angular.module('greenApp').controller('loginController', function($scope, $rootS
 		 $scope.createAccountFormIsOpen = false;
 		 $scope.forgotPasswordFormIsOpen = false;
 		 $scope.loginFormIsOpen = true;
-	 }	 
+	 }
+	 
+	 $scope.show = function() {
+		    document.getElementById("form").classList.toggle("login-form-active");
+		}
+    }
+		
 });
