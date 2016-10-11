@@ -9,12 +9,10 @@ import javax.persistence.NoResultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ua.softserve.rv_018.greentourism.repository.PasswordResetTokenRepository;
 import ua.softserve.rv_018.greentourism.repository.UserRepository;
@@ -22,6 +20,10 @@ import ua.softserve.rv_018.greentourism.model.PasswordResetToken;
 import ua.softserve.rv_018.greentourism.service.UserDataInputValidation;
 import ua.softserve.rv_018.greentourism.service.Mailin;
 import ua.softserve.rv_018.greentourism.model.User;
+
+import ua.softserve.rv_018.greentourism.error.InvalidCredentialsException;
+import ua.softserve.rv_018.greentourism.error.InvalidTokenException;
+import ua.softserve.rv_018.greentourism.error.UserAlreadyExistsException;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -95,6 +97,8 @@ public class UserServiceImpl implements UserService {
 		logger.info("> User create");
 
         validateUserBeforeCreating(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        
         User savedUser = userRepository.save(user);
         
         String subject = "Email verification";
@@ -226,19 +230,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	/**
-	 * Exception should be thrown before User creating
-	 * if User with given name already exists
-	 */
-	@ResponseStatus(HttpStatus.CONFLICT)
-	class UserAlreadyExistsException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
-
-		public UserAlreadyExistsException(User user) {
-			super("User already exists: " + user + ".");
-		}
-	}
-
 	@Override
 	public void createPasswordResetTokenForUser(final User user, final String token) {
 		final PasswordResetToken myToken = new PasswordResetToken(token, user);
@@ -255,32 +246,6 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(passwordEncoder.encode(password));
 		userRepository.save(user);
 		return user;
-	}
-
-	/**
-	 * Exception should be thrown before User creating
-	 * if User's credentials were invalid
-	 */
-	@ResponseStatus(HttpStatus.FORBIDDEN)
-	class InvalidCredentialsException extends RuntimeException {
-		private static final long serialVersionUID = -1L;
-		
-		public InvalidCredentialsException(User user) {
-			super("Invalid data of user: " + user + ".");
-		}
-	}
-	
-	/**
-	 * Exception should be thrown before User Email
-	 * verification if given token were invalid
-	 */
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	class InvalidTokenException extends RuntimeException {
-		private static final long serialVersionUID = -124314L;
-		
-		public InvalidTokenException(String token) {
-			super("Invalid token:" + token + ".");
-		}
 	}
 
 }
