@@ -1,4 +1,4 @@
-<div class="user-dropdown" ng-click="show(); showLoginForm()">
+<div class="user-dropdown" ng-click="show(); logout(); showLoginForm()">
 	<a class="waves-effect">{{loginstatus}}</a>
 </div>
 
@@ -74,7 +74,7 @@
 	<div class="col s4 offset-l4 center" ng-show="forgotPasswordFormIsOpen" ng-cloak>
           <h5>Forgot Your Password..?</h5>
           <div class="input-field col s12">
-				<input autocomplete="off" id="forgotPaswordEmail" name="forgotPaswordEmail" type="email" ng-model="$parent.forgotPaswordEmail">
+				<input autocomplete="off" id="forgotPaswordEmail" name="forgotPaswordEmail" type="email" ng-model="forgotPaswordEmail">
 				<label for="forgotPaswordEmail">Email</label>
 		  </div>
           <div class="col s12">

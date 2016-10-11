@@ -4,17 +4,18 @@ angular.module('greenApp').
 component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
-	
-	$scope.loginstatus = 'login' ;
 			
 	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	if ($scope.loginCondition == null) {
+	/*if ($scope.loginCondition == null) {
 		$scope.loginCondition = 'login';
-	}
-	console.log($scope.loginCondition);
+		$scope.loginstatus = $scope.loginCondition;
+	} */
+	$scope.loginstatus = $scope.loginCondition
+	console.log($scope.loginstatus);
+	
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
@@ -23,7 +24,7 @@ component('login', {
 			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
 		})
 		.then(function(response){
-			$scope.loginstatus = 'logaut' ;
+			$scope.loginstatus = 'logout' ;
 			$scope.formshow = '' ;
 			$localStorage.authorization = response.headers('Authorization'); 
 			$scope.email = '';
@@ -38,23 +39,26 @@ component('login', {
 		});
 	}
 	$scope.logout = function() {
-		console.log("In logout function");
-		$http({
-			method: 'PATCH',
-			url: _contextPath + '/logout',
-			headers: { 'Authorization': $localStorage.authorization }
-		})
-		.then(function(response){
-			$scope.loginstatus = 'login' ;
-			console.log('Success in logout function');
-			$scope.loginFormShow = '' ;
-			$localStorage.message = 'login';
-			$scope.loginCondition = $localStorage.message;
-			$localStorage.authorization = null;
-		}, function(error){
-			console.log('Error in logout function');
-			console.log(error.data);
-		});
+		console.log($scope.loginstatus + 1);
+		if ($scope.loginstatus == 'logout') {
+			console.log("In logout function");
+			$http({
+				method: 'PATCH',
+				url: _contextPath + '/logout',
+				headers: { 'Authorization': $localStorage.authorization }
+			})
+			.then(function(response){
+				$scope.loginstatus = 'login' ;
+				console.log('Success in logout function');
+				$scope.loginFormShow = '' ;
+				$localStorage.message = 'login';
+				$scope.loginCondition = $localStorage.message;
+				$localStorage.authorization = null;
+			}, function(error){
+				console.log('Error in logout function');
+				console.log(error.data);
+			});
+		}
 	};
 	
 	// -----Forgot Password Functionality-----
@@ -122,13 +126,12 @@ component('login', {
 	 
 	 $scope.showLoginForm = function(){
 		 if ($scope.loginstatus = 'login') {
-			 $scope.loginCondition = 'login';
 			 console.log("clickLoginForm")
 			 $scope.loginFormIsOpen = false;
 			 $scope.createAccountFormIsOpen = false;
 			 $scope.forgotPasswordFormIsOpen = false;
 			 $scope.loginFormIsOpen = true;
-		}
+		} 
 		
 	 }
 	 
