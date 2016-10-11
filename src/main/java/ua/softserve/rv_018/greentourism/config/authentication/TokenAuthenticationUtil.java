@@ -89,5 +89,26 @@ public class TokenAuthenticationUtil {
 			return "No authorization";
 		return "Basic " + encodeToken(token);
 	}
+	
+	/**
+	 * Find user by header authorization value.
+	 * 
+	 * @param header
+	 *            The header by which User is found
+	 * 
+	 * @return User object
+	 */
+	
+	public User getUserFromHeader(String header){
+		if (header == null) {
+			return null;
+		} else {
+			String encodedToken = header.substring(6);
+			return userService.findByToken(encodedToken);
+			
+		}
+	}
+	
+	
 
 }

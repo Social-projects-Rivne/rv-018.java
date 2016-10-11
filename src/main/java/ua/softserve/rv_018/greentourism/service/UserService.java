@@ -34,6 +34,13 @@ public interface UserService {
     User findByEmail(String email);
     
     /**
+     * Find a single User entity by token value.
+     * @param token A String token param of user.
+     * @return A User or <code>null</code> if none found.
+     */
+    User findByToken(String token);
+    
+    /**
      * Persists a User entity in the data store.
      * @param user A User object to be persisted.
      * @return The persisted User entity.
