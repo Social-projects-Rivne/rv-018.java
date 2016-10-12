@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
+import ua.softserve.rv_018.greentourism.error.UserAlreadyExistsException;
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
@@ -83,7 +84,7 @@ public class UserControllerUnitTest {
     
     @Test
     public void testCreateUser() throws Exception {
-    	Mockito.when(userService.create(Mockito.any(User.class))).thenReturn(USER);
+    	Mockito.when(userService.create(Mockito.any(User.class), Mockito.anyString())).thenReturn(USER);
     	
     	Gson gson = new Gson();
         String json = gson.toJson(USER);
@@ -91,6 +92,24 @@ public class UserControllerUnitTest {
     	mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(json))
 		        .andExpect(status().isOk())
 		        .andExpect(header().string("Location", HEADER_LOCATION));
+    }
+    
+    @Test
+    public void testCreateUser_ShouldReturn403() throws Exception {
+    	Mockito.when(userService.create(Mockito.any(User.class), Mockito.anyString()))
+    		.thenThrow(new UserAlreadyExistsException(USER));
+    	
+    	Gson gson = new Gson();
+        String json = gson.toJson(USER);
+        
+    	mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(json))
+		        .andExpect(status().isForbidden());
+    }
+    
+    @Test
+    public void testConfirmEmail_ShouldReturn302() throws Exception {
+    	mockMvc.perform(get("/user/confirmation/000139458347373427"))
+	        .andExpect(status().isFound());
     }
     
     @Test
