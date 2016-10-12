@@ -682,14 +682,18 @@ md-content {
 		margin-top: -86px;
 		/*padding-left: 17px; */
 	}
-	/* .indented-header {
+	.indented-header {
 		margin-top: -21px;
-	} */
+	}
 	.indented-content {
 		margin-top: -0px;
+		margin-left: 0% !important;
 	}
-	.feedback span>span {
-	    font-size: 97%;
+	/* .feedback span>span {
+	    font-size: 87%;
+	} */
+	.row.indented-content {
+	    width: 103.5%;
 	}
 }
 
@@ -700,15 +704,15 @@ md-content {
 		padding-left: 6px;
 		font-size: 21px;
 	}
-	/* .indented-header {
+	.indented-header {
 		margin-top: -39px;
-	} */
+	}
 	.indented-content {
 		margin-top: -20px;
 	}
 	.feedback img.circle, .feedback div.circle {
 		position: relative;
-		/* top: 5px; */
+		top: 5px;
 		width: 35px !important;
 		height: 35px !important;
 	}
@@ -723,35 +727,78 @@ md-content {
 	.feedback div.circle {
 		top: 9px !important;
 	}
+	a .material-icons.closeIcon {
+       font-size: 64px !important;
+       top: 76px !important;
+       right: 0;
+	}
 }
 
 @media only screen and (min-width: 993px) {
-    .description.card, .location.card, .other-info.card {
-        width: 48% !important;
-    }
-    
     .description.card, .location.card, .other-info.card, .feedback .card {
-        width: 48% !important;
+        width: 47% !important;
     }
     
-    .row .col.l1 {
-        width: 3.3% !important;
+    #feedback-modal, #name-modal, #description-modal {
+        height: 50%;
+    }
+
+    #name-modal, #description-modal {
+	    height: 33%;
+    }
+    
+    .typeit {
+        margin-top: 16px;
     }
 }
 
-@media only screen and (min-width: 601px) {
-    .description.card, .location.card, .other-info.card {
-        width: 48% !important;
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 46.5% !important;
     }
     
-    .feedback .card {
-        width: 48% !important;
+    .leave-feedback-content {
+        padding: 9px !important;
     }
-    .row .col.l1 {
-        width: 3.2% !important;
+    
+    #name-modal, #description-modal {
+        height: 20% !important;
     }
-    .closeIcon {
-        right: 57px !important;
+    
+    #feedback-modal {
+        height: 30%;
+    }
+    
+    /* #typing-feedback {
+        margin-top: -25px !important;
+        height: 76px;
+    } */
+    
+    .typeit {
+        margin-top: -23px;
+    }
+    
+    .description .card-content .more {
+        height: auto;
+    }
+    .description .card-content {
+        min-height: 152px;
+    }
+    .card[less="true"] p.less {
+        overflow: hidden;
+	    height: 82px;
+	    margin-bottom: -9px !important;
+    }
+}
+
+.typeit {
+    font-size: 18px;
+    margin-left: 5px;
+    font-weight: 300;
+}
+
+.feedback-header {
+	margin-top: 0%;
 }
 
 .row.indented-content {
@@ -803,7 +850,7 @@ h3 {
 
 .card.place .card-content {
     padding-left: 5px;
-    padding-top: 5px;
+    padding-top: 3px;
 }
 
 p.less, p.more {
@@ -846,7 +893,6 @@ input.add-feedback {
 .carousel.carousel-slider {
     height: 300px !important;
     margin-top: -20px;
-    left: -6px;
 }
 
 .masonry {
@@ -862,13 +908,13 @@ input.add-feedback {
 
 .feedback img.circle, .feedback div.circle {
     position: relative;
-    top: 9px;
-    width: 65px;
-    height: 65px;
+    top: 5px;
+    width: 60px;
+    height: 60px;
 }
 
-.description .card-content.less {
-    height: 160px;
+.feedback span>span {
+	font-size: 87% !important;
 }
 
 .add-pic {
@@ -893,20 +939,8 @@ input.add-feedback {
 }
 
 .feedback span > span {
-    top: -17px;
+    top: -10px;
     position: relative;
-}
-
-.photo-camera {
-	float: right;
-}
-
-#feedback-modal, #name-modal, #description-modal {
-    height: 50%;
-}
-
-#name-modal, #description-modal {
-	height: 33%;
 }
 
 #feedback-modal {
@@ -920,13 +954,14 @@ input.add-feedback {
 
 .feedback div.circle {
     display: inline-block;
-    width: 65px;
-    height: 65px;
+    float: right;
+    width: 60px;
+    height: 60px;
     text-align: center;
 }
 
 .feedback div.circle i {
-    padding: 16px;
+    padding: 13px;
     font-size: 35px;
 }
 
@@ -938,10 +973,6 @@ input.add-feedback {
     font-size: 24px;
     font-weight: 300;
     color: green !important;
-}
-
-.feedback-userpic {
-	display: inline-block;
 }
 
 .feedback-username span {
@@ -958,12 +989,12 @@ input.add-feedback {
     resize: none;
 }
 
-.typeit {
+/* .typeit {
     font-size: 18px;
     margin-top: 16px;
     margin-left: 5px;
     font-weight: 300;
-}
+} */
 
 .map-container #mapid {
     position: fixed;
@@ -992,7 +1023,7 @@ input.add-feedback {
     font-size: 83px;
     color: darkgrey;
     top: 58px;
-    right: 86px;
+    right: 47px;
 }
 
 .before-arrow, .next-arrow {

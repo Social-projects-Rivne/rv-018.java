@@ -13,7 +13,7 @@
 					<div class="carousel carousel-slider">
 						<i class="material-icons before-arrow">navigate_before</i> <i
 							class="material-icons next-arrow">navigate_next</i> <a
-							ng-repeat="(i, image) in images" class="carousel-item mycaruosel"
+							ng-repeat="(i, image) in images" class="carousel-item"
 							ng-href="#{{i}}!"> <img class="responsive-img"
 							ng-src="{{image.fileSrc}}" id="imgClickAndChange" onclick="changeImage()">
 						</a>
@@ -23,9 +23,9 @@
 				</div>
 			</div>
 
-			<!-- <div class="row empty">
+			<div class="row empty">
 				<div>&nbsp;</div>
-			</div> -->
+			</div>
 
 			<div class="row indented-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
@@ -76,18 +76,18 @@
 				</div>
 			</div>
 
-			<div class="row indented-header">
+			<div class="row indented-header feedback-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
 					<h3>Feedback about place</h3>
 				</div>
 			</div>
 			<div class="row grid feedback indented-content">
 				<div class="col s12 m5 l5 grid-item card white">
-					<div class="card-content grey-text text-darken-1">
-						<span class="card-title" ng-click="show_modal($event)"> <div
-							class="circle" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span
-							class="smallertext">Your feedback </span> 
-							<div class="circle grey lighten-2 photo-camera">
+					<div class="card-content grey-text text-darken-1 leave-feedback-content">
+						<span class="card-title" ng-click="show_modal($event)"> <img
+							class="circle" ng-src={{userpicture.userpic}} /> <span
+							class="smallertext grey-text text-lighten-1">Your feedback </span> 
+							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
 							</div>
 						</span>
@@ -97,7 +97,7 @@
 				<div class="col s12 m4 l5 grid-item card white"
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<div class="circle" style="background-image: url('{{feedback.user.userpic}}');background-size:cover"></div>
+					<img class="circle" ng-src="{{feedback.user.userpic}}" />
 						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
 							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
@@ -111,16 +111,12 @@
 				</div>
 			</div>
 			
-			<!-- <div class="emptycol hide-on-small-only">&nbsp;</div> -->
-			<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
-			
-			
 			  <!-- Modal Structure for Feedback About Place: -->
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
-				<span class="card-title feedback-username"> <div
-					class="circle feedback-userpic" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span>{{firstname.firstName}} {{firstname.lastName}}</span>
+				<span class="card-title feedback-username"> <img
+					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{firstname.firstName}} {{firstname.lastName}}</span>
 				</span><br />
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
@@ -129,20 +125,13 @@
 					<label for="typing-feedback" class="typeit"></label>
 				</div>
 				<!-- <span ng-bind="text"></span> -->
-				<form action="#">
-					<div class="file-field input-field images-uploader">
-						<div class="commenting-button">
-							<span><i
+				<div class="form-group">
+				    <label for="newPlacePhoto"> <span><i
 								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
-							<input type="text">
-						</div>
-						<!-- <div class="file-path-wrapper"> -->
-							<input type="text" name="newPlacePhoto" id="newPlacePhoto"
+				    </label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
 						class="form-control" ng-model="newPlacePhoto"
 						placeholder="Photo URL">
-						<!-- </div> -->
-					</div>
-				</form>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button"
@@ -153,7 +142,6 @@
 		</div>
 		
 		<!-- Modal Structures of Edit Place: -->
-		<form name="nameForm">
 		<div id="name-modal" class="modal modal-fixed-footer mymodal">
 			<div class="modal-content">
 				<span class="card-title feedback-username"> <span></span>
@@ -161,11 +149,7 @@
 				<div class="input-field">
 					<label for="" class="place_name"></label>
 					<input type="text" placeholder="" id=""
-						class="validate" ng-model="name" ng-minlength="5" ng-maxlength="70" required />
-				</div>
-				<div ng-messages="nameForm.name.$error">
-					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
-					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
+						class="validate" ng-model="name" />
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -175,7 +159,6 @@
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
-		</form>
 
 		<div id="description-modal" class="modal modal-fixed-footer mymodal">
 			<div class="modal-content">
