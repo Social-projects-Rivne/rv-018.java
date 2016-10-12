@@ -64,12 +64,11 @@ component('login', {
 	    console.log(email);
 
 	    let successCallback = function(response){
-	      Materialize.toast('Resetting email was sent!', 2000);
-	          $scope.forgotPaswordEmail = "";
+	        $scope.forgotPaswordEmail = '';
 	    };
 
 	    let errorCallback = function(response){
-	      $scope.forgotPaswordEmail = "";
+	        $scope.forgotPaswordEmail = '';
 	    };
 
 	    $http.post(_contextPath + "/user/resetPassword", email).then(successCallback, errorCallback);
@@ -90,11 +89,11 @@ component('login', {
 
 	    let successCallback = function(response){
 	      Materialize.toast('Success! Check your emeil for confirmation!', 2000);
-	      $scope.firsName = "";
-	      $scope.lastName = "";
-	      $scope.userName = "";
-	      $scope.userEmail = "";
-	      $scope.userPassword = "";
+	      $scope.firsName = '';
+	      $scope.lastName = '';
+	      $scope.userName = '';
+	      $scope.userEmail = '';
+	      $scope.userPassword = '';
 	    };
 
 	    let errorCallback = function(response){
@@ -123,10 +122,18 @@ component('login', {
 	 $scope.showLoginForm = function(){
 		 if ($scope.loginstatus = 'login') {
 			 console.log("clickLoginForm")
-			 $scope.loginFormIsOpen = false;
-			 $scope.createAccountFormIsOpen = false;
-			 $scope.forgotPasswordFormIsOpen = false;
-			 $scope.loginFormIsOpen = true;
+				 $scope.loginFormIsOpen = false;
+				 $scope.createAccountFormIsOpen = false;
+				 $scope.forgotPasswordFormIsOpen = false;
+				 $scope.loginFormIsOpen = true;
+				 $scope.email = '';
+				 $scope.password = '';
+				 $scope.firsName = '';
+				 $scope.lastName = '';
+				 $scope.userName = '';
+				 $scope.userEmail = '';
+				 $scope.userPassword = '';
+				 $scope.forgotPaswordEmail = '';
 		} 
 		
 	 }
