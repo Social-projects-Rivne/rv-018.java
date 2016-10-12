@@ -122,18 +122,18 @@ component('login', {
 	 $scope.showLoginForm = function(){
 		 if ($scope.loginstatus = 'login') {
 			 console.log("clickLoginForm")
-			 $scope.loginFormIsOpen = false;
-			 $scope.createAccountFormIsOpen = false;
-			 $scope.forgotPasswordFormIsOpen = false;
-			 $scope.loginFormIsOpen = true;
-			 $scope.email = '';
-			 $scope.password = '';
-			 $scope.firsName = '';
-		     $scope.lastName = '';
-		     $scope.userName = '';
-		     $scope.userEmail = '';
-		     $scope.userPassword = '';
-		     $scope.forgotPaswordEmail = '';
+				 $scope.loginFormIsOpen = false;
+				 $scope.createAccountFormIsOpen = false;
+				 $scope.forgotPasswordFormIsOpen = false;
+				 $scope.loginFormIsOpen = true;
+				 $scope.email = '';
+				 $scope.password = '';
+				 $scope.firsName = '';
+				 $scope.lastName = '';
+				 $scope.userName = '';
+				 $scope.userEmail = '';
+				 $scope.userPassword = '';
+				 $scope.forgotPaswordEmail = '';
 		} 
 		
 	 }
