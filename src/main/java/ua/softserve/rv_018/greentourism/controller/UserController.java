@@ -249,7 +249,7 @@ public class UserController {
     	resp.sendRedirect("http://" + req.getHeader("host") + "/#/profile/" + Long.parseLong(token.substring(0, 4)));
     }
     
-    @RequestMapping(value = "/{token}", method = RequestMethod.GET,
+    @RequestMapping(value = "/profile/{token}", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getUser(@PathVariable String token) {
         logger.info("> getUser id:{}", token);

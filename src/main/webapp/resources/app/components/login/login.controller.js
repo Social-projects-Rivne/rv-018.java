@@ -52,6 +52,7 @@ component('login', {
 				$scope.loginCondition = $localStorage.message;
 				$localStorage.authorization = null;
 				location.reload();
+				$location.path("/");
 			}, function(error){
 				console.log('Error in logout function');
 				console.log(error.data);
