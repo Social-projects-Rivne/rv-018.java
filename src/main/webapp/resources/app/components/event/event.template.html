@@ -1,6 +1,4 @@
-<!-- <div ng-click="goPlace()" ng-controller="OpenPlaceCtrl"> -->
-<!-- <div class="container side-nav  id="slide-out"> -->
-	<div class="container">
+<div class="container">
 
 		<div class="close-place">   <!-- ng-show="close-place-button"> -->
 			<a href="#" ng-click="close_place($event)"> <span
@@ -84,8 +82,8 @@
 			<div class="row grid feedback indented-content">
 				<div class="col s12 m5 l5 grid-item card white">
 					<div class="card-content grey-text text-darken-1 leave-feedback-content">
-						<span class="card-title" ng-click="show_modal($event)"> <div
-							class="circle user-circle" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span
+						<span class="card-title" ng-click="show_modal($event)"> <img
+							class="circle" ng-src={{userpicture.userpic}} /> <span
 							class="smallertext grey-text text-lighten-1">Your feedback </span> 
 							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
@@ -97,7 +95,7 @@
 				<div class="col s12 m4 l5 grid-item card white"
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<div class="circle user-feedback-circles" style="background-image: url('{{feedback.user.userpic}}');background-size:cover"></div>
+					<img class="circle" ng-src="{{feedback.user.userpic}}" />
 						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
 							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />

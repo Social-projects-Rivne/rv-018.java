@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
 import ua.softserve.rv_018.greentourism.service.PointService;
@@ -44,6 +46,10 @@ public class EventController {
 
 	@Autowired
 	private GalleryRepository galleryRepository;
+	
+	@Autowired
+	private CommentItemRepository commentItemRepository;
+	
 	/**
      * Web service endpoint to create Event entity.
      * The service returns the created Event entity url.
@@ -203,6 +209,16 @@ public class EventController {
 			}
 			if (event.getId() == gallery.getEvent().getId()) {
 				event.getAttachments().add(gallery.getAttachment());
+			}
+		}
+		
+		List<CommentItem> commentItems = commentItemRepository.findByEvent(event);
+		for (CommentItem commentItem : commentItems) {
+			if (commentItem == null) {
+				continue;
+			}
+			if (event.getId() == commentItem.getEvent().getId()) {
+				event.getComments().add(commentItem.getComment());
 			}
 		}
 

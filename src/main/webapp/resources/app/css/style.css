@@ -712,7 +712,7 @@ md-content {
 	}
 	.feedback img.circle, .feedback div.circle {
 		position: relative;
-		top: 5px;
+		top: 8px;
 		width: 35px !important;
 		height: 35px !important;
 	}
@@ -789,6 +789,14 @@ md-content {
 	    height: 82px;
 	    margin-bottom: -9px !important;
     }
+}
+
+/* .smallertext{
+	top: -14px !important;
+} */
+
+.user-feedback-circles {
+	float: none !important;
 }
 
 .typeit {
@@ -908,7 +916,7 @@ input.add-feedback {
 
 .feedback img.circle, .feedback div.circle {
     position: relative;
-    top: 5px;
+    top: 9px;
     width: 60px;
     height: 60px;
 }
@@ -939,7 +947,7 @@ input.add-feedback {
 }
 
 .feedback span > span {
-    top: -10px;
+    top: -14px;
     position: relative;
 }
 
@@ -958,6 +966,10 @@ input.add-feedback {
     width: 60px;
     height: 60px;
     text-align: center;
+}
+
+.user-circle {
+	float: none !important;
 }
 
 .feedback div.circle i {
