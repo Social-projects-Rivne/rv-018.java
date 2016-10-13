@@ -7,7 +7,7 @@ angular.module('greenApp')
 
     $rootScope.mopen();
     $scope.loginCondition = $localStorage.message;
-	$scope.loginstatus = $scope.loginCondition;
+    $scope.loginstatus = $scope.loginCondition;
 
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
