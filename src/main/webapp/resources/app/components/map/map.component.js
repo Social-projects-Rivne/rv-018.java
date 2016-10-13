@@ -251,7 +251,7 @@ $scope.createNewEvent = function() {
 			    }
 		})
 		.then(function(response){
-			Materialize.toast('Event successfully added!', 4000);
+			Materialize.toast('Event successfully added!', 2000);
 		    setTimeout(function () {
 		      $scope.$apply(function () {
 		        $scope.addEventMenuIsOpen = false;
@@ -271,7 +271,7 @@ $scope.createNewEvent = function() {
 			 Materialize.toast('Something wrong. Please try again!', 2000);
 		});
 	} else
-		Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
+		Materialize.toast('Please log in first. Only logged  user can add Event!', 4000);
 		setTimeout(function () {
 		      $scope.$apply(function () {
 		        $scope.addEventMenuIsOpen = false;
