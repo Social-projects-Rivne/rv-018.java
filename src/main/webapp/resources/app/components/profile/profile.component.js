@@ -9,7 +9,7 @@ component('profile', {
     		$scope.places = response.data;
 	    };
 	    
-		$http.get(_contextPath + '/api/place/user/' + $routeParams.id).then(successCallBack);
+		$http.get(_contextPath + '/api/place/profile/user/' + $routeParams.id).then(successCallBack);
 		
 		var successCallBack = function(response){
     		$scope.username = response.data.username;
@@ -20,7 +20,7 @@ component('profile', {
 			$scope.userpic = response.data.userpic ? response.data.userpic : 'images/No_Photo_icon.jpg';
 	    };
 	    
-	    $http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
+	    $http.get(_contextPath + '/user/profile/' + $routeParams.id).then(successCallBack);
 	    
 	    $scope.update = function () {
 			$scope.id = $routeParams.id;
@@ -59,7 +59,7 @@ component('profile', {
 				$scope.userpic = response.data.userpic;
 		    };
 			
-			$http.get(_contextPath + '/user/' + $routeParams.id).then(successCallBack);
+			$http.get(_contextPath + '/user/profile/' + $routeParams.id).then(successCallBack);
 		};
 		
 		$scope.update = function () {
@@ -94,7 +94,7 @@ component('profile', {
 		$scope.events = responseev.data;
     };
     
-	$http.get(_contextPath + '/api/event/user/' + $routeParams.id).then(successCallBack);
+	$http.get(_contextPath + '/api/event/profile/user/' + $routeParams.id).then(successCallBack);
 	
 	}
 });

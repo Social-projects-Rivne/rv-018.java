@@ -31,4 +31,11 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 			, nativeQuery=true)
 	List<Place> findByUserId(
 			@Param ("user_id") Long id);
+	
+	@Query(value="select place.* "
+			+ "from place inner join user_detail on place.owner_id = user_detail.id "
+			+ "where user_detail.token >= :token "
+			, nativeQuery=true)
+	List<Place> findByUserToken(
+			@Param ("token") String token);
 }
