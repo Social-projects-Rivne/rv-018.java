@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('greenApp').controller('menuController', function($rootScope, $scope, $timeout, $mdSidenav) {
+angular.module('greenApp').controller('menuController', function($rootScope, $scope, $timeout, $mdSidenav, $localStorage) {
 
+	$scope.loginCondition = $localStorage.message;
+	$scope.loginstatus = $scope.loginCondition;
+	
 	$scope.checkTabs = false;
 
 	$scope.name = "Oracle";
@@ -29,4 +32,23 @@ angular.module('greenApp').controller('menuController', function($rootScope, $sc
 	$scope.clearSearchLine = function() {
 		$scope.searchLine = "";
 	};
+	
+	 $scope.showUserProfile = function(){
+		 if ($scope.loginstatus == 'logout') {
+			 console.log("clickLoginForm")
+			 $http({
+				 	method: 'GET',
+					url: _contextPath + "/user/",
+					headers: { 'Authorization': $localStorage.authorization },
+				}).then(function successCallback(response) {
+				    // this callback will be called asynchronously
+				    // when the response is available
+				  }, function errorCallback(response) {
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+				  });	
+			 
+		} 
+		
+	 }
 });
