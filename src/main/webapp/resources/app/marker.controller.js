@@ -1,9 +1,19 @@
 'use strict';
 
 angular.module('greenApp')
-	.controller('markerCtrl', function($rootScope, $scope, $http, $log, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray, CurrentlySelectedTab){
+	.controller('markerCtrl', function($rootScope, $scope, $http, $log, 
+			$location, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray, CurrentlySelectedTab){
 		MapMarkersArray.mapMarkersArrayParam = [];
-    	var currentlySelectedTabInnerHtml = "Places";
+		console.log($location.path());
+		var match = $location.path().match(/^\/map\/(.+?)\//);
+		if (match){
+			var currentlySelectedTabInnerHtml = match[1]+'s';
+		} else {
+			var currentlySelectedTabInnerHtml = 'places';
+		}
+    	
+    	$rootScope.tab=currentlySelectedTabInnerHtml;
+    	
     	CurrentlySelectedTab.setCurrentlySelectedTab(currentlySelectedTabInnerHtml);
 	    $scope.singletonCalendarButtonIsShown = CalendarButtonIsShown;
 		
@@ -57,7 +67,7 @@ angular.module('greenApp')
 									.addTo($rootScope.myMap)
 									.on('click',function (e) {
 								$log.info(e + "was clicked")
-								window.location = '/#/map/' + urlPath + '-details/' + place.id;
+								window.location = '/#/' + urlPath + '-details/' + place.id;
 								}));
 						})
 					}, function(error){

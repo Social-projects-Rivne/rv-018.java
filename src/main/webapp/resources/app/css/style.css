@@ -676,7 +676,7 @@ md-content {
 	}
 	h2.myplace-name {
 		top: 0px;
-		left: 17px;
+		left: 26px;
 		margin: 0;
 		font-weight: 300;
 		margin-top: -86px;
@@ -789,6 +789,10 @@ md-content {
 	    height: 82px;
 	    margin-bottom: -9px !important;
     }
+    
+    .row.indented-content {
+	    width: 102.5%;
+	}
 }
 
 /* .smallertext{
@@ -1100,6 +1104,50 @@ input.add-feedback {
 } */
 
 /*------------End of place----------*/
+
+/*---------------Event details page---------------*/
+
+/* big screens */
+@media only screen and (min-width: 993px) {
+    .card.editableplace.description.event .card-action {
+        padding: 8px;
+        top: -22px;
+    }
+    
+    /* h2.myplace-name {
+        left: 21px;
+    } */
+    
+    .event-smallertext {
+        top: -6px !important;
+    }
+    
+    .event-action {
+        height: 12px;
+        /* padding: 12px !important; */
+    }
+    
+    .feedback span > span .event-rel-date{
+        top: -6px;
+    }
+}
+/* medium screens */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .card.place.event-dates .grey-text p {
+        padding: 5px;
+    }
+    
+    h2.myplace-name.event {
+        margin-top: -140px;
+    }
+}
+
+.ev-date {
+    margin-top: 1px;
+    vertical-align: sub;
+}
+    
+/*------End of event------*/
 
 /*Find place side bar*/
 #places-sidebar {

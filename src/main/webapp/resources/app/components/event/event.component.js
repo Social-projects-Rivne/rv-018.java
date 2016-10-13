@@ -20,7 +20,7 @@ angular
 								$scope.name = response.data.name;
 								$scope.description = response.data.description;
 								$scope.short_description = $scope.description
-										.substr(0, 200);
+										.substr(0, 600);
 
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
@@ -28,6 +28,8 @@ angular
 								$scope.lastname = response.data.user;
 								$scope.firstname = response.data.user;
 								$scope.mypoint = response.data.point;
+								$scope.beginningDate = response.data.dateStart;
+								$scope.endingDate = response.data.dateEnd;
 								
 								$scope.feedbacks = response.data.comments;
 								
@@ -101,10 +103,10 @@ angular
 						
 						$scope.update_name = function () {
 				    		
-							$scope.id = $routeParams.placeId;
+							$scope.id = $routeParams.eventId;
 							
 				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
+				    	    		id: $routeParams.eventId,
 				    	    		name: $scope.name
 						    };
 				    	    
@@ -129,17 +131,17 @@ angular
 						      }, 5000);
 						    };
 				    	    
-				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
+				    	    $http.put(_contextPath + '/api/event/' + $scope.id, dataObj).then(successCallback, errorCallback);
 				    	    console.log(dataObj);
 				    	    
 						};
 						
 						$scope.update_description = function () {
 				    		
-							$scope.id = $routeParams.placeId;
+							$scope.id = $routeParams.eventId;
 					    	
 				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
+				    	    		id: $routeParams.eventId,
 				    	    		description: $scope.description
 						    };
 				    	    
@@ -203,11 +205,11 @@ angular
 						$scope.close_place = function($event) {
 							
 							$event.preventDefault();
-							$location.url("/map/place/" + $scope.mypoint.id);
+							$location.url("/map/event/" + $scope.mypoint.id);
 						}
 						 
 						$scope.placeopened = true;
-						$scope.id = $routeParams.placeId;
+						$scope.id = $routeParams.eventId;
 						console.log($scope.id);
 						$scope.findById();
 					}

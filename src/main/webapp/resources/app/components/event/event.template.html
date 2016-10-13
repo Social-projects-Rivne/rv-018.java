@@ -16,7 +16,7 @@
 							ng-src="{{image.fileSrc}}" id="imgClickAndChange" onclick="changeImage()">
 						</a>
 					</div>
-					<h2 class="myplace-name editableplace"
+					<h2 class="myplace-name editableplace event"
 						ng-click="show_name_modal($event)">{{name}}<i class="material-icons">mode_edit</i></h2>
 				</div>
 			</div>
@@ -27,14 +27,14 @@
 
 			<div class="row indented-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
-					<h3>Place details</h3>
+					<h3>Event details</h3>
 				</div>
 			</div>
 
 			<div class="row indented-content grid">
 
 				<div
-					class="col s12 l5 m5 card white place editableplace description grid-item"
+					class="col s12 l5 m5 card white place editableplace description grid-item event"
 					less="true">
 					<!-- <div class=" white place"> -->
 					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
@@ -44,12 +44,9 @@
 					</div>
 					<div class="card-action">
 						<a ng-click="less_more($event)" href="#"
-							class="green-text show-more-less">Show more</a>
+							class="green-text show-more-less event-action">Show more</a>
 					</div>
 				</div>
-
-				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
-				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
 
 				<div class="col s12 l5 m5 card white place location grid-item">
 					<div class="card-content grey-text text-darken-1">
@@ -63,8 +60,7 @@
 
 				<div class="col s12 l5 m5 card white place other-info grid-item">
 					<div class="card-content grey-text text-darken-1">
-						<span class="card-title grey-text">Other
-							Info</span><br />
+						<span class="card-title grey-text">Other Info</span><br />
 						<p>
 							<img class="responsive-img"
 								src="/images/facebook.jpg" />
@@ -72,11 +68,22 @@
 						</p>
 					</div>
 				</div>
+				
+				<div class="col s12 l5 m5 card white place other-info event-dates grid-item">
+					<div class="card-content grey-text text-darken-1">
+						<span class="card-title grey-text">Start and End Dates</span><br />
+						<p>
+							<i class="material-icons ev-date">date_range</i>
+							<span class="rel_date">{{beginningDate|date:"dd MMMM yyyy"}} - {{endingDate|date:"dd MMMM yyyy"}}</span>
+						</p>
+					</div>
+				</div>
+				
 			</div>
 
 			<div class="row indented-header feedback-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
-					<h3>Feedback about place</h3>
+					<h3>Feedback about event</h3>
 				</div>
 			</div>
 			<div class="row grid feedback indented-content">
@@ -84,7 +91,7 @@
 					<div class="card-content grey-text text-darken-1 leave-feedback-content">
 						<span class="card-title" ng-click="show_modal($event)"> <img
 							class="circle" ng-src={{userpicture.userpic}} /> <span
-							class="smallertext grey-text text-lighten-1">Your feedback </span> 
+							class="event-smallertext grey-text text-lighten-1"> Your feedback</span> 
 							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
 							</div>
@@ -97,7 +104,7 @@
 					<div class="card-content grey-text text-darken-1">
 					<img class="circle" ng-src="{{feedback.user.userpic}}" />
 						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
-							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
+							<span class="rel_date event-rel-date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
 						<p class="more hidden">{{feedback.body}}</p>
@@ -109,7 +116,7 @@
 				</div>
 			</div>
 			
-			  <!-- Modal Structure for Feedback About Place: -->
+			  <!-- Modal Structure for Feedback About Event: -->
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
@@ -139,7 +146,7 @@
 			</div>
 		</div>
 		
-		<!-- Modal Structures of Edit Place: -->
+		<!-- Modal Structures of Edit Event: -->
 		<div id="name-modal" class="modal modal-fixed-footer mymodal">
 			<div class="modal-content">
 				<span class="card-title feedback-username"> <span></span>
