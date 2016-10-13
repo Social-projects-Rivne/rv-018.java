@@ -189,7 +189,6 @@ public class User implements UserDetails {
 		if (this.role == null) {
 			Role role = new Role();
 			role.setId((long)1);
-			role.setName("USER");
 			
 			this.role = role;
 		}

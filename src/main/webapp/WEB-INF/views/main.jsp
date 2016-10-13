@@ -56,9 +56,7 @@
 								   class="waves-effect waves-light btn-search">Search</a>
 		                    </div>
 		                    <div class="col s2 m2 l3 right">
-		                      	<div class="user-dropdown" onclick="show()" ng-click="showLoginForm()">
-		                      		<a class="waves-effect">Login</a>
-								</div>
+		                    	<login></login>
 		                    </div>
 		                </div>
 		            </div>    
@@ -99,8 +97,6 @@
 				</md-sidenav>
 				<!-- Actual content of the page -->
 				<div class="content">
-				<!-- Form for login  -->
-				<div ng-include="'${pageContext.request.contextPath}/resources/app/components/login/login.template.html'"></div>
 				<!-- Progress bar for map -->
 				<div class="progress" ng-controller="markerCtrl" ng-show="progressBarVision">
 					<div class="indeterminate"></div>
@@ -139,7 +135,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/marker.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/login.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/login/login.controller.js"></script>
 
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>

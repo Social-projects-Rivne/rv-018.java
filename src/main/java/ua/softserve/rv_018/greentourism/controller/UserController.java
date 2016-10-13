@@ -1,8 +1,10 @@
 package ua.softserve.rv_018.greentourism.controller;
 
 import java.util.Collection;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -223,27 +225,28 @@ public class UserController {
      * identifier of the User which Email has to be verified and the confirmation
      * token is supplied in the URL as a path variable.
      * <p>
-     * If confirmed successfully, the service returns an empty response body with
-     * HTTP status 200.
+     * If confirmed successfully, the service redirects User to his profile page
      * <p>
      * If User's id or verification token are invalid,
-     *  the service returns an empty response body with HTTP status 404.
+     * the service returns an empty response body with HTTP status 404.
      *
      * @param token A String URL path variable containing the User primary key and 
      * verification token.
      * @return A ResponseEntity with an empty response body and a HTTP status
      * code as described in the method comment.
+     * @throws IOException 
      */
     @RequestMapping(value="/confirmation/{token}", method=RequestMethod.GET,
     		headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> confirmEmail(@PathVariable String token) {
+    public void confirmEmail(@PathVariable String token, HttpServletResponse resp,
+    		                 HttpServletRequest req) throws IOException {
     	logger.info("> confirmEmail token:{}", token);
     	
     	userService.confirmEmail(token);
     	
     	logger.info("< confirmEmail token:{}", token);
     		
-    	return new ResponseEntity<>(HttpStatus.OK);
+    	resp.sendRedirect("http://" + req.getHeader("host") + "/#/profile/" + Long.parseLong(token.substring(0, 4)));
     }
 
 }
