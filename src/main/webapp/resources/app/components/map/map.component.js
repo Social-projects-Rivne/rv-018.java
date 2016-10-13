@@ -129,7 +129,7 @@ angular.module('greenApp')
 			}, function(error){
 				 Materialize.toast('Something wrong. Please try again!', 2000);
 			});
-		}
+		} else 
 		 Materialize.toast('Please log in first. Only logged  user can add Place!', 3000);
 	};
   
@@ -257,7 +257,7 @@ $scope.createNewEvent = function() {
 		}, function(error){
 			 Materialize.toast('Something wrong. Please try again!', 2000);
 		});
-	}
+	} else
 	 Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
 };
 
