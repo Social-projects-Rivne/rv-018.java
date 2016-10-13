@@ -130,7 +130,20 @@ angular.module('greenApp')
 				 Materialize.toast('Something wrong. Please try again!', 2000);
 			});
 		} else 
-		 Materialize.toast('Please log in first. Only logged  user can add Place!', 3000);
+		   Materialize.toast('Please log in first. Only logged  user can add Place!', 4000);
+		   setTimeout(function () {
+		        $scope.$apply(function () {
+		          $scope.addPlaceMenuIsOpen = false;
+		          $rootScope.myMap.off('click');
+		          $scope.newPlaceName = "";
+		          $scope.newPlaceType = "";
+		          $scope.newPlaceDescription = "";
+		          $scope.latitude = "";
+		          $scope.longitude = "";
+		          $scope.newPlacePhoto = "";
+		          $scope.addButtonAddPlace = true;
+		        });
+		      }, 50);
 	};
   
   $scope.places = ["Places of interest", "Places near water", "Recreation area"];
@@ -238,7 +251,7 @@ $scope.createNewEvent = function() {
 			    }
 		})
 		.then(function(response){
-			Materialize.toast('Event successfully added!', 2000);
+			Materialize.toast('Event successfully added!', 4000);
 		    setTimeout(function () {
 		      $scope.$apply(function () {
 		        $scope.addEventMenuIsOpen = false;
@@ -258,7 +271,22 @@ $scope.createNewEvent = function() {
 			 Materialize.toast('Something wrong. Please try again!', 2000);
 		});
 	} else
-	 Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
+		Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
+		setTimeout(function () {
+		      $scope.$apply(function () {
+		        $scope.addEventMenuIsOpen = false;
+		        $rootScope.myMap.off('click');
+		        $scope.newEventName = "";
+		        $scope.newEventType = "";
+		        $scope.newEventDescription = "";
+		        $scope.newStartDate = "";
+		        $scope.newEndDate = "";
+		        $scope.latitudeE = "";
+		        $scope.longitudeE = "";
+		        $scope.newEventPhoto = "";
+		        $scope.addButtonAddPlace = true;
+		      });
+		    }, 50);
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
