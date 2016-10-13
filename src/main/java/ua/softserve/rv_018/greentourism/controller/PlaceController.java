@@ -102,9 +102,9 @@ public class PlaceController {
 	
 	/**
 	 * Web service endpoint to fetch all Place points between two coordinates.
-	 * The service returns the list of Point entities as JSON.
+	 * The service returns the list of Event entities as JSON.
 	 * 
-	 * @return A ResponseEntity containing a List of Point objects.
+	 * @return A ResponseEntity containing a List of Event objects.
 	 */
 	@RequestMapping(value = "/places_coordinates", method = RequestMethod.GET,
 			headers = "Accept=application/json", produces = { "application/json" })

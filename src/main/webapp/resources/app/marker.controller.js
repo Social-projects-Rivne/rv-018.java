@@ -12,13 +12,14 @@ angular.module('greenApp')
 				var latLngBounds = $rootScope.myMap.getBounds();
 				var urlPath = currentlySelectedTabInnerHtml.toLowerCase().substring(0, currentlySelectedTabInnerHtml.length - 1);
 				
+				console.log(currentlySelectedTabInnerHtml, urlPath);
 				if(!CalendarDateRangeIsChosen.getCalendarDateRangeIsChosen()) {
 					$scope.progressBarVision = true;
 					$http({
 						method: 'GET',
 						url: _contextPath + '/api/' 
 											+ urlPath  
-											+ '/places_coordinates' 
+											+ '/' + urlPath + 's_coordinates' 
 											+ '?south-west=' + latLngBounds.getSouthWest().lat + ':' + latLngBounds.getSouthWest().lng 
 											+ '&north-east=' + latLngBounds.getNorthEast().lat + ':' + latLngBounds.getNorthEast().lng
 					})
@@ -56,7 +57,7 @@ angular.module('greenApp')
 									.addTo($rootScope.myMap)
 									.on('click',function (e) {
 								$log.info(e + "was clicked")
-								window.location = 'http://localhost:8080/#/map/place-details/' + place.id;
+								window.location = '/#/map/' + urlPath + '-details/' + place.id;
 								}));
 						})
 					}, function(error){

@@ -92,13 +92,13 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	@Override
 	public List<Place> findPlacesBetweenTwoCoordinates(Point southWest, Point northEast) {
-		logger.info("> Place findPlacePointsBetweenTwoCoordinates");
+		logger.info("> Place findPlacesBetweenTwoCoordinates");
 
 		List<Place> places = placeRepository.findBetweenTwoPoints(
 				southWest.getLatitude(), southWest.getLongitude(),
 				northEast.getLatitude(), northEast.getLongitude());
 		
-        logger.info("< Place findPlacePointsBetweenTwoCoordinates");
+        logger.info("< Place findPlacesBetweenTwoCoordinates");
 
 		return places;
 	}
