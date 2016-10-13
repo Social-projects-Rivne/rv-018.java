@@ -94,7 +94,7 @@ component('profile', {
 		$scope.events = responseev.data;
     };
     
-	$http.get(_contextPath + '/api/event/user/' + $routeParams.id).then(successCallBack);
+	$http.get(_contextPath + '/api/event/profile/user/' + $routeParams.id).then(successCallBack);
 	
 	}
 });

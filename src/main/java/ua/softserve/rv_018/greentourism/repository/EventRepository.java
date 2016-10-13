@@ -57,4 +57,11 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 			@Param ("user_id") Long id);
 	
 	List<Event> findByNameIgnoreCaseContaining(String name);
+	
+	@Query(value="select event.* "
+			+ "from event inner join user_detail on event.owner_id = user_detail.id "
+			+ "where user_detail.token >= :token "
+			, nativeQuery=true)
+	List<Event> findByUserToken(
+			@Param ("token") String token);
 }

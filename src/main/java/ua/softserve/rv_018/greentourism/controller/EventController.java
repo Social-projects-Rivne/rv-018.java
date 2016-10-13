@@ -264,4 +264,17 @@ public class EventController {
       
       return new ResponseEntity<>(events, HttpStatus.OK);
   }
+  
+  @RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET,
+          headers = "Accept=application/json", produces = {"application/json"})
+  public ResponseEntity<?> getEventByUserToken(
+  		@PathVariable ("token") String token) {
+      logger.info("> getEvent token:{}", token);
+
+      List<Event> events = eventService.findByUserToken(token);
+      
+      logger.info("< getEventByUserToken id:{}", token);
+      
+      return new ResponseEntity<>(events, HttpStatus.OK);
+  }
 }
