@@ -90,7 +90,7 @@
 							<a href="#/event" class="collection-item" ng-click="hideTabs(); toggleLeft()"><i class="material-icons">redeem</i> Events calendar</a>
 						</div>
 						<div>
-							<a href="#/profile/{{userprofile}}" class="collection-item" ng-click="hideTabs(); toggleLeft(); showUserProfile()"><i class="material-icons">perm_identity</i>Profile</a>
+							<a href="#/profile/{{userprofile}}" class="collection-item" ng-click="hideTabs(); toggleLeft()"><i class="material-icons">perm_identity</i>Profile</a>
 						</div>
 					</md-content>
 
