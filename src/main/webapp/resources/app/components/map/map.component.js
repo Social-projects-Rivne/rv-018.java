@@ -7,9 +7,7 @@ angular.module('greenApp')
 
     $rootScope.mopen();
     $scope.loginCondition = $localStorage.message;
-    console.log($localStorage.message);
-	$scope.loginstatus = $scope.loginCondition
-	console.log($scope.loginstatus);
+	$scope.loginstatus = $scope.loginCondition;
 
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
@@ -132,6 +130,7 @@ angular.module('greenApp')
 				 Materialize.toast('Something wrong. Please try again!', 2000);
 			});
 		}
+		 Materialize.toast('Please log in first. Only logged  user can add Place!', 3000);
 	};
   
   $scope.places = ["Places of interest", "Places near water", "Recreation area"];
@@ -259,6 +258,7 @@ $scope.createNewEvent = function() {
 			 Materialize.toast('Something wrong. Please try again!', 2000);
 		});
 	}
+	 Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];

@@ -44,15 +44,15 @@ public class GalleryController {
     	logger.info("> createGallery");
     	
     	User user = tokenUtil.getUserFromHeader(authorization);
-    	if (gallery.getPlace() != null) {
-    		Place place = gallery.getPlace();
-        	place.setUser(user);
-        	gallery.setPlace(place);
-    	} else {
-    		Event event = gallery.getEvent();
-            event.setUser(user);
-            gallery.setEvent(event);
-    	}
+		if (gallery.getPlace() != null) {
+			Place place = gallery.getPlace();
+			place.setUser(user);
+			gallery.setPlace(place);
+		} else {
+			Event event = gallery.getEvent();
+			event.setUser(user);
+			gallery.setEvent(event);
+		}
     	
         Gallery savedGallery = galleryService.create(gallery);
         
