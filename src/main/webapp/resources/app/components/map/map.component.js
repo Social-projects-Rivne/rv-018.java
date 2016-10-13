@@ -3,9 +3,11 @@
 angular.module('greenApp')
 .component('map', {
   templateUrl: _contextPath + '/resources/app/components/map/map.template.html',
-  controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache) {
+  controller: function($rootScope, $scope, $http, $routeParams, CalendarIsOpen, CalendarButtonIsShown, $templateCache, $localStorage) {
 
     $rootScope.mopen();
+    $scope.loginCondition = $localStorage.message;
+    $scope.loginstatus = $scope.loginCondition;
 
     if ($rootScope.myMap) {
       $scope.previousMapCenter = $rootScope.myMap.getCenter();
@@ -42,6 +44,7 @@ angular.module('greenApp')
 
       let marker;
 
+      /*-----START ADD Place-----*/
       $scope.addPlaceMenu = function() {
         $scope.addPlaceMenuIsOpen = true;
         $rootScope.myMap.on('click',function(e) {
@@ -83,52 +86,53 @@ angular.module('greenApp')
       $scope.addButtonAddPlace = true;
     };
 
-    $scope.createNewPlace = function(form) {
-      let dataObj = {
-        place : {
-          name : $scope.newPlaceName,
-          description : $scope.newPlaceDescription,
-          point : {
-            latitude : $scope.latitude,
-            longitude : $scope.longitude
-          },
-          category : {
-            name : $scope.newPlaceType,
-            tableType : "place"
-          },
-        },
-        attachment: {
-          fileSrc: $scope.newPlacePhoto
-        },
-        tableType : "place",
-      };
-
-    console.log(dataObj);
-
-    let successCallback = function(response){
-      Materialize.toast('Place successfully added!', 2000);
-      setTimeout(function () {
-        $scope.$apply(function () {
-          $scope.addPlaceMenuIsOpen = false;
-          $rootScope.myMap.off('click');
-          $scope.newPlaceName = "";
-          $scope.newPlaceType = "";
-          $scope.newPlaceDescription = "";
-          $scope.latitude = "";
-          $scope.longitude = "";
-          $scope.newPlacePhoto = "";
-          $scope.addButtonAddPlace = true;
-        });
-      }, 50);
-    };
-
-    let errorCallback = function(response){
-      Materialize.toast('Something wrong. Please try again!', 2000);
-    };
-
-    $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
-  };
-
+	$scope.createNewPlace = function() {
+		if ($scope.loginstatus == 'logout') {
+			$http({
+				method: 'POST',
+				url: _contextPath + "/api/gallery/",
+				headers: { 'Authorization': $localStorage.authorization },
+				data: {
+			        place : {
+			            name : $scope.newPlaceName,
+			            description : $scope.newPlaceDescription,
+			            point : {
+			              latitude : $scope.latitude,
+			              longitude : $scope.longitude
+			            },
+			            category : {
+			              name : $scope.newPlaceType,
+			              tableType : "place"
+			            },
+			          },
+			          attachment: {
+			            fileSrc: $scope.newPlacePhoto
+			          },
+			          tableType : "place",
+			        }
+			})
+			.then(function(response){
+			    Materialize.toast('Place successfully added!', 2000);
+			      setTimeout(function () {
+			        $scope.$apply(function () {
+			          $scope.addPlaceMenuIsOpen = false;
+			          $rootScope.myMap.off('click');
+			          $scope.newPlaceName = "";
+			          $scope.newPlaceType = "";
+			          $scope.newPlaceDescription = "";
+			          $scope.latitude = "";
+			          $scope.longitude = "";
+			          $scope.newPlacePhoto = "";
+			          $scope.addButtonAddPlace = true;
+			        });
+			      }, 50);
+			}, function(error){
+				 Materialize.toast('Something wrong. Please try again!', 2000);
+			});
+		} else 
+		 Materialize.toast('Please log in first. Only logged  user can add Place!', 3000);
+	};
+  
   $scope.places = ["Places of interest", "Places near water", "Recreation area"];
 
   $scope.resetAddPlaceForm = function(form) {
@@ -160,7 +164,8 @@ angular.module('greenApp')
   if ($routeParams.id) {
     $scope.findById();
   }
-  // -----START ADD Event-----
+  
+  /*-----START ADD Event-----*/
   $scope.addEventMenu = function() {
     $scope.addEventMenuIsOpen = true;
     $rootScope.myMap.on('click',function(e) {
@@ -205,53 +210,55 @@ $scope.resetAddEventForm = function(form) {
   }
 };
 
-$scope.createNewEvent = function(form) {
-  let dataObj = {
-    event : {
-      name : $scope.newEventName,
-      description : $scope.newEventDescription,
-      dateStart : $scope.newStartDate,
-      dateEnd : $scope.newEndDate,
-      point : {
-        latitude : $scope.latitudeE,
-        longitude : $scope.longitudeE
-      },
-      category : {
-        name : $scope.newEventType,
-        tableType : "event"
-      },
-    },
-    attachment: {
-      fileSrc: $scope.newEventPhoto
-    },
-    tableType : "event",
-  };
-  console.log(dataObj);
-
-  let successCallback = function(response){
-    Materialize.toast('Event successfully added!', 2000);
-    setTimeout(function () {
-      $scope.$apply(function () {
-        $scope.addEventMenuIsOpen = false;
-        $rootScope.myMap.off('click');
-        $scope.newEventName = "";
-        $scope.newEventType = "";
-        $scope.newEventDescription = "";
-        $scope.newStartDate = "";
-        $scope.newEndDate = "";
-        $scope.latitudeE = "";
-        $scope.longitudeE = "";
-        $scope.newEventPhoto = "";
-        $scope.addButtonAddPlace = true;
-      });
-    }, 50);
-  };
-
-  let errorCallback = function(response){
-    Materialize.toast('Something wrong. Please try again!', 2000);
-  };
-
-  $http.post(_contextPath + "/api/gallery/", dataObj).then(successCallback, errorCallback);
+$scope.createNewEvent = function() {
+	if ($scope.loginstatus == 'logout') {
+		$http({
+			method: 'POST',
+			url: _contextPath + "/api/gallery/",
+			headers: { 'Authorization': $localStorage.authorization },
+			data: {
+			    event : {
+			        name : $scope.newEventName,
+			        description : $scope.newEventDescription,
+			        dateStart : $scope.newStartDate,
+			        dateEnd : $scope.newEndDate,
+			        point : {
+			          latitude : $scope.latitudeE,
+			          longitude : $scope.longitudeE
+			        },
+			        category : {
+			          name : $scope.newEventType,
+			          tableType : "event"
+			        },
+			      },
+			      attachment: {
+			        fileSrc: $scope.newEventPhoto
+			      },
+			      tableType : "event",
+			    }
+		})
+		.then(function(response){
+			Materialize.toast('Event successfully added!', 2000);
+		    setTimeout(function () {
+		      $scope.$apply(function () {
+		        $scope.addEventMenuIsOpen = false;
+		        $rootScope.myMap.off('click');
+		        $scope.newEventName = "";
+		        $scope.newEventType = "";
+		        $scope.newEventDescription = "";
+		        $scope.newStartDate = "";
+		        $scope.newEndDate = "";
+		        $scope.latitudeE = "";
+		        $scope.longitudeE = "";
+		        $scope.newEventPhoto = "";
+		        $scope.addButtonAddPlace = true;
+		      });
+		    }, 50);
+		}, function(error){
+			 Materialize.toast('Something wrong. Please try again!', 2000);
+		});
+	} else
+	 Materialize.toast('Please log in first. Only logged  user can add Event!', 3000);
 };
 
 $scope.events = ["Sport competition", "Festival", "Meeting"];
