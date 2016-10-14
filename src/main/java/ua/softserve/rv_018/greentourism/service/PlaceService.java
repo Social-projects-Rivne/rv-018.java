@@ -66,4 +66,6 @@ public interface PlaceService {
      * @return A List of Place objects.
      */
 	List<Place> findByUserIdWithAttachments(Long id);
+	
+	List<Place> findByUserToken(String token);
 }

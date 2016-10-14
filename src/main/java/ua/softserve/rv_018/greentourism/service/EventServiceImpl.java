@@ -200,4 +200,15 @@ public class EventServiceImpl implements EventService {
 
 		return events;
 	}
+	
+	@Override
+	public List<Event> findByUserToken(String token) {
+		logger.info("> Event findByUserToken token:{}", token);
+
+		List<Event>  events = eventRepository.findByUserToken(token);
+
+        logger.info("< Event findByUserToken token:{}", token);
+
+        return events;
+	}
 }

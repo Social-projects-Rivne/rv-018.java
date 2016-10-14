@@ -268,4 +268,17 @@ public class PlaceController {
        
        return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
    }
+   
+   @RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET,
+           headers = "Accept=application/json", produces = {"application/json"})
+   public ResponseEntity<?> getPlaceByUserToken(
+   		@PathVariable ("token") String token) {
+       logger.info("> getPlace token:{}", token);
+
+       List<Place> places = placeService.findByUserToken(token);
+       
+       logger.info("< getPlaceByUser id:{}", token);
+       
+       return new ResponseEntity<>(places, HttpStatus.OK);
+   }
 }

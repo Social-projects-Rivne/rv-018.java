@@ -199,4 +199,15 @@ public class PlaceServiceImpl implements PlaceService {
 
 		return updatedPlace;
 	}
+
+	@Override
+	public List<Place> findByUserToken(String token) {
+		logger.info("> Place findByUserToken token:{}", token);
+
+		List<Place>  places = placeRepository.findByUserToken(token);
+
+        logger.info("< Place findByUserToken token:{}", token);
+
+        return places;
+	}
 }

@@ -92,4 +92,6 @@ public interface UserService {
 
 	User changeUserPassword(User user, String password);
 
+	User findUserByToken(String token);
+
 }

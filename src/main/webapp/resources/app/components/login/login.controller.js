@@ -28,6 +28,7 @@ component('login', {
 			$localStorage.message = 'logout';
 			$scope.loginCondition = $localStorage.message;
 			$scope.loginFormShow = 'hideform' ;
+			location.reload();
 		}, function(error){
 			console.log("Error in login function");
 			console.log(error.data);
@@ -50,6 +51,8 @@ component('login', {
 				$localStorage.message = 'login';
 				$scope.loginCondition = $localStorage.message;
 				$localStorage.authorization = null;
+				location.reload();
+				$location.path("/");
 			}, function(error){
 				console.log('Error in logout function');
 				console.log(error.data);

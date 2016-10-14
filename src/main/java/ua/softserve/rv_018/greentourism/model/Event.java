@@ -51,7 +51,7 @@ public class Event {
 	@JoinColumn(name = "point_id", nullable = false)
 	private Point point;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "owner_id")
 	private User user;
 
