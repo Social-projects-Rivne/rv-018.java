@@ -20,7 +20,7 @@ public class UserDataInputValidation {
 	
     private static final String NAME_PATTERN = 
 			"^"						//Start of the string	 
-			+ "[a-zA-z]"			//Must contain only latin symbols
+			+ "[a-zA-Z]"			//Must contain only latin symbols
 			+ "{2,}"				//Must contain at least 2 characters
 			+ "$";					//End of the string
 	

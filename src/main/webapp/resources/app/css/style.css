@@ -1170,6 +1170,14 @@ input.add-feedback {
 	overflow: hidden;
 }
 
+.result-header {
+	top: 18px;
+	position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120%;
+}
+
 .search-error {
     position: absolute;
     top: 50%;
