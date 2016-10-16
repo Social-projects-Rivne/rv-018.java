@@ -5,10 +5,10 @@ component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
 			
-	if ($localStorage.message == 'login'  ) {
-		$scope.loginstatus = 'login';
-	} else{
+	if ($localStorage.message == 'logout') {
 		$scope.loginstatus = 'logout';
+	} else{
+		$scope.loginstatus = 'login';
 	}
 	
 	$scope.loginFormShow = '' ;
