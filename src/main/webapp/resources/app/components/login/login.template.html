@@ -34,18 +34,18 @@
 			</div>
     </div>
 	
- 	<div id="login-form" class="col s12 m8 offset-m2 l4 offset-l4 center" ng-switch-when="login" ng-show="loginFormIsOpen" ng-hide="false" ng-cloak>
+ 	<div id="login-form" class="col s12 m8 offset-m2 l4 offset-l4 center"  ng-show="loginFormIsOpen" ng-hide="false" ng-cloak>
 		<div class="row">
 			<h5>Sign in</h5>
 			<div class="input-field col s12">
-				<input placeholder="Email" autocomplete="off" id="email" name="email" type="email" ng-model="$parent.email"	
+				<input placeholder="Email" autocomplete="off" id="email" name="email" type="email" ng-model="email"	
 					ng-required="true">
 				<span ng-show="login-form.email.$dirty && login-form.email.$error.required">Email is required.</span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<input placeholder="Password" id="password" name="password" type="password" ng-model="$parent.password"
+				<input placeholder="Password" id="password" name="password" type="password" ng-model="password"
 					ng-required="true"> 
 				<span ng-show="form.password.$dirty && form.password.$error.required">Password is required.</span>
 				<span ng-show="inputError">Invalid credentials. Please input right credentials or register.</span>

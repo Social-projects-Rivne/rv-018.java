@@ -5,17 +5,24 @@ component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
 			
-	$scope.loginstatus = 'login';
+	if ($localStorage.message == 'login'  ) {
+		$scope.loginstatus = 'login';
+	} else{
+		$scope.loginstatus = 'logout';
+	}
+	
 	$scope.loginFormShow = '' ;
+	$scope.formshow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	/*$scope.loginstatus = $scope.loginCondition*/
+	/*$scope.loginstatus = $scope.loginCondition;*/
 	console.log($scope.loginstatus);
 	
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
+		console.log($scope.email)
 		$http({
 			method: 'POST',
 			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
@@ -35,6 +42,7 @@ component('login', {
 			console.log(error.data);
 			$scope.inputError = true;
 		});
+		console.log($scope.email)
 	}
 	$scope.logout = function() {
 		console.log($scope.loginstatus + 1);
