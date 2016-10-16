@@ -5,11 +5,12 @@ component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
 			
+	$scope.loginstatus = 'login';
 	$scope.loginFormShow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	$scope.loginstatus = $scope.loginCondition
+	/*$scope.loginstatus = $scope.loginCondition*/
 	console.log($scope.loginstatus);
 	
 	/* Login and logout functionality */
