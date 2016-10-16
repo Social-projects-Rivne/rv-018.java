@@ -250,7 +250,7 @@ nav .brand-logo {
     right: 0;
     top: 88px;
     width: 25%;
-    z-index: 400;
+    z-index: 1000;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
