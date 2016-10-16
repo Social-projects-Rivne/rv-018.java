@@ -32,6 +32,12 @@ public interface PlaceService {
 	List<Point> findPlacePointsBetweenTwoCoordinates(Point southWest, Point northEast);
 	
 	/**
+     * Find all Place entities between two coordinates.
+     * @return A List of Place objects.
+     */
+	List<Place> findPlacesBetweenTwoCoordinates(Point southWest, Point northEast);
+	
+	/**
      * Persists a Place entity in the data store.
      * @param place A Place object to be persisted.
      * @return The persisted Place entity.

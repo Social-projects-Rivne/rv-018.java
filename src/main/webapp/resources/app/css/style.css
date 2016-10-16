@@ -666,14 +666,17 @@ md-content {
     }
 }
 
-/* ------------------Place------------------- */
+/* ------------------Place details page------------------- */
 @CHARSET "UTF-8";
 
 /* large & medium devices */
 @media only screen and (min-width: 601px) {
+	.card {
+	    position: relative;
+	}
 	h2.myplace-name {
 		top: 0px;
-		left: 17px;
+		left: 26px;
 		margin: 0;
 		font-weight: 300;
 		margin-top: -86px;
@@ -684,9 +687,13 @@ md-content {
 	}
 	.indented-content {
 		margin-top: -0px;
+		margin-left: 0% !important;
 	}
-	.feedback span>span {
+	/* .feedback span>span {
 	    font-size: 87%;
+	} */
+	.row.indented-content {
+	    width: 103.5%;
 	}
 }
 
@@ -705,7 +712,7 @@ md-content {
 	}
 	.feedback img.circle, .feedback div.circle {
 		position: relative;
-		top: 5px;
+		top: 8px;
 		width: 35px !important;
 		height: 35px !important;
 	}
@@ -720,6 +727,90 @@ md-content {
 	.feedback div.circle {
 		top: 9px !important;
 	}
+	a .material-icons.closeIcon {
+       font-size: 64px !important;
+       top: 76px !important;
+       right: 0;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 47% !important;
+    }
+    
+    #feedback-modal, #name-modal, #description-modal {
+        height: 50%;
+    }
+
+    #name-modal, #description-modal {
+	    height: 33%;
+    }
+    
+    .typeit {
+        margin-top: 16px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 46.5% !important;
+    }
+    
+    .leave-feedback-content {
+        padding: 9px !important;
+    }
+    
+    #name-modal, #description-modal {
+        height: 20% !important;
+    }
+    
+    #feedback-modal {
+        height: 30%;
+    }
+    
+    /* #typing-feedback {
+        margin-top: -25px !important;
+        height: 76px;
+    } */
+    
+    .typeit {
+        margin-top: -23px;
+    }
+    
+    .description .card-content .more {
+        height: auto;
+    }
+    .description .card-content {
+        min-height: 152px;
+    }
+    .card[less="true"] p.less {
+        overflow: hidden;
+	    height: 82px;
+	    margin-bottom: -9px !important;
+    }
+    
+    .row.indented-content {
+	    width: 102.5%;
+	}
+}
+
+/* .smallertext{
+	top: -14px !important;
+} */
+
+.user-feedback-circles {
+	float: none !important;
+}
+
+.typeit {
+    font-size: 18px;
+    margin-left: 5px;
+    font-weight: 300;
+}
+
+.feedback-header {
+	margin-top: 0%;
 }
 
 .row.indented-content {
@@ -771,7 +862,7 @@ h3 {
 
 .card.place .card-content {
     padding-left: 5px;
-    padding-top: 5px;
+    padding-top: 3px;
 }
 
 p.less, p.more {
@@ -799,7 +890,7 @@ input.add-feedback {
 }
 
 .col.emptycol {
-    width: 3% !important;
+    width: 2.5% !important;
     margin-bottom: 201px;
 }
 
@@ -829,21 +920,13 @@ input.add-feedback {
 
 .feedback img.circle, .feedback div.circle {
     position: relative;
-    top: 5px;
-    width: 65px;
-    height: 65px;
+    top: 9px;
+    width: 60px;
+    height: 60px;
 }
 
-@media only screen and (min-width: 993px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
-}
-
-@media only screen and (min-width: 601px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
+.feedback span>span {
+	font-size: 87% !important;
 }
 
 .add-pic {
@@ -868,16 +951,8 @@ input.add-feedback {
 }
 
 .feedback span > span {
-    top: -10px;
+    top: -14px;
     position: relative;
-}
-
-#feedback-modal, #name-modal, #description-modal {
-    height: 50%;
-}
-
-#name-modal, #description-modal {
-	height: 33%;
 }
 
 #feedback-modal {
@@ -892,13 +967,17 @@ input.add-feedback {
 .feedback div.circle {
     display: inline-block;
     float: right;
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     text-align: center;
 }
 
+.user-circle {
+	float: none !important;
+}
+
 .feedback div.circle i {
-    padding: 16px;
+    padding: 13px;
     font-size: 35px;
 }
 
@@ -926,12 +1005,12 @@ input.add-feedback {
     resize: none;
 }
 
-.typeit {
+/* .typeit {
     font-size: 18px;
     margin-top: 16px;
     margin-left: 5px;
     font-weight: 300;
-}
+} */
 
 .map-container #mapid {
     position: fixed;
@@ -952,11 +1031,15 @@ input.add-feedback {
     z-index: 600;
     top: -19px;
     right: -4px;
+    display: block !important;
 }
 
 .closeIcon {
-    font-size: 88px;
-    color: grey;
+    position: relative;
+    font-size: 83px;
+    color: darkgrey;
+    top: 58px;
+    right: 47px;
 }
 
 .before-arrow, .next-arrow {
@@ -984,9 +1067,9 @@ input.add-feedback {
     overflow: hidden;
 }
 
-.hide-it {
+/* .hide-it {
     visibility: hidden;
-}
+} */
 
 .feedback-userpic {
     height: 71px;
@@ -1010,16 +1093,61 @@ input.add-feedback {
 	font-size: 144% !important;
 }
     
-.grid-sizer,
+/* .grid-sizer,
 .grid-item { 
 	width: 20%; 
 }
-
-/* columnWidth: '.grid-sizer',
-itemSelector: '.grid-item',
-percentPosition: true */
+ */
+ 
+/*  .grid-item.card {
+    width: 460px !important;
+} */
 
 /*------------End of place----------*/
+
+/*---------------Event details page---------------*/
+
+/* big screens */
+@media only screen and (min-width: 993px) {
+    .card.editableplace.description.event .card-action {
+        padding: 8px;
+        top: -22px;
+    }
+    
+    /* h2.myplace-name {
+        left: 21px;
+    } */
+    
+    .event-smallertext {
+        top: -6px !important;
+    }
+    
+    .event-action {
+        height: 12px;
+        /* padding: 12px !important; */
+    }
+    
+    .feedback span > span .event-rel-date{
+        top: -6px;
+    }
+}
+/* medium screens */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .card.place.event-dates .grey-text p {
+        padding: 5px;
+    }
+    
+    h2.myplace-name.event {
+        margin-top: -140px;
+    }
+}
+
+.ev-date {
+    margin-top: 1px;
+    vertical-align: sub;
+}
+    
+/*------End of event------*/
 
 /*Find place side bar*/
 #places-sidebar {

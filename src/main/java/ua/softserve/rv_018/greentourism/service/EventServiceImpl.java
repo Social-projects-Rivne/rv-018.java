@@ -74,6 +74,19 @@ public class EventServiceImpl implements EventService {
 
 		return points;
 	}
+	
+	@Override
+	public List<Event> findEventsBetweenTwoCoordinates(Point southWest, Point northEast) {
+		logger.info("> Event findEventsBetweenTwoCoordinates");
+
+		List<Event> events = eventRepository.findBetweenTwoPoints(
+				southWest.getLatitude(), southWest.getLongitude(),
+				northEast.getLatitude(), northEast.getLongitude());
+		
+        logger.info("< Event findEventsBetweenTwoCoordinates");
+
+		return events;
+	}
 
 	private List<Point> getPointsFromEvents(List<Event> events) {
 		List<Point> points = new ArrayList<>();

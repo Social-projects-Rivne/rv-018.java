@@ -35,6 +35,24 @@ public class DataValidationUnitTest {
 			"V123", 	//Contains not enough symbols
 			"#3a%$" };  //Absolutely wrong username
 	
+	private static final String[] VALID_PLACE_NAMES = 
+		{"Whatever", "smth", "Tarakaniv", "fortress", "me" };
+	
+	private static final String[] INVALID_PLACE_NAMES = 
+		{	"Tarakaniv1", 	//Contains a digit
+			"smth$", 	//Contains inappropriate symbol
+			"V", 		//Contains not enough symbols
+			"#12%$" };  //Absolutely wrong name
+	
+	private static final String[] VALID_DESCRIPTIONS = 
+		{"Whatever", "smth", "Tarakaniv", "fortress", "me" };
+	
+	private static final String[] INVALID_DESCRIPTIONS = 
+		{   "123123", 	//Doesn't contain any letter
+			"smth$", 	//Contains inappropriate symbol
+			"V", 		//Contains not enough symbols
+			"#12%$" };  //Contains symbols - not appropriate
+	
 	//Checks if validatePassword method returns true for every string in validPasswords array
 	@Test
 	public void testValidPasswords() {
@@ -75,5 +93,33 @@ public class DataValidationUnitTest {
 	public void testInvalidUsernames() {
 		for (String str : INVALID_USERNAMES)
 			assertFalse(UserDataInputValidation.validateUsername(str));
+	}
+	
+	//Checks if validatePlaceName method returns true for every string in validPlaceNames array
+	@Test
+	public void testValidPlaceNames() {
+		for (String str : VALID_PLACE_NAMES)
+			assertTrue(PlaceDataInputValidation.validatePlaceName(str));
+	}
+		
+	//Checks if validatePlaceName method returns false for every string in invalidPlaceNames array
+	@Test
+	public void testInvalidPlaceNames() {
+		for (String str : INVALID_PLACE_NAMES)
+			assertFalse(PlaceDataInputValidation.validatePlaceName(str));
+	}
+	
+	//Checks if validateDescription method returns true for every string in validDescriptions array
+	@Test
+	public void testValidDescriptions() {
+		for (String str : VALID_DESCRIPTIONS)
+			assertTrue(PlaceDataInputValidation.validateDescription(str));
+	}
+			
+	//Checks if validateDescription method returns false for every string in invalidDescriptions array
+	@Test
+	public void testInvalidDescriptions() {
+		for (String str : INVALID_DESCRIPTIONS)
+			assertFalse(PlaceDataInputValidation.validateDescription(str));
 	}
 }

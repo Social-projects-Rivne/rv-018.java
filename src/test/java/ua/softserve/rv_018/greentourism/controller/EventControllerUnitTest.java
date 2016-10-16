@@ -11,11 +11,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Event;
+import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,12 +37,12 @@ public class EventControllerUnitTest {
 	private static final String EVENT_URL = "/api/event";
 	private static final String EMPTY_COLLECTION = "";
 	public static final String VALUE ="{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":\"AwesomeEvent\","
-			+ "\"name\":\"NewEventInOurCity\",\"point\":null,\"user\":null,\"attachments\":[]}";
+			+ "\"name\":\"NewEventInOurCity\",\"point\":null,\"user\":null,\"attachments\":[],\"comments\":[]}";
 	public static final String EMPTY_VALUE = "";
 	private static final String COLLECTION = "[{\"id\":1,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":null,"
-			+ "\"name\":null,\"point\":{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},\"user\":null,\"attachments\":[]},"
+			+ "\"name\":null,\"point\":{\"id\":1,\"latitude\":1.0,\"longitude\":1.0},\"user\":null,\"attachments\":[],\"comments\":[]},"
 			+ "{\"id\":2,\"category\":null,\"dateStart\":null,\"dateEnd\":null,\"description\":null,\"name\":null,"
-			+ "\"point\":{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},\"user\":null,\"attachments\":[]}]";
+			+ "\"point\":{\"id\":2,\"latitude\":2.0,\"longitude\":2.0},\"user\":null,\"attachments\":[],\"comments\":[]}]";
 
 	private List<Event> events;
 	
@@ -51,6 +56,9 @@ public class EventControllerUnitTest {
 
 	@Mock
 	private GalleryRepository galleryRepository;
+	
+	@Mock
+	private CommentItemRepository commentItemRepository;
 	
 	@Mock
 	private HttpHeaders httpHeaders;
@@ -133,7 +141,8 @@ public class EventControllerUnitTest {
 	@Test
 	public void testGetEvent() throws Exception {
 		Mockito.when(eventService.findOne(1)).thenReturn(EVENT);
-		Mockito.when(galleryRepository.findByEvents(eventService.findAll())).thenReturn(null);
+		Mockito.when(galleryRepository.findByEvent(EVENT)).thenReturn(new ArrayList<Gallery>());
+	    Mockito.when(commentItemRepository.findByEvent(EVENT)).thenReturn(new ArrayList<CommentItem>());
 
 		mockMvc.perform(get("/api/event/1"))
 				.andExpect(status().isOk())
