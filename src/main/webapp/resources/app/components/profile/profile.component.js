@@ -18,12 +18,16 @@ component('profile', {
 			$scope.lastName = response.data.lastName;
 			$scope.socialAccount = response.data.socialAccount;
 			$scope.userpic = response.data.userpic ? response.data.userpic : 'images/No_Photo_icon.jpg';
+			$scope.id = response.data.id;
+			$scope.password = response.data.password;
+			$scope.token = response.data.token;
 	    };
+	    
+	    console.log($scope.id);
 	    
 	    $http.get(_contextPath + '/user/profile/' + $routeParams.id).then(successCallBack);
 	    
-	    $scope.update = function () {
-			$scope.id = $routeParams.id;
+/*	    $scope.update = function () {
 	        
 	    	var dataObj = {  
 	            username: $scope.name,
@@ -41,7 +45,7 @@ component('profile', {
 			res.success(function(data, status, headers, config) {
 				// your code in case of success is here
 			});
-		};
+		};*/
 	    
 		$scope.findById = function () {
 	    	// update only if id chosen
@@ -57,22 +61,25 @@ component('profile', {
 				$scope.lastName = response.data.lastName;
 				$scope.socialAccount = response.data.socialAccount;
 				$scope.userpic = response.data.userpic;
+				$scope.password = response.data.password;
+				$scope.token = response.data.token;
 		    };
 			
 			$http.get(_contextPath + '/user/profile/' + $routeParams.id).then(successCallBack);
 		};
 		
 		$scope.update = function () {
-			$scope.id = $routeParams.id;
 	        
 	    	var dataObj = {
 	            username: $scope.username,
 	            email: $scope.email,
 	            firstName: $scope.firstName,
-	            id: $routeParams.id,
+	            id: $scope.id,
 	            lastName: $scope.lastName,
 	            socialAccount: $scope.socialAccount,
-	            userpic: $scope.userpic
+	            userpic: $scope.userpic,
+	            password: $scope.password,
+	            token: $scope.token
 	        };
 	        
 			var res = $http.put(_contextPath + '/user/'+$scope.id, dataObj);
