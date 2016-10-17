@@ -10,6 +10,7 @@ component('profile', {
 	    };
 	    
 		$http.get(_contextPath + '/api/place/profile/user/' + $routeParams.id).then(successCallBack);
+		console.log($scope.places);
 		
 		var successCallBack = function(response){
     		$scope.username = response.data.username;
