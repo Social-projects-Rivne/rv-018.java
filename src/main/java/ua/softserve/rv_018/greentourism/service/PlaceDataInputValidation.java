@@ -5,18 +5,14 @@ import java.util.regex.Pattern;
 
 public class PlaceDataInputValidation {
 	
-    private static final String PLACE_NAME_PATTERN = 
-			"^"						//Start of the string	 
-			+ "[a-zA-z]"			//Must contain only latin symbols
-			+ "{2,}"				//Must contain at least 2 characters
-			+ "$";					//End of the string
+    private static final String PLACE_NAME_PATTERN =  
+    		"[\\s\\w]"		        //Must contain only latin symbols, may contain numbers and backspaces
+    		+ "{5,}";				//Must contain at least 5 characters
 	
     private static final String DESCRIPTION_PATTERN = 
-    		"^"						//Start of the string	 
-			+ "[a-zA-z]"			//Must contain only latin symbols
-			+ "{2,}"				//Must contain at least 2 characters
-			+ "$";					//End of the string
-	
+    		"[\\s\\w]"		        //May contain only latin symbols, may contain numbers
+			+ "{5,}";				//Must contain at least 5 characters
+    
     public static boolean validatePlaceName(String placename) {
     	Pattern pattern = Pattern.compile(PLACE_NAME_PATTERN);
 		

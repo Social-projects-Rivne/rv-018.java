@@ -1,7 +1,9 @@
 package ua.softserve.rv_018.greentourism.service;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DataValidationUnitTest {
 	private static final String[] VALID_PASSWORDS = 
@@ -35,21 +37,19 @@ public class DataValidationUnitTest {
 			"V123", 	//Contains not enough symbols
 			"#3a%$" };  //Absolutely wrong username
 	
-	private static final String[] VALID_PLACE_NAMES = 
-		{"Whatever", "smth", "Tarakaniv", "fortress", "me" };
+	private static final String[] VALID_PLACE_NAMES =
+		{"Whatever", "smthing 5", "Tarakaniv", "fortress", "blablabla bla" };
 	
 	private static final String[] INVALID_PLACE_NAMES = 
-		{	"Tarakaniv1", 	//Contains a digit
-			"smth$", 	//Contains inappropriate symbol
+		{   "smth$", 	//Contains inappropriate symbol
 			"V", 		//Contains not enough symbols
 			"#12%$" };  //Absolutely wrong name
 	
 	private static final String[] VALID_DESCRIPTIONS = 
-		{"Whatever", "smth", "Tarakaniv", "fortress", "me" };
+		{"Whatever", "smthing 5", "Tarakaniv", "fortress", "blablabla bla" };
 	
 	private static final String[] INVALID_DESCRIPTIONS = 
-		{   "123123", 	//Doesn't contain any letter
-			"smth$", 	//Contains inappropriate symbol
+		{   "smth$", 	//Contains inappropriate symbol
 			"V", 		//Contains not enough symbols
 			"#12%$" };  //Contains symbols - not appropriate
 	
@@ -105,8 +105,9 @@ public class DataValidationUnitTest {
 	//Checks if validatePlaceName method returns false for every string in invalidPlaceNames array
 	@Test
 	public void testInvalidPlaceNames() {
-		for (String str : INVALID_PLACE_NAMES)
+		for (String str : INVALID_PLACE_NAMES){		
 			assertFalse(PlaceDataInputValidation.validatePlaceName(str));
+		}
 	}
 	
 	//Checks if validateDescription method returns true for every string in validDescriptions array

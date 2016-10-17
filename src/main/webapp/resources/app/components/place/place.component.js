@@ -6,7 +6,8 @@ angular
 				'place',
 				{
 					templateUrl : _contextPath +'/resources/app/components/place/place.template.html',
-					controller : function($scope, $http, $routeParams, $route, $rootScope, $location) {
+					bindings:{isAdmin:"<"},
+					controller : function($scope, $http, $routeParams, $route, $rootScope, $location, $localStorage) {
 			    		
 						$scope.findById = function() {
 							// update only if id is chosen
@@ -24,9 +25,9 @@ angular
 
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
-								$scope.userpicture = response.data.user;
+								/*$scope.userpicture = response.data.user;
 								$scope.lastname = response.data.user;
-								$scope.firstname = response.data.user;
+								$scope.firstname = response.data.user;*/
 								$scope.mypoint = response.data.point;
 								
 								$scope.feedbacks = response.data.comments;
@@ -61,6 +62,19 @@ angular
 									});
 									console.log('masonry applied');
 								}
+								
+								$scope.getCurrentUser = function() {
+
+								    if ($scope.loginstatus == "logout") {
+										$http({
+											method: 'GET',
+											url: _contextPath + "/user/current",
+											headers: { 'Authorization': $localStorage.authorization }
+										}).then(function(response){ 
+											console.log(response);
+										})
+									}
+							    };
 
 								$('.before-arrow').click(function() {
 									/* Act on the event */

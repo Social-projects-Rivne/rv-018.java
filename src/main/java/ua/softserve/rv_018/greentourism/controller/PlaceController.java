@@ -221,11 +221,24 @@ public class PlaceController {
 				place.getComments().add(commentItem.getComment());
 			}
 		}
+		
+       logger.info("< getPlace id:{}", id);
+       
+       return new ResponseEntity<>(place, HttpStatus.OK);
+   }
+   
+   @RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET,
+           headers = "Accept=application/json", produces = {"application/json"})
+   public ResponseEntity<?> getPlaceByUserToken(
+   		@PathVariable ("token") String token) {
+       logger.info("> getPlace token:{}", token);
 
-		logger.info("< getPlace id:{}", id);
-
-		return new ResponseEntity<>(place, HttpStatus.OK);
-	}
+       List<Place> places = placeService.findByUserToken(token);
+       
+       logger.info("< getPlaceByUser id:{}", token);
+       
+       return new ResponseEntity<>(places, HttpStatus.OK);
+   }
 
 	/**
 	 * Web service endpoint to update a single Place entity.
@@ -247,35 +260,28 @@ public class PlaceController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json", produces = {
 			"application/json" })
-	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
+	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place, @RequestHeader("Authorization") String authorization) {
 		logger.info("> updatePlace id:{}", place.getId());
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (user.getId() == null || place.getUser().getId() == null
-				|| !(user.getId().equals(place.getUser().getId()) || !(user.getRole().getName().equals("ADMIN")))) {
-			new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
 
 		if (placeService.findOne(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
+		
+		User user = tokenUtil.getUserFromHeader(authorization);
+		if (user.getId() == null || place.getUser().getId() == null
+				|| !(user.getId().equals(place.getUser().getId()) || !(user.getRole().getName().equals("ROLE_ADMIN")))) {
+			new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		System.out.println("In updatePlace: User is: " + user.getEmail());
+		place.setUser(user);
 		Place updatedPlace = placeService.update(place);
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(updatedPlace.getId()).toUri());
 
 		logger.info("< updatePlace id:{}", place.getId());
 
 		return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
-			"application/json" })
-	public ResponseEntity<?> getPlaceByUserToken(@PathVariable("token") String token) {
-		logger.info("> getPlace token:{}", token);
-
-		List<Place> places = placeService.findByUserToken(token);
-
-		logger.info("< getPlaceByUser id:{}", token);
-
-		return new ResponseEntity<>(places, HttpStatus.OK);
 	}
 }
