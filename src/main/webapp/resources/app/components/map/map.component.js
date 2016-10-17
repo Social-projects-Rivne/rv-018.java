@@ -142,6 +142,11 @@ angular.module('greenApp')
 		          $scope.longitude = "";
 		          $scope.newPlacePhoto = "";
 		          $scope.addButtonAddPlace = true;
+		          if (marker) {
+		        	    $rootScope.myMap.removeLayer(marker);
+		        	    $scope.latitudeE = "";
+		        	    $scope.longitudeE = "";
+		        	  }
 		        });
 		      }, 50);
 	};
@@ -285,6 +290,11 @@ $scope.createNewEvent = function() {
 		        $scope.longitudeE = "";
 		        $scope.newEventPhoto = "";
 		        $scope.addButtonAddPlace = true;
+		        if (marker) {
+		            $rootScope.myMap.removeLayer(marker);
+		            $scope.latitudeE = "";
+		            $scope.longitudeE = "";
+		          }
 		      });
 		    }, 50);
 };
