@@ -32,9 +32,9 @@
 							<div class="col s2 m1 l1">
 								<i ng-click="toggleLeft()" class="waves-effect waves-light material-icons">menu</i>
 							</div>
-		                    <div class="col m3 l2 hide-on-small-only">
+		                    <a href="#"><div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
-		                    </div>
+		                    </div></a>
 		                    <div class="col l1 hide-on-med-and-down line">
 		                       Home
 		                    </div>

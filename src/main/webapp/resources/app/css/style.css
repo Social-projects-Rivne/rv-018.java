@@ -727,11 +727,11 @@ md-content {
 	.feedback div.circle {
 		top: 9px !important;
 	}
-	a .material-icons.closeIcon {
+/*	a .material-icons.closeIcon {
        font-size: 64px !important;
        top: 76px !important;
        right: 0;
-	}
+	}*/
 }
 
 @media only screen and (min-width: 993px) {
