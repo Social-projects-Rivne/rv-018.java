@@ -221,7 +221,6 @@ public class PlaceController {
 				place.getComments().add(commentItem.getComment());
 			}
 		}
-<<<<<<< HEAD
 		
        logger.info("< getPlace id:{}", id);
        
@@ -273,13 +272,6 @@ public class PlaceController {
        
        return new ResponseEntity<>(places, HttpStatus.OK);
    }
-=======
-
-		logger.info("< getPlace id:{}", id);
-
-		return new ResponseEntity<>(place, HttpStatus.OK);
-	}
->>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 
 	/**
 	 * Web service endpoint to update a single Place entity.
@@ -301,7 +293,6 @@ public class PlaceController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json", produces = {
 			"application/json" })
-<<<<<<< HEAD
 	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place, @RequestHeader("Authorization") String authorization) {
 		logger.info("> updatePlace id:{}", place.getId());
 
@@ -322,40 +313,9 @@ public class PlaceController {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(updatedPlace.getId()).toUri());
-=======
-	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place) {
-		logger.info("> updatePlace id:{}", place.getId());
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (user.getId() == null || place.getUser().getId() == null
-				|| !(user.getId().equals(place.getUser().getId()) || !(user.getRole().getName().equals("ADMIN")))) {
-			new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-
-		if (placeService.findOne(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-
-		Place updatedPlace = placeService.update(place);
->>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 
 		logger.info("< updatePlace id:{}", place.getId());
 
 		return new ResponseEntity<>(updatedPlace, HttpStatus.OK);
 	}
-<<<<<<< HEAD
-=======
-
-	@RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
-			"application/json" })
-	public ResponseEntity<?> getPlaceByUserToken(@PathVariable("token") String token) {
-		logger.info("> getPlace token:{}", token);
-
-		List<Place> places = placeService.findByUserToken(token);
-
-		logger.info("< getPlaceByUser id:{}", token);
-
-		return new ResponseEntity<>(places, HttpStatus.OK);
-	}
->>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 }
