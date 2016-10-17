@@ -50,7 +50,7 @@ public interface PlaceService {
      * @param place A Place object to be updated.
      * @return The updated Place entity.
      */
-    Place update(Place place);
+    Place update(Place newPlace, Place placeToUpdate);
 
     /**
      * Find Place entities.

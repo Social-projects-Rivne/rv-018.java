@@ -47,15 +47,17 @@ angular
 						  if ($localStorage.message == 'logout') {
 							  
 							  $http({
-							    	method: 'POST',
-							    	url: _contextPath + "/api/gallery", 
+							    	method: 'PUT',
+							    	url: _contextPath + "/api/place/" + $scope.id,
 							    	headers: { 'Authorization': $localStorage.authorization },
 							    	data: {
-							    		attachment: {
-									          fileSrc: $scope.newPlacePhoto
-									        },
-							    	}
-							  })
+								        place : {
+								          },
+								          attachment: {
+								            fileSrc: $scope.newPlacePhoto
+								          },
+								        }
+								})
 						   .then(function(response){
 							  console.log("Image added");
 						      setTimeout(function () {

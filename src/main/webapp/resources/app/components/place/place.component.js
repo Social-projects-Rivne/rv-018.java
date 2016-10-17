@@ -126,7 +126,6 @@ angular
 							    	url: _contextPath + "/api/place/" + $scope.id, 
 							    	headers: { 'Authorization': $localStorage.authorization },
 							    	data: {
-							    		id: $routeParams.placeId,
 							    		name: $scope.name
 							        }
 							    }).then(function(response) {
@@ -159,7 +158,6 @@ angular
 							    	url: _contextPath + "/api/place/" + $scope.id,
 							    	headers: { 'Authorization': $localStorage.authorization },
 							    	data: {
-							    		id: $routeParams.placeId,
 					    	    		description: $scope.description
 							    	}
 							    }).then(function(response) {
