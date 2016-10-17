@@ -19,8 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+
+		/*http.authorizeRequests().antMatchers("/**").access("hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')");*/
 		http.authorizeRequests().antMatchers("/login").permitAll();
-		http.authorizeRequests().antMatchers("/logout").permitAll();
+		http.authorizeRequests().antMatchers("/logout").permitAll(); /*.and().authorizeRequests().anyRequest().hasRole("ADMIN")*/
+		
 		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 	}

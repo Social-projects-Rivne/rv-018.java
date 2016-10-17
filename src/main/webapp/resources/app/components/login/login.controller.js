@@ -9,17 +9,33 @@ component('login', {
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
-	$scope.loginstatus = $scope.loginCondition
+	$scope.loginstatus = $scope.loginCondition || "login";
 	console.log($scope.loginstatus);
+	if ($scope.loginstatus == "logout") {
+		$http({
+			method: 'GET',
+			url: _contextPath + "/api/user/role",
+			headers: { 'Authorization': $localStorage.authorization }
+		}).then(function(response){
+			if (response.data.name == "ROLE_ADMIN") {
+				console.log(response);
+				$rootScope.isAdmin = true;
+			}
+		})
+	}
 	
 	/* Login and logout functionality */
 	$scope.login = function() {
 		console.log("In login function");
+		console.log($scope);
 		$http({
 			method: 'POST',
-			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password
+			url: _contextPath + "/login" + "?email=" + $scope.email + "&password=" + $scope.password, 
+			data: {email:$scope.email, password:$scope.password}
+			
 		})
 		.then(function(response){
+			console.log(response);
 			$scope.loginstatus = 'logout' ;
 			$scope.formshow = '' ;
 			$localStorage.authorization = response.headers('Authorization'); 
@@ -123,7 +139,7 @@ component('login', {
 	 }
 	 
 	 $scope.showLoginForm = function(){
-		 if ($scope.loginstatus = 'login') {
+		 if ($scope.loginstatus == 'login') {
 			 console.log("clickLoginForm")
 				 $scope.loginFormIsOpen = false;
 				 $scope.createAccountFormIsOpen = false;

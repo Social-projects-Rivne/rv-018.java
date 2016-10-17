@@ -15,11 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import ua.softserve.rv_018.greentourism.config.authentication.TokenAuthenticationUtil;
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
 
@@ -48,6 +50,9 @@ public class UserController {
     
     @Autowired
 	public PasswordEncoder encoder;
+    
+    @Autowired
+	private TokenAuthenticationUtil tokenUtil;
 
     /**
      * Web service endpoint to fetch a single User entity by primary key
@@ -74,6 +79,19 @@ public class UserController {
         }
 
         logger.info("< getUser id:{}", id);
+        
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/current", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String authorization) {
+        logger.info("> get Current User");
+
+        User user = tokenUtil.getUserFromHeader(authorization);
+		System.out.println("In getCurrentUser: User is: " + user.getEmail());
+
+        logger.info("< get Current User");
         
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -263,5 +281,24 @@ public class UserController {
         
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+    
+    /**
+	 * Web service endpoint to fetch Role entity. The service returns the
+	 * Role entity as JSON.
+	 * 
+	 * @return A ResponseEntity containing a Role object.
+	 */
+	@RequestMapping(value = "/role", method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getRole(@RequestHeader("Authorization") String authorization) {
+
+		logger.info("> Get role from the database");
+
+		User user = tokenUtil.getUserFromHeader(authorization);
+		System.out.println("In getRole: User is: " + user.getEmail());
+		
+		logger.info("< Get role from the database");
+
+		return new ResponseEntity<>(user.getRole(), HttpStatus.OK);
+	}
 
 }

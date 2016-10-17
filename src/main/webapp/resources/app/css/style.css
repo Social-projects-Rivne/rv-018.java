@@ -720,6 +720,99 @@ md-content {
 	.feedback div.circle {
 		top: 9px !important;
 	}
+	a .close-place .closeIcon {
+       font-size: 64px !important;
+       top: 76px !important;
+       right: 0;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 47% !important;
+    }
+    
+    #feedback-modal, #name-modal, #description-modal {
+        height: 50%;
+    }
+
+    #name-modal, #description-modal {
+	    height: 33%;
+    }
+    
+    .typeit {
+        margin-top: 16px;
+    }
+    
+    .nomore.description .card-content {
+        min-height: 223px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .description.card, .location.card, .other-info.card, .feedback .card {
+        width: 46.5% !important;
+    }
+    
+    .leave-feedback-content {
+        padding: 9px !important;
+    }
+    
+    #name-modal, #description-modal {
+        height: 20% !important;
+    }
+    
+    #feedback-modal {
+        height: 30%;
+    }
+    
+    /* #typing-feedback {
+        margin-top: -25px !important;
+        height: 76px;
+    } */
+    
+    .typeit {
+        margin-top: -23px;
+    }
+    
+    .description .card-content .more {
+        height: auto;
+    }
+    .description .card-content {
+        min-height: 152px;
+    }
+    
+    .nomore.description .card-content {
+        min-height: 213px;
+    }
+    
+    .card[less="true"] p.less {
+        overflow: hidden;
+	    height: 82px;
+	    margin-bottom: -9px !important;
+    }
+    
+    .row.indented-content {
+	    width: 102.5%;
+	}
+}
+
+/* .smallertext{
+	top: -14px !important;
+} */
+
+.user-feedback-circles {
+	float: none !important;
+}
+
+.typeit {
+    font-size: 18px;
+    margin-left: 5px;
+    font-weight: 300;
+}
+
+.feedback-header {
+	margin-top: 0%;
 }
 
 .row.indented-content {
@@ -782,9 +875,9 @@ p.less, p.more {
     display: none;
 }
 
-.card[less="true"] p.less {
+/* .card[less="true"] p.less {
     display: inline-block;
-}
+} */
 
 .card[less="false"] p.more {
     display: inline-block;
@@ -991,6 +1084,7 @@ input.add-feedback {
 .feedback-userpic {
     height: 71px;
     width: 71px !important;
+    display: inline-block;
 }
 
 .images-uploader {
@@ -1015,11 +1109,41 @@ input.add-feedback {
 	width: 20%; 
 }
 
-/* columnWidth: '.grid-sizer',
-itemSelector: '.grid-item',
-percentPosition: true */
-
 /*------------End of place----------*/
+
+/*Event details page*/
+/* big screens */
+@media only screen and (min-width: 993px) {
+    
+    .event-smallertext {
+        top: -14px !important;
+    }
+    
+     .event.description .card-content {
+        min-height: 285px;
+    } 
+}
+/* medium screens */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .card.place.event-dates .grey-text p {
+        padding: 5px;
+    }
+    
+    h2.myplace-name.event {
+        margin-top: -140px;
+    }
+    
+    .event.description .card-content {
+        min-height: 281px;
+    }
+}
+
+.ev-date {
+    margin-top: 1px;
+    vertical-align: sub;
+} 
+    
+/*------End of event------*/
 
 /*Find place side bar*/
 #places-sidebar {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.User;
 
 public interface PlaceService {
 	/**
@@ -62,4 +63,11 @@ public interface PlaceService {
 	List<Place> findByUserIdWithAttachments(Long id);
 	
 	List<Place> findByUserToken(String token);
+	
+	/**
+     * Validate Place before updating.
+     * @param place.
+     * @exception InvalidCredentialsException if place data is invalid.
+     */
+    void validatePlaceBeforeUpdating(Place place);
 }

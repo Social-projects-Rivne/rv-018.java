@@ -1,10 +1,7 @@
-<!-- <div ng-click="goPlace()" ng-controller="OpenPlaceCtrl"> -->
-	<div class="container">
 
-		<!-- <div class="map-container">
-			<div id="mapid"></div>
-		</div> -->
-		<div class="close-place" ng-show="close-place-button">
+    <div class="container">
+
+		<div class="close-place">
 			<a href="#" ng-click="close_place($event)"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
@@ -20,8 +17,7 @@
 							ng-src="{{image.fileSrc}}" id="imgClickAndChange" onclick="changeImage()">
 						</a>
 					</div>
-					<h2 class="myplace-name editableplace"
-						ng-click="show_name_modal($event)">{{name}}<i class="material-icons">mode_edit</i></h2>
+					<h2 class="myplace-name editableplace">{{name}}<i class="material-icons" ng-show="$ctrl.isAdmin" ng-click="show_name_modal($event)">mode_edit</i></h2>
 				</div>
 			</div>
 
@@ -37,24 +33,21 @@
 
 			<div class="row indented-content">
 
-				<div
-					class="col s12 l5 m5 card white place editableplace description"
-					less="true">
+				<div class="col s12 l5 m5 card white place editableplace description grid-item" less="true" ng-class="{nomore:description.length<200}">
 					<!-- <div class=" white place"> -->
-					<div class="card-content grey-text text-darken-1">
-						<span class="card-title grey-text" ng-click="show_description_modal($event)">Description<i class="material-icons myright right">mode_edit</i></span>
+					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
+						<span class="card-title grey-text">Description
+						<i class="material-icons myright right" ng-show="$ctrl.isAdmin" ng-click="show_description_modal($event)">mode_edit</i></span> <!-- ng-cloak="isAdmin" -->
 						<p class="less">{{short_description}}</p>
 						<p class="more hidden">{{description}}</p>
 					</div>
-					<div class="card-action">
+					<div class="card-action" ng-show="description.length>199">
 						<a ng-click="less_more($event)" href="#"
 							class="green-text show-more-less">Show more</a>
 					</div>
 				</div>
 
-				<div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div>
-
-				<div class="col s12 l5 m5 card white place location">
+				<div class="col s12 l5 m5 card white place location grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
 						<p>
@@ -105,7 +98,7 @@
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
 						<p class="more hidden">{{feedback.body}}</p>
 					</div>
-					<div class="card-action">
+					<div class="card-action" ng-show="feedback.body.length>199">
 						<a ng-click="less_more($event)" href="#"
 							class="green-text show-more-less">Show more</a>
 					</div>
@@ -117,9 +110,10 @@
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
-				<span class="card-title feedback-username"> <img
-					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{nickname.username}}</span>
-				</span><br />
+				<span class="card-title feedback-username"> 
+				<div class="circle feedback-userpic" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> 
+					<span>{{firstname.firstName}} {{firstname.lastName}}</span>
+				</span><!-- <br /> -->
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
 					<textarea placeholder=" " id="typing-feedback" type="text"

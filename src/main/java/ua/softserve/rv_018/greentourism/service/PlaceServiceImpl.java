@@ -11,9 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ua.softserve.rv_018.greentourism.error.InvalidCredentialsException;
+import ua.softserve.rv_018.greentourism.error.InvalidPlaceCredentialsException;
+import ua.softserve.rv_018.greentourism.error.UserAlreadyExistsException;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 
@@ -196,5 +200,15 @@ public class PlaceServiceImpl implements PlaceService {
         logger.info("< Place findByUserToken token:{}", token);
 
         return places;
+	}
+	
+	@Override
+	public void validatePlaceBeforeUpdating(Place place) {
+		
+		if (!PlaceDataInputValidation.validatePlaceName(place.getName()) ||
+			!PlaceDataInputValidation.validateDescription(place.getDescription())) {
+				throw new InvalidPlaceCredentialsException(place);
+		}
+		
 	}
 }

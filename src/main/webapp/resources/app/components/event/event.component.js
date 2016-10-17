@@ -3,14 +3,13 @@
 angular
 		.module('greenApp')
 		.component(
-				'place',
+				'event',
 				{
-					templateUrl : _contextPath +'/resources/app/components/place/place.template.html',
-					bindings:{isAdmin:"<"},
-					controller : function($scope, $http, $routeParams, $route, $rootScope, $location, $localStorage) {
+					templateUrl : _contextPath +'/resources/app/components/event/event.template.html',
+					controller : function($scope, $http, $routeParams, $route, $rootScope, $location) {
 			    		
 						$scope.findById = function() {
-							// update only if id chosen
+							// update only if id is chosen
 							if (!$scope.id) {
 								return;
 							}
@@ -21,14 +20,16 @@ angular
 								$scope.name = response.data.name;
 								$scope.description = response.data.description;
 								$scope.short_description = $scope.description
-										.substr(0, 200);
+										.substr(0, 500);
 
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
-								/*$scope.userpicture = response.data.user;
+								$scope.userpicture = response.data.user;
 								$scope.lastname = response.data.user;
-								$scope.firstname = response.data.user;*/
+								$scope.firstname = response.data.user;
 								$scope.mypoint = response.data.point;
+								$scope.beginningDate = response.data.dateStart;
+								$scope.endingDate = response.data.dateEnd;
 								
 								$scope.feedbacks = response.data.comments;
 								
@@ -54,25 +55,14 @@ angular
 									});
 
 									console.log('slider loaded!');
-									$('.grid').masonry({
+									
+									
+									$scope.masonry = $('.grid').masonry({
 										itemSelector : '.grid-item',
 										gutter : 25,
 									});
 									console.log('masonry applied');
 								}
-								
-								$scope.getCurrentUser = function() {
-
-								    if ($scope.loginstatus == "logout") {
-										$http({
-											method: 'GET',
-											url: _contextPath + "/user/current",
-											headers: { 'Authorization': $localStorage.authorization }
-										}).then(function(response){ 
-											console.log(response);
-										})
-									}
-							    };
 
 								$('.before-arrow').click(function() {
 									/* Act on the event */
@@ -84,25 +74,39 @@ angular
 								});
 
 								 setTimeout(myFunc, 1500);
-								 $('.grid').isotope({ layoutMode:
-								 'fitColumns',
-								 itemSelector: '.grid-item', percentPosition:
-								 true});
 							};
 
 							var failCallback = function(response) {
 								// console.log(response);
 							};
 
-							$http.get(_contextPath + '/api/place/' + $scope.id).then(successCallBack,failCallback);
+							$http.get(_contextPath + '/api/event/' + $scope.id).then(successCallBack,failCallback);
+							
+							function changeImage(dir) {
+								var img = document
+										.getElementById("imgClickAndChange");
+								img.src = imgs[imgs.indexOf(img.src)
+										+ (dir || 1)]
+										|| imgs[dir ? imgs.length - 1 : 0];
+							}
+
+							document.onkeydown = function(e) {
+								e = e || window.event;
+								if (e.keyCode == '37') {
+									changeImage(-1) // left <- show Prev image
+								} else if (e.keyCode == '39') {
+									// right -> show next image
+									changeImage()
+								}
+							} 
 						};
 						
 						$scope.update_name = function () {
 				    		
-							$scope.id = $routeParams.placeId;
+							$scope.id = $routeParams.eventId;
 							
 				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
+				    	    		id: $routeParams.eventId,
 				    	    		name: $scope.name
 						    };
 				    	    
@@ -116,6 +120,7 @@ angular
 							    };
 
 						    var errorCallback = function(response){
+						      Materialize.toast('Something wrong. Please try again!', 2000);
 						      console.log(response);
 						      $scope.submissionError = true;
 						      $scope.submissionSuccess = false;
@@ -126,18 +131,17 @@ angular
 						      }, 5000);
 						    };
 				    	    
-				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
+				    	    $http.put(_contextPath + '/api/event/' + $scope.id, dataObj).then(successCallback, errorCallback);
 				    	    console.log(dataObj);
 				    	    
 						};
 						
 						$scope.update_description = function () {
 				    		
-							/*console.log("update");*/
-							$scope.id = $routeParams.placeId;
+							$scope.id = $routeParams.eventId;
 					    	
 				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
+				    	    		id: $routeParams.eventId,
 				    	    		description: $scope.description
 						    };
 				    	    
@@ -151,6 +155,7 @@ angular
 							    };
 
 						    var errorCallback = function(response){
+						      Materialize.toast('Something wrong. Please try again!', 2000);
 						      console.log(response);
 						      $scope.submissionError = true;
 						      $scope.submissionSuccess = false;
@@ -161,13 +166,13 @@ angular
 						      }, 5000);
 						    };
 						    
-				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
+				    	    $http.put(_contextPath + '/api/event/' + $scope.id, dataObj).then(successCallback, errorCallback);
 				    	    console.log(dataObj);
 				    	    
 						 };
 						
 						$scope.less_more = function($event) {
-							//console.log($event);
+							
 							var elem = $($event.currentTarget).parents('.card')[0];
 							var less = $(elem).attr('less') === "true";
 
@@ -178,7 +183,10 @@ angular
 							} else {
 								$($event.currentTarget).text("Show more");
 							}
-
+                            $scope.less = less;
+                            setTimeout(function() {
+                            	$scope.masonry.masonry();
+                            }, 0);
 							$event.preventDefault();
 						}
 
@@ -193,22 +201,15 @@ angular
 						$scope.show_description_modal = function($event) {
 							$('#description-modal').appendTo($("body")).openModal();
 						}
-
-						$scope.close_place = function($event) {
-							$scope.placeopened = false;
-							console.log($scope.placeopened);
-							$event.preventDefault();
-						}
 						
-						 $('.button-collapse').sideNav({
-						      menuWidth: "100%", // Default is 240
-						      edge: 'right', // Choose the horizontal origin
-						      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-						    }
-						  );
+						$scope.close_place = function($event) {
+							
+							$event.preventDefault();
+							$location.url("/map/event/" + $scope.mypoint.id);
+						}
 						 
-						$scope.placeopened = false;
-						$scope.id = $routeParams.placeId;
+						$scope.placeopened = true;
+						$scope.id = $routeParams.eventId;
 						console.log($scope.id);
 						$scope.findById();
 					}

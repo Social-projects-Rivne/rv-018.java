@@ -1,8 +1,5 @@
 package ua.softserve.rv_018.greentourism.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import ua.softserve.rv_018.greentourism.config.AppAuthenticationManager;
 import ua.softserve.rv_018.greentourism.config.authentication.TokenAuthenticationUtil;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
@@ -47,11 +46,29 @@ public class LoginController {
 			response.setHeader("Authorization", authorizationHeader);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		
+
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	public ResponseEntity<?> loginUserGET(@RequestParam("email") String email, @RequestParam("password") String password,
+			HttpServletRequest request, HttpServletResponse response) {
+		logger.info("> loginUser by email: " + email);
+
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+		Authentication result = appAuthenticationManager.authenticate(token);
+		if (result != null) {
+			tokenUtil.saveTokenToUser(result);
+			String authorizationHeader = TokenAuthenticationUtil.generateAuthorizationHeaderFromToken(token);
+			response.setHeader("Authorization", authorizationHeader);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
 	}
-
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.PATCH, headers = "Accept=application/json", produces = {
 			"application/json" })
 	public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String authorization,
