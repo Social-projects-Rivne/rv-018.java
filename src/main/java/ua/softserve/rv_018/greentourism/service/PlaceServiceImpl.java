@@ -209,6 +209,19 @@ public class PlaceServiceImpl implements PlaceService {
 		logger.info("> Place findByUserToken token:{}", token);
 
 		List<Place>  places = placeRepository.findByUserToken(token);
+		
+		List<Gallery> galleries = galleryRepository.findByPlaces(places);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+			
+			for (Place place : places) {
+				if (place.getId() == gallery.getPlace().getId()) {
+					place.getAttachments().add(gallery.getAttachment());
+				}
+			}
+		}
 
         logger.info("< Place findByUserToken token:{}", token);
 

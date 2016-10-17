@@ -204,8 +204,20 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> findByUserToken(String token) {
 		logger.info("> Event findByUserToken token:{}", token);
+		List<Event> events = eventRepository.findByUserToken(token);
 
-		List<Event>  events = eventRepository.findByUserToken(token);
+		List<Gallery> galleries = galleryRepository.findByEvents(events);
+		for (Gallery gallery : galleries) {
+			if (gallery == null) {
+				continue;
+			}
+
+			for (Event event : events) {
+				if (event.getId() == gallery.getEvent().getId()) {
+					event.getAttachments().add(gallery.getAttachment());
+				}
+			}
+		}
 
         logger.info("< Event findByUserToken token:{}", token);
 
