@@ -58,6 +58,9 @@ public class Event {
 	@Transient
 	private List<Attachment> attachments = new ArrayList<>();
 	
+	@Transient
+	private List<Comment> comments = new ArrayList<>();
+	
 	public Event() {};
 
 	public int getId() {
@@ -132,6 +135,14 @@ public class Event {
 		this.attachments = attachments;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
 	@Override
 	public String toString() {
 		return "Event [id=" + id

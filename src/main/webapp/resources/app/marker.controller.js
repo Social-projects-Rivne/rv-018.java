@@ -1,9 +1,19 @@
 'use strict';
 
 angular.module('greenApp')
-	.controller('markerCtrl', function($rootScope, $scope, $http, $log, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray, CurrentlySelectedTab){
+	.controller('markerCtrl', function($rootScope, $scope, $http, $log, 
+			$location, CalendarButtonIsShown, CalendarDateRangeIsChosen, MapMarkersArray, CurrentlySelectedTab){
 		MapMarkersArray.mapMarkersArrayParam = [];
-    	var currentlySelectedTabInnerHtml = "Places";
+		console.log($location.path());
+		var match = $location.path().match(/^\/map\/(.+?)\//);
+		if (match){
+			var currentlySelectedTabInnerHtml = match[1]+'s';
+		} else {
+			var currentlySelectedTabInnerHtml = 'places';
+		}
+    	
+    	$rootScope.tab=currentlySelectedTabInnerHtml;
+    	
     	CurrentlySelectedTab.setCurrentlySelectedTab(currentlySelectedTabInnerHtml);
 	    $scope.singletonCalendarButtonIsShown = CalendarButtonIsShown;
 		
@@ -12,19 +22,20 @@ angular.module('greenApp')
 				var latLngBounds = $rootScope.myMap.getBounds();
 				var urlPath = currentlySelectedTabInnerHtml.toLowerCase().substring(0, currentlySelectedTabInnerHtml.length - 1);
 				
+				console.log(currentlySelectedTabInnerHtml, urlPath);
 				if(!CalendarDateRangeIsChosen.getCalendarDateRangeIsChosen()) {
 					$scope.progressBarVision = true;
 					$http({
 						method: 'GET',
 						url: _contextPath + '/api/' 
 											+ urlPath  
-											+ '/point' 
+											+ '/' + urlPath + 's_coordinates' 
 											+ '?south-west=' + latLngBounds.getSouthWest().lat + ':' + latLngBounds.getSouthWest().lng 
 											+ '&north-east=' + latLngBounds.getNorthEast().lat + ':' + latLngBounds.getNorthEast().lng
 					})
 					.then(function(response){
 						$scope.progressBarVision = false;
-						let points = response.data;
+						let places = response.data;
 	
 						if (MapMarkersArray.mapMarkersArrayParam.length > 0)
 							angular.forEach(MapMarkersArray.mapMarkersArrayParam, function(marker, key){
@@ -49,9 +60,15 @@ angular.module('greenApp')
 							markerIcon = new GreenIcon(); 					
 						}
 						
-						angular.forEach(points, function(point, key){
-							MapMarkersArray.mapMarkersArrayParam.push(L.marker([point.latitude, point.longitude], {icon: markerIcon}).addTo($rootScope.myMap).on('click',
-									function (e) {$log.info(e + "was clicked")}));
+						angular.forEach(places, function(place, key){
+							console.log(place);
+							MapMarkersArray.mapMarkersArrayParam
+							.push(L.marker([place.point.latitude, place.point.longitude], {icon: markerIcon})
+									.addTo($rootScope.myMap)
+									.on('click',function (e) {
+								$log.info(e + "was clicked")
+								window.location = '/#/' + urlPath + '-details/' + place.id;
+								}));
 						})
 					}, function(error){
 						$scope.progressBarVision = false;

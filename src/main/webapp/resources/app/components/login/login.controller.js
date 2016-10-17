@@ -5,11 +5,19 @@ component('login', {
 		templateUrl : _contextPath +  '/resources/app/components/login/login.template.html',
 		controller : function($scope, $rootScope, $http, $location, $localStorage) {	
 			
+	if ($localStorage.message == 'logout') {
+		$scope.loginstatus = 'logout';
+	} else{
+		$scope.loginstatus = 'login';
+	}
+	
 	$scope.loginFormShow = '' ;
+	$scope.formshow = '' ;
 	$scope.loginCondition = $localStorage.message;
 	console.log('Authorization : ' + $localStorage.authorization);
 	console.log($localStorage.message);
 	$scope.loginstatus = $scope.loginCondition || "login";
+
 	console.log($scope.loginstatus);
 	if ($scope.loginstatus == "logout") {
 		$http({
@@ -50,6 +58,7 @@ component('login', {
 			console.log(error.data);
 			$scope.inputError = true;
 		});
+		console.log($scope.email)
 	}
 	$scope.logout = function() {
 		console.log($scope.loginstatus + 1);

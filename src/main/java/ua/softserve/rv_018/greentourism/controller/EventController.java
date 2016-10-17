@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
 import ua.softserve.rv_018.greentourism.service.PointService;
@@ -44,6 +46,10 @@ public class EventController {
 
 	@Autowired
 	private GalleryRepository galleryRepository;
+	
+	@Autowired
+	private CommentItemRepository commentItemRepository;
+	
 	/**
      * Web service endpoint to create Event entity.
      * The service returns the created Event entity url.
@@ -205,6 +211,16 @@ public class EventController {
 				event.getAttachments().add(gallery.getAttachment());
 			}
 		}
+		
+		List<CommentItem> commentItems = commentItemRepository.findByEvent(event);
+		for (CommentItem commentItem : commentItems) {
+			if (commentItem == null) {
+				continue;
+			}
+			if (event.getId() == commentItem.getEvent().getId()) {
+				event.getComments().add(commentItem.getComment());
+			}
+		}
 
 		logger.info("< getEvent id:{}", id);
 
@@ -244,7 +260,7 @@ public class EventController {
        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
    }
    
-   /*
+   /**
    * Web service endpoint to fetch all Events entities by name.
    * The service returns the list of Event entities as JSON.
    *
@@ -264,7 +280,37 @@ public class EventController {
       
       return new ResponseEntity<>(events, HttpStatus.OK);
   }
-  
+
+  /**
+	 * Web service endpoint to fetch all Event points between two coordinates.
+	 * The service returns the list of Event entities as JSON.
+	 * 
+	 * @return A ResponseEntity containing a List of Event objects.
+	 */
+	@RequestMapping(value = "/events_coordinates", method = RequestMethod.GET,
+			headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getEventsBetweenTwoCoordinates(
+			@RequestParam (value="south-west", required=true) String southWestParam,
+  		@RequestParam (value="north-east", required=true) String northEastParam) {
+		logger.info("> Get events between (" + southWestParam + " - " + northEastParam);
+		
+		List<Event> events = new ArrayList<>();
+		
+		Point southWest = pointService.createPoint(southWestParam);
+		Point northEast = pointService.createPoint(northEastParam);
+		
+		if (southWest.isEmpty() || northEast.isEmpty()) {
+			logger.debug("< Bad Request for getting events between (" + southWestParam + " - " + northEastParam);
+			return new ResponseEntity<>(events, HttpStatus.BAD_REQUEST);
+		}
+		
+		events = eventService.findEventsBetweenTwoCoordinates(southWest, northEast);
+
+		logger.info("< Get events between (" + southWestParam + " - " + northEastParam);
+
+		return new ResponseEntity<>(events, HttpStatus.OK);
+	}
+
   @RequestMapping(value = "/profile/user/{token}", method = RequestMethod.GET,
           headers = "Accept=application/json", produces = {"application/json"})
   public ResponseEntity<?> getEventByUserToken(

@@ -250,7 +250,7 @@ nav .brand-logo {
     right: 0;
     top: 88px;
     width: 25%;
-    z-index: 400;
+    z-index: 1000;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
@@ -666,14 +666,17 @@ md-content {
     }
 }
 
-/* ------------------Place------------------- */
+/* ------------------Place details page------------------- */
 @CHARSET "UTF-8";
 
 /* large & medium devices */
 @media only screen and (min-width: 601px) {
+	.card {
+	    position: relative;
+	}
 	h2.myplace-name {
 		top: 0px;
-		left: 17px;
+		left: 26px;
 		margin: 0;
 		font-weight: 300;
 		margin-top: -86px;
@@ -684,9 +687,13 @@ md-content {
 	}
 	.indented-content {
 		margin-top: -0px;
+		margin-left: 0% !important;
 	}
-	.feedback span>span {
+	/* .feedback span>span {
 	    font-size: 87%;
+	} */
+	.row.indented-content {
+	    width: 103.5%;
 	}
 }
 
@@ -705,7 +712,7 @@ md-content {
 	}
 	.feedback img.circle, .feedback div.circle {
 		position: relative;
-		top: 5px;
+		top: 8px;
 		width: 35px !important;
 		height: 35px !important;
 	}
@@ -785,7 +792,7 @@ md-content {
     .nomore.description .card-content {
         min-height: 213px;
     }
-    
+
     .card[less="true"] p.less {
         overflow: hidden;
 	    height: 82px;
@@ -864,7 +871,7 @@ h3 {
 
 .card.place .card-content {
     padding-left: 5px;
-    padding-top: 5px;
+    padding-top: 3px;
 }
 
 p.less, p.more {
@@ -892,7 +899,7 @@ input.add-feedback {
 }
 
 .col.emptycol {
-    width: 3% !important;
+    width: 2.5% !important;
     margin-bottom: 201px;
 }
 
@@ -922,21 +929,13 @@ input.add-feedback {
 
 .feedback img.circle, .feedback div.circle {
     position: relative;
-    top: 5px;
-    width: 65px;
-    height: 65px;
+    top: 9px;
+    width: 60px;
+    height: 60px;
 }
 
-@media only screen and (min-width: 993px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
-}
-
-@media only screen and (min-width: 601px) {
-    .description, .location, .other-info, .feedback .card {
-        width: 48.5% !important;
-    }
+.feedback span>span {
+	font-size: 87% !important;
 }
 
 .add-pic {
@@ -961,16 +960,8 @@ input.add-feedback {
 }
 
 .feedback span > span {
-    top: -10px;
+    top: -14px;
     position: relative;
-}
-
-#feedback-modal, #name-modal, #description-modal {
-    height: 50%;
-}
-
-#name-modal, #description-modal {
-	height: 33%;
 }
 
 #feedback-modal {
@@ -985,13 +976,17 @@ input.add-feedback {
 .feedback div.circle {
     display: inline-block;
     float: right;
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     text-align: center;
 }
 
+.user-circle {
+	float: none !important;
+}
+
 .feedback div.circle i {
-    padding: 16px;
+    padding: 13px;
     font-size: 35px;
 }
 
@@ -1019,12 +1014,12 @@ input.add-feedback {
     resize: none;
 }
 
-.typeit {
+/* .typeit {
     font-size: 18px;
     margin-top: 16px;
     margin-left: 5px;
     font-weight: 300;
-}
+} */
 
 .map-container #mapid {
     position: fixed;
@@ -1045,11 +1040,15 @@ input.add-feedback {
     z-index: 600;
     top: -19px;
     right: -4px;
+    display: block !important;
 }
 
 .closeIcon {
-    font-size: 88px;
-    color: grey;
+    position: relative;
+    font-size: 83px;
+    color: darkgrey;
+    top: 58px;
+    right: 47px;
 }
 
 .before-arrow, .next-arrow {
@@ -1077,9 +1076,9 @@ input.add-feedback {
     overflow: hidden;
 }
 
-.hide-it {
+/* .hide-it {
     visibility: hidden;
-}
+} */
 
 .feedback-userpic {
     height: 71px;
@@ -1104,7 +1103,7 @@ input.add-feedback {
 	font-size: 144% !important;
 }
     
-.grid-sizer,
+/* .grid-sizer,
 .grid-item { 
 	width: 20%; 
 }
@@ -1142,6 +1141,7 @@ input.add-feedback {
     margin-top: 1px;
     vertical-align: sub;
 } 
+
     
 /*------End of event------*/
 
@@ -1281,7 +1281,6 @@ input.add-feedback {
     height: auto;
     width: 100%;
     background-color: RGB(15, 156, 90);
-    opacity: 0.95;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 0 0.75rem;
 }
@@ -1308,6 +1307,7 @@ input.add-feedback {
 
 .login-form-active {
     display: block;
+    margin-top: 40px;
 }
 
 /* ---- login form validation styles ---- */
@@ -1497,7 +1497,7 @@ md-sidenav {
 }
 
 #form  {
-	margin-top: 40px;
+/* 	margin-top: 40px; */
 	position: absolute;
 }
 

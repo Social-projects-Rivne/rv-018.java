@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 
     <div class="container">
 
 		<div class="close-place">
+=======
+<!-- <div ng-click="goPlace()" ng-controller="OpenPlaceCtrl"> -->
+<!-- <div class="container side-nav  id="slide-out"> -->
+	<div class="container">
+
+		<div class="close-place">   <!-- ng-show="close-place-button"> -->
+>>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 			<a href="#" ng-click="close_place($event)"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
 		</div>
-		<div class="place-container"> <!-- ng-show="placeopened" -->
+		<div class="place-container" ng-show="placeopened">
 			<div class="row">
 				<div class="col s12">
 					<div class="carousel carousel-slider">
@@ -31,13 +39,22 @@
 				</div>
 			</div>
 
-			<div class="row indented-content">
+			<div class="row indented-content grid">
 
+<<<<<<< HEAD
 				<div class="col s12 l5 m5 card white place editableplace description grid-item" less="true" ng-class="{nomore:description.length<200}">
 					<!-- <div class=" white place"> -->
 					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
 						<span class="card-title grey-text">Description
 						<i class="material-icons myright right" ng-show="$ctrl.isAdmin" ng-click="show_description_modal($event)">mode_edit</i></span> <!-- ng-cloak="isAdmin" -->
+=======
+				<div
+					class="col s12 l5 m5 card white place editableplace description grid-item"
+					less="true">
+					<!-- <div class=" white place"> -->
+					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
+						<span class="card-title grey-text" ng-click="show_description_modal($event)">Description<i class="material-icons myright right">mode_edit</i></span>
+>>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 						<p class="less">{{short_description}}</p>
 						<p class="more hidden">{{description}}</p>
 					</div>
@@ -47,6 +64,12 @@
 					</div>
 				</div>
 
+<<<<<<< HEAD
+=======
+				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
+				<!-- <div class="col l1 m1 emptycol hide-on-small-only">&nbsp;</div> -->
+
+>>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 				<div class="col s12 l5 m5 card white place location grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
@@ -57,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place other-info">
+				<div class="col s12 l5 m5 card white place other-info grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Other
 							Info</span><br />
@@ -70,17 +93,17 @@
 				</div>
 			</div>
 
-			<div class="row indented-header">
+			<div class="row indented-header feedback-header">
 				<div class="col s12 m12 l12 card-content grey-text text-darken-1">
 					<h3>Feedback about place</h3>
 				</div>
 			</div>
 			<div class="row grid feedback indented-content">
 				<div class="col s12 m5 l5 grid-item card white">
-					<div class="card-content grey-text text-darken-1">
-						<span class="card-title" ng-click="show_modal($event)"> <img
-							class="circle" ng-src={{userpicture.userpic}} /> <span
-							class="smallertext">Your feedback </span> 
+					<div class="card-content grey-text text-darken-1 leave-feedback-content">
+						<span class="card-title" ng-click="show_modal($event)"> <div
+							class="circle user-circle" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> <span
+							class="smallertext grey-text text-lighten-1">Your feedback </span> 
 							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
 							</div>
@@ -91,9 +114,9 @@
 				<div class="col s12 m4 l5 grid-item card white"
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<img class="circle" ng-src="{{feedback.user.userpic}}" />
-						<span class="card-title"> <span>{{feedback.user.username}}</span></br>
-							<span class="rel_date" ng-bind="date | date:'MM/dd/yyyy'">{{feedback.date}}</span>
+					<div class="circle user-feedback-circles" style="background-image: url('{{feedback.user.userpic}}');background-size:cover"></div>
+						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
+							<span class="rel_date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
 						<p class="more hidden">{{feedback.body}}</p>
@@ -104,16 +127,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="place-overlay">&nbsp;</div>
 			
 			  <!-- Modal Structure for Feedback About Place: -->
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
+<<<<<<< HEAD
 				<span class="card-title feedback-username"> 
 				<div class="circle feedback-userpic" style="background-image: url('{{userpicture.userpic}}');background-size:cover"></div> 
 					<span>{{firstname.firstName}} {{firstname.lastName}}</span>
 				</span><!-- <br /> -->
+=======
+				<span class="card-title feedback-username"> <img
+					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{firstname.firstName}} {{firstname.lastName}}</span>
+				</span><br />
+>>>>>>> d5c56773dece7f1b95dfc2864b9612a666d28d86
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
 					<textarea placeholder=" " id="typing-feedback" type="text"
@@ -121,23 +149,18 @@
 					<label for="typing-feedback" class="typeit"></label>
 				</div>
 				<!-- <span ng-bind="text"></span> -->
-				<form action="#">
-					<div class="file-field input-field images-uploader">
-						<div class="commenting-button">
-							<span><i
+				<div class="form-group">
+				    <label for="newPlacePhoto"> <span><i
 								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
-							<input type="file">
-						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text">
-						</div>
-					</div>
-				</form>
+				    </label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
+						class="form-control" ng-model="newPlacePhoto"
+						placeholder="Photo URL">
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText()">Publish</button> <button type="button" 
+					ng-click="addText(); addImage()">Publish</button> <button type="button" 
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>
@@ -148,7 +171,7 @@
 				<span class="card-title feedback-username"> <span></span>
 				</span><br />
 				<div class="input-field">
-					<label for="" class="place_name">Place Name:</label>
+					<label for="" class="place_name"></label>
 					<input type="text" placeholder="" id=""
 						class="validate" ng-model="name" />
 				</div>
@@ -166,7 +189,7 @@
 				<span class="card-title feedback-username"> <span></span>
 				</span><br />
 				<div class="input-field">
-				    <label for="" class="place_name">Place Description:</label>
+				    <label for="" class="place_name"></label>
 					<input type="text" placeholder="" id=""
 						class="validate" ng-model="description" />
 				</div>

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import ua.softserve.rv_018.greentourism.model.CommentItem;
+import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Place;
 
 public interface CommentItemRepository extends JpaRepository<CommentItem, Integer> {
@@ -17,4 +18,8 @@ public interface CommentItemRepository extends JpaRepository<CommentItem, Intege
 	@Query("select c from CommentItem as c inner join c.place as pl where pl in :place")
 	List<CommentItem> findByPlace(
 			@Param ("place") Place place);
+	
+	@Query("select c from CommentItem as c inner join c.event as ev where ev in :event")
+	List<CommentItem> findByEvent(
+			@Param ("event") Event event);
 }

@@ -32,9 +32,9 @@
 							<div class="col s2 m1 l1">
 								<i ng-click="toggleLeft()" class="waves-effect waves-light material-icons">menu</i>
 							</div>
-		                    <div class="col m3 l2 hide-on-small-only">
+		                    <a href="#"><div class="col m3 l2 hide-on-small-only">
 		                        GreenTourism
-		                    </div>
+		                    </div></a>
 		                    <div class="col l1 hide-on-med-and-down line">
 		                       Home
 		                    </div>
@@ -68,9 +68,9 @@
 					<div class="tabsIndent">
 						<div class="row">
 							<ul class="tabs" ng-show="checkTabs">
-								<li class="tab col m3 tabsBackgroundColor"><a class="active white-text" href="#test1">Places</a></li>
-								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test2">Tracks</a></li>
-								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test3">Events</a></li>
+								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test1" ng-class="{active:tab=='places'}">Places</a></li>
+								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test2" ng-class="{active:tab=='tracks'}">Tracks</a></li>
+								<li class="tab col m3 tabsBackgroundColor"><a class="white-text" href="#test3" ng-class="{active:tab=='events'}">Events</a></li>
 							</ul>
 						</div>
 					</div>
@@ -124,7 +124,9 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-sanitize.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/angular-material-calendar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/isotope.pkgd.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/imagesloaded.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/fit-columns.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/ngStorage.min.js"></script>
 	<!-- Core scripts -->
 	<script src="${pageContext.request.contextPath}/resources/app/module.js"></script>
@@ -134,6 +136,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/menu.controller.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/login/login.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/feedback.modal.controller.js"></script>
 
 	<!-- Components -->
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.component.js"></script>
@@ -142,8 +145,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/components/searchPlace/searchplace.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/map/map.service.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/place/place.component.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/feedback.modal.controller.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/app/components/place/edit.place.modals.controller.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/components/event/event.component.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/app/components/updatePassword/updatepassword.component.js"></script>
 
 	<!-- Supporting sliding menu -->

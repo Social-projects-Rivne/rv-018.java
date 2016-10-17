@@ -37,7 +37,7 @@ public class DataValidationUnitTest {
 			"V123", 	//Contains not enough symbols
 			"#3a%$" };  //Absolutely wrong username
 	
-	private static final String[] VALID_PLACE_NAMES = 
+	private static final String[] VALID_PLACE_NAMES =
 		{"Whatever", "smthing 5", "Tarakaniv", "fortress", "blablabla bla" };
 	
 	private static final String[] INVALID_PLACE_NAMES = 
@@ -52,7 +52,7 @@ public class DataValidationUnitTest {
 		{   "smth$", 	//Contains inappropriate symbol
 			"V", 		//Contains not enough symbols
 			"#12%$" };  //Contains symbols - not appropriate
-
+	
 	//Checks if validatePassword method returns true for every string in validPasswords array
 	@Test
 	public void testValidPasswords() {
