@@ -10,7 +10,7 @@ angular
 					   if (!$scope.text) {
 						   return;
 					   }
-					   console.log(1234);
+					  
 					   if ($localStorage.message == 'logout') {
 						   
 					    $http({
@@ -31,13 +31,13 @@ angular
 					    }, function(error) {
 					    	Materialize.toast('Something wrong. Please try again!', 1000);
 					    });
-					} else 
+					       } else 
 						   Materialize.toast('Please log in first. Only logged in user can add Feedback!', 1000);
 						   setTimeout(function () {
 						        $scope.$apply(function () {
 						        	$scope.submissionSuccess = false;
 						        });
-						      }, 50);
+						    }, 50);
 					 };
 
 					  $scope.addImage = function() {
@@ -48,7 +48,7 @@ angular
 							  
 							  $http({
 							    	method: 'POST',
-							    	url: _contextPath + "/api/gallery/", 
+							    	url: _contextPath + "/api/gallery", 
 							    	headers: { 'Authorization': $localStorage.authorization },
 							    	data: {
 							    		attachment: {

@@ -263,7 +263,9 @@ public class PlaceController {
 	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place, @RequestHeader("Authorization") String authorization) {
 		logger.info("> updatePlace id:{}", place.getId());
 
-		if (placeService.findOne(id) == null) {
+		place = placeService.findOne(id);
+		
+		if (place == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		

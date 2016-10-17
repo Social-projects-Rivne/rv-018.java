@@ -9,6 +9,17 @@ angular
 					bindings:{isAdmin:"<"},
 					controller : function($scope, $http, $routeParams, $route, $rootScope, $location, $localStorage) {
 			    		
+						if ($localStorage.message == "logout") {
+							$http({
+								method: 'GET',
+								url: _contextPath + "/user/current",
+								headers: { 'Authorization': $localStorage.authorization }
+							}).then(function(response){ 
+								$scope.current_user = response.data;
+								console.log(response);
+							})
+					    }
+						
 						$scope.findById = function() {
 							// update only if id is chosen
 							if (!$scope.id) {
@@ -25,9 +36,6 @@ angular
 
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;
-								/*$scope.userpicture = response.data.user;
-								$scope.lastname = response.data.user;
-								$scope.firstname = response.data.user;*/
 								$scope.mypoint = response.data.point;
 								
 								$scope.feedbacks = response.data.comments;
@@ -62,19 +70,6 @@ angular
 									});
 									console.log('masonry applied');
 								}
-								
-								$scope.getCurrentUser = function() {
-
-								    if ($scope.loginstatus == "logout") {
-										$http({
-											method: 'GET',
-											url: _contextPath + "/user/current",
-											headers: { 'Authorization': $localStorage.authorization }
-										}).then(function(response){ 
-											console.log(response);
-										})
-									}
-							    };
 
 								$('.before-arrow').click(function() {
 									/* Act on the event */
@@ -114,74 +109,72 @@ angular
 						};
 						
 						$scope.update_name = function () {
-				    		
+							// update only if id is chosen
+							if (!$routeParams.placeId) {
+								return;
+							}
+							if (!$scope.name) {
+								   return;
+							}
+							
 							$scope.id = $routeParams.placeId;
 							
-				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
-				    	    		name: $scope.name
-						    };
-				    	    
-				    	    var successCallback = function(response){
-							      $scope.submissionSuccess = true;
-							      setTimeout(function() {
-							        $scope.$apply(function() {
-							          $scope.submissionSuccess = false;
-							        });
-							      }, 5000);
-							    };
-
-						    var errorCallback = function(response){
-						      Materialize.toast('Something wrong. Please try again!', 2000);
-						      console.log(response);
-						      $scope.submissionError = true;
-						      $scope.submissionSuccess = false;
-						      setTimeout(function() {
-						        $scope.$apply(function() {
-						          $scope.submissionError = false;
-						        });
-						      }, 5000);
-						    };
-				    	    
-				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
-				    	    console.log(dataObj);
-				    	    
+							if ($localStorage.message == 'logout') {
+								   
+							    $http({
+							    	method: 'PUT',
+							    	url: _contextPath + "/api/place/" + $scope.id, 
+							    	headers: { 'Authorization': $localStorage.authorization },
+							    	data: {
+							    		id: $routeParams.placeId,
+							    		name: $scope.name
+							        }
+							    }).then(function(response) {
+							    	Materialize.toast('Name successfully updated!', 2000);
+								      $scope.submissionSuccess = true;
+								      setTimeout(function() {
+								        $scope.$apply(function() {
+								          $scope.submissionSuccess = false;
+								        });
+								      }, 50);
+							    }, function(error) {
+							    	Materialize.toast('Something wrong. Please try again!', 1000);
+							    });
+							       }
 						};
-						
+							
 						$scope.update_description = function () {
-				    		
-							$scope.id = $routeParams.placeId;
-					    	
-				    	    var dataObj = {
-				    	    		id: $routeParams.placeId,
-				    	    		description: $scope.description
-						    };
-				    	    
-				    	    var successCallback = function(response){
-							      $scope.submissionSuccess = true;
-							      setTimeout(function() {
-							        $scope.$apply(function() {
-							          $scope.submissionSuccess = false;
-							        });
-							      }, 5000);
-							    };
-
-						    var errorCallback = function(response){
-						      Materialize.toast('Something wrong. Please try again!', 2000);
-						      console.log(response);
-						      $scope.submissionError = true;
-						      $scope.submissionSuccess = false;
-						      setTimeout(function() {
-						        $scope.$apply(function() {
-						          $scope.submissionError = false;
-						        });
-						      }, 5000);
-						    };
-						    
-				    	    $http.put(_contextPath + '/api/place/' + $scope.id, dataObj).then(successCallback, errorCallback);
-				    	    console.log(dataObj);
-				    	    
-						 };
+							if (!$routeParams.placeId) {
+								return;
+							}
+							if (!$scope.name) {
+								   return;
+							}
+								$scope.id = $routeParams.placeId;
+							  
+							   if ($localStorage.message == 'logout') {
+								   
+							    $http({
+							    	method: 'PUT',
+							    	url: _contextPath + "/api/place/" + $scope.id,
+							    	headers: { 'Authorization': $localStorage.authorization },
+							    	data: {
+							    		id: $routeParams.placeId,
+					    	    		description: $scope.description
+							    	}
+							    }).then(function(response) {
+							    	Materialize.toast('Description successfully added!', 2000);
+								      $scope.submissionSuccess = true;
+								      setTimeout(function() {
+								        $scope.$apply(function() {
+								          $scope.submissionSuccess = false;
+								        });
+								      }, 50);
+							    }, function(error) {
+							    	Materialize.toast('Something wrong. Please try again!', 1000);
+							    });
+							       }
+						};
 						
 						$scope.less_more = function($event) {
 							
