@@ -22,7 +22,7 @@ component('login', {
 	if ($scope.loginstatus == "logout") {
 		$http({
 			method: 'GET',
-			url: _contextPath + "/api/user/role",
+			url: _contextPath + "/user/role",
 			headers: { 'Authorization': $localStorage.authorization }
 		}).then(function(response){
 			if (response.data.name == "ROLE_ADMIN") {
