@@ -44,7 +44,7 @@ public class UsernamePasswordAuthenticationProvider extends AbstractUserDetailsA
 		}
 		String expectedUserPassword = user.getPassword();
 		
-		if (true || encoder.matches(enteredPassword, expectedUserPassword)) {
+		if (encoder.matches(enteredPassword, expectedUserPassword)) {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 					authentication.getName(), authentication.getCredentials());
 			return token;
