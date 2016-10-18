@@ -263,18 +263,19 @@ public class PlaceController {
 	public ResponseEntity<?> updatePlace(@PathVariable int id, @RequestBody Place place, @RequestHeader("Authorization") String authorization) {
 		logger.info("> updatePlace id:{}", place.getId());
 
-		if (placeService.findOne(id) == null) {
+		Place placeToUpdate = placeService.findOne(id);
+		
+		if (placeToUpdate == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
 		User user = tokenUtil.getUserFromHeader(authorization);
-		if (user.getId() == null || place.getUser().getId() == null
-				|| !(user.getId().equals(place.getUser().getId()) || !(user.getRole().getName().equals("ROLE_ADMIN")))) {
+		if (user.getId() == null || placeToUpdate.getUser().getId() == null
+				|| !(user.getId().equals(placeToUpdate.getUser().getId()) || !(user.getRole().getName().equals("ROLE_ADMIN")))) {
 			new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 		System.out.println("In updatePlace: User is: " + user.getEmail());
-		place.setUser(user);
-		Place updatedPlace = placeService.update(place);
+		Place updatedPlace = placeService.update(place, placeToUpdate);
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

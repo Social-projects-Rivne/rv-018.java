@@ -1,7 +1,8 @@
 
 <div class="container">
 
-		<div class="close-place">   <!-- ng-show="close-place-button"> -->
+		<div class="close-place">   
+		
 			<a href="#" ng-click="close_place($event)"> <span
 				class="material-icons closeIcon">close</span>
 			</a>
@@ -17,8 +18,7 @@
 							ng-src="{{image.fileSrc}}" id="imgClickAndChange" onclick="changeImage()">
 						</a>
 					</div>
-					<h2 class="myplace-name editableplace event"
-						ng-click="show_name_modal($event)">{{name}}<i class="material-icons">mode_edit</i></h2>
+					<h2 class="myplace-name editableplace event">{{name}}<i class="material-icons" ng-show="$ctrl.isAdmin" ng-click="show_name_modal($event)">mode_edit</i></h2>
 				</div>
 			</div>
 
@@ -33,23 +33,22 @@
 			</div>
 
 			<div class="row indented-content grid">
-
 				<div
 					class="col s12 l5 m5 card white place editableplace description grid-item event"
-					less="true">
-					<!-- <div class=" white place"> -->
+					less="true" ng-class="{nomore:description.length<200}">
 					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
-						<span class="card-title grey-text" ng-click="show_description_modal($event)">Description<i class="material-icons myright right">mode_edit</i></span>
-						<p class="less">{{short_description}}</p>
+						<span class="card-title grey-text">Description
+						<i class="material-icons myright right" ng-show="$ctrl.isAdmin" ng-click="show_description_modal($event)">mode_edit</i></span>
+						<p class="less event">{{short_description}}</p>
 						<p class="more hidden">{{description}}</p>
 					</div>
-					<div class="card-action">
+					<div class="card-action" ng-show="description.length>199">
 						<a ng-click="less_more($event)" href="#"
 							class="green-text show-more-less event-action">Show more</a>
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place location grid-item">
+				<div class="col s12 l5 m5 card white place eventlocation grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
 						<p>
@@ -59,7 +58,7 @@
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place other-info grid-item">
+				<div class="col s12 l5 m5 card white place eventother-info grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Other Info</span><br />
 						<p>
@@ -90,7 +89,9 @@
 			<div class="row grid feedback indented-content">
 				<div class="col s12 m5 l5 grid-item card white">
 					<div class="card-content grey-text text-darken-1 leave-feedback-content">
-						<span class="card-title" ng-click="show_modal($event)"> <img class="circle" ng-src={{userpicture.userpic}} /> <span class="event-smallertext grey-text text-lighten-1"> Your feedback</span> 
+						<span class="card-title" ng-click="show_modal($event)"> <div
+							class="circle user-circle" style="background-image: url('{{current_user.userpic}}');background-size:cover"></div> <span
+							 class="event-smallertext grey-text text-lighten-1"> Your feedback</span> 
 							<div class="circle grey lighten-2">
 								<i class="material-icons">photo_camera</i>
 							</div>
@@ -101,14 +102,14 @@
 				<div class="col s12 m4 l5 grid-item card white"
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
-					<img class="circle" ng-src="{{feedback.user.userpic}}" />
-						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
+					<div class="circle user-feedback-circles" style="background-image: url('{{feedback.user.userpic}}');background-size:cover"></div>
+						<span class="card-title event-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
 							<span class="rel_date event-rel-date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
 						<p class="more hidden">{{feedback.body}}</p>
 					</div>
-					<div class="card-action">
+					<div class="card-action" ng-show="feedback.body.length>199">
 						<a ng-click="less_more($event)" href="#"
 							class="green-text show-more-less">Show more</a>
 					</div>
@@ -119,28 +120,29 @@
 		<div id="feedback-modal" class="modal modal-fixed-footer mymodal"
 			ng-controller="PlaceFeedbackController">
 			<div class="modal-content">
-				<span class="card-title feedback-username"> <img
-					class="circle feedback-userpic" ng-src="{{userpicture.userpic}}" /> <span>{{firstname.firstName}} {{firstname.lastName}}</span>
-				</span><br />
+				<span class="card-title feedback-username">
+					<div class="circle feedback-userpic" style="background-image: url('{{current_user.userpic}}');background-size:cover"></div> 
+					<span>{{current_user.firstName}} {{current_user.lastName}}</span>
+				</span>
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
 					<textarea placeholder=" " id="typing-feedback" type="text"
 						class="validate" ng-model="text"></textarea>
 					<label for="typing-feedback" class="typeit"></label>
 				</div>
-				<!-- <span ng-bind="text"></span> -->
+				
 				<div class="form-group">
-				    <label for="newPlacePhoto"> <span><i
+				    <label for="newEventPhoto"> <span><i
 								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>
-				    </label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
-						class="form-control" ng-model="newPlacePhoto"
+				    </label> <input type="text" name="newEventPhoto" id="newEventPhoto"
+						class="form-control" ng-model="newEventPhoto"
 						placeholder="Photo URL">
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText(); addImage()">Publish</button> <button type="button" 
+					ng-click="addEventText(); addEventImage()">Publish</button> <button type="button" 
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>

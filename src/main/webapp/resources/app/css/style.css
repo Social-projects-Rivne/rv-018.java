@@ -1121,9 +1121,23 @@ input.add-feedback {
      .event.description .card-content {
         min-height: 285px;
     } 
+    
+    .eventlocation.card, .eventother-info.card, .event-dates.card {
+        height: 122px;
+        width: 47% !important;
+    }
+    
+    /* .feedback span > span {
+        top: -6px;
+    } */
 }
 /* medium screens */
 @media only screen and (min-width: 601px) and (max-width: 992px) {
+    .eventlocation.card, .eventother-info.card, .event-dates.card {
+        height: 102px;
+        width: 47% !important;
+    }
+    
     .card.place.event-dates .grey-text p {
         padding: 5px;
     }
@@ -1135,6 +1149,19 @@ input.add-feedback {
     .event.description .card-content {
         min-height: 281px;
     }
+    
+    .card[less="true"] p.less.event {
+        overflow: hidden;
+        height: 205px;
+    }
+    
+    /* .feedback span > span {
+        top: -9px !important;
+    }
+    
+    .event-smallertext {
+        top: -7px !important;
+    } */
 }
 
 .ev-date {
@@ -1142,6 +1169,9 @@ input.add-feedback {
     vertical-align: sub;
 } 
 
+.event-smallertext {
+    top: -5px !important;
+}
     
 /*------End of event------*/
 

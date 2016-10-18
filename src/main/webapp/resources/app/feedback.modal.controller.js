@@ -10,7 +10,7 @@ angular
 					   if (!$scope.text) {
 						   return;
 					   }
-					   console.log(1234);
+					  
 					   if ($localStorage.message == 'logout') {
 						   
 					    $http({
@@ -18,8 +18,12 @@ angular
 					    	url: _contextPath + "/api/comment", 
 					    	headers: { 'Authorization': $localStorage.authorization },
 					    	data: {
-					    		body: $scope.text
-					    	}
+					    		place:{
+					    		  id: $scope.id,
+					    		},
+					    		body: $scope.text,
+						          tableType : "place",
+						    }
 					    }).then(function(response) {
 					    	Materialize.toast('Feedback successfully added!', 2000);
 						      $scope.submissionSuccess = true;
@@ -31,32 +35,34 @@ angular
 					    }, function(error) {
 					    	Materialize.toast('Something wrong. Please try again!', 1000);
 					    });
-					} else 
+					       } else 
 						   Materialize.toast('Please log in first. Only logged in user can add Feedback!', 1000);
 						   setTimeout(function () {
 						        $scope.$apply(function () {
+						        	$scope.text = "";
 						        	$scope.submissionSuccess = false;
 						        });
-						      }, 50);
+						    }, 50);
 					 };
 
 					  $scope.addImage = function() {
-						  /*if (!$scope.newPlacePhoto) {
-							   return;
-						  }*/
+						  
 						  if ($localStorage.message == 'logout') {
 							  
 							  $http({
 							    	method: 'POST',
-							    	url: _contextPath + "/api/gallery/", 
+							    	url: _contextPath + "/api/gallery/",
 							    	headers: { 'Authorization': $localStorage.authorization },
 							    	data: {
+							    		place:{
+							    		  id: $scope.id,
+							    		},
 							    		attachment: {
-									          fileSrc: $scope.newPlacePhoto
-									        },
-							    	}
-							  })
-						   .then(function(response){
+								            fileSrc: $scope.newPlacePhoto
+								        },
+								          tableType : "place",
+								    }
+								}).then(function(response){
 							  console.log("Image added");
 						      setTimeout(function () {
 						        $scope.$apply(function () {
@@ -68,5 +74,74 @@ angular
 					         });
 						} 
 					  };
+					  
+					  $scope.addEventText = function() {
+						   if (!$scope.text) {
+							   return;
+						   }
+						  
+						   if ($localStorage.message == 'logout') {
+							   
+						    $http({
+						    	method: 'POST',
+						    	url: _contextPath + "/api/comment", 
+						    	headers: { 'Authorization': $localStorage.authorization },
+						    	data: {
+						    		event:{
+						    		  id: $scope.id,
+						    		},
+						    		body: $scope.text,
+							          tableType : "event",
+							    }
+						    }).then(function(response) {
+						    	Materialize.toast('Feedback successfully added!', 2000);
+							      $scope.submissionSuccess = true;
+							      setTimeout(function() {
+							        $scope.$apply(function() {
+							          $scope.submissionSuccess = false;
+							        });
+							      }, 50);
+						    }, function(error) {
+						    	Materialize.toast('Something wrong. Please try again!', 1000);
+						    });
+						       } else 
+							   Materialize.toast('Please log in first. Only logged in user can add Feedback!', 1000);
+							   setTimeout(function () {
+							        $scope.$apply(function () {
+							        	$scope.text = "";
+							        	$scope.submissionSuccess = false;
+							        });
+							    }, 50);
+						 };
+
+						  $scope.addEventImage = function() {
+							  
+							  if ($localStorage.message == 'logout') {
+								  
+								  $http({
+								    	method: 'POST',
+								    	url: _contextPath + "/api/gallery/",
+								    	headers: { 'Authorization': $localStorage.authorization },
+								    	data: {
+								    		event:{
+								    		  id: $scope.id,
+								    		},
+								    		attachment: {
+									            fileSrc: $scope.newEventPhoto
+									        },
+									          tableType : "event",
+									    }
+									}).then(function(response){
+								  console.log("Image added");
+							      setTimeout(function () {
+							        $scope.$apply(function () {
+							          $scope.newEventPhoto = "";
+							        });
+							      }, 50);
+							   }, function(error){
+						    	 console.log("Error, image not added");
+						         });
+							} 
+						  };
 	}]);
 
