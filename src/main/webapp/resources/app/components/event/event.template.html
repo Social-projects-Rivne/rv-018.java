@@ -40,7 +40,7 @@
 					<!-- <div class=" white place"> -->
 					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
 						<span class="card-title grey-text" ng-click="show_description_modal($event)">Description<i class="material-icons myright right">mode_edit</i></span>
-						<p class="less">{{short_description}}</p>
+						<p class="less event">{{short_description}}</p>
 						<p class="more hidden">{{description}}</p>
 					</div>
 					<div class="card-action">
@@ -49,7 +49,7 @@
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place location grid-item">
+				<div class="col s12 l5 m5 card white place eventlocation grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Location</span><br />
 						<p>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 
-				<div class="col s12 l5 m5 card white place other-info grid-item">
+				<div class="col s12 l5 m5 card white place eventother-info grid-item">
 					<div class="card-content grey-text text-darken-1">
 						<span class="card-title grey-text">Other Info</span><br />
 						<p>
@@ -102,7 +102,7 @@
 					ng-repeat="(i, feedback) in feedbacks" less="true" ng-href="#{{i}}!">
 					<div class="card-content grey-text text-darken-1">
 					<img class="circle" ng-src="{{feedback.user.userpic}}" />
-						<span class="card-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
+						<span class="card-title event-title"> <span>{{feedback.user.firstName}} {{feedback.user.lastName}}</span></br>
 							<span class="rel_date event-rel-date">{{feedback.date|date:"dd MMMM yyyy"}}</span>
 						</span><br />
 						<p class="less">{{feedback.body.substr(0, 440)}}</p>
@@ -140,7 +140,7 @@
 			<div class="modal-footer">
 				<button type="button"
 					class="bttns modal-action modal-close waves-effect waves-green btn-flat"
-					ng-click="addText(); addImage()">Publish</button> <button type="button" 
+					ng-click="addEventText(); addEventImage()">Publish</button> <button type="button" 
 					class="bttns modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
 			</div>
 		</div>

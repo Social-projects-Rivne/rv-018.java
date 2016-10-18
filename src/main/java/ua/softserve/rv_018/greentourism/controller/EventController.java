@@ -16,14 +16,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.softserve.rv_018.greentourism.config.authentication.TokenAuthenticationUtil;
 import ua.softserve.rv_018.greentourism.model.CommentItem;
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
+import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.Point;
+import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.repository.CommentItemRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
 import ua.softserve.rv_018.greentourism.service.EventService;
@@ -49,6 +53,9 @@ public class EventController {
 	
 	@Autowired
 	private CommentItemRepository commentItemRepository;
+	
+	@Autowired
+	private TokenAuthenticationUtil tokenUtil;
 	
 	/**
      * Web service endpoint to create Event entity.
@@ -244,21 +251,33 @@ public class EventController {
     * successfully, and a HTTP status code as described in the method
     * comment.
     */
-   @RequestMapping(value="/{id}", method=RequestMethod.PUT,
-           headers = "Accept=application/json", produces = {"application/json"})
-   public ResponseEntity<?> updateEvent(@PathVariable int id, @RequestBody Event event) {
-       logger.info("> updateEvent id:{}", event.getId());
-
-       if (eventService.findOne(id) == null) {
-           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
-        
-       Event updatedEvent = eventService.update(event);
-
-       logger.info("< updateEvent id:{}", event.getId());
-       
-       return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
-   }
+	    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json", produces = {
+	    "application/json" })
+	public ResponseEntity<?> updateEvent(@PathVariable int id, @RequestBody Event event, @RequestHeader("Authorization") String authorization) {
+	    logger.info("> updateEvent id:{}", event.getId());
+	
+	    Event eventToUpdate = eventService.findOne(id);
+	
+	    if (eventToUpdate == null) {
+	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	
+	    User user = tokenUtil.getUserFromHeader(authorization);
+	    if (user.getId() == null || eventToUpdate.getUser().getId() == null
+		    	|| !(user.getId().equals(eventToUpdate.getUser().getId()) || !(user.getRole().getName().equals("ROLE_ADMIN")))) {
+		    new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	    }
+	    System.out.println("In updateEvent: User is: " + user.getEmail());
+	    Event updatedEvent = eventService.update(event, eventToUpdate);
+	
+	    HttpHeaders httpHeaders = new HttpHeaders();
+	    httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+			    .buildAndExpand(updatedEvent.getId()).toUri());
+	
+	    logger.info("< updateEvent id:{}", event.getId());
+	
+	    return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+	}
    
    /**
    * Web service endpoint to fetch all Events entities by name.

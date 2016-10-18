@@ -20,7 +20,7 @@ angular
 								$scope.name = response.data.name;
 								$scope.description = response.data.description;
 								$scope.short_description = $scope.description
-										.substr(0, 500);
+										.substr(0, 700);
 
 								$scope.location = response.data.location;
 								$scope.otherInfo = response.data.user;

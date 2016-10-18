@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
+import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Point;
 import ua.softserve.rv_018.greentourism.repository.EventRepository;
 import ua.softserve.rv_018.greentourism.repository.GalleryRepository;
@@ -158,24 +159,18 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public Event update(Event event) {
-		logger.info("> Event update id:{}", event.getId());
+	public Event update(Event newEvent, Event eventToUpdate) {
+		logger.info("> Event update id:{}", newEvent.getId());
 
 		// Ensure the entity object to be updated exists in the repository to
 		// prevent the default behavior of save() which will persist a new
 		// entity if the entity matching the id does not exist
-		Event eventToUpdate = findOne(event.getId());
-		if (eventToUpdate == null) {
-			// Cannot update Event that hasn't been persisted
-			logger.error("Attempted to update a Event, but the entity does not exist.");
-			throw new NoResultException("Requested entity not found.");
-		}
 
-		if (event.getName() != null) {
-			eventToUpdate.setName(event.getName());
+		if (newEvent.getName() != null) {
+			eventToUpdate.setName(newEvent.getName());
 		}
-		if (event.getDescription() != null) {
-			eventToUpdate.setDescription(event.getDescription());
+		if (newEvent.getDescription() != null) {
+			eventToUpdate.setDescription(newEvent.getDescription());
 		}
 		
 		Event updatedEvent = eventRepository.save(eventToUpdate);

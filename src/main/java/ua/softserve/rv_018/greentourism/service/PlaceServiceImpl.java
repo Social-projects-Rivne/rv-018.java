@@ -190,9 +190,6 @@ public class PlaceServiceImpl implements PlaceService {
 		if (newPlace.getDescription() != null) {
 			placeToUpdate.setDescription(newPlace.getDescription());
 		}
-		if (newPlace.getAttachments() != null && !newPlace.getAttachments().isEmpty() && newPlace.getAttachments().get(0) != null) {
-			placeToUpdate.getAttachments().add(newPlace.getAttachments().get(0));
-		}
 		
 		Place updatedPlace = placeRepository.save(placeToUpdate);
 

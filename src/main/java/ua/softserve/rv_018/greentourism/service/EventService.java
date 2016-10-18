@@ -63,7 +63,7 @@ public interface EventService {
 	 * @param event An Event object to be updated.
 	 * @return The updated Event entity.
 	 */
-	Event update(Event event);
+	Event update(Event newEvent, Event eventToUpdate);
 	
 	/**
      * Find all Event entities by name using filter.

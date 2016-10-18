@@ -18,7 +18,9 @@ import ua.softserve.rv_018.greentourism.model.Event;
 import ua.softserve.rv_018.greentourism.model.Gallery;
 import ua.softserve.rv_018.greentourism.model.Place;
 import ua.softserve.rv_018.greentourism.model.User;
+import ua.softserve.rv_018.greentourism.repository.PlaceRepository;
 import ua.softserve.rv_018.greentourism.service.GalleryService;
+import ua.softserve.rv_018.greentourism.service.PlaceService;
 
 @RequestMapping(value = "/api/gallery")
 @Controller
@@ -30,6 +32,9 @@ public class GalleryController {
 
 	@Autowired
 	private GalleryService galleryService;
+	
+	@Autowired
+	private PlaceService placeService;
 	
 	@Autowired
 	private TokenAuthenticationUtil tokenUtil;
@@ -45,9 +50,18 @@ public class GalleryController {
     	
     	User user = tokenUtil.getUserFromHeader(authorization);
 		if (gallery.getPlace() != null) {
-			Place place = gallery.getPlace();
-			place.setUser(user);
-			gallery.setPlace(place);
+			if (gallery.getPlace().getId() != 0){
+				Place foundPlace = placeService.findOne(gallery.getPlace().getId());
+				if (foundPlace != null) {
+					gallery.setPlace(foundPlace);
+				} else {
+				    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+			} else {
+				Place place = gallery.getPlace();
+				place.setUser(user);
+				gallery.setPlace(place);
+			}
 		} else {
 			Event event = gallery.getEvent();
 			event.setUser(user);
