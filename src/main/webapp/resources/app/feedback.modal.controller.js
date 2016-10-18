@@ -33,10 +33,10 @@ angular
 						        });
 						      }, 50);
 					    }, function(error) {
-					    	Materialize.toast('Something wrong. Please try again!', 1000);
+					    	Materialize.toast('Something wrong. Please try again!', 2000);
 					    });
 					       } else 
-						   Materialize.toast('Please log in first. Only logged in user can add Feedback!', 1000);
+						   Materialize.toast('Please log in first. Only logged in user can add Feedback!', 4000);
 						   setTimeout(function () {
 						        $scope.$apply(function () {
 						        	$scope.text = "";
