@@ -33,8 +33,8 @@
 			</div>
 
 			<div class="row indented-content grid">
-				<div class="col s12 l5 m5 card white place editableplace description grid-item" less="true" ng-class="{nomore:description.length<200}">
-					<!-- <div class=" white place"> -->
+				<div class="col s12 l5 m5 card white place editableplace description grid-item" 
+				less="true" ng-class="{nomore:description.length<200}">
 					<div class="card-content grey-text text-darken-1" ng-class="{less: !less}">
 						<span class="card-title grey-text">Description
 						<i class="material-icons myright right" ng-show="$ctrl.isAdmin" ng-click="show_description_modal($event)">mode_edit</i></span> <!-- ng-cloak="isAdmin" -->
@@ -112,14 +112,14 @@
 				<span class="card-title feedback-username"> 
 				<div class="circle feedback-userpic" style="background-image: url('{{current_user.userpic}}');background-size:cover"></div> 
 					<span>{{current_user.firstName}} {{current_user.lastName}}</span>
-				</span><!-- <br /> -->
+				</span>
 				<div class="input-field">
 					<div class="typeit">Type your feedback</div>
 					<textarea placeholder=" " id="typing-feedback" type="text"
 						class="validate" ng-model="text"></textarea>
 					<label for="typing-feedback" class="typeit"></label>
 				</div>
-				<!-- <span ng-bind="text"></span> -->
+				
 				<div class="form-group">
 				    <label for="newPlacePhoto"> <span><i
 								class="material-icons camera-icon grey-text text-lighten-1">photo_camera</i></span>

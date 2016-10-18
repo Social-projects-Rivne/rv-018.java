@@ -127,7 +127,7 @@ angular
 								    		  id: $scope.id,
 								    		},
 								    		attachment: {
-									            fileSrc: $scope.newPlacePhoto
+									            fileSrc: $scope.newEventPhoto
 									        },
 									          tableType : "event",
 									    }
@@ -135,7 +135,7 @@ angular
 								  console.log("Image added");
 							      setTimeout(function () {
 							        $scope.$apply(function () {
-							          $scope.newPlacePhoto = "";
+							          $scope.newEventPhoto = "";
 							        });
 							      }, 50);
 							   }, function(error){
