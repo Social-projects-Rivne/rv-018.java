@@ -1,0 +1,76 @@
+<div class="user-dropdown" ng-click="show(); logout(); showLoginForm()">
+	<a class="waves-effect">{{loginstatus}}</a>
+</div>
+
+<form id="form" name="form" class="login-form" ng-class="formshow" ng-switch on="loginCondition" novalidate >
+	
+	<div class="row">
+	<div class="col s12 m8 offset-m2 l4 offset-l4 center" ng-show="createAccountFormIsOpen" ng-cloak>
+			<h5>Sign up</h5>
+			<div class="input-field col s12">
+				<input placeholder="First name" autocomplete="off" id="firsName"
+					name="firsName" type="text" ng-model="firsName"> 
+			</div>
+			<div class="input-field col s12">
+				<input placeholder="Last name" autocomplete="off" id="lastName"
+					name="lastName" type="text" ng-model="lastName">
+			</div>
+			<div class="input-field col s12">
+				<input placeholder="User name" autocomplete="off" id="userName"
+					name="userName" type="text" ng-model="userName">
+			</div>
+			<div class="input-field col s12">
+				<input placeholder="Email" autocomplete="off" id="userEmail"
+					name="userEmail" type="email" ng-model="userEmail">
+			</div>
+			<div class="input-field col s12">
+				<input placeholder="Password" id="userPassword" name="userPassword" type="password"
+					ng-model="userPassword" ng-required="true">
+			</div>
+			<div class="input-field col s12">
+				<button class="btn waves-effect waves-light left grey darken-4"
+					type="submit" ng-click="userRegistration()" name="action">Submit
+				</button>
+			</div>
+    </div>
+	
+ 	<div id="login-form" class="col s12 m8 offset-m2 l4 offset-l4 center" ng-show="loginFormIsOpen" ng-hide="false"> <!-- ng-switch-when="'login'" -->
+		<div class="row">
+			<h5>Sign in</h5>
+			<div class="input-field col s12">
+				<input placeholder="Email" autocomplete="off" id="email" name="email" type="email" ng-model="email"	
+					ng-required="true">
+				<span ng-show="login-form.email.$dirty && login-form.email.$error.required">Email is required.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<input placeholder="Password" id="password" name="password" type="password" ng-model="password"
+					ng-required="true"> 
+				<span ng-show="form.password.$dirty && form.password.$error.required">Password is required.</span>
+				<span ng-show="inputError">Invalid credentials. Please input right credentials or register.</span>
+			</div>
+		</div>
+		<div id="login-link" class="row left login">
+			<a class="waves-effect waves-light btn grey darken-4" ng-class="{disabled: (login-form.$invalid == true)}" ng-click="login();">login</a>
+			<ul>
+				<li><a ng-click="createAccount(); hideLoginForm()" class="f-left white-text">Don't have account..?</a></li>
+				<li><a ng-click="forgotPasswordForm(); hideLoginForm()" class="f-left white-text">Forgot Your Password..?</a></li>
+			</ul>
+		</div>
+		
+	</div>
+	
+	<div class="col s12 m8 offset-m2 l4 offset-l4 center" ng-show="forgotPasswordFormIsOpen" ng-cloak>
+          <h5>Reset Password</h5>
+          <div class="input-field col s12">
+				<input placeholder="Email" autocomplete="off" id="forgotPaswordEmail" name="forgotPaswordEmail" type="email" ng-model="forgotPaswordEmail">
+		  </div>
+          <div class="col s12">
+           	 <button class="btn waves-effect waves-light left grey darken-4" type="submit" ng-click="forgotPassword()" name="action">Submit
+            </button>
+          </div>
+     </div>
+     </div>
+</form>
+

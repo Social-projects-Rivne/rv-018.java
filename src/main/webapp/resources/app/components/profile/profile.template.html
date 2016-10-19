@@ -1,0 +1,156 @@
+<div class="container">
+	<div class="row">
+		<div id="profile-page-header" class="card">
+			<div class="col s12 card-user-image waves-effect waves-block waves-light"
+				ng-style="{'background-image':'url(' + ImageUrl + ')'}">
+				<div class="col s3">
+					<img ng-src="{{userpic}}" class="circle responsive-img z-depth-2">
+				</div>
+				<div class="col s3 card-profile-username">
+					<p>{{firstName}} {{lastName}}</p>
+					<p>@{{username}}</p>
+				</div>
+				<div class="col s6">
+					<button class="card-profile-button modal-trigger" href="#modal1">EDIT
+						PROFILE</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12">
+		<p class="card-anotation">Personal information</p>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m6">
+			<div class="card cardprofile">
+				<div class="card-content">
+					<span class="card-title activator grey-text ">Email
+						<i class="material-icons right modal-trigger" href="#user-email">mode_edit</i></span>
+					<p>
+						<i class="material-icons left">mail</i>{{email}}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m6">
+			<div class="card cardprofile">
+				<div class="card-content">
+					<span class="card-title activator grey-text ">Social accounts
+						<i class="material-icons right modal-trigger" href="#social-accounts">mode_edit</i></span>
+					<p>
+						<i class="material-icons left">account_circle</i>{{socialAccount}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ 	<!-- User's places -->
+ 	<div class="col s12 m6">
+		<p class="card-anotation">Places added by @{{username}}</p>
+	</div>
+	<div class="row">
+		<div class="col s12 m6"
+			data-ng-repeat="place in places | filter: searchTeam | orderBy: 'name'">
+			<div class="card cardprofile">
+				<div class="card-content">
+					<h5 class="card-title activator grey-text ">{{place.name}}</h5>
+				</div>
+				<div class="card-image-place" data-ng-repeat="fileSrc in place.attachments">
+					<img ng-src="{{fileSrc.fileSrc}}">
+				</div>
+				<div class="card-view-map">
+					<a href="#/map/place/{{place.point.id}}">VIEW ON MAP</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- User's events -->
+	<div class="col s12 m6">
+		<p class="card-anotation">Events added by @{{username}}</p>
+	</div>
+	<div class="row">
+		<div class="col s12 m6"
+			data-ng-repeat="event in events | filter: searchTeam | orderBy: 'name'">
+			<div class="card cardprofile">
+				<div class="card-content">
+					<h5 class="card-title activator grey-text ">{{event.name}}</h5>
+				</div>
+				<div class="card-image-place" data-ng-repeat="fileSrc in event.attachments">
+					<img ng-src="{{fileSrc.fileSrc}}">
+				</div>
+				<div class="card-view-map">
+					<a href="#/map/event/{{event.point.id}}">VIEW ON MAP</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Structure for edit profile -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<div>
+				<label for="firstName"><h6>Edit First Name:</h6> </label> <input
+					type="text" id="firstName" ng-model="firstName"
+					placeholder="enter firstName" />
+			</div>
+			<div>
+				<label for="lastName"><h6>Edit Last Name:</h6> </label> <input
+					type="text" id="lastName" ng-model="lastName"
+					placeholder="enter lastName" />
+			</div>
+			<div>
+				<label for="username"><h6>Edit username:</h6> </label> <input
+					type="text" id="username" ng-model="username"
+					placeholder="enter username" />
+			</div>
+			<div>
+				<label for="userpic"><h6>Edit avatars url:</h6> </label> <input
+					type="text" id="userpic" ng-model="userpic"
+					placeholder="enter avatars url" />
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="button" value="Cancel"
+				class="modal-action modal-close waves-effect waves-red btn-flat modals close"></a>
+			<input type="button" ng-click="update()" value="Ok"
+				class="modal-action modal-close waves-effect waves-green btn-flat modals"></a>
+		</div>
+	</div>
+
+	<!-- Modal Structure for edit email -->
+	<div id="user-email" class="modal">
+		<div class="modal-content">
+			<div>
+				<label for="email"><h5>Edit email:</h5> </label> <input type="text"
+					id="email" ng-model="email" placeholder="enter email" />
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="button" value="Cancel"
+				class="modal-action modal-close waves-effect waves-red btn-flat modals close"></a>
+			<input type="button" ng-click="update()" value="Ok"
+				class="modal-action modal-close waves-effect waves-green btn-flat modals"></a>
+		</div>
+	</div>
+
+	<!-- Modal Structure for edit social accounts -->
+	<div id="social-accounts" class="modal">
+		<div class="modal-content">
+			<div>
+				<label for="socialAccount"><h5>Edit social account</h5> </label> <input
+					type="text" id="socialAccount" ng-model="socialAccount"
+					placeholder="enter social account" />
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="button" value="Cancel"
+				class="modal-action modal-close waves-effect waves-red btn-flat modals close"></a>
+			<input type="button" ng-click="update()" value="Ok"
+				class="modal-action modal-close waves-effect waves-green btn-flat modals"></a>
+		</div>
+	</div>
+</div>

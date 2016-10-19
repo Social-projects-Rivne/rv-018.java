@@ -1,0 +1,192 @@
+<div id="content" class="content" ng-init="removeCache();">
+
+	<div id="mapid"></div>
+
+	<div class="fixed-action-btn" ng-show="addButtonAddPlace" ng-hide = "false">
+		<a class="button-collapse btn-floating btn-large red modal-trigger">
+			<i class="large material-icons">mode_edit</i>
+		</a>
+		<ul>
+	      <li><a class="btn-floating red">
+					<i class="material-icons">directions_bike</i></a></li>
+	      <li><a ng-click="addEventMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating yellow darken-1">
+					<i class="material-icons">sentiment_very_satisfied</i></a></li>
+	      <li><a ng-click="addPlaceMenu(); hideButtonAddPlace()" data-activates="slide-out" class="btn-floating green">
+					<i class="material-icons">place</i></a></li>
+	    </ul>
+	</div>
+
+	<div ng-controller="calendarCtrl">
+		<calendar-md flex layout layout-fill
+				  ng-show="singletonCalendarIsOpen.calendarIsOpen"
+	 			  calendar-direction="direction"
+	 			  on-prev-month="prevMonth"
+				  on-next-month="nextMonth"
+				  on-day-click="dayClick"
+				  title-format="'MMMM y'"
+				  ng-model='selectedDate'
+				  week-starts-on="firstDayOfWeek"
+				  data-start-month="8"
+				  data-start-year="2016"
+				  tooltips="tooltips"
+				  day-format="dayFormat"
+				  day-label-format="'EEE'"
+				  day-label-tooltip-format="'EEEE'"
+				  day-tooltip-format="'fullDate'"
+				  day-content="setDayContent"
+				  disable-future-selection="false"
+				  class="calendar-custom-style">
+		</calendar-md>
+	</div>
+
+ 	<div class="fixed-action-btn floating-btn-date-picker" ng-show="singletonCalendarButtonIsShown.calendarButtonIsShown" ng-cloak>
+		<a class="btn-floating waves-effect waves-light green" ng-click="showOrHideCalendar()"><i
+			class="material-icons">date_range</i></a>
+	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addPlace">
+		<a ng-click="addPlaceMenu(); hidePlaceButton(); hideEventButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
+	<!-- Open add item Arrow for small screen-->
+	<div class="fixed-action-btn arrow" ng-show="addEvent">
+		<a ng-click="addEventMenu(); hideEventButton(); hidePlaceButton()" class="button-collapse btn-floating btn-large">
+			<i class="material-icons">expand_less</i>
+		</a>
+	</div>
+
+	<!-- DIV Add places -->
+	<div id="add-place" class="add-item-menu" ng-show="addPlaceMenuIsOpen" ng-cloak>
+			<h2>New Place</h2>
+			<a href="" ng-click="toggleAddPlaceMenu(); resetAddPlaceForm(form); togleButtonAddPlace(); hidePlaceButton(); hideEventButton()"> <span
+				class="material-icons closeIcon">close</span>
+			</a>
+			<a href="" ng-click="toggleAddPlaceMenuSmallScreen(); showPlaceButton()"> <span>
+				<i class="material-icons arrow">expand_more</i></span>
+			</a>
+			<form name="placeMaker" novalidate>
+				<div class="form-group">
+					<span class="title">1. Choose place on map:</span><br>
+					<span id="latitude" ng-model="latitude"></span>Latitude: {{latitude}}<br>
+					<span id="longitude" ng-model="longitude"></span>Longitude: {{longitude}}<br>
+				</div>
+				<div class="form-group">
+					<label for="placeName"> <span class="title">2. Enter
+							place name:</span>
+					</label> <input type="text" name="name" class="form-control"
+						id="newPlaceName" ng-model="newPlaceName" ng-minlength="5" ng-maxlength="70" required>
+				</div>
+				<div ng-messages="placeMaker.name.$error">
+					<p ng-message="minlength">Place name is too short. Place name should be at Least 5 characters</p>
+					<p ng-message="maxlength">Place name is too long. Place name should be no more than 70 characters</p>
+				</div>
+				<div class="form-group">
+					<label for="newPlaceType"> <span class="title">3.
+							Select place type:</span>
+					</label> <select name="newPlaceType" class="form-control"
+						ng-options="x for x in places"
+						ng-model="newPlaceType">
+						<option value="">-- Choose place type --</option>
+					</select>
+				</div>
+				<div class="form-group" >
+					<label for="description"> <span class="title">4.
+							Enter place description:</span>
+					</label>
+					<textarea name="newPlaceDescription" id="newPlaceDescription"
+						class="form-control" ng-model="newPlaceDescription" ng-minlength="10" required></textarea>
+				</div>
+				<div ng-messages="placeMaker.newPlaceDescription.$error">
+					<p ng-message="minlength">Description is too short. Description should be at Least 10 characters</p>
+				</div>
+				<div class="form-group">
+					<label for="newPlacePhoto"> <span class="title">5.
+							Add photo (optional):</span>
+					</label> <input type="text" name="newPlacePhoto" id="newPlacePhoto"
+						class="form-control" ng-model="newPlacePhoto"
+						placeholder="Photo URL">
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat modals" ng-click="resetAddPlaceForm()" value="Reset">
+						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat modals" ng-click="createNewPlace()" value="Save">
+					</div>
+				</div>
+			</form>
+	</div>
+	<!-- DIV Add events -->
+	<div id="add-event" class="add-item-menu" ng-show="addEventMenuIsOpen" ng-cloak>
+			<h2>New Event</h2>
+			<a href="" ng-click="toggleAddEventMenu(); resetAddEventForm(form); togleButtonAddPlace(); hideEventButton(); hidePlacebutton()"> <span
+				class="material-icons closeIcon">close</span>
+			</a>
+			<a href="" ng-click="toggleAddEventMenuSmallScreen(); showEventButton()"> <span>
+				<i class="material-icons arrow">expand_more</i></span>
+			</a>
+			<form name="eventMaker" novalidate>
+				<div class="form-group">
+					<span class="title">1. Choose event on map:</span><br>
+					<span id="latitudeE" ng-model="latitudeE"></span>Latitude: {{latitudeE}}<br>
+					<span id="longitudeE" ng-model="longitudeE"></span>Longitude: {{longitudeE}}<br>
+				</div>
+				<div class="form-group">
+					<label for="eventName"> <span class="title">2. Enter
+							event name:</span>
+					</label> <input type="text" name="name" class="form-control"
+						id="newEventName" ng-model="newEventName" ng-minlength="5" ng-maxlength="70" required>
+				</div>
+				<div ng-messages="eventMaker.name.$error">
+					<p ng-message="minlength">Event name is too short. Event name should be at Least 5 characters</p>
+					<p ng-message="maxlength">Event name is too long. Event name should be no more than 70 characters</p>
+				</div>
+			<div class="form-group">
+					<label for="newEventType"> <span class="title">3.
+							Select event type:</span>
+					</label> <select name="newEventType" class="form-control"
+						ng-options="x for x in events"
+						ng-model="newEventType">
+						<option value="">-- Choose event type --</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="newStartDate"> <span class="title">4.
+						 Select date From :</span>
+					</label>
+					 <input type="date" class="datepicker" id="newStartDate" ng-model="newStartDate" required>
+				</div>
+				<div class="form-group">
+					<label for="newEndDate"> <span class="title">5.
+						 Select date To :</span>
+					</label>
+					 <input type="date" class="datepicker" id="newEndDate" ng-model="newEndDate" required>
+				</div>
+				<div class="form-group">
+					<label for="description"> <span class="title">6.
+							Enter event description:</span>
+					</label>
+					<textarea name="newEventDescription" id="newEventDescription"
+						class="form-control" ng-model="newEventDescription" ng-minlength="10" required></textarea>
+				</div>
+				<div ng-messages="eventMaker.newEventDescription.$error">
+					<p ng-message="minlength">Description is too short. Description should be at Least 10 characters</p>
+				</div>
+				<div class="form-group">
+					<label for="newEventPhoto"> <span class="title">7.
+							Add photo (optional):</span>
+					</label> <input type="text" name="newEventPhoto" id="newEventPhoto"
+						class="form-control" ng-model="newEventPhoto"
+						placeholder="Photo URL">
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<input type="reset" class="col s12 m6 waves-effect waves-effect waves-light btn-flat modals" ng-click="resetAddEventForm()" value="Reset">
+						<input type="button" class="col s12 m6 waves-effect waves-light btn-flat modals" ng-click="createNewEvent()" value="Save">
+					</div>
+				</div>
+			</form>
+	</div>
+	<searchplace></searchplace>
+</div>

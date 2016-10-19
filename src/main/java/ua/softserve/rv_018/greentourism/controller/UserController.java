@@ -1,18 +1,29 @@
 package ua.softserve.rv_018.greentourism.controller;
 
+import java.util.Collection;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import ua.softserve.rv_018.greentourism.config.authentication.TokenAuthenticationUtil;
 import ua.softserve.rv_018.greentourism.model.User;
 import ua.softserve.rv_018.greentourism.service.UserService;
-
-import java.util.Collection;
 
 /**
  * The UserController class is a RESTful web service controller. The
@@ -24,6 +35,7 @@ import java.util.Collection;
  * Created by Administrator on 6/24/2016.
  */
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
 	/**
      * The logger service for logging purpose.
@@ -35,6 +47,12 @@ public class UserController {
      */
     @Autowired
     private UserService userService;
+    
+    @Autowired
+	public PasswordEncoder encoder;
+    
+    @Autowired
+	private TokenAuthenticationUtil tokenUtil;
 
     /**
      * Web service endpoint to fetch a single User entity by primary key
@@ -50,7 +68,7 @@ public class UserController {
      * @return A ResponseEntity containing a single User object, if found,
      * and a HTTP status code as described in the method comment.
      */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getUser(@PathVariable Long id) {
         logger.info("> getUser id:{}", id);
@@ -62,7 +80,20 @@ public class UserController {
 
         logger.info("< getUser id:{}", id);
         
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/current", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String authorization) {
+        logger.info("> get Current User");
+
+        User user = tokenUtil.getUserFromHeader(authorization);
+		System.out.println("In getCurrentUser: User is: " + user.getEmail());
+
+        logger.info("< get Current User");
+        
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     /**
@@ -72,7 +103,7 @@ public class UserController {
      *
      * @return A ResponseEntity containing a Collection of User objects.
      */
-    @RequestMapping(value = "/user", method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> getUsers() {
     	
@@ -82,7 +113,7 @@ public class UserController {
         
         logger.info("< getUsers");
         
-        return new ResponseEntity<>(users, HttpStatus.FOUND);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
@@ -101,14 +132,15 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value = "/user", method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             headers = "Accept=application/json", produces = {"application/json"})
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user, HttpServletRequest request) {
         logger.info("> createUser");
         
-        userService.validateUserBeforeCreating(user.getLogin());
-        User savedUser = userService.create(user);
-
+        String domain = request.getHeader("host");
+        
+        User savedUser = userService.create(user, domain); 
+        
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -116,7 +148,7 @@ public class UserController {
 
         logger.info("< createUser");
         
-        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
     }
 
     /**
@@ -138,19 +170,44 @@ public class UserController {
      * successfully, and a HTTP status code as described in the method
      * comment.
      */
-    @RequestMapping(value="/user/{id}", method=RequestMethod.PUT,
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("> updateUser id:{}", user.getId());
 
-        User updatedUser = userService.findOne(id);
-        if (updatedUser == null) {
+        if (userService.findOne(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        
+        User updatedUser = userService.update(user);
 
         logger.info("< updateUser id:{}", user.getId());
         
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+    
+    /**
+     * 
+     *
+     * @param user The User object to be updated.
+     * @return A ResponseEntity containing a single User object, if updated
+     * successfully, and a HTTP status code as described in the method
+     * comment.
+     */
+    @RequestMapping(value="/password/{id}", method=RequestMethod.PUT,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> updateUsersPassword(@PathVariable Long id, @RequestBody User user) {
+        logger.info("> updateUsersPassword id:{}", user.getId());
+
+        if (userService.findOne(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        user.setPassword(encoder.encode(user.getPassword()));
+        userService.update(user);
+
+        logger.info("< updateUsersPassword id:{}", user.getId());
+        
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -169,7 +226,7 @@ public class UserController {
      * @return A ResponseEntity with an empty response body and a HTTP status
      * code as described in the method comment.
      */
-    @RequestMapping(value="/user/{id}", method=RequestMethod.DELETE,
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE,
             headers = "Accept=application/json", produces = {"application/json"})
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         logger.info("> deleteUser id:{}", id);
@@ -180,4 +237,68 @@ public class UserController {
         
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    /**
+     * Web service endpoint to verify a User's Email. The primary key 
+     * identifier of the User which Email has to be verified and the confirmation
+     * token is supplied in the URL as a path variable.
+     * <p>
+     * If confirmed successfully, the service redirects User to his profile page
+     * <p>
+     * If User's id or verification token are invalid,
+     * the service returns an empty response body with HTTP status 404.
+     *
+     * @param token A String URL path variable containing the User primary key and 
+     * verification token.
+     * @return A ResponseEntity with an empty response body and a HTTP status
+     * code as described in the method comment.
+     * @throws IOException 
+     */
+    @RequestMapping(value="/confirmation/{token}", method=RequestMethod.GET,
+    		headers = "Accept=application/json", produces = {"application/json"})
+    public void confirmEmail(@PathVariable String token, HttpServletResponse resp,
+    		                 HttpServletRequest req) throws IOException {
+    	logger.info("> confirmEmail token:{}", token);
+    	
+    	userService.confirmEmail(token);
+    	
+    	logger.info("< confirmEmail token:{}", token);
+    		
+    	resp.sendRedirect("http://" + req.getHeader("host") + "/#/profile/" + Long.parseLong(token.substring(0, 4)));
+    }
+    
+    @RequestMapping(value = "/profile/{token}", method = RequestMethod.GET,
+            headers = "Accept=application/json", produces = {"application/json"})
+    public ResponseEntity<?> getUser(@PathVariable String token) {
+        logger.info("> getUser id:{}", token);
+
+        User user = userService.findUserByToken(token);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        logger.info("< getUser token:{}", token);
+        
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
+    /**
+	 * Web service endpoint to fetch Role entity. The service returns the
+	 * Role entity as JSON.
+	 * 
+	 * @return A ResponseEntity containing a Role object.
+	 */
+	@RequestMapping(value = "/role", method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	public ResponseEntity<?> getRole(@RequestHeader("Authorization") String authorization) {
+
+		logger.info("> Get role from the database");
+
+		User user = tokenUtil.getUserFromHeader(authorization);
+		System.out.println("In getRole: User is: " + user.getEmail());
+		
+		logger.info("< Get role from the database");
+
+		return new ResponseEntity<>(user.getRole(), HttpStatus.OK);
+	}
+
 }

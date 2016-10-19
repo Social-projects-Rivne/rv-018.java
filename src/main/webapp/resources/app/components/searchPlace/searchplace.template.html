@@ -1,0 +1,20 @@
+<div class="container row">
+	<div id="places-sidebar" ng-show="searchPlacesSidebarOpen" class="col s6, m5, l3">
+		<a href="" ng-click="closePlacesSidebar()"> 
+			<span class="material-icons closeIcon closeSearch">close</span>
+		</a>
+		<span class="result-header">Search result</span>
+		<div class="search-error" ng-show="noSuchResultMessage">No such result</div> 
+		<ul class="places-list" ng-init="placeAddAddress()">	
+			<li ng-repeat="item in items">
+				<div class="found-place" ng-click="refocusMap(item.point.latitude, item.point.longitude)">
+					<img class="place-image hide-on-small-only" src="{{item.attachments[0].fileSrc}}">
+					<div class="place-info">
+						<p class="place-name"><b>{{item.name}}</b><p>
+						<p class="place-address">{{item.address}}</>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
